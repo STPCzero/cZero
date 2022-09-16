@@ -10,13 +10,14 @@ public class MypController {
 
     @GetMapping("/mypage/myinfo")
     public String myInfo() {
-        log.info("myInfo start!!");
-        return null;
+        log.info(this.getClass().getName()+".myInfo Start!!");
+        log.info(this.getClass().getName()+".myInfo End!!");
+        return "/mypage/myinfo";
     }
 
     @GetMapping("/mypage/myinfo-modify")
     public String myInfoModify() {
         log.info("myInfoModify start!!");
-        return null;
+        return "/mypage/myinfo-modify";
     }
 }
