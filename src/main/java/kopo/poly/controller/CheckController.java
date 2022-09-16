@@ -10,6 +10,6 @@ public class CheckController {
 
     @GetMapping("/check")
     public String checkList() {
-        return null;
+        return "product";
     }
 }
