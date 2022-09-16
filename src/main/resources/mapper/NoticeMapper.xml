@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.INoticeMapper">
+    <insert id="insertNoticeInfo" parameterType="NoticeDTO">
+        INSERT INTO userinfo (
+            USER_SEQ, USER_ID, USER_PW, USER_EMAIL, USER_NAME
+        )VALUES (
+                    #{user_seq}, #{user_id}, #{user_pw}, #{user_email}, #{user_name}
+                )
+    </insert>
+
+</mapper>
