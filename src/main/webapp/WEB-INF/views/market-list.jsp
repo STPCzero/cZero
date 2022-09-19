@@ -14,60 +14,11 @@
 	<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="/js/paging.js"></script>
 	<script type="text/javascript">
-		/* 페이지 이동 ( 페이징 처리 callback 함수 ) */
-		fncGoLink = function(currPage, pageSize, section){
-			$("input[name='currPage']").val(currPage);
-			$("input[name='pageSize']").val(pageSize);
-			if(section === 'PC') $("#dev_nodeList").empty();
-			fncListSearch();	// 목록 조회 함수 호출
-		};
 
-		/* 목록 조회 함수 */
-		fncListSearch = function(){
-			$.ajax({
-				type   : 'POST',
-				url    : 'searchUrl 세팅',
-				data   : $('form').serialize(),
-				success: function(data){
-					// 페이징 처리 ( parameter : target, 리스트 전체 개수, 리스트 전체, 현재 페이지, callback 함수명 )
-					customPaging('.paginate', data.totCnt, data.list, $("input[name='currPage']").val(), 'fncSearchLinkList');
-
-					// 리스트 그리기 ...
-					// .....
-					$('.listBody').append('리스트 html');
-				}
-			});
-		};
 	</script>
 
 	<style>
-		.paginate {margin-top: 7px;}
-		.paginate a.viewMore {display: block;cursor: pointer;text-align: center;padding: 12px;color: #3c63e0;}
-		.paginate a.viewMore span {font-size: 14px;}
-		.paginate a.viewMore span:after {display: inline-block;content:"";width: 11px;height:10px;margin: 0px 0 0 5px;vertical-align: middle;background:url(../images/common/common_sfix_icon.png) no-repeat -350px 0;}
-		.paginate a.viewMore.open span:after {display: inline-block;content:"";width: 11px;height:10px;margin: 0px 0 0 5px;vertical-align: middle;background:url(../images/common/common_sfix_icon.png) no-repeat -400px 0;}
 
-		.paginate.num {margin-top: 7px;text-align: center;}
-		.paginate.num > a {display:inline-block;vertical-align:middle;overflow:hidden;width: 37px;height: 36px;font-size:0;text-indent:-120%;color:transparent;background: url("../images/common/common_sfix_icon.png");border: 1px solid #c8c8c8;}
-		.paginate.num > a.first {background-position:-100px -350px;}
-		.paginate.num > a.prev {background-position: -236px -188px;margin-right: -4px;border-right: none;}
-		.paginate.num > a.next {background-position: -285px -188px;margin-left: -4px;border-left: none;}
-		.paginate.num > a.last {background-position:-250px -350px;}
-		.paginate.num > a.prev.inactive {background-position: -336px -188px;pointer-events: none;}
-		.paginate.num > a.next.inactive {background-position: -385px -188px;pointer-events: none;}
-
-		.paginate.num ol {display:inline-block;vertical-align:middle;}
-		.paginate.num ol:after {display:block;content:"";clear:both;}
-		.paginate.num ol li {float:left;margin-left: -1px;border-top: 1px solid #c8c8c8;border-bottom: 1px solid #c8c8c8;border-left: 1px solid #e7e7e7;border-right: 1px solid #e7e7e7;width: 37px;height: 36px;}
-		.paginate.num ol li:first-child {margin-left:0;}
-		.paginate.num ol li a {display:block;width: 100%;height: 100%;line-height: 33px;font-size: 15px;text-align: center;}
-		.paginate.num ol li a:hover {text-decoration: none;}
-		.paginate.num ol li.curpage {color: #ffffff;border: 1px solid #303030;background: #555555;}
-		.paginate.num ol li.curpage a {color: #ffffff;}
-		.paginate.num ol li.curpage + li {border-left: 1px solid #303030;}
-		.paginate.num ol li:hover {color: #ffffff;border: 1px solid #303030;background: #555555;}
-		.paginate.num ol li:hover + li {border-left: 1px solid #303030;}
-		.paginate.num ol li:hover a {color: #ffffff;}
 	</style>
 </head>
 <body>
@@ -286,19 +237,8 @@
 	</div>
 </div>
 </div>
-
-	<form>
-		<input type="hidden" name="currPage" />
-		<input type="hidden" name="pageSize" />
-	</form>
-	<div class="listHead">
-		.... list head content ....
-	</div>
-	<div class="listBody">
-		.... list body content ....
-	</div>
-	<div class="listFooter">
-		<div class="paginate"></div>
+	<div>
+	<button type="button" style="margin-left: 75%; background-color: #00bba7"><a href="market-upload">글 쓰기</a></button>
 	</div>
 </section>
 

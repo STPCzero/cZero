@@ -135,7 +135,7 @@
 			padding: 0 20px;
 			min-width: 160px;
 			height: 42px;
-			background-color: #bd59d4;
+			background-color: #00bba7;
 			border-radius: 21px;
 
 			/*font-family: JosefinSans-Bold;*/
@@ -150,20 +150,6 @@
 			-moz-transition: all 0.4s;
 			transition: all 0.4s;
 
-			box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
-			-moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
-			-webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
-			-o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
-			-ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.5);
-		}
-
-		.contact100-form-btn:hover {
-			background-color: #4b2354;
-			box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);
-			-moz-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);
-			-webkit-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);
-			-o-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);
-			-ms-box-shadow: 0 10px 30px 0px rgba(189, 89, 212, 0.8);
 		}
 
 
@@ -254,7 +240,7 @@
 			</div>
 
 			<div class="wrap-input100" >
-				<textarea class="input100" name="message" placeholder="물건 설명을 입력해 주세요"></textarea>
+				<textarea class="input100" name="message" style="resize: none;" placeholder="물건 설명을 입력해 주세요"></textarea>
 				<span class="focus-input100"></span>
 			</div>
 			<div>
