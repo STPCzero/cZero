@@ -30,6 +30,15 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 
+        <style>
+
+            .imgcheck{
+                background-image: url("/images/check-white.png");
+                background: no-repeat;
+            }
+
+        </style>
+
     </head>
 
     <body>
@@ -38,90 +47,65 @@
 		<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="login.jsp">BootZard - Bootstrap Wizard Template</a>
+					<a class="navbar-brand" href="login.jsp"></a>
 				</div>
+
 				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="top-navbar-1">
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<span class="li-text">
-								Put some text or
-							</span> 
-							<a href="#"><strong>links</strong></a> 
-							<span class="li-text">
-								here, or some icons: 
-							</span> 
-							<span class="li-social">
-								<a href="https://www.facebook.com/pages/Azmindcom/196582707093191" target="_blank"><i class="fa fa-facebook"></i></a> 
-								<a href="https://twitter.com/anli_zaimi" target="_blank"><i class="fa fa-twitter"></i></a> 
-								<a href="https://plus.google.com/+AnliZaimi_azmind" target="_blank"><i class="fa fa-google-plus"></i></a> 
-								<a href="https://github.com/AZMIND" target="_blank"><i class="fa fa-github"></i></a>
-							</span>
-						</li>
-					</ul>
-				</div>
+
 			</div>
 		</nav>
 
         <!-- Top content -->
         <div class="top-content">
             <div class="container">
-                
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1>Free <strong>Bootstrap</strong> Wizard</h1>
-                        <div class="description">
-                       	    <p>
-                               Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
                 
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
                     	<form role="form" action="" method="post" class="f1">
 
-                    		<h3>Register To Our App</h3>
-                    		<p>Fill in the form to get instant access</p>
+                    		<h3>저희 사이트를 방문해주셔서 감사합니다</h3>
+                    		<p>원활한 이용을 위해 로그인해주세요</p>
                     		<div class="f1-steps">
                     			<div class="f1-progress">
                     			    <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
                     			</div>
                     			<div class="f1-step active">
                     				<div class="f1-step-icon"><i class="fa fa-user"></i></div>
-                    				<p>about</p>
+                    				<p>sign up</p>
                     			</div>
                     			<div class="f1-step">
                     				<div class="f1-step-icon"><i class="fa fa-key"></i></div>
-                    				<p>account</p>
+                    				<p>login</p>
                     			</div>
                     		    <div class="f1-step">
-                    				<div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
-                    				<p>social</p>
+                    				<div class="f1-step-icon"><i class="fa fa-desktop"></i></div>
+                    				<p>complete</p>
                     			</div>
                     		</div>
                     		
                     		<fieldset>
-                    		    <h4>Tell us who you are:</h4>
+                    		    <h4>정보를 입력해주세요</h4>
                     			<div class="form-group">
-                    			    <label class="sr-only" for="f1-first-name">First name</label>
-                                    <input type="text" name="f1-first-name" placeholder="First name..." class="f1-first-name form-control" id="f1-first-name">
+                    			    <label class="sr-only" for="f1-name">이름</label>
+                                    <input type="text" name="f1-first-name" placeholder="이름" class="f1-first-name form-control" id="f1-name">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="f1-last-name">Last name</label>
-                                    <input type="text" name="f1-last-name" placeholder="Last name..." class="f1-last-name form-control" id="f1-last-name">
+                                    <label class="sr-only" for="f1-id">아이디</label>
+                                    <input type="text" name="f1-id" placeholder="아이디" class="f1-last-name form-control" id="f1-id">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="f1-about-yourself">About yourself</label>
-                                    <textarea name="f1-about-yourself" placeholder="About yourself..." 
-                                    	                 class="f1-about-yourself form-control" id="f1-about-yourself"></textarea>
+                                    <label class="sr-only" for="f1-password">비밀번호</label>
+                                    <input type="text" name="f1-password" placeholder="비밀번호" class="f1-last-name form-control" id="f1-password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-repeat-password">비밀번호 확인</label>
+                                    <input type="password" name="f1-repeat-password" placeholder="비밀번호 확인"
+                                           class="f1-repeat-password form-control" id="f1-repeat-password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-email">이메일</label>
+                                    <input type="text" name="f1-email" placeholder="이메일" class="f1-last-name form-control" id="f1-email">
                                 </div>
                                 <div class="f1-buttons">
                                     <button type="button" class="btn btn-next">Next</button>
@@ -129,19 +113,14 @@
                             </fieldset>
 
                             <fieldset>
-                                <h4>Set up your account:</h4>
+                                <h4>아이디와 비밀번호를 입력해주세요</h4>
                                 <div class="form-group">
-                                    <label class="sr-only" for="f1-email">Email</label>
-                                    <input type="text" name="f1-email" placeholder="Email..." class="f1-email form-control" id="f1-email">
+                                    <label class="sr-only" for="f1-id">아이디</label>
+                                    <input type="text" name="f1-id" placeholder="아이디" class="f1-last-name form-control" id="f1-id">
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="f1-password">Password</label>
-                                    <input type="password" name="f1-password" placeholder="Password..." class="f1-password form-control" id="f1-password">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="f1-repeat-password">Repeat password</label>
-                                    <input type="password" name="f1-repeat-password" placeholder="Repeat password..." 
-                                                        class="f1-repeat-password form-control" id="f1-repeat-password">
+                                    <label class="sr-only" for="f1-password">비밀번호</label>
+                                    <input type="text" name="f1-password" placeholder="비밀번호" class="f1-last-name form-control" id="f1-password">
                                 </div>
                                 <div class="f1-buttons">
                                     <button type="button" class="btn btn-previous">Previous</button>
@@ -149,25 +128,6 @@
                                 </div>
                             </fieldset>
 
-                            <fieldset>
-                                <h4>Social media profiles:</h4>
-                                <div class="form-group">
-                                    <label class="sr-only" for="f1-facebook">Facebook</label>
-                                    <input type="text" name="f1-facebook" placeholder="Facebook..." class="f1-facebook form-control" id="f1-facebook">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="f1-twitter">Twitter</label>
-                                    <input type="text" name="f1-twitter" placeholder="Twitter..." class="f1-twitter form-control" id="f1-twitter">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="f1-google-plus">Google plus</label>
-                                    <input type="text" name="f1-google-plus" placeholder="Google plus..." class="f1-google-plus form-control" id="f1-google-plus">
-                                </div>
-                                <div class="f1-buttons">
-                                    <button type="button" class="btn btn-previous">Previous</button>
-                                    <button type="submit" class="btn btn-submit">Submit</button>
-                                </div>
-                            </fieldset>
                     	
                     	</form>
                     </div>
