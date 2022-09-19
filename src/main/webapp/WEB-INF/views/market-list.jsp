@@ -10,6 +10,65 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+
+	<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/js/paging.js"></script>
+	<script type="text/javascript">
+		/* 페이지 이동 ( 페이징 처리 callback 함수 ) */
+		fncGoLink = function(currPage, pageSize, section){
+			$("input[name='currPage']").val(currPage);
+			$("input[name='pageSize']").val(pageSize);
+			if(section === 'PC') $("#dev_nodeList").empty();
+			fncListSearch();	// 목록 조회 함수 호출
+		};
+
+		/* 목록 조회 함수 */
+		fncListSearch = function(){
+			$.ajax({
+				type   : 'POST',
+				url    : 'searchUrl 세팅',
+				data   : $('form').serialize(),
+				success: function(data){
+					// 페이징 처리 ( parameter : target, 리스트 전체 개수, 리스트 전체, 현재 페이지, callback 함수명 )
+					customPaging('.paginate', data.totCnt, data.list, $("input[name='currPage']").val(), 'fncSearchLinkList');
+
+					// 리스트 그리기 ...
+					// .....
+					$('.listBody').append('리스트 html');
+				}
+			});
+		};
+	</script>
+
+	<style>
+		.paginate {margin-top: 7px;}
+		.paginate a.viewMore {display: block;cursor: pointer;text-align: center;padding: 12px;color: #3c63e0;}
+		.paginate a.viewMore span {font-size: 14px;}
+		.paginate a.viewMore span:after {display: inline-block;content:"";width: 11px;height:10px;margin: 0px 0 0 5px;vertical-align: middle;background:url(../images/common/common_sfix_icon.png) no-repeat -350px 0;}
+		.paginate a.viewMore.open span:after {display: inline-block;content:"";width: 11px;height:10px;margin: 0px 0 0 5px;vertical-align: middle;background:url(../images/common/common_sfix_icon.png) no-repeat -400px 0;}
+
+		.paginate.num {margin-top: 7px;text-align: center;}
+		.paginate.num > a {display:inline-block;vertical-align:middle;overflow:hidden;width: 37px;height: 36px;font-size:0;text-indent:-120%;color:transparent;background: url("../images/common/common_sfix_icon.png");border: 1px solid #c8c8c8;}
+		.paginate.num > a.first {background-position:-100px -350px;}
+		.paginate.num > a.prev {background-position: -236px -188px;margin-right: -4px;border-right: none;}
+		.paginate.num > a.next {background-position: -285px -188px;margin-left: -4px;border-left: none;}
+		.paginate.num > a.last {background-position:-250px -350px;}
+		.paginate.num > a.prev.inactive {background-position: -336px -188px;pointer-events: none;}
+		.paginate.num > a.next.inactive {background-position: -385px -188px;pointer-events: none;}
+
+		.paginate.num ol {display:inline-block;vertical-align:middle;}
+		.paginate.num ol:after {display:block;content:"";clear:both;}
+		.paginate.num ol li {float:left;margin-left: -1px;border-top: 1px solid #c8c8c8;border-bottom: 1px solid #c8c8c8;border-left: 1px solid #e7e7e7;border-right: 1px solid #e7e7e7;width: 37px;height: 36px;}
+		.paginate.num ol li:first-child {margin-left:0;}
+		.paginate.num ol li a {display:block;width: 100%;height: 100%;line-height: 33px;font-size: 15px;text-align: center;}
+		.paginate.num ol li a:hover {text-decoration: none;}
+		.paginate.num ol li.curpage {color: #ffffff;border: 1px solid #303030;background: #555555;}
+		.paginate.num ol li.curpage a {color: #ffffff;}
+		.paginate.num ol li.curpage + li {border-left: 1px solid #303030;}
+		.paginate.num ol li:hover {color: #ffffff;border: 1px solid #303030;background: #555555;}
+		.paginate.num ol li:hover + li {border-left: 1px solid #303030;}
+		.paginate.num ol li:hover a {color: #ffffff;}
+	</style>
 </head>
 <body>
 
@@ -23,15 +82,15 @@
 			<i class="fa fa-bars"></i>
 			<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a href="index.jsp" class="navbar-brand brand"> SCORILO </a>
+			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.jsp">Home</a></li>
-				<li class="propClone"><a href="shop.jsp">Shop</a></li>
-				<li class="propClone"><a href="product.jsp">Product</a></li>
-				<li class="propClone"><a href="checkout.jsp">Checkout</a></li>
-				<li class="propClone"><a href="contact.jsp">Contact</a></li>
+				<li class="propClone"><a href="market-list.jsp">Market</a></li>
+				<li class="propClone"><a href="product.jsp">Checklist</a></li>
+				<li class="propClone"><a href="checkout.jsp">Api</a></li>
+				<li class="propClone"><a href="contact.jsp">Mypage</a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,7 +100,7 @@
 			<div class="col-md-12 text-center">
 				<div class="text-pageheader">
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-						 Shop
+						 Market
 					</div>
 				</div>
 			</div>
@@ -227,43 +286,21 @@
 	</div>
 </div>
 </div>
-</section>
 
-<!-- CALL TO ACTION =============================-->
-<section class="content-block" style="background-color:#00bba7;">
-<div class="container text-center">
-<div class="row">
-	<div class="col-sm-10 col-sm-offset-1">
-		<div class="item" data-scrollreveal="enter top over 0.4s after 0.1s">
-			<h1 class="callactiontitle"> Promote Items Area Give Discount to Buyers <span class="callactionbutton"><i class="fa fa-gift"></i> WOW24TH</span>
-			</h1>
-		</div>
+	<form>
+		<input type="hidden" name="currPage" />
+		<input type="hidden" name="pageSize" />
+	</form>
+	<div class="listHead">
+		.... list head content ....
 	</div>
-</div>
-</div>
-</section>
-
-<!-- FOOTER =============================-->
-<div class="footer text-center">
-<div class="container">
-	<div class="row">
-		<p class="footernote">
-			 Connect with Scorilo
-		</p>
-		<ul class="social-iconsfooter">
-			<li><a href="#"><i class="fa fa-phone"></i></a></li>
-			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-			<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-		</ul>
-		<p>
-			Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-
-		</p>
+	<div class="listBody">
+		.... list body content ....
 	</div>
-</div>
-</div>
+	<div class="listFooter">
+		<div class="paginate"></div>
+	</div>
+</section>
 
 <!-- Load JS here for greater good =============================-->
 <script src="js/jquery-.js"></script>
