@@ -21,4 +21,11 @@ public class IndexController {
         return "login";
     }
 
+    @GetMapping(value = "register")
+    public String register() throws Exception {
+        log.info(this.getClass().getName()+".register Start!!");
+        log.info(this.getClass().getName()+".register End!!");
+        return "register";
+    }
+
 }

@@ -57,25 +57,27 @@
                     	<form role="form" action="" method="post" class="f1">
 
                     		<h3>저희 사이트를 방문해주셔서 감사합니다</h3>
-                    		<p>원활한 이용을 위해 로그인해주세요</p>
+                    		<p>회원가입을 위해 정보를 입력해주세요</p>
                     		<div class="f1-steps">
                     			<div class="f1-progress">
-                    			    <div class="f1-progress-line" data-now-value="25" data-number-of-steps="2" style="width: 25%;"></div>
+                    			    <div class="f1-progress-line" data-now-value="25" data-number-of-steps="2" style="width:25%;"></div>
                     			</div>
                     			<div class="f1-step active">
-                    				<div class="f1-step-icon"><i class="fa fa-key"></i></div>
-                    				<p>login</p>
+                    				<div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                    				<p>sign up</p>
                     			</div>
                     		    <div class="f1-step">
                     				<div class="f1-step-icon"><i class="fa fa-desktop"></i></div>
                     				<p>complete</p>
                     			</div>
                     		</div>
-
-
-
-                            <fieldset>
-                                <h4>아이디와 비밀번호를 입력해주세요</h4>
+                    		
+                    		<fieldset>
+                    		    <h4>정보를 입력해주세요</h4>
+                    			<div class="form-group">
+                    			    <label class="sr-only" for="f1-name">이름</label>
+                                    <input type="text" name="f1-first-name" placeholder="이름" class="f1-first-name form-control" id="f1-name">
+                                </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-id">아이디</label>
                                     <input type="text" name="f1-id" placeholder="아이디" class="f1-last-name form-control" id="f1-id">
@@ -84,8 +86,17 @@
                                     <label class="sr-only" for="f1-password">비밀번호</label>
                                     <input type="text" name="f1-password" placeholder="비밀번호" class="f1-last-name form-control" id="f1-password">
                                 </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-repeat-password">비밀번호 확인</label>
+                                    <input type="password" name="f1-repeat-password" placeholder="비밀번호 확인"
+                                           class="f1-repeat-password form-control" id="f1-repeat-password">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-email">이메일</label>
+                                    <input type="text" name="f1-email" placeholder="이메일" class="f1-last-name form-control" id="f1-email">
+                                </div>
                                 <div class="f1-buttons">
-                                    <button type="button" class="btn btntext"><a href="register">Register</a></button>
+                                    <button type="button" class="btn"><a href="login">Login</a></button>
                                     <button type="button" class="btn btn-next">Next</button>
                                 </div>
                             </fieldset>
