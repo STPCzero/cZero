@@ -17,7 +17,8 @@ public class MypController {
 
     @GetMapping("/mypage/myinfo-modify")
     public String myInfoModify() {
-        log.info("myInfoModify start!!");
+        log.info(this.getClass().getName()+".myInfoModify Start!!");
+        log.info(this.getClass().getName()+".myInfoModify End!!");
         return "/mypage/myinfo-modify";
     }
 }
