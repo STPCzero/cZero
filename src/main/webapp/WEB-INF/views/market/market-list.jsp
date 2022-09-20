@@ -5,14 +5,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/paging.js"></script>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
-	<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="/js/paging.js"></script>
+
 	<script type="text/javascript">
 
 	</script>
@@ -309,9 +311,9 @@
 </section>
 
 <!-- Load JS here for greater good =============================-->
-<script src="js/jquery-.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/anim.js"></script>
+<script src="../js/jquery-.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/anim.js"></script>
 <script>
 //----HOVER CAPTION---//	  
 jQuery(document).ready(function ($) {
