@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MarketController {
 
-    @GetMapping(value = "market-list")
+    @GetMapping(value = "/market-list")
     public String marketlist() throws Exception {
         log.info(this.getClass().getName()+".market-list Start!!");
         log.info(this.getClass().getName()+".market-list End!!");
-        return "market-list";
+        return "/market-list";
     }
 
     @GetMapping(value = "market-upload")

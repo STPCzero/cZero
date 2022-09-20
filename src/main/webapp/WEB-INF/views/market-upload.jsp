@@ -248,9 +248,12 @@
 				<input type="file" name="file" >
 			</div>
 
-			<div class="container-contact100-form-btn">
+			<div class="container-contact100-form-btn" style="margin-top: 80%">
 				<button class="contact100-form-btn">
-					물건 올리기
+					<a href="market-list">되돌리기</a>
+				</button>
+				<button class="contact100-form-btn">
+					<a href="market-list">물건 올리기</a>
 				</button>
 			</div>
 		</form>

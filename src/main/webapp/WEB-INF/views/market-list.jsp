@@ -18,7 +18,55 @@
 	</script>
 
 	<style>
+		.container-contact100-form-btn {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			padding-top: 10px;
+			padding-bottom: 43px;
+		}
 
+		button {
+			outline: none !important;
+			border: none;
+			background: transparent;
+		}
+
+		button:hover {
+			cursor: pointer;
+		}
+
+		.contact100-form-btn {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0 20px;
+			min-width: 160px;
+			height: 42px;
+			background-color: #00bba7;
+			border-radius: 21px;
+
+			/*font-family: JosefinSans-Bold;*/
+			font-size: 14px;
+			color: #fff;
+			line-height: 1.2;
+			text-transform: uppercase;
+			padding-top: 5px;
+
+			-webkit-transition: all 0.4s;
+			-o-transition: all 0.4s;
+			-moz-transition: all 0.4s;
+			transition: all 0.4s;
+
+		}
 	</style>
 </head>
 <body>
@@ -237,8 +285,10 @@
 	</div>
 </div>
 </div>
-	<div>
-	<button type="button" style="margin-left: 75%; background-color: #00bba7"><a href="market-upload">글 쓰기</a></button>
+	<div class="container-contact100-form-btn">
+		<button class="contact100-form-btn">
+			<a href="market-list">물건 올리기</a>
+		</button>
 	</div>
 </section>
 
