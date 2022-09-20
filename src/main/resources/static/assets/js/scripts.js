@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("assets/img/backgrounds/trees.jpg"); /* 여기서 백그라운드 바꾸세요! -혜경*/
+    $.backstretch("../assets/img/backgrounds/trees.jpg"); /* 여기서 백그라운드 바꾸세요! -혜경*/
     
     $('#top-navbar-1').on('shown.bs.collapse', function(){
     	$.backstretch("resize");

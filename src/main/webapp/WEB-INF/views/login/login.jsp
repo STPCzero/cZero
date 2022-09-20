@@ -11,24 +11,24 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="assets/css/form-elements.css">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../assets/css/form-elements.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="../assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 
 
     </head>
@@ -57,27 +57,25 @@
                     	<form role="form" action="" method="post" class="f1">
 
                     		<h3>저희 사이트를 방문해주셔서 감사합니다</h3>
-                    		<p>회원가입을 위해 정보를 입력해주세요</p>
+                    		<p>원활한 이용을 위해 로그인해주세요</p>
                     		<div class="f1-steps">
                     			<div class="f1-progress">
-                    			    <div class="f1-progress-line" data-now-value="25" data-number-of-steps="2" style="width:25%;"></div>
+                    			    <div class="f1-progress-line" data-now-value="25" data-number-of-steps="2" style="width: 25%;"></div>
                     			</div>
                     			<div class="f1-step active">
-                    				<div class="f1-step-icon"><i class="fa fa-user"></i></div>
-                    				<p>sign up</p>
+                    				<div class="f1-step-icon"><i class="fa fa-key"></i></div>
+                    				<p>login</p>
                     			</div>
                     		    <div class="f1-step">
                     				<div class="f1-step-icon"><i class="fa fa-desktop"></i></div>
                     				<p>complete</p>
                     			</div>
                     		</div>
-                    		
-                    		<fieldset>
-                    		    <h4>정보를 입력해주세요</h4>
-                    			<div class="form-group">
-                    			    <label class="sr-only" for="f1-name">이름</label>
-                                    <input type="text" name="f1-first-name" placeholder="이름" class="f1-first-name form-control" id="f1-name">
-                                </div>
+
+
+
+                            <fieldset>
+                                <h4>아이디와 비밀번호를 입력해주세요</h4>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-id">아이디</label>
                                     <input type="text" name="f1-id" placeholder="아이디" class="f1-last-name form-control" id="f1-id">
@@ -86,17 +84,8 @@
                                     <label class="sr-only" for="f1-password">비밀번호</label>
                                     <input type="text" name="f1-password" placeholder="비밀번호" class="f1-last-name form-control" id="f1-password">
                                 </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="f1-repeat-password">비밀번호 확인</label>
-                                    <input type="password" name="f1-repeat-password" placeholder="비밀번호 확인"
-                                           class="f1-repeat-password form-control" id="f1-repeat-password">
-                                </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="f1-email">이메일</label>
-                                    <input type="text" name="f1-email" placeholder="이메일" class="f1-last-name form-control" id="f1-email">
-                                </div>
                                 <div class="f1-buttons">
-                                    <button type="button" class="btn"><a href="login">Login</a></button>
+                                    <button type="button" class="btn btntext"><a href="register">Register</a></button>
                                     <button type="button" class="btn btn-next">Next</button>
                                 </div>
                             </fieldset>
@@ -111,14 +100,14 @@
 
 
         <!-- Javascript -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/retina-1.1.0.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+        <script src="../assets/js/jquery-1.11.1.min.js"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.backstretch.min.js"></script>
+        <script src="../assets/js/retina-1.1.0.min.js"></script>
+        <script src="../assets/js/scripts.js"></script>
         
         <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
+            <script src="../assets/js/placeholder.js"></script>
         <![endif]-->
 
     </body>
