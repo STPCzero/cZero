@@ -10,6 +10,64 @@
 <link href="css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+
+	<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/js/paging.js"></script>
+	<script type="text/javascript">
+
+	</script>
+
+	<style>
+		.container-contact100-form-btn {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			padding-top: 10px;
+			padding-bottom: 43px;
+		}
+
+		button {
+			outline: none !important;
+			border: none;
+			background: transparent;
+		}
+
+		button:hover {
+			cursor: pointer;
+		}
+
+		.contact100-form-btn {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0 20px;
+			min-width: 160px;
+			height: 42px;
+			background-color: #00bba7;
+			border-radius: 21px;
+
+			/*font-family: JosefinSans-Bold;*/
+			font-size: 14px;
+			color: #fff;
+			line-height: 1.2;
+			text-transform: uppercase;
+			padding-top: 5px;
+
+			-webkit-transition: all 0.4s;
+			-o-transition: all 0.4s;
+			-moz-transition: all 0.4s;
+			transition: all 0.4s;
+
+		}
+	</style>
 </head>
 <body>
 
@@ -23,15 +81,15 @@
 			<i class="fa fa-bars"></i>
 			<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a href="index.jsp" class="navbar-brand brand"> SCORILO </a>
+			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.jsp">Home</a></li>
-				<li class="propClone"><a href="shop.jsp">Shop</a></li>
-				<li class="propClone"><a href="product.jsp">Product</a></li>
-				<li class="propClone"><a href="checkout.jsp">Checkout</a></li>
-				<li class="propClone"><a href="contact.jsp">Contact</a></li>
+				<li class="propClone"><a href="market-list.jsp">Market</a></li>
+				<li class="propClone"><a href="product.jsp">Checklist</a></li>
+				<li class="propClone"><a href="checkout.jsp">Api</a></li>
+				<li class="propClone"><a href="contact.jsp">Mypage</a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,7 +99,7 @@
 			<div class="col-md-12 text-center">
 				<div class="text-pageheader">
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-						 Shop
+						 Market
 					</div>
 				</div>
 			</div>
@@ -227,43 +285,12 @@
 	</div>
 </div>
 </div>
-</section>
-
-<!-- CALL TO ACTION =============================-->
-<section class="content-block" style="background-color:#00bba7;">
-<div class="container text-center">
-<div class="row">
-	<div class="col-sm-10 col-sm-offset-1">
-		<div class="item" data-scrollreveal="enter top over 0.4s after 0.1s">
-			<h1 class="callactiontitle"> Promote Items Area Give Discount to Buyers <span class="callactionbutton"><i class="fa fa-gift"></i> WOW24TH</span>
-			</h1>
-		</div>
+	<div class="container-contact100-form-btn">
+		<button class="contact100-form-btn">
+			<a href="market-list">물건 올리기</a>
+		</button>
 	</div>
-</div>
-</div>
 </section>
-
-<!-- FOOTER =============================-->
-<div class="footer text-center">
-<div class="container">
-	<div class="row">
-		<p class="footernote">
-			 Connect with Scorilo
-		</p>
-		<ul class="social-iconsfooter">
-			<li><a href="#"><i class="fa fa-phone"></i></a></li>
-			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-			<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-		</ul>
-		<p>
-			Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-
-		</p>
-	</div>
-</div>
-</div>
 
 <!-- Load JS here for greater good =============================-->
 <script src="js/jquery-.js"></script>

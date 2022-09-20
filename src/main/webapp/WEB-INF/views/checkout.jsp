@@ -28,7 +28,7 @@
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.jsp">Home</a></li>
-				<li class="propClone"><a href="shop.jsp">Shop</a></li>
+				<li class="propClone"><a href="Market/shop.jsp">Shop</a></li>
 				<li class="propClone"><a href="product.jsp">Product</a></li>
 				<li class="propClone"><a href="checkout.jsp">Checkout</a></li>
 				<li class="propClone"><a href="contact.jsp">Contact</a></li>

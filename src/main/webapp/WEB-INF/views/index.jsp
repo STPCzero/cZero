@@ -34,7 +34,7 @@
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.jsp">Home</a></li>
-				<li class="propClone"><a href="shop.jsp">Market</a></li>
+				<li class="propClone"><a href="Market/shop.jsp">Market</a></li>
 				<li class="propClone"><a href="product.jsp">Checklist</a></li>
 				<li class="propClone"><a href="checkout.jsp">Api</a></li>
 				<li class="propClone"><a href="contact.jsp">Mypage</a></li>
@@ -202,7 +202,7 @@
 <!-- BUTTON =============================-->
 <div class="item content">
 	<div class="container text-center">
-		<a href="shop.jsp" class="homebrowseitems">Browse All Products
+		<a href="market-list.jsp" class="homebrowseitems">Browse All Products
 		<div class="homebrowseitemsicon">
 			<i class="fa fa-star fa-spin"></i>
 		</div>
