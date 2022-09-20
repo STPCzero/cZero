@@ -35,7 +35,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li class="propClone"><a href="index.jsp">Home</a></li>
 				<li class="propClone"><a href="shop.jsp">Market</a></li>
-				<li class="propClone"><a href="product.jsp">Checklist</a></li>
+				<li class="propClone"><a href="checklist/checklist.jsp">Checklist</a></li>
 				<li class="propClone"><a href="checkout.jsp">Api</a></li>
 				<li class="propClone"><a href="contact.jsp">Mypage</a></li>
 			</ul>

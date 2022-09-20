@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CheckController {
 
-    @GetMapping("/check")
+    /** 체크리스트 페이지 가는 함수 */
+    @GetMapping("/checklist")
     public String checkList() {
-        return "product";
+        log.info(getClass().getName() + " checkList Start!!!");
+        log.info(getClass().getName() + " checkList End!!!");
+        return "/checklist/checklist";
     }
 }

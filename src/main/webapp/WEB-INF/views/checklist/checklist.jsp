@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 </head>
@@ -23,15 +23,15 @@
 			<i class="fa fa-bars"></i>
 			<span class="sr-only">Toggle navigation</span>
 			</button>
-			<a href="index.jsp" class="navbar-brand brand"> SCORILO </a>
+			<a href="../index.jsp" class="navbar-brand brand"> SCORILO </a>
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="index.jsp">Home</a></li>
-				<li class="propClone"><a href="shop.jsp">Shop</a></li>
-				<li class="propClone"><a href="product.jsp">Product</a></li>
-				<li class="propClone"><a href="checkout.jsp">Checkout</a></li>
-				<li class="propClone"><a href="contact.jsp">Contact</a></li>
+				<li class="propClone"><a href="../index.jsp">Home</a></li>
+				<li class="propClone"><a href="../shop.jsp">Shop</a></li>
+				<li class="propClone"><a href="checklist.jsp">Checklist</a></li>
+				<li class="propClone"><a href="../checkout.jsp">Checkout</a></li>
+				<li class="propClone"><a href="../contact.jsp">Contact</a></li>
 			</ul>
 		</div>
 	</div>
