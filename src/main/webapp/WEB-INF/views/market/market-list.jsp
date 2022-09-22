@@ -325,5 +325,18 @@ jQuery(document).ready(function ($) {
 	);
 });
 </script>
+
+<!-- FOOTER =============================-->
+<div class="footer text-center">
+	<div class="container">
+		<div class="row">
+			<p class="">
+				Thanks for visiting our Website.<br>
+				Copyright ⓒ 2022. Team.CZero All rights reserved.
+			</p>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

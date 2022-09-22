@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MarketController {
 
     @GetMapping(value = "/market/market-list")
-    public String marketlist() throws Exception {
+    public String marketList() throws Exception {
         log.info(this.getClass().getName()+".market-list Start!!");
         log.info(this.getClass().getName()+".market-list End!!");
         return "market/market-list";
     }
 
     @GetMapping(value = "market/market-upload")
-    public String marketupload() throws Exception {
+    public String marketUpload() throws Exception {
         log.info(this.getClass().getName()+".market-upload Start!!");
         log.info(this.getClass().getName()+".market-upload End!!");
         return "market/market-upload";
