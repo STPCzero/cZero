@@ -76,7 +76,7 @@
 
 
 <!-- CONTENT =============================-->
-<section class="item content">
+<section class="item content" style="margin-bottom: 100px;">
     <div class="container toparea">
         <div class="underlined-title">
             <div class="editContent">
@@ -92,78 +92,33 @@
         </div>
         <div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2">
             <div id="edd_checkout_form_wrap" class="edd_clearfix">
-                <form id="edd_purchase_form" class="edd_form" action="/mypage/myinfo-modify" method="post">
+                <form id="edd_purchase_form" class="edd_form" action="/mypage/myinfo-modify">
                     <fieldset id="edd_checkout_user_info">
                         <legend>Personal Info</legend>
                         <p id="edd-first-name-wrap">
                             <label class="edd-label" for="edd-first">
                                 Name <span class="edd-required-indicator">*</span>
                             </label>
-                            <input disabled class="edd-input " type="text" name="edd_first" placeholder="First name" id="edd-first" value="" required="">
+                            <input class="edd-input required" type="text" name="edd_first" placeholder="First name" id="edd-first" value="" required="">
                         </p>
                         <p id="edd-email-wrap">
                             <label class="edd-label" for="edd-email">
                                 Email Address <span class="edd-required-indicator">*</span></label>
-                            <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address" id="edd-email" value="">
+                            <input class="edd-input required" type="email" name="edd_email" placeholder="Email address" id="edd-email" value="">
                         </p>
-                        <div style="text-align: right; margin-top: 10px;">
-                            <a style="color : #999; font-size: 12px;">탈퇴하기</a>
-                        </div>
+
                     </fieldset>
-                    <input class="edd-input " type="hidden" name="edd_first_hidden" value="주혜경" required="">
-                    <input class="edd-input " type="hidden" name="edd_email_hidden" value="naver.com" required="">
                     <input type="submit" id="submit" class="clearfix mypage-btn" value="수정하기">
                 </form>
-            </div>
-            <br />
-            <form id="edd_checkout_cart_form" method="post">
-                <div id="edd_checkout_cart_wrap">
-                    <table id="edd_checkout_cart" class="ajaxed">
-                        <thead>
-                        <tr class="edd_cart_header_row">
-                            <th class="edd_cart_item_name">
-                                내가 쓴 글
-                            </th>
-                            <th class="edd_cart_item_price">
-                                가격
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <% for(int i = 0; i < 5; i++) { %>
-                            <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
-                                <td class="edd_cart_item_name">
-                                    <div style="display: inline-block;" class="edd_cart_item_image">
-                                        <img width="55" height="55" src="../images/scorilo2-70x70.jpg" alt="">
-                                    </div>
-                                    <span class="edd_checkout_cart_item_title">&nbsp; Audio Item - Single License</span>
-
-                                </td>
-                                <td class="edd_cart_item_price">
-                                    $11.99
-                                </td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
+                <div style="text-align: center; margin-top: 10px;">
+                    <a style="color : #999; font-size: 12px;">뒤로가기</a>
                 </div>
-            </form>
-            <div style="text-align: center; margin-bottom: 50px;">
-                <button type="button" class="btn btn-secondary">Prev</button>
-                <div class="btn-group " style="margin: 0 auto; display: inline-block;">
-                    <button type="button" class="btn btn-secondary">1</button>
-                    <button type="button" class="btn btn-secondary">2</button>
-                    <button type="button" class="btn btn-secondary">3</button>
-                    <button type="button" class="btn btn-secondary">4</button>
-                    <button type="button" class="btn btn-secondary">5</button>
-                </div>
-                <button type="button" class="btn btn-secondary">Next</button>
             </div>
         </div>
     </div>
 </section>
 <!-- FOOTER =============================-->
-<div class="footer text-center">
+<div class="footer text-center" style="width: 100%; position: fixed; bottom: 0;">
     <div class="container">
         <div class="row">
             <p class="">

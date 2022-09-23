@@ -15,6 +15,8 @@ var pagingObj = {};
      * @param currentPage  = 현재 페이지 번호
      * @param callback     = callback 함수
      */
+
+    //var  callback     = callback 함수
     window.paging = window.customPaging = function(target, totalDataCnt, pagingData, currentPage, callback){
         var windowSize = window.innerWidth; // PC / 모바일 구분을 위한 윈도우 사이즈 측정
 
