@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
+/*@Mapper*/
 public interface IMarketService {
 
     List<MarketDTO> getMarketList() throws Exception;

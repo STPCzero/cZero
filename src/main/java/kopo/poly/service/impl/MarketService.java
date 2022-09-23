@@ -1,9 +1,8 @@
-/*
 package kopo.poly.service.impl;
 
 import kopo.poly.dto.MarketDTO;
+import kopo.poly.persistance.mapper.IMarketMapper;
 import kopo.poly.service.IMarketService;
-import kopo.poly.service.INoticeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +11,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Slf4j
-@Service("NoticeService")
+@Service("MarketService")
 
 public class MarketService implements IMarketService {
 
-    private final IMarketService marketMapper;
+    private final IMarketMapper marketMapper;
 
     @Autowired
-    public MarketService(IMarketService marketMapper) {
+    public MarketService(IMarketMapper marketMapper) {
+
         this.marketMapper = marketMapper;
     }
 
@@ -51,10 +51,20 @@ public class MarketService implements IMarketService {
     }
 
     @Transactional
-
     @Override
     public void updateMarketInfo(MarketDTO mDTO) throws Exception {
 
+        log.info(this.getClass().getName() + ".updateMarketInfo start!");
+
+        marketMapper.updateMarketInfo(mDTO);
+    }
+
+    @Transactional
+    @Override
+    public void deleteMarketInfo(MarketDTO mDTO) throws Exception {
+
+        log.info(this.getClass().getName() + ".deleteMarketInfo start!");
+
+        marketMapper.deleteMarketInfo(mDTO);
     }
 }
-*/
