@@ -1,3 +1,57 @@
+<%--<%@ page import="kopo.poly.dto.MarketDTO" %>
+<%@ page import="kopo.poly.util.CmmUtil" %>
+<%@ page import="kopo.poly.dto.NoticeDTO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	MarketDTO dDTO = (MarketDTO)request.getAttribute("dDTO");
+
+	// 상품 정보를 못불러왔다면, 객체 생성
+	if (dDTO==null) {
+		dDTO = new MarketDTO();
+
+	}
+
+	String ss_user_seq = CmmUtil.nvl((String) session.getAttribute("SESSION_USER_SEQ"));
+
+	// 본인이 작성한 글만 수정 가능하도록 하기(1: 작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
+	int edit = 1;
+
+	//로그인 안했다면
+	if (ss_user_seq.equals("")){
+		edit = 3;
+
+		// 본인이 작성한 글이면 2가 되도록 변경
+	} else if (ss_user_seq.equals(CmmUtil.nvl(dDTO.getUser_seq()))){
+		edit = 2;
+
+	}
+
+	System.out.println("user_seq : " + CmmUtil.nvl(dDTO.getUser_seq()));
+	System.out.println("ss_user_seq : " + ss_user_seq);
+
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+
+<script type="text/javascript">
+
+	// 수정하기
+	function doEdit() {
+		if ("<%=edit%>==2") {
+			location.href = "/market/MarketEditInfo?mSeq = <%= CmmUtil.nvl(dDTO.getMk_seq())%>";
+		}
+	}
+</script>--%>
+
 <%@ page import="kopo.poly.dto.MarketDTO" %>
 <%@ page import="kopo.poly.util.CmmUtil" %>
 <%@ page import="kopo.poly.dto.NoticeDTO" %>
@@ -5,7 +59,7 @@
 <%
 	NoticeDTO dDTO = (NoticeDTO)request.getAttribute("dDTO");
 
-	// 공지글 정보를 못불러왔다면, 객체 생성
+	// 상품 정보를 못불러왔다면, 객체 생성
 	if (dDTO==null) {
 		dDTO = new NoticeDTO();
 
@@ -26,27 +80,58 @@
 
 	}
 
+	System.out.println("user_name : " + CmmUtil.nvl(dDTO.getUser_name()));
+	System.out.println("ss_user_name : " + ss_user_name);
 
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="generator" content="">
+	<link href="../css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
-	// 수정하기
-	function doEdit(){
-		location.href = "/Market/MaketEditInfo?mSeq"=<%= CmmUtil.nvl(dDTO.getMk_seq())%>"";
-	}
-</script>
+		// 수정하기
+		function doEdit() {
+			if ("<%=edit%>==2") {
+				location.href = "/market/MarketEditInfo?mSeq = <%= CmmUtil.nvl(dDTO.getUser_name())%>";
+
+			}else if ("<%=edit%>"==3){
+				alert("로그인 하시길 바랍니다.");
+
+			}else {
+				alert("본인이 작성한 글만 수정 가능합니다,");
+
+			}
+
+		}
+		// 삭제하기
+		function doDelete() {
+			if ("<%=edit%>==2") {
+				if (confirm("작성한 글만 삭제하시겠습니까?")) {
+					location.href = "/market/MarketDelete?mSeq = <%= CmmUtil.nvl(dDTO.getUser_name())%>";
+				}
+			}else if ("<%=edit%>"==3){
+				alert("로그인 하시길 바랍니다.");
+
+			}else {
+				alert("본인이 작성한 글만 수정 가능합니다,");
+
+			}
+		}
+
+		// 목록으로 이동
+		function doList() {
+			location.href = "market-list.jsp"
+		}
+	</script>
 
 </head>
 <body>
