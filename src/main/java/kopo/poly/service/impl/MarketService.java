@@ -23,7 +23,7 @@ public class MarketService implements IMarketService {
         this.marketMapper = marketMapper;
     }
 
-    @Override
+    /*@Override
     public List<MarketDTO> getMarketList() throws Exception {
         return marketMapper.getMarketList();
     }
@@ -66,5 +66,5 @@ public class MarketService implements IMarketService {
         log.info(this.getClass().getName() + ".deleteMarketInfo start!");
 
         marketMapper.deleteMarketInfo(mDTO);
-    }
+    }*/
 }

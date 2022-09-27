@@ -1,8 +1,8 @@
-<%--<%@ page import="kopo.poly.dto.MarketDTO" %>
+<%@ page import="kopo.poly.dto.MarketDTO" %>
 <%@ page import="kopo.poly.util.CmmUtil" %>
 <%@ page import="kopo.poly.dto.NoticeDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
+<%--<%
 	MarketDTO dDTO = (MarketDTO)request.getAttribute("dDTO");
 
 	// 상품 정보를 못불러왔다면, 객체 생성
@@ -29,7 +29,7 @@
 	System.out.println("user_seq : " + CmmUtil.nvl(dDTO.getUser_seq()));
 	System.out.println("ss_user_seq : " + ss_user_seq);
 
-%>
+%>--%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +42,7 @@
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
+<%--
 <script type="text/javascript">
 
 	// 수정하기
@@ -49,10 +50,39 @@
 		if ("<%=edit%>==2") {
 			location.href = "/market/MarketEditInfo?mSeq = <%= CmmUtil.nvl(dDTO.getMk_seq())%>";
 		}
-	}
-</script>--%>
+	} else if ("<%=edit%>"==3){
+				alert("로그인 하시길 바랍니다.");
 
-<%@ page import="kopo.poly.dto.MarketDTO" %>
+			}else {
+				alert("본인이 작성한 글만 수정 가능합니다,");
+
+			}
+
+		}
+		// 삭제하기
+		function doDelete() {
+			if ("<%=edit%>==2") {
+				if (confirm("작성한 글만 삭제하시겠습니까?")) {
+					location.href = "/market/MarketDelete?mSeq = <%= CmmUtil.nvl(dDTO.getMk_seq())%>";
+				}
+			}else if ("<%=edit%>"==3){
+				alert("로그인 하시길 바랍니다.");
+
+			}else {
+				alert("본인이 작성한 글만 수정 가능합니다,");
+
+			}
+		}
+
+		// 목록으로 이동
+		function doList() {
+			location.href = "market-list.jsp"
+		}
+	</script>
+</script>
+--%>
+
+<%--<%@ page import="kopo.poly.dto.MarketDTO" %>
 <%@ page import="kopo.poly.util.CmmUtil" %>
 <%@ page import="kopo.poly.dto.NoticeDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -131,7 +161,7 @@
 		function doList() {
 			location.href = "market-list.jsp"
 		}
-	</script>
+	</script>--%>
 
 </head>
 <body>

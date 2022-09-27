@@ -8,7 +8,7 @@ import java.util.List;
 /*@Mapper*/
 public interface IMarketService {
 
-    List<MarketDTO> getMarketList() throws Exception;
+/*    List<MarketDTO> getMarketList() throws Exception;
 
     void InsertMarketInfo(MarketDTO mDTO) throws Exception;
 
@@ -16,5 +16,5 @@ public interface IMarketService {
 
     void updateMarketInfo(MarketDTO mDTO) throws Exception;
 
-    void deleteMarketInfo(MarketDTO mDTO) throws Exception;
+    void deleteMarketInfo(MarketDTO mDTO) throws Exception;*/
 }

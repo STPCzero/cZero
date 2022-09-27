@@ -29,7 +29,7 @@ public class MarketController {
             throws Exception {
         log.info(this.getClass().getName()+".market-list Start!!");
 
-        List<MarketDTO> rList = marketService.getMarketList();
+        /*List<MarketDTO> rList = marketService.getMarketList();
 
         // 마켓리스트 가져오기
         if (rList == null) {
@@ -38,7 +38,7 @@ public class MarketController {
         }
 
         // 조회된 리스트 결과값 넣어주기
-        model.addAttribute("rList", rList);
+        model.addAttribute("rList", rList);*/
 
         log.info(this.getClass().getName()+".market-list End!!");
 
@@ -52,7 +52,7 @@ public class MarketController {
         return "market/market-upload";
     }
 
-    @PostMapping(value = "market/MarketInsert")
+    /*@PostMapping(value = "market/MarketInsert")
     public String MarketInsert(HttpSession session, HttpServletRequest request, ModelMap model) {
 
         log.info(this.getClass().getName() + ".MarketInsert start!");
@@ -222,5 +222,5 @@ public class MarketController {
         }
 
         return "/market/MsgToList";
-    }
+    }*/
 }
