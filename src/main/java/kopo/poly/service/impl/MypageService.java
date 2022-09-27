@@ -25,4 +25,12 @@ public class MypageService implements IMypageService {
         log.info(this.getClass().getName()+".getMypageInfo End!!");
         return mDTO;
     }
+
+    @Override
+    public int getMyInfoModify(MypageDTO iDTO) throws Exception {
+        log.info(this.getClass().getName()+".getMyInfoModify Start!!");
+        int res = mypageMapper.getMyInfoModify(iDTO);
+        log.info(this.getClass().getName()+".getMyInfoModify End!!");
+        return res;
+    }
 }

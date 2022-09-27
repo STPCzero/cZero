@@ -1,5 +1,12 @@
 <%@ page import="jdk.nashorn.internal.scripts.JS" %>
+<%@ page import="kopo.poly.dto.MypageDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    MypageDTO iDTO = (MypageDTO) request.getAttribute("iDTO"); // user_info 개인정보
+    if(iDTO == null) {
+        iDTO = new MypageDTO();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,26 +99,25 @@
         </div>
         <div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2">
             <div id="edd_checkout_form_wrap" class="edd_clearfix">
-                <form id="edd_purchase_form" class="edd_form" action="/mypage/myinfo-modify">
+                <form id="edd_purchase_form" class="edd_form" method="post" action="/mypage/getMyInfoModify">
                     <fieldset id="edd_checkout_user_info">
                         <legend>Personal Info</legend>
                         <p id="edd-first-name-wrap">
                             <label class="edd-label" for="edd-first">
                                 Name <span class="edd-required-indicator">*</span>
                             </label>
-                            <input class="edd-input required" type="text" name="edd_first" placeholder="First name" id="edd-first" value="" required="">
+                            <input class="edd-input required" type="text" name="name" placeholder="이름" id="edd-first" value="<%=iDTO.getUser_name()%>" required="">
                         </p>
                         <p id="edd-email-wrap">
                             <label class="edd-label" for="edd-email">
                                 Email Address <span class="edd-required-indicator">*</span></label>
-                            <input class="edd-input required" type="email" name="edd_email" placeholder="Email address" id="edd-email" value="">
+                            <input class="edd-input required" type="email" name="email" placeholder="이메일" id="edd-email" value="<%= iDTO.getUser_email()%>">
                         </p>
-
                     </fieldset>
                     <input type="submit" id="submit" class="clearfix mypage-btn" value="수정하기">
                 </form>
                 <div style="text-align: center; margin-top: 10px;">
-                    <a style="color : #999; font-size: 12px;">뒤로가기</a>
+                    <a href="javascript:history.back();" style="color : #999; font-size: 12px;">뒤로가기</a>
                 </div>
             </div>
         </div>

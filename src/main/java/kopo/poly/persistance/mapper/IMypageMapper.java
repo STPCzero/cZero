@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IMypageMapper {
 
     MypageDTO getMypageInfo(MypageDTO myDTO) throws Exception;
+
+    int getMyInfoModify(MypageDTO iDTO) throws Exception;
 }

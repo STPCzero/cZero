@@ -8,4 +8,10 @@
         from user_info
         where user_seq = #{user_seq}
     </select>
+
+    <update id="getMyInfoModify" parameterType="MypageDTO">
+        update user_info
+        set user_name = #{user_name}, user_email = #{user_email}
+        where user_seq = #{user_seq}
+    </update>
 </mapper>
