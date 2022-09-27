@@ -1,12 +1,17 @@
 <%@ page import="jdk.nashorn.internal.scripts.JS" %>
 <%@ page import="kopo.poly.dto.MypageDTO" %>
 <%@ page import="kopo.poly.util.CmmUtil" %>
+<%@ page import="kopo.poly.dto.MarketDTO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     MypageDTO iDTO = (MypageDTO) request.getAttribute("iDTO"); // user_info 개인정보
     if(iDTO == null) {
         iDTO = new MypageDTO();
     }
+    List<MarketDTO> mkList = (List<MarketDTO>)request.getAttribute("mkList"); // 내 market 정보
+    if(mkList == null) mkList = new ArrayList<MarketDTO>(); // 게시판 조회 결과 보여주기
 %>
 <!DOCTYPE html>
 <html>
@@ -59,11 +64,11 @@
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="propClone"><a href="index.jsp">Home</a></li>
-                        <li class="propClone"><a href="market-list.jsp">Market</a></li>
-                        <li class="propClone"><a href="product.jsp">Checklist</a></li>
-                        <li class="propClone"><a href="checkout.jsp">Api</a></li>
-                        <li class="propClone"><a href="contact.jsp">Mypage</a></li>
+                        <li class="propClone"><a href="index">Home</a></li>
+                        <li class="propClone"><a href="/market/market-list">Market</a></li>
+                        <li class="propClone"><a href="checklist">Checklist</a></li>
+                        <li class="propClone"><a href="api">Bicycle</a></li>
+                        <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
                     </ul>
                 </div>
             </div>
@@ -120,8 +125,6 @@
                             <a style="color : #999; font-size: 12px;">탈퇴하기</a>
                         </div>
                     </fieldset>
-                    <input class="edd-input " type="hidden" name="edd_first_hidden" value="주혜경" required="">
-                    <input class="edd-input " type="hidden" name="edd_email_hidden" value="naver.com" required="">
                     <input type="submit" id="submit" class="clearfix mypage-btn" value="수정하기">
                 </form>
             </div>
@@ -140,14 +143,17 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <% for(int i = 0; i < 5; i++) { %>
+                            <% for(int i = 0; i < mkList.size(); i++) {
+                                MarketDTO rDTO = mkList.get(i);
+                                if(rDTO == null) {
+                                    rDTO = new MarketDTO();
+                                }%>
                             <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
                                 <td class="edd_cart_item_name">
                                     <div style="display: inline-block;" class="edd_cart_item_image">
                                         <img width="55" height="55" src="../images/scorilo2-70x70.jpg" alt="">
                                     </div>
-                                    <span class="edd_checkout_cart_item_title">&nbsp; Audio Item - Single License</span>
-
+                                    <span class="edd_checkout_cart_item_title"><%=i%>, <%=CmmUtil.nvl(rDTO.getTitle())%></span>
                                 </td>
                                 <td class="edd_cart_item_price">
                                     $11.99

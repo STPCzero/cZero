@@ -14,4 +14,10 @@
         set user_name = #{user_name}, user_email = #{user_email}
         where user_seq = #{user_seq}
     </update>
+
+    <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
+        select *
+        from market
+        where user_seq = #{user_seq}
+    </select>
 </mapper>

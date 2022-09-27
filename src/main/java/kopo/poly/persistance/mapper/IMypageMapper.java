@@ -1,7 +1,10 @@
 package kopo.poly.persistance.mapper;
 
+import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface IMypageMapper {
@@ -9,4 +12,6 @@ public interface IMypageMapper {
     MypageDTO getMypageInfo(MypageDTO myDTO) throws Exception;
 
     int getMyInfoModify(MypageDTO iDTO) throws Exception;
+
+    List<MarketDTO> getMypageMarket(MypageDTO myDTO) throws Exception;
 }

@@ -1,5 +1,6 @@
 package kopo.poly.controller;
 
+import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 import kopo.poly.service.IMypageService;
 import kopo.poly.util.CmmUtil;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -33,11 +36,16 @@ public class MypController {
         if(iDTO == null) {
             iDTO = new MypageDTO();
         }
-        log.info("iDTO.getUser_name: "+iDTO.getUser_name());
-        log.info("iDTO.getUser_name: "+iDTO.getUser_email());
+
+        //나의 마켓 리스트 갖고오기
+        List<MarketDTO> mkList = mypageService.getMypageMarket(myDTO);
+        log.info("사이즈 : "+String.valueOf(mkList.size()));
+        if(mkList == null) {
+            mkList = new ArrayList<>();
+        }
 
         model.addAttribute("iDTO", iDTO); //user_info 개인정보
-
+        model.addAttribute("mkList", mkList); //내 market 정보
         log.info(this.getClass().getName()+".myInfo End!!");
         return "/mypage/myinfo";
     }
@@ -46,16 +54,16 @@ public class MypController {
     public String myInfoModify(HttpServletRequest request, Model model) throws Exception {
         log.info(this.getClass().getName()+".myInfoModify Start!!");
 
+        //내 회원번호(seq 넣어줌)
         MypageDTO myDTO = new MypageDTO();
         myDTO.setUser_seq("1");
 
+        //내 정보 갖고오기
         MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
 
         if(iDTO == null) {
             iDTO = new MypageDTO();
         }
-        log.info("iDTO.getUser_name: "+iDTO.getUser_name());
-        log.info("iDTO.getUser_name: "+iDTO.getUser_email());
         model.addAttribute("iDTO", iDTO); //user_info 개인정보
         log.info(this.getClass().getName()+".myInfoModify End!!");
         return "/mypage/myinfo-modify";
@@ -91,6 +99,6 @@ public class MypController {
         model.addAttribute("url", url);
 
         log.info(this.getClass().getName()+".getMyInfoModify End!!");
-        return "/mypage/myinfo";
+        return "/redirect";
     }
 }

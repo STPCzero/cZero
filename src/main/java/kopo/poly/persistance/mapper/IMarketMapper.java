@@ -1,7 +1,6 @@
 package kopo.poly.persistance.mapper;
 
 import kopo.poly.dto.MarketDTO;
-import kopo.poly.dto.NoticeDTO;
 import kopo.poly.service.impl.MarketService;
 import org.apache.ibatis.annotations.Mapper;
 
