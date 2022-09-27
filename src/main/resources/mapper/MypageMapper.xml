@@ -3,7 +3,9 @@
 
 
 <mapper namespace="kopo.poly.persistance.mapper.IMypageMapper">
-    <select id="getMypageList" >
-
+    <select id="getMypageInfo" parameterType="MypageDTO" resultType="MypageDTO">
+        select *
+        from user_info
+        where user_seq = #{user_seq}
     </select>
 </mapper>

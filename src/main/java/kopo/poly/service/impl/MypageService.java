@@ -19,9 +19,10 @@ public class MypageService implements IMypageService {
     }
 
     @Override
-    public MypageDTO getMypageInfo(String s) throws Exception {
+    public MypageDTO getMypageInfo(MypageDTO myDTO) throws Exception {
         log.info(this.getClass().getName()+".getMypageInfo Start!!");
+        MypageDTO mDTO = mypageMapper.getMypageInfo(myDTO);
         log.info(this.getClass().getName()+".getMypageInfo End!!");
-        return null;
+        return mDTO;
     }
 }

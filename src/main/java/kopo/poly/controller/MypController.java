@@ -17,8 +17,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MypController {
 
-    //String sessionNo = "1"; //나중에 로그인세션임
-
     @Resource(name = "MypageService")
     private IMypageService mypageService;
 
@@ -26,10 +24,18 @@ public class MypController {
     public String myInfo(HttpServletRequest request, Model model, HttpSession session) throws Exception {
         log.info(this.getClass().getName()+".myInfo Start!!");
 
-//        MypageDTO myDTO = new MypageDTO();
-//        myDTO.setUser_seq(sessionNo);
+        MypageDTO myDTO = new MypageDTO();
+        myDTO.setUser_seq("1");
 
-        MypageDTO iDTO = mypageService.getMypageInfo("1");
+        MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
+
+        if(iDTO == null) {
+            iDTO = new MypageDTO();
+        }
+        log.info("iDTO.getUser_name: "+iDTO.getUser_name());
+        log.info("iDTO.getUser_name: "+iDTO.getUser_email());
+
+        model.addAttribute("iDTO", iDTO); //user_info 개인정보
 
         log.info(this.getClass().getName()+".myInfo End!!");
         return "/mypage/myinfo";

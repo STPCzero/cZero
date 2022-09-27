@@ -1,5 +1,9 @@
 <%@ page import="jdk.nashorn.internal.scripts.JS" %>
+<%@ page import="kopo.poly.dto.MypageDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    MypageDTO iDTO = (MypageDTO) request.getAttribute("iDTO"); // user_info 개인정보
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,12 +103,12 @@
                             <label class="edd-label" for="edd-first">
                                 Name <span class="edd-required-indicator">*</span>
                             </label>
-                            <input disabled class="edd-input " type="text" name="edd_first" placeholder="First name" id="edd-first" value="" required="">
+                            <input disabled class="edd-input " type="text" name="edd_first" placeholder="First name" id="edd-first" value="<%= iDTO.getUser_name()%>" required="">
                         </p>
                         <p id="edd-email-wrap">
                             <label class="edd-label" for="edd-email">
                                 Email Address <span class="edd-required-indicator">*</span></label>
-                            <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address" id="edd-email" value="">
+                            <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address" id="edd-email" value="<%= iDTO.getUser_email()%>">
                         </p>
                         <div style="text-align: right; margin-top: 10px;">
                             <a style="color : #999; font-size: 12px;">탈퇴하기</a>
