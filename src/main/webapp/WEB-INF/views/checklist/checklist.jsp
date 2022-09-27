@@ -2,6 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style>
+		@media screen and (width: 500px) {
+			fieldset div{
+				max-width: 70em;margin-left: 50px;;
+			}
+		}
+	</style>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
@@ -15,39 +22,39 @@
 
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
-<div class="wrapper">
-	<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
-			<i class="fa fa-bars"></i>
-			<span class="sr-only">Toggle navigation</span>
-			</button>
-			<a href="../index.jsp" class="navbar-brand brand"> SCORILO </a>
-		</div>
-		<div id="navbar-collapse-02" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="../index.jsp">Home</a></li>
-				<li class="propClone"><a href="../shop.jsp">Shop</a></li>
-				<li class="propClone"><a href="checklist.jsp">Checklist</a></li>
-				<li class="propClone"><a href="../checkout.jsp">Checkout</a></li>
-				<li class="propClone"><a href="../contact.jsp">Contact</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="text-pageheader">
-					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.0s">
-						 Product Name
+	<div class="wrapper">
+		<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle navigation</span>
+					</button>
+					<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
+				</div>
+				<div id="navbar-collapse-02" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="propClone"><a href="index.jsp">Home</a></li>
+						<li class="propClone"><a href="market-list.jsp">Market</a></li>
+						<li class="propClone"><a href="product.jsp">Checklist</a></li>
+						<li class="propClone"><a href="checkout.jsp">Api</a></li>
+						<li class="propClone"><a href="contact.jsp">Mypage</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="text-pageheader">
+						<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
+							Check List
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </header>
 
 <!-- CONTENT =============================-->
@@ -55,7 +62,7 @@
 <div class="container toparea">
 	<div class="underlined-title">
 		<div class="editContent">
-			<h1 class="text-center latestitems">Awesome Product</h1>
+			<h1 class="text-center latestitems">To DO List</h1>
 		</div>
 		<div class="wow-hr type_short">
 			<span class="wow-hr-h">
@@ -65,72 +72,73 @@
 			</span>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-8">
-			<div class="productbox">
-				<img src="images/product2-2.jpg" alt="">
-				<div class="clearfix">
+	<form>
+		<form >
+			<fieldset class="form-group">
+				<div style="max-width: 70em;margin-left: 10em;margin-right: 10em">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="1" id="01">
+					<label class="form-check-label" for="01">
+						여름엔 26℃ 이상, 겨울엔 20℃ 이하로 유지하기.
+					</label>
 				</div>
-				<br/>
-				<div class="product-details text-left">
-					<p>
-						Your description here. Serenity is a highly-professional & modern website theme crafted with you, the user, in mind. This light-weight theme is generous, built with custom types and enough shortcodes to customize each page according to your project. You will notice some examples of pages in demo, but this theme can do much more.
-					</p>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="02">
+					<label class="form-check-label" for="02">
+						가전제품 플러그를 뽑아 두기.
+					</label>
 				</div>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<a href="#" class="btn btn-buynow">$49.00 - Purchase</a>
-			<div class="properties-box">
-				<ul class="unstyle">
-					<li><b class="propertyname">Version:</b> 1.0</li>
-					<li><b class="propertyname">Image Size:</b> 2340x1200</li>
-					<li><b class="propertyname">Files Included:</b> mp3, audio, jpeg, png</li>
-					<li><b class="propertyname">Documentation:</b> Well Documented</li>
-					<li><b class="propertyname">License:</b> GNU</li>
-					<li><b class="propertyname">Requires:</b> Easy Digital Downloads</li>
-					<li><b class="propertyname">Environment:</b> Wordpress</li>
-					<li><b class="propertyname">Any Field Etc:</b> Any Detail</li>
-					<li><b class="propertyname">Number:</b> Up to 20 specifications in this box</li>
-					<li><b class="propertyname">Live Demo:</b><a target="_blank" href="http://www.wowthemes.net/">http://www.wowthemes.net/</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-</section>
-
-<!-- CALL TO ACTION =============================-->
-<section class="content-block" style="background-color:#00bba7;">
-<div class="container text-center">
-	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1">
-			<div class="item" data-scrollreveal="enter top over 0.4s after 0.1s">
-				<h1 class="callactiontitle"> Promote Items Area Give Discount to Buyers <span class="callactionbutton"><i class="fa fa-gift"></i> WOW24TH</span>
-				</h1>
-			</div>
-		</div>
-	</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="03">
+					<label class="form-check-label" for="03">
+						걷기 > 자전거 타기 > 대중교통 이용을 생활화하기.
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="04">
+					<label class="form-check-label" for="04">
+						장바구니를 이용하기.
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="05">
+					<label class="form-check-label" for="05">
+						설거지통 이용하기.
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="06">
+					<label class="form-check-label" for="06">
+						퇴근 시 전기 플러그를 뽑기.
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="07">
+					<label class="form-check-label" for="07">
+						계단 이용하기.
+					</label>
+				</div>
+				<div class="wow-hr type_short">
+					<span class="wow-hr-h">
+					</span>
+				</div>
+				<div class="col-md-4">
+					<input type="submit" class="btn btn-buynow" style="" value="SAVE" id="00">
+				</div>
+				</div>
+			</fieldset>
+		</form>
+	</form>
 </div>
 </section>
 
 <!-- FOOTER =============================-->
-<div class="footer text-center">
+<div class="footer text-center" style="width: 100%; position: fixed; bottom: 0;">
 	<div class="container">
 		<div class="row">
-			<p class="footernote">
-				 Connect with Scorilo
-			</p>
-			<ul class="social-iconsfooter">
-				<li><a href="#"><i class="fa fa-phone"></i></a></li>
-				<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-				<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-				<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-			</ul>
-			<p>
-				Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-
+			<p class="">
+				Thanks for visiting our Website.<br>
+				Copyright ⓒ 2022. Team.CZero All rights reserved.
 			</p>
 		</div>
 	</div>
