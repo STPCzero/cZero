@@ -14,11 +14,6 @@ public class IndexController {
         log.info(this.getClass().getName()+".index End!!");
         return "index";
     }
-    @GetMapping(value = "login")
-    public String login() throws Exception {
-        log.info(this.getClass().getName()+".login Start!!");
-        log.info(this.getClass().getName()+".login End!!");
-        return "login";
-    }
+
 
 }
