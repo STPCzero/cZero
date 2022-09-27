@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.IUserInfoMapper">
+    <insert id="insertUserInfo" parameterType="UserInfoDTO">
+        INSERT INTO user_info (USER_SEQ, USER_ID, USER_PW, USER_NAME, USER_EMAIL)
+        VALUES ((SELECT NVL(MAX(U.USER_SEQ), 0) + 1 FROM USER_INFO U), #{user_id}, #{user_pw}, #{user_name}, #{user_email})
+    </insert>
+
+    <select id="getUserExists" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        SELECT DECODE(COUNT(1), 0, 'N', 'Y') AS EXISTS_YN
+        FROM USER_INFO
+        WHERE USER_EMAIL = #{user_email}
+    </select>
+</mapper>
