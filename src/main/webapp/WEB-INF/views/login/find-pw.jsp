@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>로그인 페이지</title>
+    <title>비밀번호 찾기</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -56,37 +56,26 @@
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
                 <form role="form" action="" method="post" class="f1">
 
-                    <h3>저희 사이트를 방문해주셔서 감사합니다</h3>
-                    <p>원활한 이용을 위해 로그인해주세요</p>
-                    <div class="f1-steps">
-                        <div class="f1-progress">
-                            <div class="f1-progress-line" data-now-value="25" data-number-of-steps="2" style="width: 25%;"></div>
-                        </div>
-                        <div class="f1-step active">
-                            <div class="f1-step-icon"><i class="fa fa-key"></i></div>
-                            <p>login</p>
-                        </div>
-                        <div class="f1-step">
-                            <div class="f1-step-icon"><i class="fa fa-desktop"></i></div>
-                            <p>complete</p>
-                        </div>
-                    </div>
+                    <h3>비밀번호 찾기</h3>
+                    <p>회원가입시 입력하신 아이디와 이메일을 입력해주세요</p>
 
 
 
                     <fieldset>
-                        <h4>아이디와 비밀번호를 입력해주세요</h4>
                         <div class="form-group">
-                            <label class="sr-only" for="f1-id">아이디</label>
-                            <input type="text" name="f1-id" placeholder="아이디" class="f1-last-name form-control" id="f1-id">
+                            <label class="sr-only" for="user_id">아이디</label>
+                            <input type="text" name="user_id" placeholder="아이디" class="f1-last-name form-control" id="user_id">
                         </div>
                         <div class="form-group">
-                            <label class="sr-only" for="f1-password">비밀번호</label>
-                            <input type="text" name="f1-password" placeholder="비밀번호" class="f1-last-name form-control" id="f1-password">
+                            <label class="sr-only" for="user_email">이메일</label>
+                            <input type="text" name="user_email" placeholder="이메일" class="f1-last-name form-control" id="user_email">
                         </div>
                         <div class="f1-buttons">
-                            <button type="button" class="btn btntext"><a href="register">Register</a></button>
-                            <button type="button" class="btn btn-next">Next</button>
+                            <span>
+                                <button type="button" class="btn" style="float: left"><a href="find-id">아이디 찾기</a></button>
+                            </span>
+                            <button type="button" class="btn btntext"><a href="register">로그인</a></button>
+                            <button type="button" class="btn btn-next">다음</button>
                         </div>
                     </fieldset>
 
