@@ -75,7 +75,7 @@
 	<form>
 		<form >
 			<fieldset class="form-group">
-				<div style="max-width: 70em;margin-left: 10em;margin-right: 10em">
+				<div style="max-width: 500px;margin-left: auto; margin-right: auto">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="1" id="01">
 					<label class="form-check-label" for="01">
