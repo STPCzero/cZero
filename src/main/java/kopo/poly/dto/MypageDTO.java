@@ -5,10 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NoticeDTO {
+public class MypageDTO {
     private String user_seq;
-    private String user_id;
-    private String user_pw;
-    private String user_email;
     private String user_name;
+    private String user_email;
 }

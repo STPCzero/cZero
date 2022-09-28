@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.IMypageMapper">
+    <select id="getMypageInfo" parameterType="MypageDTO" resultType="MypageDTO">
+        select *
+        from user_info
+        where user_seq = #{user_seq}
+    </select>
+
+    <update id="getMyInfoModify" parameterType="MypageDTO">
+        update user_info
+        set user_name = #{user_name}, user_email = #{user_email}
+        where user_seq = #{user_seq}
+    </update>
+
+    <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
+        select *
+        from market
+        where user_seq = #{user_seq}
+    </select>
+</mapper>
