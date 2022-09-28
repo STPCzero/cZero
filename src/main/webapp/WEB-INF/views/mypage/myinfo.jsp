@@ -201,6 +201,18 @@
                 $(this).find('.captionshop').fadeOut(150);
             }
         );
+
+        // 자동으로 화면 띄우기
+        $.ajax({
+            url : "/mypage/myinfoPaging",
+            type : "POST",
+            success : function (data) {
+                alert("test");
+                console.log(data);
+            }
+        });
+
+        // 페이징 버튼 클릭 시 변경
     });
 </script>
 </body>
