@@ -38,35 +38,25 @@ public class MypController {
         }
         model.addAttribute("iDTO", iDTO); //user_info 개인정보
 
-        log.info(this.getClass().getName()+".myInfo End!!");
-        return "/mypage/myinfo";
-    }
 
-    @PostMapping("/mypage/myinfoPaging")
-    public String myinfoPaging(HttpServletRequest request, Model model) throws Exception {
-        log.info(this.getClass().getName() + ".myinfoPaging Start!!");
+        /* == 페이징 START == */
+        int num = 1;
+        int userNum = 5;
 
-        MypageDTO myDTO = new MypageDTO();
-        myDTO.setUser_seq("1");
-
+        // 현재 페이지 (리미트 기준)
+        int displayNum = (num - 1) * userNum;
+        myDTO.setDisplayNum(String.valueOf(displayNum));
         //나의 마켓 리스트 갖고오기
         List<MarketDTO> mkList = mypageService.getMypageMarket(myDTO);
 
         log.info("사이즈 : "+String.valueOf(mkList.size()));
 
-        /* == 페이징 START == */
-
-        int num = 1;
         int count = Integer.parseInt(String.valueOf(mkList.size()));
-        // 한 페이지에 출력할 유저 수
-        int userNum = 5;
+
         // 하단 페이징 번호 ([게시물 총 갯수 / 한 페이지에 출력 할 유저 수]의 올림)
         int pageNum = (int)Math.ceil((double) count / userNum);
         model.addAttribute("pageNum", pageNum);
 
-        // 현재 페이지 (리미트 기준)
-        int displayNum = (num - 1) * userNum;
-        log.info("displayNum : "+displayNum);
         // 한번에 표시할 페이징 번호의 갯수
         int pageNum_cnt = 5;
 
@@ -99,6 +89,18 @@ public class MypController {
             mkList = new ArrayList<>();
         }
         model.addAttribute("mkList", mkList); //내 market 정보
+
+        log.info(this.getClass().getName()+".myInfo End!!");
+        return "/mypage/myinfo";
+    }
+
+    @PostMapping("/mypage/myinfoPaging")
+    public String myinfoPaging(HttpServletRequest request, Model model) throws Exception {
+        log.info(this.getClass().getName() + ".myinfoPaging Start!!");
+
+        MypageDTO myDTO = new MypageDTO();
+        myDTO.setUser_seq("1");
+
         log.info(this.getClass().getName() + ".myinfoPaging End!!");
         return "/mypage/myinfo";
     }

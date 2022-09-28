@@ -3,21 +3,28 @@
 
 
 <mapper namespace="kopo.poly.persistance.mapper.IMypageMapper">
+    <!-- 마이페이지 유저 정보 출력 쿼리 -->
     <select id="getMypageInfo" parameterType="MypageDTO" resultType="MypageDTO">
         select *
         from user_info
         where user_seq = #{user_seq}
     </select>
 
+    <!-- 마이페이지 유저 정보 수정 쿼리 -->
     <update id="getMyInfoModify" parameterType="MypageDTO">
         update user_info
         set user_name = #{user_name}, user_email = #{user_email}
         where user_seq = #{user_seq}
     </update>
 
+    <!-- 마이페이지 개인 마켓 정보 출력 쿼리 -->
     <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
-        select *
-        from market
-        where user_seq = #{user_seq}
+        SELECT *
+        FROM (
+                 SELECT ROW_NUMBER() OVER (ORDER BY user_seq) NUM, A.*
+                 FROM market A
+                 ORDER BY mk_seq desc
+             )
+        WHERE NUM BETWEEN 4 AND 10
     </select>
 </mapper>

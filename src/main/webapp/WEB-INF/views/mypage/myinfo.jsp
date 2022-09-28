@@ -12,6 +12,11 @@
     }
     List<MarketDTO> mkList = (List<MarketDTO>)request.getAttribute("mkList"); // 내 market 정보
     if(mkList == null) mkList = new ArrayList<MarketDTO>(); // 게시판 조회 결과 보여주기
+    boolean prev = (boolean) request.getAttribute("prev");
+    boolean next = (boolean) request.getAttribute("next");
+    int startPageNum = (int) request.getAttribute("startPageNum");
+    int endPageNum = (int) request.getAttribute("endPageNum");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -165,15 +170,17 @@
                 </div>
             </form>
             <div style="text-align: center; margin-bottom: 50px;">
+                <% if(prev == true) {%>
                 <button type="button" class="btn btn-secondary">Prev</button>
+                <%}%>
                 <div class="btn-group " style="margin: 0 auto; display: inline-block;">
-                    <button type="button" class="btn btn-secondary">1</button>
-                    <button type="button" class="btn btn-secondary">2</button>
-                    <button type="button" class="btn btn-secondary">3</button>
-                    <button type="button" class="btn btn-secondary">4</button>
-                    <button type="button" class="btn btn-secondary">5</button>
+                    <% for (int i = startPageNum; i <= endPageNum; i++) {%>
+                    <button type="button" class="btn btn-secondary"><%=i%></button>
+                    <% } %>
                 </div>
+                <% if(next == true) {%>
                 <button type="button" class="btn btn-secondary">Next</button>
+                <% } %>
             </div>
         </div>
     </div>
@@ -201,18 +208,6 @@
                 $(this).find('.captionshop').fadeOut(150);
             }
         );
-
-        // 자동으로 화면 띄우기
-        $.ajax({
-            url : "/mypage/myinfoPaging",
-            type : "POST",
-            success : function (data) {
-                alert("test");
-                console.log(data);
-            }
-        });
-
-        // 페이징 버튼 클릭 시 변경
     });
 </script>
 </body>
