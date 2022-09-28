@@ -172,10 +172,10 @@
                         </div>
                         <div class="f1-buttons">
                             <span>
-                                <button type="button" class="btn" style="float: left"><a href="find-id">아이디 찾기</a></button>
+                                <button type="button" class="btn" style="float: left"><a href="find-id">아이디/비밀번호 찾기</a></button>
                             </span>
-                            <button type="button" class="btn"><a href="login">Login</a></button>
-                            <button type="submit" class="btn btn-next">Next</button>
+                            <button type="button" class="btn"><a href="login">로그인</a></button>
+                            <button type="submit" class="btn btn-next">다음</button>
                         </div>
                     </fieldset>
 
