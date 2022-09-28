@@ -5,9 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="../css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
@@ -107,7 +107,7 @@
 
 
 		textarea.input100 {
-			min-height: 199px;
+			min-height: 350px;
 			padding: 19px 20px 0 23px;
 		}
 
@@ -239,7 +239,7 @@
 				<span class="focus-input100"></span>
 			</div>
 
-			<div class="wrap-input100" >
+			<div class="wrap-input100">
 				<textarea class="input100" name="message" style="resize: none;" placeholder="물건 설명을 입력해 주세요"></textarea>
 				<span class="focus-input100"></span>
 			</div>
@@ -248,11 +248,11 @@
 				<input type="file" name="file" >
 			</div>
 
-			<div class="container-contact100-form-btn" style="margin-top: 80%">
-				<button class="contact100-form-btn">
+			<div class="container-contact100-form-btn" style="margin-top: 20%">
+				<button class="contact100-form-btn" style="margin-left: 10%; float: left">
 					<a href="market-list">되돌리기</a>
 				</button>
-				<button class="contact100-form-btn">
+				<button class="contact100-form-btn" style="margin-left: 25%; float: left">
 					<a href="market-list">물건 올리기</a>
 				</button>
 			</div>
@@ -262,9 +262,9 @@
 </section>
 
 <!-- Load JS here for greater good =============================-->
-<script src="js/jquery-.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/anim.js"></script>
+<script src="../js/jquery-.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/anim.js"></script>
 <script>
 //----HOVER CAPTION---//	  
 jQuery(document).ready(function ($) {
@@ -278,5 +278,18 @@ jQuery(document).ready(function ($) {
 	);
 });
 </script>
+
+<!-- FOOTER =============================-->
+<div class="footer text-center">
+	<div class="container">
+		<div class="row">
+			<p class="">
+				Thanks for visiting our Website.<br>
+				Copyright ⓒ 2022. Team.CZero All rights reserved.
+			</p>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>

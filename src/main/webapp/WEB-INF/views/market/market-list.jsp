@@ -5,16 +5,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
-
-<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../js/paging.js"></script>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
-
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/paging.js"></script>
 	<script type="text/javascript">
 
 	</script>
@@ -101,11 +99,11 @@
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="index.jsp">Home</a></li>
+				<li class="propClone"><a href="../index.jsp">Home</a></li>
 				<li class="propClone"><a href="market-list.jsp">Market</a></li>
-				<li class="propClone"><a href="product.jsp">Checklist</a></li>
-				<li class="propClone"><a href="checkout.jsp">Api</a></li>
-				<li class="propClone"><a href="contact.jsp">Mypage</a></li>
+				<li class="propClone"><a href="../product.jsp">Checklist</a></li>
+				<li class="propClone"><a href="../checkout.jsp">Api</a></li>
+				<li class="propClone"><a href="../contact.jsp">Mypage</a></li>
 			</ul>
 		</div>
 	</div>
@@ -153,7 +151,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product1-1.jpg" alt=""></span>
+					<span class="maxproduct"><img src="../images/product1-1.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -179,7 +177,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product2.jpg" alt=""></span>
+					<span class="maxproduct"><img src="../images/product2.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -205,7 +203,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product2-3.jpg" alt=""></span>
+					<span class="maxproduct"><img src="../images/product2-3.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -233,7 +231,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product1.jpg" alt=""></span>
+					<span class="maxproduct"><img src="../images/product1.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -259,7 +257,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product2-2.jpg" alt=""></span>
+					<span class="maxproduct"><img src="../images/product2-2.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -285,7 +283,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product3.png" alt=""></span>
+					<span class="maxproduct"><img src="../images/product3.png" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -304,7 +302,7 @@
 	<form class="contact100-form">
 	<div class="container-contact100-form-btn">
 		<button class="contact100-form-btn">
-			<a href="market-list">물건 올리기</a>
+			<a href="market-upload">물건 올리기</a>
 		</button>
 	</div>
 	</form>
@@ -327,5 +325,18 @@ jQuery(document).ready(function ($) {
 	);
 });
 </script>
+
+<!-- FOOTER =============================-->
+<div class="footer text-center">
+	<div class="container">
+		<div class="row">
+			<p class="">
+				Thanks for visiting our Website.<br>
+				Copyright ⓒ 2022. Team.CZero All rights reserved.
+			</p>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
