@@ -5,7 +5,6 @@ import kopo.poly.persistance.mapper.IUserInfoMapper;
 import kopo.poly.service.IUserInfoService;
 import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 public class UserInfoService implements IUserInfoService {
 
     private final IUserInfoMapper userInfoMapper;
-
 
     public UserInfoService(IUserInfoMapper userInfoMapper) {
         this.userInfoMapper = userInfoMapper;
@@ -52,17 +50,46 @@ public class UserInfoService implements IUserInfoService {
     }
 
     @Override
-    public int getUserLoginCheck(UserInfoDTO uDTO) throws Exception {
-        return 0;
+    public UserInfoDTO getUserLoginCheck(UserInfoDTO uDTO) throws Exception {
+        log.info(this.getClass().getName()+".InsertUserInfo start!");
+        UserInfoDTO iDTO = userInfoMapper.ChkUserInfo(uDTO);
+        log.info(this.getClass().getName()+".InsertUserInfo end!");
+        return iDTO;
     }
 
     @Override
     public UserInfoDTO findUserId(UserInfoDTO uDTO) {
-        return null;
+        log.info(this.getClass().getName() + ".findUserId start");
+
+        if(uDTO ==null) {
+            uDTO = new UserInfoDTO();
+            log.info("DTO가 널값으로 넘어옴");
+        }else {
+            log.info("잘 넘어감");
+        }
+
+        UserInfoDTO rDTO= userInfoMapper.findUserId(uDTO);
+
+        log.info(this.getClass().getName() + ".findUserId end");
+
+        return rDTO;
     }
 
     @Override
-    public int updateUserPw(UserInfoDTO pDTO) {
-        return 0;
+    public int updateUserPw(UserInfoDTO pDTO){
+        log.info(this.getClass().getName() + ".updateUserPw start");
+
+        if(pDTO ==null) {
+            pDTO = new UserInfoDTO();
+            log.info("DTO가 널값으로 넘어옴");
+        }
+
+        int res = userInfoMapper.updateUserPw(pDTO);
+
+        log.info("res : " + res);
+
+        log.info(this.getClass().getName() + ".updateUserPw end");
+
+        return res;
     }
 }

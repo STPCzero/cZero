@@ -11,4 +11,9 @@ public interface IUserInfoMapper {
     /* 중복체크 */
     UserInfoDTO getUserExists(UserInfoDTO uDTO) throws Exception;
 
+    UserInfoDTO ChkUserInfo(UserInfoDTO uDTO);
+
+    UserInfoDTO findUserId(UserInfoDTO uDTO);
+
+    int updateUserPw(UserInfoDTO pDTO);
 }
