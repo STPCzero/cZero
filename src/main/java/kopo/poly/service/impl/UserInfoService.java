@@ -55,4 +55,14 @@ public class UserInfoService implements IUserInfoService {
     public int getUserLoginCheck(UserInfoDTO uDTO) throws Exception {
         return 0;
     }
+
+    @Override
+    public UserInfoDTO findUserId(UserInfoDTO uDTO) {
+        return null;
+    }
+
+    @Override
+    public int updateUserPw(UserInfoDTO pDTO) {
+        return 0;
+    }
 }
