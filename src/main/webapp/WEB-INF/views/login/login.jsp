@@ -54,7 +54,7 @@
 
         <div class="row" style="margin-top: 10%">
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box" >
-                <form role="form" action="" method="post" class="f1" >
+                <form role="form" action="/userCheck" method="post" class="f1" >
 
                     <h3>저희 사이트를 방문해주셔서 감사합니다</h3>
                     <p>원활한 이용을 위해 로그인해주세요</p>
@@ -76,7 +76,6 @@
 
                     <fieldset>
                         <h4>아이디와 비밀번호를 입력해주세요</h4>
-                        <form method="post" class="form-group" action="userCheck" >
                             <div style="margin-bottom: 10px;">
                                 <label class="sr-only" for="user_id">아이디</label>
                                 <input
@@ -107,7 +106,6 @@
                                 <button type="button" class="btn btntext"><a href="register">회원가입</a></button>
                                 <button type="submit" class="btn btn-next">다음</button>
                             </div>
-                        </form>
 
 
                     </fieldset>
