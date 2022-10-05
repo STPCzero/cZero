@@ -52,7 +52,7 @@
     <div class="container">
 
 
-        <div class="row">
+        <div class="row" style="margin-top: 10%">
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
                 <form role="form" action="" method="post" class="f1">
 
@@ -74,7 +74,7 @@
                             <span>
                                 <button type="button" class="btn" style="float: left"><a href="find-pw">비밀번호 찾기</a></button>
                             </span>
-                            <button type="button" class="btn btntext"><a href="register">로그인</a></button>
+                            <button type="button" class="btn btntext"><a href="login">로그인</a></button>
                             <button type="button" class="btn btn-next">다음</button>
                         </div>
                     </fieldset>

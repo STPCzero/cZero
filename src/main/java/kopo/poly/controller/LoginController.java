@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Controller
@@ -223,6 +224,49 @@ public class LoginController {
 
         log.info(this.getClass().getName() + ".findPw end!");
 
+        return "redirect";
+    }
+
+    @RequestMapping(value = "userCheck", method = {RequestMethod.GET,RequestMethod.POST})
+    public String userCheck(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+        log.info(this.getClass().getName() + ".userCheck Start!!");
+        String user_id = CmmUtil.nvl(request.getParameter("user_id"));
+        String user_pw = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("user_pw")));
+        String msg;
+        String url;
+        String icon;
+
+        log.info("받아온 아이디 : " + user_id);
+        log.info("받아온 비번 : " + user_pw);
+
+        UserInfoDTO uDTO = new UserInfoDTO();
+        uDTO.setUser_id(user_id);
+        uDTO.setUser_pw(user_pw);
+
+        UserInfoDTO rDTO = userInfoService.ChkUserInfo(uDTO);
+        log.info("로그인 조회 결과는 :" + rDTO);
+
+        if (rDTO == null) {
+            msg = "로그인에 실패하셨습니다.";
+            icon = "fail";
+            url = "/login/login";
+        } else {
+            msg = "로그인에 성공하셨습니다.";
+            icon = "success";
+            url = "/index";
+            String name = rDTO.getUser_name();
+            String no = rDTO.getUser_seq();
+            session.setAttribute("sessionId", name);
+            session.setAttribute("sessionNo", no);
+            log.info("sessionID : " + name);
+            log.info("sessionSEQ : " + no);
+        }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+        model.addAttribute("icon", icon);
+
+        log.info(this.getClass().getName() + ".userCheck End!!");
         return "redirect";
     }
 

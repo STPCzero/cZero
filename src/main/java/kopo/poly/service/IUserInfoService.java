@@ -9,7 +9,9 @@ public interface IUserInfoService {
     /* 아이디 비밀번호 일치하는지 확인 */
     UserInfoDTO getUserLoginCheck(UserInfoDTO uDTO) throws Exception;
 
-    UserInfoDTO findUserId(UserInfoDTO uDTO);
+    UserInfoDTO findUserId(UserInfoDTO uDTO) throws Exception;
 
-    int updateUserPw(UserInfoDTO pDTO);
+    int updateUserPw(UserInfoDTO pDTO) throws Exception;
+
+    UserInfoDTO ChkUserInfo(UserInfoDTO uDTO) throws Exception;
 }

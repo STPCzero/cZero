@@ -52,9 +52,9 @@
     <div class="container">
 
 
-        <div class="row">
-            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
-                <form role="form" action="" method="post" class="f1">
+        <div class="row" style="margin-top: 10%">
+            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box" >
+                <form role="form" action="" method="post" class="f1" >
 
                     <h3>저희 사이트를 방문해주셔서 감사합니다</h3>
                     <p>원활한 이용을 위해 로그인해주세요</p>
@@ -76,23 +76,40 @@
 
                     <fieldset>
                         <h4>아이디와 비밀번호를 입력해주세요</h4>
-                        <div class="form-group">
-                            <label class="sr-only" for="user_id">아이디</label>
-                            <input type="text" name="user_id" placeholder="아이디" class="f1-last-name form-control"
-                                   id="user_id">
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="user_pw">비밀번호</label>
-                            <input type="text" name="user_pw" placeholder="비밀번호" class="f1-last-name form-control"
-                                   id="user_pw">
-                        </div>
-                        <div class="f1-buttons">
+                        <form method="post" class="form-group" action="userCheck" >
+                            <div style="margin-bottom: 10px;">
+                                <label class="sr-only" for="user_id">아이디</label>
+                                <input
+                                        type="text"
+                                        name="user_id"
+                                        placeholder="아이디"
+                                        class="f1-last-name form-control"
+                                        id="user_id"
+                                        autofocus
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="user_pw">비밀번호</label>
+                                <input
+                                        type="password"
+                                        name="user_pw"
+                                        placeholder="비밀번호"
+                                        class="f1-last-name form-control"
+                                        id="user_pw"
+                                        aria-describedby="password"
+                                />
+                            </div>
+
+                            <div class="f1-buttons">
                             <span>
                                 <button type="button" class="btn" style="float: left"><a href="find-id">아이디/비밀번호 찾기</a></button>
                             </span>
-                            <button type="button" class="btn btntext"><a href="register">회원가입</a></button>
-                            <button type="button" class="btn btn-next">다음</button>
-                        </div>
+                                <button type="button" class="btn btntext"><a href="register">회원가입</a></button>
+                                <button type="submit" class="btn btn-next">다음</button>
+                            </div>
+                        </form>
+
+
                     </fieldset>
 
 
