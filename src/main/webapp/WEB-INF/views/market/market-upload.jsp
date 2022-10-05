@@ -175,6 +175,17 @@
 			height: 400px;
 		}
 
+		body {
+			box-sizing: border-box;
+			margin: 0px;
+			font-family: Consolas, monospace;
+		}
+		.jb-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
 	</style>
 
 
@@ -236,8 +247,8 @@
 		</div>
 		<div class="wrap-contact100">
 			<form class="contact100-form">
-            <span class="contact100-form-title">
-               내 물건 올리기
+            <span class="contact100-form-title" style="text-align: center">
+               내 상품 등록하기
             </span>
 
 				<%--   <div class="wrap-input100">
@@ -258,46 +269,57 @@
                    <p><input type="submit" value="전송"></p>
                 </form>--%>
 
-				<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+				<script src = "../js/ckeditor/ckeditor.js"></script>
 
 
-				<div class="container">
-					<div class="content" style="width: 70%">
+
+				<div class="container" style="">
+					<div class="content" style="width: 70%; ">
 						<div class="row justify-content-md-center">
 							<div class="col-sm-9">
 								<div class="input-group mb-3">
-									<div class="input-group-prepend"><label class="input-group-text">제목</label></div>
-									<input type="text" class="form-control"></div>
+									<div class="input-group-prepend">
+										<label class="input-group-text">제목</label>
+									</div>
+									<input type="text" class="form-control">
+								</div>
 							</div>
 						</div>
 						<hr>
-						<div class="row justify-content-md-center">
+						<div class="row justify-content-md-center jb-container" >
 							<div class="col_c" style="margin-bottom: 30px">
 								<div class="input-group">
-									<textarea class="form-control" id="p_content"></textarea>
-									<script type="text/javascript"> CKEDITOR.replace('p_content',
+									<textarea class="form-control" id="editor" name="content"></textarea>
+									<%--<script type="text/javascript"> CKEDITOR.replace('p_content',
 											{
-												height: 500 }) </script>
+												height: 500 }) </script>--%>
+									<script>
+										ClassicEditor.create( document.querySelector( '#editor', {
+											height: 500, width: 600 } ) );
+									</script>
 								</div>
 							</div>
 						</div>
 						<div class="row justify-content-md-center">
 							<button type="submit" class="btn btn-outline-secondary" style="width: 20%; font-weight: bold">
-								등록
+								<a href="market-list">뒤로가기</a>
+							</button>
+							<button type="submit" class="btn btn-outline-secondary" style="width: 20%; font-weight: bold">
+								<a href="market-list">등록</a>
 							</button>
 						</div>
 					</div>
 				</div>
 
 
-				<div class="container-contact100-form-btn" style="margin-top: 20%">
+				<%--<div class="container-contact100-form-btn" style="margin-top: 20%">
 					<button class="contact100-form-btn" style="margin-left: 10%; float: left">
 						<a href="market-list">되돌리기</a>
 					</button>
 					<button class="contact100-form-btn" style="margin-left: 25%; float: left">
 						<a href="market-list">물건 올리기</a>
 					</button>
-				</div>
+				</div>--%>
 			</form>
 		</div>
 	</div>

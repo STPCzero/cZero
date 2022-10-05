@@ -153,7 +153,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product1-1.jpg" alt=""></span>
+					<span class="maxproduct"><img src="/images/product1-1.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -179,7 +179,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product2.jpg" alt=""></span>
+					<span class="maxproduct"><img src="/images/product2.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -205,7 +205,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product2-3.jpg" alt=""></span>
+					<span class="maxproduct"><img src="/images/product2-3.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -233,7 +233,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product1.jpg" alt=""></span>
+					<span class="maxproduct"><img src="/images/product1.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -259,7 +259,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product2-2.jpg" alt=""></span>
+					<span class="maxproduct"><img src="/images/product2-2.jpg" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -285,7 +285,7 @@
 							<a href="#" class="learn-more detailslearn"><i class="fa fa-link"></i> Details</a>
 						</p>
 					</div>
-					<span class="maxproduct"><img src="images/product3.png" alt=""></span>
+					<span class="maxproduct"><img src="/images/product3.png" alt=""></span>
 				</div>
 				<div class="product-details">
 					<a href="#">
@@ -310,7 +310,7 @@
 			</ul>
 		</nav>
 		<button class="contact100-form-btn">
-			<a href="market-list">물건 올리기</a>
+			<a href="market-upload">물건 올리기</a>
 		</button>
 	</div>
 	</form>
@@ -333,5 +333,18 @@ jQuery(document).ready(function ($) {
 	);
 });
 </script>
+
+<!-- FOOTER =============================-->
+<div class="footer text-center">
+	<div class="container">
+		<div class="row">
+			<p class="">
+				Thanks for visiting our Website.<br>
+				Copyright ⓒ 2022. Team.CZero All rights reserved.
+			</p>
+		</div>
+	</div>
+</div>
+
 </body>
 </html>
