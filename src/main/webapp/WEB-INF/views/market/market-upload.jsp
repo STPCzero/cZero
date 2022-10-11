@@ -1,5 +1,5 @@
 <%@ page import="static javax.servlet.http.MappingMatch.PATH" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,11 +14,11 @@
 
 	<style>
 		.wrap-contact100 {
-			width: 800px;
+			width: 104%;
 			background: #fff;
 			border-radius: 10px;
 			overflow: hidden;
-			padding: 72px 150px 25px 150px;
+			padding: 7% 15% 5%;
 
 			box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
 			-moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
@@ -180,6 +180,7 @@
 			margin: 0px;
 			font-family: Consolas, monospace;
 		}
+
 		.jb-container {
 			display: flex;
 			justify-content: center;
@@ -187,7 +188,6 @@
 		}
 
 	</style>
-
 
 
 </head>
@@ -199,7 +199,8 @@
 		<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
-					<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+					<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle"
+							type="button">
 						<i class="fa fa-bars"></i>
 						<span class="sr-only">Toggle navigation</span>
 					</button>
@@ -269,42 +270,44 @@
                    <p><input type="submit" value="전송"></p>
                 </form>--%>
 
-				<script src = "../js/ckeditor/ckeditor.js"></script>
+				<script src="../js/ckeditor/ckeditor.js"></script>
 
 
+				<div class="container" >
+					<div class="content" style="width: 70%;">
 
-				<div class="container" style="">
-					<div class="content" style="width: 70%; ">
-						<div class="row justify-content-md-center">
-							<div class="col-sm-9">
+						<div class="row justify-content-md-center jb-container">
+							<div class="col_c" style="margin-bottom: 30px">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<label class="input-group-text">제목</label>
 									</div>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" name="title" id="title"
+										   style="width: 325%; "
+										   value="${MarketDTO.title}"
+										   placeholder="제목을 입력하세요" class="form-control" aria-describedby="basic-addon1">
 								</div>
-							</div>
-						</div>
-						<hr>
-						<div class="row justify-content-md-center jb-container" >
-							<div class="col_c" style="margin-bottom: 30px">
+								<hr>
 								<div class="input-group">
 									<textarea class="form-control" id="editor" name="content"></textarea>
 									<%--<script type="text/javascript"> CKEDITOR.replace('p_content',
-											{
-												height: 500 }) </script>--%>
+                                            {
+                                                height: 500 }) </script>--%>
 									<script>
-										ClassicEditor.create( document.querySelector( '#editor', {
-											height: 500, width: 600 } ) );
+										ClassicEditor.create(document.querySelector('#editor', {
+											height: 500, width: 600
+										}));
 									</script>
 								</div>
 							</div>
 						</div>
 						<div class="row justify-content-md-center">
-							<button type="submit" class="btn btn-outline-secondary" style="width: 20%; font-weight: bold">
+							<button type="submit" class="btn btn-outline-secondary"
+									style="width: 20%; font-weight: bold">
 								<a href="market-list">뒤로가기</a>
 							</button>
-							<button type="submit" class="btn btn-outline-secondary" style="width: 20%; font-weight: bold">
+							<button type="submit" class="btn btn-outline-secondary"
+									style="width: 20%; font-weight: bold">
 								<a href="market-list">등록</a>
 							</button>
 						</div>
@@ -313,13 +316,13 @@
 
 
 				<%--<div class="container-contact100-form-btn" style="margin-top: 20%">
-					<button class="contact100-form-btn" style="margin-left: 10%; float: left">
-						<a href="market-list">되돌리기</a>
-					</button>
-					<button class="contact100-form-btn" style="margin-left: 25%; float: left">
-						<a href="market-list">물건 올리기</a>
-					</button>
-				</div>--%>
+                    <button class="contact100-form-btn" style="margin-left: 10%; float: left">
+                        <a href="market-list">되돌리기</a>
+                    </button>
+                    <button class="contact100-form-btn" style="margin-left: 25%; float: left">
+                        <a href="market-list">물건 올리기</a>
+                    </button>
+                </div>--%>
 			</form>
 		</div>
 	</div>
@@ -333,16 +336,17 @@
 	//----HOVER CAPTION---//
 	jQuery(document).ready(function ($) {
 		$('.fadeshop').hover(
-				function(){
+				function () {
 					$(this).find('.captionshop').fadeIn(150);
 				},
-				function(){
+				function () {
 					$(this).find('.captionshop').fadeOut(150);
 				}
 		);
 	});
 </script>
-
+<br>
+<br>
 <!-- FOOTER =============================-->
 <div class="footer text-center">
 	<div class="container">

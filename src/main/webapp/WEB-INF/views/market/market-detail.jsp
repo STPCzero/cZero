@@ -1,4 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="kopo.poly.dto.MarketDTO" %>
+<%@ page import="kopo.poly.dto.UserInfoDTO" %>
+<%@ page import="kopo.poly.util.CmmUtil" %>
+<%
+	MarketDTO mDTO = (MarketDTO)request.getAttribute("mDTO");
+	UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
+
+	// 마켓 정보를 못불러왔다면, 객체 생성
+	if (uDTO == null) {
+		uDTO = new UserInfoDTO();
+
+	}
+
+	String ss_user_name = CmmUtil.nvl((String)session.getAttribute("SESSION_USER_NAME"));
+
+	// 본인이 작성한  글만 수정가능하도록 하기(1: 작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
+	int edit = 1;
+
+	// 로그인 안했다면...
+	if (ss_user_name.equals("")){
+		edit = 3;
+
+		//본인이 작성한 글이면 2가 되도록 변경
+	} else if (ss_user_name.equals(CmmUtil.nvl(uDTO.getUser_name())));
+	{
+		edit = 2;
+	}
+
+	System.out.println("user_name : " + CmmUtil.nvl(uDTO.getUser_name()));
+	System.out.println("ss_user_name : " + ss_user_name);
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +50,17 @@
 
 	<script type="text/javascript">
 
+/*		function doEdit() {
+			if ("<%=edit%>" == 2) {
+				location.href = "/market-modify.jsp?mk_seq=<%=CmmUtil.nvl(mDTO.getMk_seq())%>";
+
+			} else if ("<%=edit%>==3") {
+				alert("로그인 하시길 바랍니다.");
+			} else {
+				alert("본인이 작성한 글만 수정 가능합니다.");
+			}
+		}*/
+
 		$(function () {
 
 			//목록 버튼
@@ -26,7 +70,7 @@
 
 
 			//수정 버튼
-			$("#btnUpdate").click(function () {
+			$("#btnUpdate").click(function (doEdit) {
 				if (confirm("수정하시겠습니까?")) {
 					document.form1.action = "update.do";
 					document.form1.submit();
