@@ -8,7 +8,13 @@ public interface IUserInfoService {
 
     UserInfoDTO findUserId(UserInfoDTO uDTO) throws Exception;
 
-    int updateUserPw(UserInfoDTO pDTO) throws Exception;
+    int updateUserPw(UserInfoDTO uDTO) throws Exception;
 
     UserInfoDTO ChkUserInfo(UserInfoDTO uDTO) throws Exception;
+
+    UserInfoDTO getUserDetail(UserInfoDTO uDTO) throws Exception;
+
+    int getUserUpdate(UserInfoDTO uDTO) throws Exception;
+
+    UserInfoDTO getUserName(UserInfoDTO uDTO) throws Exception;
 }

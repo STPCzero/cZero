@@ -94,10 +94,10 @@ public class LoginController {
     }
 
     // 유저 ID찾기 ---> 이메일 전송
-    @PostMapping(value = "forget_id")
-    public String findID(HttpServletRequest request, ModelMap model) throws Exception {
+    @PostMapping(value = "findUserId")
+    public String findUserId(HttpServletRequest request, ModelMap model) throws Exception {
 
-        log.info(this.getClass().getName() + ".findId start!");
+        log.info(this.getClass().getName() + ".findUserId start!");
 
         String msg = "";
         String url = "";
@@ -107,7 +107,7 @@ public class LoginController {
         try {
             // 이메일 AES-128-CBC 암호화
             String user_name = CmmUtil.nvl(request.getParameter("user_name"));
-            String user_email = CmmUtil.nvl(request.getParameter("user_email"));
+            String user_email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("user_email")));
 
             UserInfoDTO uDTO = new UserInfoDTO();
 
@@ -144,16 +144,16 @@ public class LoginController {
         model.addAttribute("icon", icon);
         model.addAttribute("contents", contents);
 
-        log.info(this.getClass().getName() + ".findId end!");
+        log.info(this.getClass().getName() + ".findUserId end!");
 
         return "redirect";
     }
 
     // 유저 비밀번호 찾기 --> 새비밀번호 전송 (비밀번호를모를때)
-    @PostMapping(value = "forgot-password")
-    public String findPw(HttpServletRequest request, ModelMap model) throws Exception {
+    @PostMapping(value = "updateUserPw")
+    public String updateUserPw(HttpServletRequest request, ModelMap model) throws Exception {
 
-        log.info(this.getClass().getName() + ".findPw start!");
+        log.info(this.getClass().getName() + ".updateUserPw start!");
 
         String msg = "";
         String url = "";
@@ -222,7 +222,7 @@ public class LoginController {
         model.addAttribute("icon", icon);
         model.addAttribute("contents",contents);
 
-        log.info(this.getClass().getName() + ".findPw end!");
+        log.info(this.getClass().getName() + ".updateUserPw end!");
 
         return "redirect";
     }
@@ -267,6 +267,38 @@ public class LoginController {
         model.addAttribute("icon", icon);
 
         log.info(this.getClass().getName() + ".userCheck End!!");
+        return "redirect";
+    }
+
+    @PostMapping(value = "userInfoUpdate")
+    public String userInfoUpdate(HttpServletRequest request, Model model, HttpSession session) throws Exception{
+        log.info(this.getClass().getName()+".userInfoUpdate End!!");
+        String user_seq = (String) session.getAttribute("sessionNo");
+        String user_id = CmmUtil.nvl(request.getParameter("user_id"));
+        String user_email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("user_email")));
+        String user_name = CmmUtil.nvl(request.getParameter("user_name"));
+        log.info("user_seq : "+user_seq);
+
+        UserInfoDTO uDTO = new UserInfoDTO();
+        uDTO.setUser_seq(user_seq);
+        uDTO.setUser_id(user_id);
+        uDTO.setUser_email(user_email);
+        uDTO.setUser_name(user_name);
+
+        int res = userInfoService.getUserUpdate(uDTO);
+
+        String msg, url = "/myInfo";
+        if(res > 0) {
+            msg = "정보 수정 성공";
+            session.setAttribute("sessionId", user_name);
+        } else {
+            msg = "정보 수정 실패";
+        }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        log.info(this.getClass().getName()+".userInfoUpdate End!!");
         return "redirect";
     }
 

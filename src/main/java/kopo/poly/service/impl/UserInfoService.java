@@ -59,7 +59,6 @@ public class UserInfoService implements IUserInfoService {
         }else {
             log.info("잘 넘어감");
         }
-
         UserInfoDTO rDTO= userInfoMapper.findUserId(uDTO);
 
         log.info(this.getClass().getName() + ".findUserId end");
@@ -91,5 +90,25 @@ public class UserInfoService implements IUserInfoService {
         UserInfoDTO iDTO = userInfoMapper.ChkUserInfo(uDTO);
         log.info(this.getClass().getName()+".ChkUserInfo end!");
         return iDTO;
+    }
+
+    @Override
+    public UserInfoDTO getUserDetail(UserInfoDTO uDTO) throws Exception {
+        log.info(this.getClass().getName()+".getUserDetail start!");
+        UserInfoDTO iDTO = userInfoMapper.getUserDetail(uDTO);
+        log.info(this.getClass().getName()+".getUserDetail end!");
+        return iDTO;
+    }
+
+    @Override
+    public int getUserUpdate(UserInfoDTO uDTO) throws Exception {
+        log.info(this.getClass().getName()+".getUserUpdate start!");
+        int res = userInfoMapper.getUserUpdate(uDTO);
+        log.info(this.getClass().getName()+".getUserUpdate end!");
+        return res;
+    }
+    @Override
+    public UserInfoDTO getUserName(UserInfoDTO uDTO) throws Exception {
+        return userInfoMapper.getUserName(uDTO);
     }
 }

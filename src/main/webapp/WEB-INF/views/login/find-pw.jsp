@@ -54,7 +54,7 @@
 
         <div class="row" style="margin-top: 10%">
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
-                <form role="form" action="/findPw" method="post" class="f1">
+                <form role="form" action="/updateUserPw" method="post" class="f1">
 
                     <h3>비밀번호 찾기</h3>
                     <p>회원가입시 입력하신 아이디와 이메일을 입력해주세요</p>
@@ -74,8 +74,8 @@
                             <span>
                                 <button type="button" class="btn" style="float: left"><a href="find-id">아이디 찾기</a></button>
                             </span>
-                            <button type="button" class="btn btntext"><a href="register">로그인</a></button>
-                            <button type="button" class="btn btn-next">다음</button>
+                            <button type="button" class="btn btntext"><a href="login">로그인</a></button>
+                            <button type="submit" class="btn btn-next">다음</button>
                         </div>
                     </fieldset>
 
