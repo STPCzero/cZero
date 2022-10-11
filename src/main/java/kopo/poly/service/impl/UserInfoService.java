@@ -50,14 +50,6 @@ public class UserInfoService implements IUserInfoService {
     }
 
     @Override
-    public UserInfoDTO getUserLoginCheck(UserInfoDTO uDTO) throws Exception {
-        log.info(this.getClass().getName()+".InsertUserInfo start!");
-        UserInfoDTO iDTO = userInfoMapper.ChkUserInfo(uDTO);
-        log.info(this.getClass().getName()+".InsertUserInfo end!");
-        return iDTO;
-    }
-
-    @Override
     public UserInfoDTO findUserId(UserInfoDTO uDTO) throws Exception{
         log.info(this.getClass().getName() + ".findUserId start");
 
@@ -95,9 +87,9 @@ public class UserInfoService implements IUserInfoService {
 
     @Override
     public UserInfoDTO ChkUserInfo(UserInfoDTO uDTO) throws Exception{
-        log.info(this.getClass().getName()+".InsertUserInfo start!");
+        log.info(this.getClass().getName()+".ChkUserInfo start!");
         UserInfoDTO iDTO = userInfoMapper.ChkUserInfo(uDTO);
-        log.info(this.getClass().getName()+".InsertUserInfo end!");
+        log.info(this.getClass().getName()+".ChkUserInfo end!");
         return iDTO;
     }
 }

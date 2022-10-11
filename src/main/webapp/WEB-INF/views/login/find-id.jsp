@@ -54,7 +54,7 @@
 
         <div class="row" style="margin-top: 10%">
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
-                <form role="form" action="" method="post" class="f1">
+                <form role="form" action="/findID" method="post" class="f1">
 
                     <h3>아이디 찾기</h3>
                     <p>회원가입시 입력하신 이름과 이메일을 입력해주세요</p>
