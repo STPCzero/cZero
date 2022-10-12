@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @Slf4j
 @Controller
@@ -161,8 +162,7 @@ public class LoginController {
         String contents = "";
 
         try {
-
-            String newPW = String.valueOf((int) (Math.random() + 100));
+            String newPW = String.valueOf((int) (Math.random() * 1000 + Math.random()));
 
             // 이메일 AES-128-CBC 암호화
             /*String user_email = CmmUtil.nvl(request.getParameter("user_email"));*/
