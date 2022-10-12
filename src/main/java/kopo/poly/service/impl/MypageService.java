@@ -44,4 +44,12 @@ public class MypageService implements IMypageService {
         log.info(this.getClass().getName()+".getMypageMarket End!!");
         return mkList;
     }
+
+    @Override
+    public int getMyMarketCount(MypageDTO mDTO) throws Exception {
+        log.info(this.getClass().getName()+".getMyMarketCount Start!!");
+        int res = mypageMapper.getMyMarketCount(mDTO);
+        log.info(this.getClass().getName()+".getMyMarketCount End!!");
+        return res;
+    }
 }

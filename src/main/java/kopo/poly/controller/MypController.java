@@ -40,41 +40,54 @@ public class MypController {
 
 
         /* == 페이징 START == */
-        int num = 1;
-        int userNum = 5;
+        // 전체 페이지 개수
+        int count = mypageService.getMyMarketCount(myDTO);
+        log.info("count: "+count);
 
-        // 현재 페이지 (리미트 기준)
-        int displayNum = (num - 1) * userNum;
-        myDTO.setDisplayNum(String.valueOf(displayNum));
+        //시작 페이지
+        String no = CmmUtil.nvl(request.getParameter("num"));
+        int num = 0, start = 0, finish = 0;
+
+        if(no == "")
+            num = 1;
+        else
+            num = Integer.parseInt(no);
+
+        finish = count - ( (num-1) * 5 );
+        start  = finish - 4;
+        if( start < 1 ) start = 1;
+
+        log.info("num : "+num);
+        log.info("start : "+start);
+        log.info("finish : "+finish);
+
+        // 시작번호, 끝번호
+        myDTO.setStart(start);
+        myDTO.setFinish(finish);
+
+
         //나의 마켓 리스트 갖고오기
         List<MarketDTO> mkList = mypageService.getMypageMarket(myDTO);
 
-        log.info("사이즈 : "+String.valueOf(mkList.size()));
-
-        int count = Integer.parseInt(String.valueOf(mkList.size()));
-
-        // 하단 페이징 번호 ([게시물 총 갯수 / 한 페이지에 출력 할 유저 수]의 올림)
-        int pageNum = (int)Math.ceil((double) count / userNum);
-        model.addAttribute("pageNum", pageNum);
-
         // 한번에 표시할 페이징 번호의 갯수
         int pageNum_cnt = 5;
-
         // 표시되는 페이지 번호 중 마지막 번호
         int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
-
         // 표시되는 페이지 번호 중 첫번째 번호
         int startPageNum = endPageNum - (pageNum_cnt - 1);
-
         // 마지막 번호 재계산
         int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
-
         if(endPageNum > endPageNum_tmp) {
             endPageNum = endPageNum_tmp;
         }
 
         boolean prev = startPageNum == 1 ? false : true;
         boolean next = endPageNum * pageNum_cnt >= count ? false : true;
+
+        log.info("startPageNum: "+startPageNum);
+        log.info("endPageNum: "+endPageNum);
+        // 현재 페이지
+        model.addAttribute("select", num);
 
         // 시작 및 끝 번호
         model.addAttribute("startPageNum", startPageNum);

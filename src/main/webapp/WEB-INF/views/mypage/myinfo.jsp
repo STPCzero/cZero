@@ -16,6 +16,7 @@
     boolean next = (boolean) request.getAttribute("next");
     int startPageNum = (int) request.getAttribute("startPageNum");
     int endPageNum = (int) request.getAttribute("endPageNum");
+    int select = (int) request.getAttribute("select");
 
 %>
 <!DOCTYPE html>
@@ -158,7 +159,7 @@
                                     <div style="display: inline-block;" class="edd_cart_item_image">
                                         <img width="55" height="55" src="../images/scorilo2-70x70.jpg" alt="">
                                     </div>
-                                    <span class="edd_checkout_cart_item_title"><%=i%>, <%=CmmUtil.nvl(rDTO.getTitle())%></span>
+                                    <span class="edd_checkout_cart_item_title"><%=CmmUtil.nvl(rDTO.getTitle())%></span>
                                 </td>
                                 <td class="edd_cart_item_price">
                                     $11.99
@@ -174,9 +175,19 @@
                 <button type="button" class="btn btn-secondary">Prev</button>
                 <%}%>
                 <div class="btn-group " style="margin: 0 auto; display: inline-block;">
-                    <% for (int i = startPageNum; i <= endPageNum; i++) {%>
-                    <button type="button" class="btn btn-secondary"><%=i%></button>
-                    <% } %>
+                    <% for (int i = startPageNum; i <= endPageNum; i++) {
+                        if(select == i) {%>
+                        <a style="color: red;" href="/mypage/myinfo?num=<%=i%>">
+                        <button class="btn btn-secondary">
+                            <%=i%>
+                        </button></a>
+                        <%} else {%>
+                        <a style="" href="/mypage/myinfo?num=<%=i%>">
+                        <button class="btn btn-secondary">
+                            <%=i%>
+                        </button></a>
+                        <% }
+                    } %>
                 </div>
                 <% if(next == true) {%>
                 <button type="button" class="btn btn-secondary">Next</button>

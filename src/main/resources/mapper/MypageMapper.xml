@@ -25,6 +25,13 @@
                  FROM market A
                  ORDER BY mk_seq desc
              )
-        WHERE NUM BETWEEN 4 AND 10
+        WHERE NUM BETWEEN #{start} AND #{finish}
+    </select>
+
+    <!-- 개인 마켓 글 수 COUNT(*) -->
+    <select id="getMyMarketCount" parameterType="MypageDTO" resultType="int">
+        select count(*)
+        from market
+        where user_seq = #{user_seq}
     </select>
 </mapper>
