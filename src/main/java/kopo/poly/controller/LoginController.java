@@ -165,7 +165,8 @@ public class LoginController {
             String newPW = String.valueOf((int) (Math.random() * 1000000));
 
             // 이메일 AES-128-CBC 암호화
-            String user_email = CmmUtil.nvl(request.getParameter("user_email"));
+            /*String user_email = CmmUtil.nvl(request.getParameter("user_email"));*/
+            String user_email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("user_email")));
             String user_id = CmmUtil.nvl(request.getParameter("user_id"));
             // 비밀번호 해시 알고리즘 암호화
             String user_pw = EncryptUtil.encHashSHA256(newPW);
@@ -186,7 +187,7 @@ public class LoginController {
                 MailDTO rDTO = new MailDTO();
                 rDTO.setToMail(user_email);
                 log.info("email : " + user_email);
-                rDTO.setTitle("######의 새비밀번호 전송!!!");
+                rDTO.setTitle("새 비밀번호가 전송되었습니다");
                 rDTO.setContents("new password : " + newPW);
                 log.info("newPW : " + newPW);
 
@@ -199,7 +200,7 @@ public class LoginController {
                 } else {
                     msg = "비밀 번호 변경 실패!";
                     icon = "warning";
-                    contents = "변경된 비밀번호 발송에 실패했습니다. ####@naver.com 으로 문의해주세요.";
+                    contents = "변경된 비밀번호 발송에 실패했습니다.";
                 }
                 url = "login/find-id";
 

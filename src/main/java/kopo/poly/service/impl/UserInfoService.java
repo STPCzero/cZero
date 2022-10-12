@@ -70,7 +70,7 @@ public class UserInfoService implements IUserInfoService {
     public int updateUserPw(UserInfoDTO pDTO) throws Exception{
         log.info(this.getClass().getName() + ".updateUserPw start");
 
-        if(pDTO ==null) {
+        if(pDTO == null) {
             pDTO = new UserInfoDTO();
             log.info("DTO가 널값으로 넘어옴");
         }

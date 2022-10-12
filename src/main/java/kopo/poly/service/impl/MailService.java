@@ -2,6 +2,8 @@ package kopo.poly.service.impl;
 
 import kopo.poly.dto.MailDTO;
 import kopo.poly.service.IMailService;
+import kopo.poly.util.CmmUtil;
+import kopo.poly.util.EncryptUtil;
 import kopo.poly.util.PrivateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.EmailException;
@@ -15,6 +17,7 @@ public class MailService implements IMailService {
 
     private final String mainEmailID = PrivateUtil.mainEmailID;
     private final String mainEmailPW = PrivateUtil.mainEmailPW;
+
 
     @Override
     public int doSendMail(MailDTO pDTO){
@@ -36,10 +39,6 @@ public class MailService implements IMailService {
             email1.setFrom(mainEmailID, "관리자", "utf-8"); //???
             email1.addTo(pDTO.getToMail(), "사용자", "utf-8"); //받는사람
             email1.setSubject(pDTO.getTitle()); //제목
-
-
-
-
             email1.setHtmlMsg(pDTO.getContents());  //내용
             email1.send();
             res = 1;
