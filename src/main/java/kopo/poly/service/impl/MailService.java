@@ -2,8 +2,6 @@ package kopo.poly.service.impl;
 
 import kopo.poly.dto.MailDTO;
 import kopo.poly.service.IMailService;
-import kopo.poly.util.CmmUtil;
-import kopo.poly.util.EncryptUtil;
 import kopo.poly.util.PrivateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.mail.EmailException;
@@ -22,16 +20,19 @@ public class MailService implements IMailService {
     @Override
     public int doSendMail(MailDTO pDTO){
 
-        log.info("메일 전송 시작");
+        log.info("doSendMail Start");
 
         HtmlEmail email1 = new HtmlEmail();
         email1.setHostName("smtp.naver.com");
+
         email1.setSmtpPort(465);
 
         email1.setAuthentication(mainEmailID, mainEmailPW);
 
         email1.setSSLOnConnect(true);
         email1.setStartTLSEnabled(true);
+
+
 
         int res = 0;
 
@@ -46,7 +47,7 @@ public class MailService implements IMailService {
             e.printStackTrace();
         }
 
-        log.info("메일 전송 완료");
+        log.info("doSendMail End");
         return  res;
     }
 }

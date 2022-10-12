@@ -31,7 +31,7 @@
     <update id="updateUserPw" parameterType="UserInfoDTO">
         UPDATE USER_INFO
         SET USER_PW = #{user_pw}
-        WHERE USER_EMAIL = #{user_email}
+        WHERE USER_ID = #{user_id} and USER_EMAIL = #{user_email}
     </update>
     <update id="getUserUpdate" parameterType="UserInfoDTO">
         update USER_INFO

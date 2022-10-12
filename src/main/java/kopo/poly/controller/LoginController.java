@@ -123,7 +123,7 @@ public class LoginController {
                 String user_id = rDTO.getUser_id();
                 msg = "아이디 찾기 성공!";
                 icon = "success";
-                contents = "해당하는 아이디 : " + user_id;
+                contents = "아이디 : " + user_id;
             } else {
                 msg = "아이디 찾기 실패!";
                 icon = "warning";
@@ -162,7 +162,7 @@ public class LoginController {
 
         try {
 
-            String newPW = String.valueOf((int) (Math.random() * 1000000));
+            String newPW = String.valueOf((int) (Math.random() + 100));
 
             // 이메일 AES-128-CBC 암호화
             /*String user_email = CmmUtil.nvl(request.getParameter("user_email"));*/
@@ -185,11 +185,16 @@ public class LoginController {
             if (res == 1) {
 
                 MailDTO rDTO = new MailDTO();
+                user_email = EncryptUtil.decAES128CBC(user_email);
+
                 rDTO.setToMail(user_email);
                 log.info("email : " + user_email);
                 rDTO.setTitle("새 비밀번호가 전송되었습니다");
                 rDTO.setContents("new password : " + newPW);
                 log.info("newPW : " + newPW);
+
+
+
 
                 int mailRes = mailService.doSendMail(rDTO);
 
@@ -197,17 +202,20 @@ public class LoginController {
                     msg = "비밀 번호 변경 성공!";
                     icon = "success";
                     contents = "새 비밀번호를 이메일로 발송했습니다. 로그인 후 변경해주세요.";
+                    url = "login/login";
                 } else {
                     msg = "비밀 번호 변경 실패!";
                     icon = "warning";
                     contents = "변경된 비밀번호 발송에 실패했습니다.";
+                    url = "login/find-pw";
                 }
-                url = "login/find-id";
+                /*url = "login/find-id";*/
 
             } else if (res == 0) {
                 msg = "정보를 다시 확인해주세요.";
                 icon = "warning";
                 contents = "정확한 정보를 입력해주세요!";
+                url = "login/find-pw";
             }
 
         } catch (Exception e) {
@@ -330,13 +338,6 @@ public class LoginController {
         log.info(this.getClass().getName() + ".find-pw Start!!");
         log.info(this.getClass().getName() + ".find-pw End!!");
         return "login/find-pw";
-    }
-
-    @GetMapping(value = "login/forgot-password")
-    public String forgotPassword() throws Exception {
-        log.info(this.getClass().getName() + ".forgot-password Start!!");
-        log.info(this.getClass().getName() + ".forgot-password End!!");
-        return "login/forgot-password";
     }
 
 }
