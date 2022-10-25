@@ -13,6 +13,6 @@ public class CheckController {
     public String checkList() {
         log.info(getClass().getName() + " checkList Start!!!");
         log.info(getClass().getName() + " checkList End!!!");
-        return "/checklist/checklist";
+        return "/checklist/checklist123";
     }
 }
