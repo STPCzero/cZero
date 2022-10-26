@@ -1,4 +1,11 @@
+<%@ page import="java.util.List" %>
+<%@ page import="kopo.poly.dto.UserInfoDTO" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    List<UserInfoDTO> uList = (List<UserInfoDTO>) request.getAttribute("uList");
+    if(uList == null) uList = new ArrayList<>();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,7 +65,7 @@
                         </a>
                     </li>
                     <li class="p-2">
-                        <a href="admin/admin-member">
+                        <a href="/admin/admin-member">
                             회원 관리
                         </a>
                     </li>
@@ -82,34 +89,28 @@
             </tr>
             </thead>
             <tbody class="shadow">
-            <tr class="grid-adm-members py-2 px-1 text-center">
-                <td>
-                    <input type="checkbox">
-                </td>
-                <td>admin</td>
-                <td>관리자</td>
-                <td>관리자</td>
-                <td>관리자</td>
-                <td>
-                    <a href="#">
-                        <i class="fas fa-user-times"></i>
-                    </a>
-                </td>
-            </tr>
-            <tr class="grid-adm-members py-2 px-1 text-center">
-                <td>
-                    <input type="checkbox">
-                </td>
-                <td>user1</td>
-                <td>최여진</td>
-                <td>여진</td>
-                <td>일반회원</td>
-                <td>
-                    <a href="#">
-                        <i class="fas fa-user-times"></i>
-                    </a>
-                </td>
-            </tr>
+            <% for (int i = 0; i < uList.size(); i++) { %>
+                <tr class="grid-adm-members py-2 px-1 text-center">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td><%= uList.get(i).getUser_id()%></td>
+                    <td><%= uList.get(i).getUser_name()%></td>
+                    <td><%= uList.get(i).getUser_id()%></td>
+                    <td>
+                        <% if(uList.get(i).getUser_type().equals("0")) {%>
+                        <span>관리자</span>
+                        <% } else {%>
+                        <span>일반 회원</span>
+                        <% } %>
+                    </td>
+                    <td>
+                        <a href="#">
+                            <i class="fas fa-user-times"></i>
+                        </a>
+                    </td>
+                </tr>
+           <% }%>
             </tbody>
         </table>
     </div>
