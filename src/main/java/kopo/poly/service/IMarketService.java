@@ -1,20 +1,23 @@
 package kopo.poly.service;
 
 import kopo.poly.dto.MarketDTO;
-import org.apache.ibatis.annotations.Mapper;
+import kopo.poly.dto.UserInfoDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/*@Mapper*/
 public interface IMarketService {
 
-/*    List<MarketDTO> getMarketList() throws Exception;
+    List<MarketDTO> getMarketList() throws Exception;
 
-    void InsertMarketInfo(MarketDTO mDTO) throws Exception;
+    @Transactional
+    void insertMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
 
     MarketDTO getMarketInfo(MarketDTO mDTO) throws Exception;
 
-    void updateMarketInfo(MarketDTO mDTO) throws Exception;
+    void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
 
-    void deleteMarketInfo(MarketDTO mDTO) throws Exception;*/
+    void deleteMarketInfo(MarketDTO mDTO) throws Exception;
+
+
 }

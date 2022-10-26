@@ -86,6 +86,7 @@
             display: -moz-box;
             display: -ms-flexbox;
             display: flex;
+            text-align: center;
             justify-content: center;
             align-items: center;
             padding: 0 20px;
@@ -108,8 +109,9 @@
 
         }
         .mkupload{
-            width: 10%;
-            margin: auto;
+            /*width: 10%;*/
+            text-align: center;
+            margin: 0 auto;
             display: block;
         }
         span {
@@ -143,39 +145,40 @@
 
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
-<div class="wrapper">
-	<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
-			<i class="fa fa-bars"></i>
-			<span class="sr-only">Toggle navigation</span>
-			</button>
-			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
-		</div>
-		<div id="navbar-collapse-02" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="index.jsp">Home</a></li>
-				<li class="propClone"><a href="market-list.jsp">Market</a></li>
-				<li class="propClone"><a href="product.jsp">Checklist</a></li>
-				<li class="propClone"><a href="checkout.jsp">Api</a></li>
-				<li class="propClone"><a href="contact.jsp">Mypage</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="text-pageheader">
-					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-						 Market
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <div class="wrapper">
+        <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle"
+                            type="button">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+                    <img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
+                </div>
+                <div id="navbar-collapse-02" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="propClone"><a href="index">Home</a></li>
+                        <li class="propClone"><a href="market-list">Market</a></li>
+                        <li class="propClone"><a href="product">Checklist</a></li>
+                        <li class="propClone"><a href="checkout">Api</a></li>
+                        <li class="propClone"><a href="contact">Mypage</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="text-pageheader">
+                        <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
+                            Market
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 
 <!-- CONTENT =============================-->
@@ -241,7 +244,9 @@
                             <span class="maxproduct"><img src="/images/mk_soap.jpg" alt=""></span>
                         </div>
                         <div class="product-details">
+
                             <a href="#">
+                                <input type="checkbox" name="mkcheck" value="1" />
                                 <h1><%=CmmUtil.nvl(mDTO.getTitle()) %></h1>
                             </a>
                             <span class="price">
@@ -260,7 +265,10 @@
     <div class="container" style="text-align: center">
         <span class="row" style="clear: both; text-align: center;" >
             <button class="contact100-form-btn" style="margin: 1px; display: inline-block; float: left;">
-                <a href="/market/market-upload" style="color:#ffffff;"><strong>물건 올리기</strong></a>
+                <a href="/market/market-upload" style="color:#ffffff;"><strong>공지글 작성</strong></a>
+            </button>
+            <button class="contact100-form-btn" style="margin: 1px; display: inline-block;">
+                <a href="/market/market-upload" style="color:#ffffff";><strong>삭제</strong></a>
             </button>
         </span>
     </div>
@@ -270,22 +278,23 @@
                 <ul class="pagination">
                     <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
                     </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                 </ul>
+
             </nav>
+
         </div>
     </form>--%>
     <div style="text-align: center; margin-bottom: 50px;">
 
         <div class="btn-group " style="margin: 0 auto; display: inline-block;">
 
-            <a style="color: red;" href="/market/marketlist?num=1">
+            <a style="color: red;" href="/market/marketadmin?num=1">
                 <button class="btn btn-secondary">
                     1
                 </button></a>
 
-            <a style="" href="/market/marketlist?num=2">
+            <a style="" href="/market/marketadmin?num=2">
                 <button class="btn btn-secondary">
                     2
                 </button></a>

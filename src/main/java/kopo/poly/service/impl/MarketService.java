@@ -1,6 +1,7 @@
 package kopo.poly.service.impl;
 
 import kopo.poly.dto.MarketDTO;
+import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.persistance.mapper.IMarketMapper;
 import kopo.poly.service.IMarketService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,18 +24,20 @@ public class MarketService implements IMarketService {
         this.marketMapper = marketMapper;
     }
 
-    /*@Override
+    @Override
     public List<MarketDTO> getMarketList() throws Exception {
         return marketMapper.getMarketList();
     }
 
     @Transactional
     @Override
-    public void InsertMarketInfo(MarketDTO mDTO) throws Exception {
+    public void insertMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception {
 
         log.info(this.getClass().getName() + ".InsertMarketInfo start!");
 
-        marketMapper.InsertMarketInfo(mDTO);
+        marketMapper.InsertMarketInfo(mDTO, uDTO);
+
+        log.info(this.getClass().getName() + ".InsertMarketInfo end!");
     }
 
     @Transactional
@@ -45,18 +48,22 @@ public class MarketService implements IMarketService {
 
         // 상세보기 할 때마다, 조회수 증가하기
         log.info("Update Read_CNT");
-        marketMapper.updateMarketInfo(mDTO);
+        marketMapper.updateMarketReadCnt(mDTO);
+
+        log.info(this.getClass().getName() + ".getMarketInfo end!");
 
         return marketMapper.getMarketInfo(mDTO);
     }
 
     @Transactional
     @Override
-    public void updateMarketInfo(MarketDTO mDTO) throws Exception {
+    public void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception {
 
         log.info(this.getClass().getName() + ".updateMarketInfo start!");
 
-        marketMapper.updateMarketInfo(mDTO);
+        marketMapper.updateMarketInfo(mDTO, uDTO);
+
+        log.info(this.getClass().getName() + ".updateMarketInfo end!");
     }
 
     @Transactional
@@ -66,5 +73,9 @@ public class MarketService implements IMarketService {
         log.info(this.getClass().getName() + ".deleteMarketInfo start!");
 
         marketMapper.deleteMarketInfo(mDTO);
-    }*/
+
+        log.info(this.getClass().getName() + ".deleteMarketInfo end!");
+    }
+
+
 }
