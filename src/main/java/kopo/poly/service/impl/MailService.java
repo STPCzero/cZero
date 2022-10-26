@@ -16,13 +16,15 @@ public class MailService implements IMailService {
     private final String mainEmailID = PrivateUtil.mainEmailID;
     private final String mainEmailPW = PrivateUtil.mainEmailPW;
 
+
     @Override
     public int doSendMail(MailDTO pDTO){
 
-        log.info("메일 전송 시작");
+        log.info("doSendMail Start");
 
         HtmlEmail email1 = new HtmlEmail();
         email1.setHostName("smtp.naver.com");
+
         email1.setSmtpPort(465);
 
         email1.setAuthentication(mainEmailID, mainEmailPW);
@@ -30,16 +32,14 @@ public class MailService implements IMailService {
         email1.setSSLOnConnect(true);
         email1.setStartTLSEnabled(true);
 
+
+
         int res = 0;
 
         try{
             email1.setFrom(mainEmailID, "관리자", "utf-8"); //???
             email1.addTo(pDTO.getToMail(), "사용자", "utf-8"); //받는사람
             email1.setSubject(pDTO.getTitle()); //제목
-
-
-
-
             email1.setHtmlMsg(pDTO.getContents());  //내용
             email1.send();
             res = 1;
@@ -47,7 +47,7 @@ public class MailService implements IMailService {
             e.printStackTrace();
         }
 
-        log.info("메일 전송 완료");
+        log.info("doSendMail End");
         return  res;
     }
 }
