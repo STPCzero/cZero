@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @RequestMapping("bicycle")
-@Controller
+@RestController
 public class BicycleController {
 
     @Resource(name = "BicycleService")
@@ -25,13 +25,6 @@ public class BicycleController {
         log.info(this.getClass().getName() + ".bicycle Start!!");
         log.info(this.getClass().getName() + ".bicycle End!!");
         return "/bicycle/bicycle";
-    }
-
-    @GetMapping("bicycleTest")
-    public String bicycleTest(HttpServletRequest request, Model model) throws Exception {
-        log.info(this.getClass().getName() + ".bicycleTest Start!!");
-        log.info(this.getClass().getName() + ".bicycleTest End!!");
-        return "/bicycle/bicycleTest";
     }
 
 }

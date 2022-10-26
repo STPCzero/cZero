@@ -13,10 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+
 </head>
 <body>
 
@@ -36,8 +37,8 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="propClone"><a href="/index">Home</a></li>
 						<li class="propClone"><a href="/market/market-list">Market</a></li>
-						<li class="propClone"><a href="/checklist/checklist">Checklist</a></li>
-						<li class="propClone"><a href="api">Bicycle</a></li>
+						<li class="propClone"><a href="/news/news">News</a></li>
+						<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
 						<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
 					</ul>
 				</div>
@@ -58,6 +59,7 @@
 </header>
 
 <!-- CONTENT =============================-->
+
 <section class="item content">
 <div class="container toparea">
 	<div class="underlined-title">

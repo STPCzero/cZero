@@ -6233,7 +6233,7 @@ if ( window.getComputedStyle ) {
 			if ( rsLeft ) {
 				rs.left = elem.currentStyle.left;
 			}
-			style.left = name === "fontSize" ? "1em" : ret;
+			style.left = name === "tdSize" ? "1em" : ret;
 			ret = style.pixelLeft + "px";
 
 			// Revert the changed values
@@ -6461,7 +6461,7 @@ var
 	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
 	cssNormalTransform = {
 		letterSpacing: "0",
-		fontWeight: "400"
+		tdWeight: "400"
 	},
 
 	cssPrefixes = [ "Webkit", "O", "Moz", "ms" ];
@@ -6652,7 +6652,7 @@ jQuery.extend({
 		"fillOpacity": true,
 		"flexGrow": true,
 		"flexShrink": true,
-		"fontWeight": true,
+		"tdWeight": true,
 		"lineHeight": true,
 		"opacity": true,
 		"order": true,

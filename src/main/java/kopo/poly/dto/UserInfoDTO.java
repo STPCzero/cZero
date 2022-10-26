@@ -12,6 +12,7 @@ public class UserInfoDTO {
     private String check_pw;
     private String user_name;
     private String user_email;
+    private String user_type;
     private String EXISTS_YN;
 
 }

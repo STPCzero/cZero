@@ -15,10 +15,10 @@
     <meta name="generator" content="">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
     <script src="../js/jquery-.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/anim.js"></script>
@@ -36,8 +36,8 @@
             background: #333;
             color: #fff;
             border: 1px solid #333;
-            font-size: 16px;
-            font-weight: 700;
+            td-size: 16px;
+            td-weight: 700;
             text-transform: uppercase;
         }
     </style>
@@ -117,7 +117,7 @@
                     <input type="submit" id="submit" class="clearfix mypage-btn" value="수정하기">
                 </form>
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="javascript:history.back();" style="color : #999; font-size: 12px;">뒤로가기</a>
+                    <a href="javascript:history.back();" style="color : #999; td-size: 12px;">뒤로가기</a>
                 </div>
             </div>
         </div>
