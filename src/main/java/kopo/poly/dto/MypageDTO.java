@@ -9,4 +9,5 @@ public class MypageDTO {
     private String user_seq;
     private String user_name;
     private String user_email;
+    private String displayNum;
 }

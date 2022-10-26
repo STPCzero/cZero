@@ -33,9 +33,9 @@
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="index">Home</a></li>
+				<li class="propClone"><a href="/index">Home</a></li>
 				<li class="propClone"><a href="/market/market-list">Market</a></li>
-				<li class="propClone"><a href="checklist">Checklist</a></li>
+				<li class="propClone"><a href="/checklist">Checklist</a></li>
 				<li class="propClone"><a href="api">Bicycle</a></li>
 				<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
 			</ul>
