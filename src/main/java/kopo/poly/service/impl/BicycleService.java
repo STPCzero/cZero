@@ -2,7 +2,9 @@ package kopo.poly.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kopo.poly.dto.BicycleDTO;
+import kopo.poly.dto.BicycleRowDTO;
 import kopo.poly.service.IBicycleService;
+import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -48,15 +52,50 @@ public class BicycleService implements IBicycleService {
         conn.disconnect();
 
         Map<String, Object> rMap = new ObjectMapper().readValue(sb.toString(), LinkedHashMap.class);
+        Map<String, Object> stationInfo = (Map<String, Object>) rMap.get("stationInfo");
         //System.out.println(sb.toString());
 
-        Map<String, String> test = (Map<String, String>) rMap.get("0");
+        //Map<String, String> test = (Map<String, String>) rMap.get("0");
 
-        String name = test.get("STA_LOC");
-        log.info("name test: "+name);
 
-        BicycleDTO bDTO = new BicycleDTO();
+        //String name = test.get("STA_LOC");
+        //log.info("name test: "+name);
+
+        log.info("stationInfo : "+stationInfo);
+
+        List<Map<String, Object>> rowList = (List<Map<String, Object>>) stationInfo.get("row");
+
+        List<BicycleRowDTO> pList = new LinkedList<>();
+
+        for (Map<String, Object> rowMap : rowList) {
+            String sta_loc = CmmUtil.nvl((String) rowMap.get("STA_LOC"));
+            String rent_nm = CmmUtil.nvl((String) rowMap.get("RENT_NM"));
+            String sta_lat = CmmUtil.nvl((String) rowMap.get("STA_LAT"));
+            String sta_long = CmmUtil.nvl((String) rowMap.get("STA_LONG"));
+
+            log.info("------------------------------");
+            log.info("sta_loc: "+sta_loc);
+            log.info("rent_nm: "+rent_nm);
+            log.info("sta_lat: "+sta_lat);
+            log.info("sta_long: "+sta_long);
+            log.info("------------------------------");
+
+            BicycleRowDTO bDTO = new BicycleRowDTO();
+
+            bDTO.setSta_loc(sta_loc);
+            bDTO.setRent_nm(rent_nm);
+            bDTO.setSta_lat(sta_lat);
+            bDTO.setSta_long(sta_long);
+
+            pList.add(bDTO);
+            bDTO = null;
+        }
+
+        BicycleDTO biDTO = new BicycleDTO();
+
+        biDTO.setRowList(pList);
+
         log.info(this.getClass().getName()+".callBicycleApi End!!");
-        return bDTO;
+        return biDTO;
     }
 }
