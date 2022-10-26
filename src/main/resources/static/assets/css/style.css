@@ -1,14 +1,14 @@
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    font-weight: 300;
+    td-family: 'Roboto', sans-serif;
+    td-size: 16px;
+    td-weight: 300;
     color: #888;
     line-height: 30px;
     text-align: center;
 }
 
-strong { font-weight: 500; }
+strong { td-weight: 500; }
 
 a, a:hover, a:focus {
 	color: #00bba7;
@@ -18,22 +18,22 @@ a, a:hover, a:focus {
 
 h1, h2 {
 	margin-top: 10px;
-	font-size: 38px;
-    font-weight: 100;
+	td-size: 38px;
+    td-weight: 100;
     color: #555;
     line-height: 50px;
 }
 
 h3 {
-	font-size: 22px;
-    font-weight: 300;
+	td-size: 22px;
+    td-weight: 300;
     color: #555;
     line-height: 30px;
 }
 
 h4 {
-	font-size: 18px;
-    font-weight: 300;
+	td-size: 18px;
+    td-weight: 300;
     color: #555;
     line-height: 26px;
 }
@@ -56,7 +56,7 @@ img { max-width: 100%; }
 .navbar.navbar-no-bg { background: none; }
 
 ul.navbar-nav {
-	font-size: 16px;
+	td-size: 16px;
 	color: #fff;
 }
 
@@ -70,7 +70,7 @@ ul.navbar-nav {
 
 .navbar-inverse ul.navbar-nav li .li-social a {
 	margin: 0 5px;
-	font-size: 28px;
+	td-size: 28px;
 	vertical-align: middle;
 }
 .navbar-inverse ul.navbar-nav li .li-social a:hover, 
@@ -117,14 +117,14 @@ ul.navbar-nav {
 
 .f1-step-icon {
 	display: inline-block; width: 40px; height: 40px; margin-top: 4px; background: #ddd;
-	font-size: 16px; color: #fff; line-height: 40px;
+	td-size: 16px; color: #fff; line-height: 40px;
 	-moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;
 }
 .f1-step.activated .f1-step-icon {
 	background: #fff; border: 1px solid #00bba7; color: #00bba7; line-height: 38px;
 }
 .f1-step.active .f1-step-icon {
-	width: 48px; height: 48px; margin-top: 0; background: #00bba7; font-size: 22px; line-height: 48px;
+	width: 48px; height: 48px; margin-top: 0; background: #00bba7; td-size: 22px; line-height: 48px;
 }
 
 .f1-step p { color: #ccc; }
@@ -159,7 +159,7 @@ ul.navbar-nav {
 
 @media (max-width: 415px) {
 	
-	h1, h2 { font-size: 32px; }
+	h1, h2 { td-size: 32px; }
 	
 	.f1 { padding-bottom: 20px; }
 	.f1-buttons button { margin-bottom: 5px; }

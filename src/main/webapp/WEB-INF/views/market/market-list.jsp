@@ -9,10 +9,10 @@
 <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../js/paging.js"></script>
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
 
 	<script type="text/javascript">
@@ -70,8 +70,8 @@
 			background-color: #00bba7;
 			border-radius: 21px;
 
-			/*font-family: JosefinSans-Bold;*/
-			font-size: 14px;
+			/*td-family: JosefinSans-Bold;*/
+			td-size: 14px;
 			color: #fff;
 			line-height: 1.2;
 			text-transform: uppercase;

@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+<link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
 	<style>
 		.wrap-contact100 {
@@ -33,8 +33,8 @@
 
 		.contact100-form-title {
 			display: block;
-			font-family: SourceSansPro-Bold;
-			font-size: 30px;
+			td-family: SourceSansPro-Bold;
+			td-size: 30px;
 			color: #333333;
 			line-height: 1.2;
 			text-align: left;
@@ -63,8 +63,8 @@
 			display: block;
 			width: 100%;
 			background: transparent;
-			font-family: SourceSansPro-Bold;
-			font-size: 16px;
+			td-family: SourceSansPro-Bold;
+			td-size: 16px;
 			color: #4b2354;
 			line-height: 1.2;
 			outline: none;
@@ -138,8 +138,8 @@
 			background-color: #00bba7;
 			border-radius: 21px;
 
-			/*font-family: JosefinSans-Bold;*/
-			font-size: 14px;
+			/*td-family: JosefinSans-Bold;*/
+			td-size: 14px;
 			color: #fff;
 			line-height: 1.2;
 			text-transform: uppercase;

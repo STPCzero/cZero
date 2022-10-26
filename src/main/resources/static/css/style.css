@@ -2,38 +2,38 @@
 Scorilo 1.0.1 - HTML Template by WowThemes.net
 Visit: https://www.wowthemes.net
 ================================================== */
-.titlefont {
-	font-family: 'Cafe24Ssurround';
+.titletd {
+	td-family: 'Cafe24Ssurround';
 }
 
-.titlefont2 {
-	font-family: 'EarlyFontDiary';
+.titletd2 {
+	td-family: 'EarlytdDiary';
 }
 
-@font-face {
-	font-family: 'EarlyFontDiary';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_220508@1.0/EarlyFontDiary.woff2') format('woff2');
-	font-weight: normal;
-	font-style: normal;
+@td-face {
+	td-family: 'EarlytdDiary';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noontds_220508@1.0/EarlytdDiary.woff2') format('woff2');
+	td-weight: normal;
+	td-style: normal;
 }
 
-@font-face {
-	font-family: 'Cafe24Ssurround';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+@td-face {
+	td-family: 'Cafe24Ssurround';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noontds_2105_2@1.0/Cafe24Ssurround.woff') format('woff');
+	td-weight: normal;
+	td-style: normal;
 }
 
 body {
-	font-family:Roboto;
-	font-weight:300;
-	font-size:16px;
+	td-family:Roboto;
+	td-weight:300;
+	td-size:16px;
 	color:#777;
 	line-height:1.7;
 }
 h1,h2,h3,h4,h5,h6 {
-	font-family:Roboto;
-	font-weight:700;
+	td-family:Roboto;
+	td-weight:700;
 }
 .unstyle ul li,.unstyle ol li,ul.unstyle li,ol.unstyle li {
 	list-style:none;
@@ -56,7 +56,7 @@ a:hover {
 	line-height:1;
 	padding-top:20px;
 	padding-bottom:26px;
-	font-size:30px;
+	td-size:30px;
 }
 .navbar-toggle:before {
 	background-image:url(../images/menu.png);
@@ -64,7 +64,7 @@ a:hover {
 }
 header .navbar-white a {
 	color:#3D566E;
-	font-weight:700;
+	td-weight:700;
 }
 .item.content,.item.portfolio,.item.team,.item.pricing,.item.contact {
 	padding-top:40px;
@@ -89,7 +89,7 @@ header .navbar-white {
 	background-color:rgba(0,0,0,0);
 }
 .navbar-nav,.navbar>.container .navbar-brand {
-	font-family:Dosis;
+	td-family:Dosis;
 	text-transform:uppercase;
 }
 	.text-homeimage {
@@ -97,12 +97,12 @@ header .navbar-white {
 	color:#fff;
 	z-index:2;
 	position:relative;
-	font-size:5em;
+	td-size:5em;
 	line-height:90px;
 	text-transform:uppercase;
 	padding-top:190px;
 	padding-bottom:40px;
-	font-weight:700;
+	td-weight:700;
 	text-shadow:4px 4px 4px #000;
 }
 .text-homeimage2 {
@@ -110,11 +110,11 @@ header .navbar-white {
 	color:#CFF09E;
 	z-index:2;
 	position:relative;
-	font-size:3em;
+	td-size:3em;
 	line-height:90px;
 	text-transform:uppercase;
 	padding-bottom:130px;
-	font-weight:700;
+	td-weight:700;
 	text-shadow: -2px 0 #000, 0 2px #000, 2px 0 #000, 0 -2px #000;
 }
 .text-pageheader {
@@ -122,17 +122,17 @@ header .navbar-white {
 	color:#fff;
 	z-index:2;
 	position:relative;
-	font-size:45px;
+	td-size:45px;
 	line-height:90px;
 	text-transform:uppercase;
 	padding-top:100px;
 	padding-bottom:100px;
-	font-weight:700;
-	font-family:Dosis;
+	td-weight:700;
+	td-family:Dosis;
 }
 .subtext-image {
 	text-transform:none;
-	font-weight:100 !Important;
+	td-weight:100 !Important;
 }
 .toparea {
 	background:#fff;
@@ -140,8 +140,8 @@ header .navbar-white {
 	padding-top:30px;
 }
 .numbertext {
-	font-weight:700;
-	font-size:20px;
+	td-weight:700;
+	td-size:20px;
 	line-height:38px;
 	color:#444;
 	text-transform:uppercase;
@@ -158,12 +158,12 @@ header .navbar-white {
 	width:60px;
 	line-height:60px;
 	display:inline-block;
-	font-size:25px;
-	font-weight:700;
+	td-size:25px;
+	td-weight:700;
 	margin-top:20px;
 }
 h1.latestitems {
-	font-size:22px;
+	td-size:22px;
 	line-height:28px;
 	color:#444;
 	text-transform:uppercase;
@@ -172,7 +172,7 @@ h1.latestitems {
 }
 .wow-hr {
 	position:relative;
-	font-size:0;
+	td-size:0;
 	text-align:center;
 	height:24px;
 	margin:auto;
@@ -203,7 +203,7 @@ h1.latestitems {
 	background-color:#e4e4e4;
 }
 .wow-hr-h i {
-	font-size:16px;
+	td-size:16px;
 	line-height:20px;
 	height:20px;
 	width:20px;
@@ -220,8 +220,8 @@ h1.latestitems {
 .homebrowseitems {
 	text-decoration:none;
 	background-color:#00bba7;
-	font-weight:700;
-	font-size:20px;
+	td-weight:700;
+	td-size:20px;
 	border:0;
 	padding:13px 39px;
 	letter-spacing:1px;
@@ -265,13 +265,13 @@ img {
 }
 .productbox h1 {
 	display:block;
-	font-size:17px;
+	td-size:17px;
 	text-transform:uppercase;
 	margin-top:15px;
 	border-bottom:double medium #eee;
 	padding-bottom:15px;
 	margin-bottom:10px;
-	font-weight:500;
+	td-weight:500;
 	color:#333;
 }
 .product-details {
@@ -280,7 +280,7 @@ img {
 	color:#444;
 }
 .productbox .price {
-	font-weight:400;
+	td-weight:400;
 }
 .shopsection .productbox {
 	margin-bottom:30px;
@@ -302,20 +302,20 @@ img {
 	margin:30px 20px 10px;
 }
 .captionshop p {
-	font-size:15px;
+	td-size:15px;
 	margin:0 20px 15px;
 }
 .captionshop a.learn-more {
 	padding:8px 12px;
 	background:transparent;
 	color:#fff;
-	font-weight:bold;
+	td-weight:bold;
 	text-decoration:none;
 	border:1px solid;
 	display:inline-block;
 	min-width:120px;
 	text-transform:uppercase;
-	font-size:16px;
+	td-size:16px;
 }
 .captionshop a.learn-more.detailslearn {
 	margin-left:-1px;
@@ -343,21 +343,21 @@ img {
 	color:#666;
 	overflow:hidden;
 	text-align:center;
-	font-size:22px;
-	font-weight:300;
+	td-size:22px;
+	td-weight:300;
 	line-height:35px;
 	max-width:75%;
 	margin:0px auto;
 	margin-top:0px;
 }
 .edd-submit.button {
-	font-size:20px;
+	td-size:20px;
 	border:0px;
 	padding:7px 20px;
 	text-decoration:none;
 	color:#444;
 	text-align:center;
-	font-weight:400;
+	td-weight:400;
 	background:#fff;
 	text-transform:uppercase;
 	border-radius:0;
@@ -374,12 +374,12 @@ img {
 	opacity:0.8;
 }
 .rightarea-price .edd-submit.button {
-	font-size:25px;
+	td-size:25px;
 	padding:14px 25px;
 	text-decoration:none;
 	color:#fff;
 	text-align:center;
-	font-weight:400;
+	td-weight:400;
 	border-bottom:5px solid rgba(0,0,0,0.1);
 	text-transform:uppercase;
 	border-radius:0;
@@ -396,18 +396,18 @@ img {
 	border:0;
 	border-radius:0;
 	border-bottom:5px solid rgba(0,0,0,0.1);
-	font-size:17px;
-	font-weight:700;
+	td-size:17px;
+	td-weight:700;
 }
 #edd_checkout_cart a.edd-cart-saving-button,th input[type=submit].edd-submit {
 	text-decoration:none;
 	padding:4px 10px;
 	text-transform:none;
-	font-size:14px;
+	td-size:14px;
 	background:#fff;
 	color:#444;
 	border:1px solid #eee;
-	font-weight:500;
+	td-weight:500;
 }
 #edd_checkout_cart input.edd-item-quantity {
 	padding-left:10px;
@@ -421,12 +421,12 @@ img {
 	margin-left:20px;
 }
 .btn-buynow {
-	font-size:25px;
+	td-size:25px;
 	padding:14px 25px;
 	text-decoration:none;
 	color:#fff;
 	text-align:center;
-	font-weight:400;
+	td-weight:400;
 	border-bottom:5px solid rgba(0,0,0,0.1);
 	text-transform:uppercase;
 	border-radius:0;
@@ -471,10 +471,10 @@ img {
 }
 .headercart {
 	color:#fff;
-	font-size:21px;
+	td-size:21px;
 	display:block;
 	padding-top:45px;
-	font-weight:300;
+	td-weight:300;
 	letter-spacing:1px;
 	z-index:2;
 	position:relative;
@@ -492,7 +492,7 @@ img {
 	margin-bottom:13px;
 	display:inline-block;
 	text-transform:uppercase;
-	font-size:13px !Important;
+	td-size:13px !Important;
 }
 table#edd_purchase_receipt td,table#edd_purchase_receipt th,table#edd_purchase_receipt_products td,table#edd_purchase_receipt_products th {
 	text-align:left;
@@ -525,11 +525,11 @@ legend {
 	display:inline-block !Important;
 }
 #edd_checkout_form_wrap label {
-	font-weight:700;
+	td-weight:700;
 	display:block;
 	position:relative;
 	line-height:100%;
-	font-size:95%;
+	td-size:95%;
 	margin:0 0 5px;
 }
 #edd_checkout_form_wrap input[type=text],#edd_checkout_form_wrap input[type=email],#edd_checkout_form_wrap input[type=password],#edd_checkout_form_wrap input[type=tel],#edd_checkout_form_wrap textarea {
@@ -544,7 +544,7 @@ legend {
 	-webkit-padding-start:0;
 	text-transform:uppercase;
 	margin-bottom:20px;
-	font-weight:700;
+	td-weight:700;
 	display:block;
 }
 .myaccountsection #edd_login_form {
@@ -570,7 +570,7 @@ legend {
 }
 /* WOW Fancy Box 3================================================== */
 .infoarea .maintitle,.maintitle {
-	font-size:22px;
+	td-size:22px;
 	line-height:28px;
 	color:#444;
 	text-transform:uppercase;
@@ -578,7 +578,7 @@ legend {
 	letter-spacing:1px;
 }
 .infoareaicon {
-	font-size:40px;
+	td-size:40px;
 	position:absolute;
 	top:-18px;
 	left:43%;
@@ -595,7 +595,7 @@ legend {
 	margin-top:20px;
 	color:#444;
 	text-transform:uppercase;
-	font-size:16px;
+	td-size:16px;
 	letter-spacing:1px;
 	margin-bottom: 15px;
 }
@@ -605,8 +605,8 @@ legend {
 	color:#666;
 	overflow:hidden;
 	text-align:center;
-	font-size:22px;
-	font-weight:300;
+	td-size:22px;
+	td-weight:300;
 	line-height:35px;
 	max-width:75%;
 	margin:0px auto;
@@ -618,14 +618,14 @@ legend {
 }
 .slide-text p {
 	margin-top:0px;
-	font-size:19px;
+	td-size:19px;
 }
 .slide-text a p {
 	color:#666;
 }
 .slide-text h2 {
-	font-style:normal;
-	font-size:24px;
+	td-style:normal;
+	td-size:24px;
 	line-height:28px;
 	color:#444;
 	text-transform:uppercase;
@@ -634,8 +634,8 @@ legend {
 	margin-top:0;
 }
 .callactiontitle {
-	font-size:25px;
-	font-weight:300;
+	td-size:25px;
+	td-weight:300;
 	color:#fff;
 }
 .callactionbutton {
@@ -661,7 +661,7 @@ legend {
 .footer {
 	background:#222;
 	color:#999;
-	font-size:14px;
+	td-size:14px;
 	padding:60px 0 40px 0;
 	margin-top:0px;
 }
@@ -674,7 +674,7 @@ ul,ol {
 	padding-left:0px;
 }
 .footernote {
-	font-size:30px;
+	td-size:30px;
 	color:#fff;
 }
 .footer a {
@@ -688,14 +688,14 @@ ul,ol {
 	padding:14px 10px;
 	margin-bottom:20px;
 	border-radius:0;
-	font-size:14px;
+	td-size:14px;
 }
 #contactform .btn {
 	background:#333;
 	color:#fff;
 	border:1px solid #333;
-	font-size:16px;
-	font-weight:700;
+	td-size:16px;
+	td-weight:700;
 	text-transform:uppercase;
 }
 .done {
@@ -710,7 +710,7 @@ ul,ol {
 	.navbar-lg .navbar-nav>li>a {
 		padding-top:26px;
 		padding-bottom:26px;
-		 font-size:18px;
+		 td-size:18px;
 	}
 	.navbar-lg .navbar-nav>li>a:hover,.navbar-lg .navbar-nav>li>a:active {
 		background:#fff;
