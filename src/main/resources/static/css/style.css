@@ -93,7 +93,7 @@ header .navbar-white {
 	background-position:0% top;
 	background-size:cover;
 	background-attachment:scroll;
-	background-color:rgba(0,0,0,0);
+	background-color:rgba(0,187,168, 0.5);
 }
 .navbar-nav,.navbar>.container .navbar-brand {
 	font-family:Dosis;
@@ -104,7 +104,7 @@ header .navbar-white {
 	color:#fff;
 	z-index:2;
 	position:relative;
-	font-size:5em;
+	font-size:4em;
 	line-height:90px;
 	text-transform:uppercase;
 	padding-top:190px;
@@ -117,7 +117,7 @@ header .navbar-white {
 	color:#CFF09E;
 	z-index:2;
 	position:relative;
-	font-size:3em;
+	font-size:2.5em;
 	line-height:90px;
 	text-transform:uppercase;
 	padding-bottom:130px;
