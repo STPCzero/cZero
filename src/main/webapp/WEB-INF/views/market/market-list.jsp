@@ -155,15 +155,15 @@
 			</button>
 			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
 		</div>
-        <div id="navbar-collapse-02" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
+		<div id="navbar-collapse-02" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
                 <li class="propClone"><a href="/index">Home</a></li>
                 <li class="propClone"><a href="/market/market-list">Market</a></li>
-                <li class="propClone"><a href="/checklist/checklist">Checklist</a></li>
+                <li class="propClone"><a href="/news/news">News</a></li>
                 <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                 <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
-            </ul>
-        </div>
+			</ul>
+		</div>
 	</div>
 	</nav>
 	<div class="container">

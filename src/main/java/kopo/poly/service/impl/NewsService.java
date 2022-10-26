@@ -8,7 +8,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +20,8 @@ import java.util.List;
 @Service("NewsService")
 public class NewsService implements INewsService {
 
+    @Transactional
+    @Scheduled(cron = "* 10 * * * *")
     @Override
     public List<NewsDTO> showNews() throws Exception{
         log.info(this.getClass().getName() + ".선수입장!!" );
