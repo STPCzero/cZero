@@ -36,17 +36,85 @@ public class MypController {
         if(iDTO == null) {
             iDTO = new MypageDTO();
         }
+        model.addAttribute("iDTO", iDTO); //user_info 개인정보
+
+
+        /* == 페이징 START == */
+        // 전체 페이지 개수
+        int count = mypageService.getMyMarketCount(myDTO);
+        log.info("count: "+count);
+
+        //시작 페이지
+        String no = CmmUtil.nvl(request.getParameter("num"));
+        int num = 0, start = 0, finish = 0;
+
+        if(no == "")
+            num = 1;
+        else
+            num = Integer.parseInt(no);
+
+        finish = count - ( (num-1) * 5 );
+        start  = finish - 4;
+        if( start < 1 ) start = 1;
+
+        log.info("num : "+num);
+        log.info("start : "+start);
+        log.info("finish : "+finish);
+
+        // 시작번호, 끝번호
+        myDTO.setStart(start);
+        myDTO.setFinish(finish);
+
 
         //나의 마켓 리스트 갖고오기
         List<MarketDTO> mkList = mypageService.getMypageMarket(myDTO);
-        log.info("사이즈 : "+String.valueOf(mkList.size()));
+
+        // 한번에 표시할 페이징 번호의 갯수
+        int pageNum_cnt = 5;
+        // 표시되는 페이지 번호 중 마지막 번호
+        int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
+        // 표시되는 페이지 번호 중 첫번째 번호
+        int startPageNum = endPageNum - (pageNum_cnt - 1);
+        // 마지막 번호 재계산
+        int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
+        if(endPageNum > endPageNum_tmp) {
+            endPageNum = endPageNum_tmp;
+        }
+
+        boolean prev = startPageNum == 1 ? false : true;
+        boolean next = endPageNum * pageNum_cnt >= count ? false : true;
+
+        log.info("startPageNum: "+startPageNum);
+        log.info("endPageNum: "+endPageNum);
+        // 현재 페이지
+        model.addAttribute("select", num);
+
+        // 시작 및 끝 번호
+        model.addAttribute("startPageNum", startPageNum);
+        model.addAttribute("endPageNum", endPageNum);
+
+        // 이전 및 다음
+        model.addAttribute("prev", prev);
+        model.addAttribute("next", next);
+        /* == 페이징 END == */
+
         if(mkList == null) {
             mkList = new ArrayList<>();
         }
-
-        model.addAttribute("iDTO", iDTO); //user_info 개인정보
         model.addAttribute("mkList", mkList); //내 market 정보
+
         log.info(this.getClass().getName()+".myInfo End!!");
+        return "/mypage/myinfo";
+    }
+
+    @PostMapping("/mypage/myinfoPaging")
+    public String myinfoPaging(HttpServletRequest request, Model model) throws Exception {
+        log.info(this.getClass().getName() + ".myinfoPaging Start!!");
+
+        MypageDTO myDTO = new MypageDTO();
+        myDTO.setUser_seq("1");
+
+        log.info(this.getClass().getName() + ".myinfoPaging End!!");
         return "/mypage/myinfo";
     }
 

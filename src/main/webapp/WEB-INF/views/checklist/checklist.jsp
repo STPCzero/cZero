@@ -34,11 +34,11 @@
 				</div>
 				<div id="navbar-collapse-02" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="propClone"><a href="index.jsp">Home</a></li>
-						<li class="propClone"><a href="market-list.jsp">Market</a></li>
-						<li class="propClone"><a href="product.jsp">Checklist</a></li>
-						<li class="propClone"><a href="checkout.jsp">Api</a></li>
-						<li class="propClone"><a href="contact.jsp">Mypage</a></li>
+						<li class="propClone"><a href="/index">Home</a></li>
+						<li class="propClone"><a href="/market/market-list">Market</a></li>
+						<li class="propClone"><a href="/checklist/checklist">Checklist</a></li>
+						<li class="propClone"><a href="api">Bicycle</a></li>
+						<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
 					</ul>
 				</div>
 			</div>
@@ -75,7 +75,7 @@
 	<form>
 		<form >
 			<fieldset class="form-group">
-				<div style="max-width: 70em;margin-left: 10em;margin-right: 10em">
+				<div style="max-width: 500px;margin-left: auto; margin-right: auto">
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" value="1" id="01">
 					<label class="form-check-label" for="01">

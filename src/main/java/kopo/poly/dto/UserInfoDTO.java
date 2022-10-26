@@ -14,5 +14,4 @@ public class UserInfoDTO {
     private String user_email;
     private String EXISTS_YN;
 
-
 }

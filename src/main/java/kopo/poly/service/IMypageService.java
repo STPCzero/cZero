@@ -11,4 +11,6 @@ public interface IMypageService {
     int getMyInfoModify(MypageDTO iDTO) throws Exception;
 
     List<MarketDTO> getMypageMarket(MypageDTO myDTO) throws Exception;
+
+    int getMyMarketCount(MypageDTO mDTO) throws Exception;
 }
