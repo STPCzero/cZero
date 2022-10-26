@@ -1,5 +1,6 @@
 package kopo.poly.controller;
 
+import kopo.poly.dto.BicycleDTO;
 import kopo.poly.service.IBicycleService;
 import kopo.poly.service.IMailService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,16 @@ public class BicycleController {
         log.info(this.getClass().getName() + ".bicycle Start!!");
         log.info(this.getClass().getName() + ".bicycle End!!");
         return "/bicycle/bicycle";
+    }
+
+    @GetMapping("getBicycle")
+    public BicycleDTO getBicycle(HttpServletRequest request) throws Exception {
+        log.info(this.getClass().getName() + ".getBicycle Start!!");
+
+        BicycleDTO bDTO = bicycleService.callBicycleApi();
+
+        log.info(this.getClass().getName() + ".getBicycle End!!");
+        return bDTO;
     }
 
 }
