@@ -12,6 +12,25 @@
 	<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
+    <script type="text/javascript">
+
+        function doOnload() {
+            //전송시 유효성 체크
+            function doSubmit(f) {
+                if (f.title.value == "") {
+                    alert("제목을 입력하시기 바랍니다.");
+                    f.title.focus();
+                    return false;
+                }
+
+                if (f.contents.value == "") {
+                    alert("내용을 입력하시기 바랍니다.");
+                    f.contents.focus();
+                    return false;
+                }
+            }
+        }
+    </script>
 	<style>
 		.wrap-contact100 {
 			width: 104%;
@@ -191,7 +210,7 @@
 
 
 </head>
-<body>
+<body onload="doOnload();">
 
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
@@ -272,7 +291,7 @@
 
 				<script src="../js/ckeditor/ckeditor.js"></script>
 
-
+                <form name="f" method="post" action="/market/marketInsert" target= "ifrPrc" onsubmit="return doSubmit(this);">
 				<div class="container" >
 					<div class="content" style="width: 70%;">
 
@@ -289,7 +308,7 @@
 								</div>
 								<hr>
 								<div class="input-group">
-									<textarea class="form-control" id="editor" name="content"></textarea>
+									<textarea class="form-control" value="${MarketDTO.contents}" placeholder="내용을 입력하세요" id="editor" name="content"></textarea>
 									<%--<script type="text/javascript"> CKEDITOR.replace('p_content',
                                             {
                                                 height: 500 }) </script>--%>
@@ -306,13 +325,17 @@
 									style="width: 20%; font-weight: bold">
 								<a href="market-list">뒤로가기</a>
 							</button>
-							<button type="submit" class="btn btn-outline-secondary"
+							<%--<button type="submit" class="btn btn-outline-secondary"
 									style="width: 20%; font-weight: bold">
 								<a href="market-list">등록</a>
-							</button>
+							</button>--%>
+							<input type="submit" value="등록" class="btn btn-outline-secondary" style="width: 20%; font-weight: bold" />
 						</div>
 					</div>
 				</div>
+                </form>
+                <!-- 프로세스 처리용 iframe / form 태그에서 target을 iframe으로 한다. -->
+                <iframe name="ifrPrc" style="display:none"></iframe>
 
 
 				<%--<div class="container-contact100-form-btn" style="margin-top: 20%">

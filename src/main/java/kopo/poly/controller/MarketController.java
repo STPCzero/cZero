@@ -5,6 +5,7 @@ import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.service.IMarketService;
 import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-@RequestMapping(value = "/market")
+@RequestMapping(value = {"/market", "/admin"})
 @Controller
 public class MarketController {
 
@@ -31,13 +32,18 @@ public class MarketController {
 
         // 마켓리스트 가져오기
         List<MarketDTO> mList = marketService.getMarketList();
+        UserInfoDTO uDTO = new UserInfoDTO();
+
 
         if (mList == null) {
             mList = new ArrayList<>();
         }
 
+
         // 조회된 리스트 결과값 넣어주기
         model.addAttribute("mList", mList);
+
+        model.addAttribute("uDTO",uDTO);
 
         log.info(this.getClass().getName() + ".market-list End!!");
 
@@ -52,8 +58,8 @@ public class MarketController {
     }
 
     // 마켓 글 등록
-    @PostMapping(value = "MarketInsert")
-    public String MarketInsert(HttpSession session, HttpServletRequest request, ModelMap model) {
+    @PostMapping(value = "marketInsert")
+    public String marketInsert(HttpSession session, HttpServletRequest request, ModelMap model) {
         log.info(this.getClass().getName() + ".MarketInsert Start!");
 
         String msg = "";
@@ -69,7 +75,7 @@ public class MarketController {
 
             MarketDTO mDTO = new MarketDTO();
             UserInfoDTO uDTO = new UserInfoDTO();
-
+            mDTO.setUser_name(user_name);
             uDTO.setUser_name(user_name);
             mDTO.setTitle(title);
             mDTO.setContents(contents);
@@ -228,5 +234,28 @@ public class MarketController {
         }
 
         return "/market/MsgToList";
+    }
+    @GetMapping(value = "admin-market")
+    public String adminmarket(ModelMap model) throws Exception {
+        log.info(this.getClass().getName() + ".admin-market Start!!");
+
+        // 마켓리스트 가져오기
+        List<MarketDTO> mList = marketService.getMarketList();
+        UserInfoDTO uDTO = new UserInfoDTO();
+
+
+        if (mList == null) {
+            mList = new ArrayList<>();
+        }
+
+
+        // 조회된 리스트 결과값 넣어주기
+        model.addAttribute("mList", mList);
+
+        model.addAttribute("uDTO",uDTO);
+
+        log.info(this.getClass().getName() + ".admin-market End!!");
+
+        return "/admin/admin-market";
     }
 }

@@ -16,4 +16,6 @@ public class MarketDTO {
     private String update_date;
     private String price;
     private String read_cnt;
+    private String user_name;
+
 }

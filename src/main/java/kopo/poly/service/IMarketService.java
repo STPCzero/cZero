@@ -18,4 +18,6 @@ public interface IMarketService {
     void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
 
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;
+
+
 }

@@ -6,7 +6,7 @@
 
     <!-- 상품 리스트 쿼리 -->
     <select id="getMarketList" resultType="MarketDTO">
-        SELECT M.USER_SEQ, U.USER_SEQ, U.USER_NAME, M.TITLE, M.MK_SEQ, M.PRICE, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE
+        SELECT M.USER_SEQ, U.USER_SEQ, M.TITLE, M.MK_SEQ, M.PRICE, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE, M.USER_NAME
             FROM MARKET M
         LEFT JOIN USER_INFO U
             ON M.USER_SEQ = U.USER_SEQ
@@ -15,15 +15,15 @@
     <insert id="insertMarketInfo" parameterType="MarketDTO">
         INSERT INTO MARKET
             (
-             MK_SEQ, NOTICE_YN, USER_SEQ, TITLE, CONTENTS, MK_DATE, PRICE, READ_CNT
+             MK_SEQ, NOTICE_YN, USER_SEQ, TITLE, CONTENTS, MK_DATE, PRICE, READ_CNT, USER_NAME
         )VALUES (
-                    (SELECT NVL(MAX(M.MK_SEQ),0)+1 FROM MARKET M )), "N", #{user_seq}, #{title}, #{contents}, #{mk_date}, #{price}, #{read_cnt}
+                    (SELECT NVL(MAX(M.MK_SEQ),0)+1 FROM MARKET M )), "N", #{user_seq}, #{title}, #{contents}, #{mk_date}, #{price}, #{read_cnt}, #{user_name}
                 )
     </insert>
 
     <!-- 상품 상세보기 쿼리 -->
     <select id="getMarketInfo" resultType="MarketDTO">
-        SELECT M.MK_SEQ, M.TITLE, M.READ_CNT, U.USER_NAME, CONTENTS, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE
+        SELECT M.MK_SEQ, M.TITLE, M.READ_CNT, M.USER_NAME, CONTENTS, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE
         FROM MARKET M, USER_INFO U
         WHERE M.USER_SEQ = U.USER_SEQ
         AND M.MK_SEQ = #{mk_seq}

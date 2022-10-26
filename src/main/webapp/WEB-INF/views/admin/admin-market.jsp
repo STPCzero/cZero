@@ -86,6 +86,7 @@
             display: -moz-box;
             display: -ms-flexbox;
             display: flex;
+            text-align: center;
             justify-content: center;
             align-items: center;
             padding: 0 20px;
@@ -108,8 +109,9 @@
 
         }
         .mkupload{
-            width: 10%;
-            margin: auto;
+            /*width: 10%;*/
+            text-align: center;
+            margin: 0 auto;
             display: block;
         }
         span {
@@ -242,7 +244,9 @@
                             <span class="maxproduct"><img src="/images/mk_soap.jpg" alt=""></span>
                         </div>
                         <div class="product-details">
+
                             <a href="#">
+                                <input type="checkbox" name="mkcheck" value="1" />
                                 <h1><%=CmmUtil.nvl(mDTO.getTitle()) %></h1>
                             </a>
                             <span class="price">
@@ -261,7 +265,10 @@
     <div class="container" style="text-align: center">
         <span class="row" style="clear: both; text-align: center;" >
             <button class="contact100-form-btn" style="margin: 1px; display: inline-block; float: left;">
-                <a href="/market/market-upload" style="color:#ffffff;"><strong>물건 올리기</strong></a>
+                <a href="/market/market-upload" style="color:#ffffff;"><strong>공지글 작성</strong></a>
+            </button>
+            <button class="contact100-form-btn" style="margin: 1px; display: inline-block;">
+                <a href="/market/market-upload" style="color:#ffffff";><strong>삭제</strong></a>
             </button>
         </span>
     </div>
@@ -271,22 +278,23 @@
                 <ul class="pagination">
                     <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
                     </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
+                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
                 </ul>
+
             </nav>
+
         </div>
     </form>--%>
     <div style="text-align: center; margin-bottom: 50px;">
 
         <div class="btn-group " style="margin: 0 auto; display: inline-block;">
 
-            <a style="color: red;" href="/market/marketlist?num=1">
+            <a style="color: red;" href="/market/marketadmin?num=1">
                 <button class="btn btn-secondary">
                     1
                 </button></a>
 
-            <a style="" href="/market/marketlist?num=2">
+            <a style="" href="/market/marketadmin?num=2">
                 <button class="btn btn-secondary">
                     2
                 </button></a>

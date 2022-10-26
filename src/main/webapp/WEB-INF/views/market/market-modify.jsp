@@ -1,5 +1,25 @@
 <%@ page import="static javax.servlet.http.MappingMatch.PATH" %>
+<%@ page import="kopo.poly.dto.MarketDTO" %>
+<%@ page import="kopo.poly.util.CmmUtil" %>
+<%@ page import="kopo.poly.dto.UserInfoDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    MarketDTO mDTO = (MarketDTO)request.getAttribute("mDTO");
+    UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
+
+//공지글 정보를 못불러왔다면, 객체 생성
+    if (uDTO==null){
+        uDTO = new UserInfoDTO();
+
+    }
+
+    int access = 1; //(작성자 : 2 / 다른 사용자: 1)
+
+    if (CmmUtil.nvl((String)session.getAttribute("SESSION_USER_NAME")).equals(
+            CmmUtil.nvl(uDTO.getUser_name()))){
+        access = 2;
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +31,35 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+
+    <script type="text/javascript">
+
+        //작성자 여부체크
+        function doOnload(){
+
+            if ("<%=access%>"=="1"){
+                alert("작성자만 수정할 수 있습니다.");
+                location.href="/market/market-list";
+
+            }
+        }
+
+        //전송시 유효성 체크
+        function doSubmit(f){
+            if(f.title.value == ""){
+                alert("제목을 입력하시기 바랍니다.");
+                f.title.focus();
+                return false;
+            }
+
+            if(f.contents.value == ""){
+                alert("내용을 입력하시기 바랍니다.");
+                f.contents.focus();
+                return false;
+            }
+        }
+
+    </script>
 
     <style>
         .wrap-contact100 {
@@ -191,7 +240,7 @@
 
 
 </head>
-<body>
+<body onload="doOnload();">
 
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
@@ -272,7 +321,8 @@
 
                 <script src="../js/ckeditor/ckeditor.js"></script>
 
-
+                <form name="f" method="post" action="/notice/NoticeUpdate" onsubmit="return doSubmit(this);">
+                    <input type="hidden" name="nSeq" value="<%=CmmUtil.nvl(request.getParameter("nSeq")) %>" />
                 <div class="container" >
                     <div class="content" style="width: 70%;">
 
@@ -284,12 +334,12 @@
                                     </div>
                                     <input type="text" class="form-control" name="title" id="title"
                                            style="width: 325%; "
-                                           value="${dto.title}"
-                                           placeholder="제목을 입력하세요" class="form-control" aria-describedby="basic-addon1">
+                                           value="<%=CmmUtil.nvl(mDTO.getTitle()) %>"
+                                           class="form-control" aria-describedby="basic-addon1">
                                 </div>
                                 <hr>
                                 <div class="input-group">
-                                    <textarea class="form-control" id="editor" name="content"></textarea>
+                                    <textarea class="form-control" id="editor" name="content"><%=CmmUtil.nvl(mDTO.getContents()) %></textarea>
                                     <%--<script type="text/javascript"> CKEDITOR.replace('p_content',
                                             {
                                                 height: 500 }) </script>--%>
@@ -313,6 +363,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
 
 
                 <%--<div class="container-contact100-form-btn" style="margin-top: 20%">

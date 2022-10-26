@@ -26,4 +26,6 @@ public interface IMarketMapper {
 
     // 게시판 글 삭제
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;
+
+
 }

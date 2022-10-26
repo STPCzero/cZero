@@ -36,6 +36,8 @@ public class MarketService implements IMarketService {
         log.info(this.getClass().getName() + ".InsertMarketInfo start!");
 
         marketMapper.InsertMarketInfo(mDTO, uDTO);
+
+        log.info(this.getClass().getName() + ".InsertMarketInfo end!");
     }
 
     @Transactional
@@ -46,7 +48,9 @@ public class MarketService implements IMarketService {
 
         // 상세보기 할 때마다, 조회수 증가하기
         log.info("Update Read_CNT");
-        marketMapper.getMarketInfo(mDTO);
+        marketMapper.updateMarketReadCnt(mDTO);
+
+        log.info(this.getClass().getName() + ".getMarketInfo end!");
 
         return marketMapper.getMarketInfo(mDTO);
     }
@@ -58,6 +62,8 @@ public class MarketService implements IMarketService {
         log.info(this.getClass().getName() + ".updateMarketInfo start!");
 
         marketMapper.updateMarketInfo(mDTO, uDTO);
+
+        log.info(this.getClass().getName() + ".updateMarketInfo end!");
     }
 
     @Transactional
@@ -67,5 +73,9 @@ public class MarketService implements IMarketService {
         log.info(this.getClass().getName() + ".deleteMarketInfo start!");
 
         marketMapper.deleteMarketInfo(mDTO);
+
+        log.info(this.getClass().getName() + ".deleteMarketInfo end!");
     }
+
+
 }

@@ -3,12 +3,12 @@
 <%@ page import="kopo.poly.dto.UserInfoDTO" %>
 <%@ page import="kopo.poly.util.CmmUtil" %>
 <%
-	MarketDTO mDTO = (MarketDTO)request.getAttribute("mDTO");
-	UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
+	MarketDTO rDTO = (MarketDTO)request.getAttribute("rDTO");
+	/*UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");*/
 
 	// 마켓 정보를 못불러왔다면, 객체 생성
-	if (uDTO == null) {
-		uDTO = new UserInfoDTO();
+	if (rDTO == null) {
+		rDTO = new MarketDTO();
 
 	}
 
@@ -22,12 +22,12 @@
 		edit = 3;
 
 		//본인이 작성한 글이면 2가 되도록 변경
-	} else if (ss_user_name.equals(CmmUtil.nvl(uDTO.getUser_name())));
+	} else if (ss_user_name.equals(CmmUtil.nvl(rDTO.getUser_name())));
 	{
 		edit = 2;
 	}
 
-	System.out.println("user_name : " + CmmUtil.nvl(uDTO.getUser_name()));
+	System.out.println("user_name : " + CmmUtil.nvl(rDTO.getUser_name()));
 	System.out.println("ss_user_name : " + ss_user_name);
 %>
 
@@ -50,40 +50,63 @@
 
 	<script type="text/javascript">
 
-/*		function doEdit() {
-			if ("<%=edit%>" == 2) {
-				location.href = "/market-modify.jsp?mk_seq=<%=CmmUtil.nvl(mDTO.getMk_seq())%>";
+		// 수정하기
+		function doEdit() {
+			if ("<%=edit%>"==2) {
+				location.href = "../market/market-modify?mk_seq=<%=CmmUtil.nvl(rDTO.getMk_seq())%>";
 
-			} else if ("<%=edit%>==3") {
+			} else if ("<%=edit%>"==3) {
 				alert("로그인 하시길 바랍니다.");
 			} else {
 				alert("본인이 작성한 글만 수정 가능합니다.");
 			}
-		}*/
+		}
 
-		$(function () {
+		// 삭제하기
+		function doDelete() {
+			if ("<%=edit%>"==2) {
+				if (confirm("작성한 글을 삭제하시겠습니까?")) {
+					location.href = "/market/deleteMarket?mk_seq=<%=CmmUtil.nvl(rDTO.getMk_seq())%>";
+				}
+
+			} else if ("<%=edit%>"==3) {
+				alert("로그인 하시길 바랍니다.");
+			} else {
+				alert("본인이 작성한 글만 수정 가능합니다.");
+			}
+		}
+
+		// 목록으로 이동
+		function doList(){
+			location.href = "/market/market-list"
+		}
+
+
+		/*$(function () {
 
 			//목록 버튼
 			$("#btnList").click(function () {
-				location.href = "list.do";
+				location.href = "/market/market-list";
 			});
 
 
 			//수정 버튼
-			$("#btnUpdate").click(function (doEdit) {
+			$("#btnUpdate").click(function (<%--<%=edit%>--%>) {
 				if (confirm("수정하시겠습니까?")) {
-					document.form1.action = "update.do";
+					document.form1.action = "/market/market-modify";
 					document.form1.submit();
 				}
 			});
 
-//삭제 버튼
-			$("#btnDelete").click(function () {
+
+			//삭제 버튼
+			$("#btnDelete").click(function (<%--<%=edit%>--%>) {
 				if (confirm("삭제하시겠습니까?")) {
-					document.form1.action = "delete.do";
+					document.form1.action = "deleteMarket";
 					document.form1.submit();
 				}
 			});
+		});*/
 
 
 
@@ -249,51 +272,47 @@
 			<span class="contact100-form-title" style="text-align: center">
                게시물 보기
             </span>
-			<!-- 게시물을 작성하기 위해 컨트롤러의 insert.do로 맵핑 -->
-			<form id="form1" name="form1" method="post" action="${path}/board/insert.do">
+			<form>
 				<div class="input-group input-group-sm container" role="group" style="text-align:left">
 					<table class="table table-striped table-bordered">
 						<tread>
 							<tr>
-								<c:forEach var="row" items="${map.list}">
-
-							<tr>
-								<td> 조회수 : ${dto.read_cnt}</td>
-							</tr>
-							<tr>
-								<td>닉네임 : ${row.user_name}</td>
-							</tr>
-
-							<tr>
-								<td>작성일자 : ${row.mk_date}</td>
-							</tr>
-
-							</tr>
-
-
-							<tr>
-								<td><input name="title" id="title" size="80"
-										   value="${dto.title}"
-										   placeholder="제목을 입력하세요" class="form-control" aria-describedby="basic-addon1">
+								<td align="center">제목</td>
+								<td colspan="3"><%=CmmUtil.nvl(rDTO.getTitle())%>
 								</td>
 							</tr>
-
-							<br><br>
-
-							<!-- placeholder은 제목을 입력할 수 있도록 도움말을 출력함 -->
 							<tr>
-								<div style="width:800px;">
-									<td><textarea class="form-control" style="height: 400px" id="content" name="content" rows="3" cols="80"
-												  placeholder="내용을 입력하세요">${dto.content}</textarea></td>
-								</div>
+								<td align="center">작성일</td>
+								<td><%=CmmUtil.nvl(rDTO.getMk_date())%>
+								</td>
+								<td align="center">조회수</td>
+								<td><%=CmmUtil.nvl(rDTO.getRead_cnt())%>
+								</td>
 							</tr>
+							<%--<tr>
+                                <td colspan="4" height="300px" valign="top">
+                                    <%=CmmUtil.nvl(mDTO.getContents()).replaceAll("\r\n", "<br/>") %>
+                                </td>
+                            <tr>--%>
+							<div style="width:800px;">
+								<td><textarea class="form-control" style="height: 400px" id="content" name="content"
+											  rows="3" cols="80"
+											  placeholder="내용을 입력하세요"><%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %></textarea>
+								</td>
+							</div>
 						</tread>
 					</table>
 
 				</div>
 
 			</form>
-
+			<tr>
+				<td align="center" colspan="4">
+					<a href="javascript:doEdit();">[수정]</a>
+					<a href="javascript:doDelete();">[삭제]</a>
+					<a href="javascript:doList();">[목록]</a>
+				</td>
+			</tr>
 
 			<!-- 마찬가지로 내용을 입력하도록 도움말을 출력함 -->
 			<script>
@@ -307,43 +326,7 @@
 					height: "300px"
 				});
 			</script>
-			<div style="width:700px; text-align:center;">
-				<!-- 수정, 삭제에 필요한 글번호를 hidden 태그에 저장한다. -->
-				<input type="hidden" name="member_bno" value="${dto.member_bno }">
-
-				<!-- 본인만 수정, 삭제 버튼을 표시한다. -->
-				<c:if test="${sessionScope.user_id == dto.user_id or sessionScope.navername == dto.user_id or sessionScope.kakaonickname == dto.user_id or sessionScope.facebookname == dto.user_id}">
-					<div class="btn-group btn-group-sm" role="group" aria-label="...">
-						<div style="text-align:center;">
-
-							<button type="submit" id="btnUpdate" class="btn btn-default">수정</button>
-							<button type="button" id="btnDelete" class="btn btn-default">삭제</button>
-							<!-- 글목록은 본인이 아니어도 확인 가능하게 한다. -->
-							<button type="button" id="btnList" class="btn btn-default"><a href="market-list">목록</a></button>
-
-						</div>
-					</div>
-				</c:if>
-
-
-				<!-- 관리자에게는 삭제 버튼을 표시한다. -->
-				<c:if test="${sessionScope.admin_id != null}">
-
-					<div class="btn-group btn-group-sm" role="group" aria-label="...">
-						<div style="text-align:center;">
-							<button type="button" id="btnDelete" class="btn btn-default">삭제</button>
-						</div>
-					</div>
-				</c:if>
-
-
-
-			</div>
-
-			<!-- 글목록은 본인이 아니어도 확인 가능하게 한다. -->
-
 		</div>
-		</form>
 	</div>
 </section>
 
