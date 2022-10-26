@@ -15,5 +15,12 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/admin/admin-member")
+    public String admin() {
+        log.info(getClass().getName() + " admin-member Start!!!");
+        log.info(getClass().getName() + " admin-member End!!!");
+        return "/admin/admin-member";
+    }
+
 
 }

@@ -3,6 +3,7 @@
 
 
 <mapper namespace="kopo.poly.persistance.mapper.IUserInfoMapper">
+
     <insert id="insertUserInfo" parameterType="UserInfoDTO">
         INSERT INTO user_info (USER_SEQ, USER_ID, USER_PW, USER_NAME, USER_EMAIL)
         VALUES ((SELECT NVL(MAX(U.USER_SEQ), 0) + 1 FROM USER_INFO U), #{user_id}, #{user_pw}, #{user_name}, #{user_email})
@@ -13,4 +14,39 @@
         FROM USER_INFO
         WHERE USER_EMAIL = #{user_email}
     </select>
+
+    <select id="ChkUserInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        select *
+        from USER_INFO
+        where USER_ID = #{user_id} and USER_PW = #{user_pw}
+    </select>
+    <!--사용자 아이디찾기-->
+    <select id="findUserId" parameterType="UserInfoDTO"
+            resultType="UserInfoDTO">
+        SELECT USER_NAME,USER_EMAIL,USER_ID
+        FROM USER_INFO
+        WHERE USER_NAME= #{user_name} AND USER_EMAIL= #{user_email}
+    </select>
+    <!--사용자 비밀번호변경-->
+    <update id="updateUserPw" parameterType="UserInfoDTO">
+        UPDATE USER_INFO
+        SET USER_PW = #{user_pw}
+        WHERE USER_ID = #{user_id} and USER_EMAIL = #{user_email}
+    </update>
+    <update id="getUserUpdate" parameterType="UserInfoDTO">
+        update USER_INFO
+        set USER_ID = #{user_id}, USER_EMAIL = #{user_email}, USER_NAME = #{user_name}
+        where USER_SEQ = #{user_seq}
+    </update>
+    <select id="getUserDetail" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        select *
+        from USER_INFO
+        where user_seq = #{user_seq}
+    </select>
+    <select id="getUserName" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        select user_name
+        from USER_INFO
+        where USER_SEQ = #{user_seq}
+    </select>
+
 </mapper>
