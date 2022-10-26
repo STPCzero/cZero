@@ -3,8 +3,8 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata></metadata>
 <defs>
-<font id="fontawesomeregular" horiz-adv-x="1536" >
-<font-face units-per-em="1792" ascent="1536" descent="-256" />
+<td id="tdawesomeregular" horiz-adv-x="1536" >
+<td-face units-per-em="1792" ascent="1536" descent="-256" />
 <missing-glyph horiz-adv-x="448" />
 <glyph unicode=" "  horiz-adv-x="448" />
 <glyph unicode="&#x09;" horiz-adv-x="448" />
@@ -681,5 +681,5 @@
 <glyph unicode="&#xf2bd;" horiz-adv-x="1792" />
 <glyph unicode="&#xf2be;" horiz-adv-x="1792" />
 <glyph unicode="&#xf500;" horiz-adv-x="1792" />
-</font>
+</td>
 </defs></svg> 
