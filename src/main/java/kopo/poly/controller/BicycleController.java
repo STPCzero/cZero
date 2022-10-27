@@ -37,7 +37,7 @@ public class BicycleController {
 
     @GetMapping("getBicycle")
     public @ResponseBody BicycleDTO getBicycle(HttpServletRequest request) throws Exception {
-        log.info(this.getClass().getName() + ".getBicycle Start!!");
+        log.info(this.getClass().getName() + ".getBicycle Start!!!");
 
         BicycleDTO bDTO = bicycleService.callBicycleApi();
 
