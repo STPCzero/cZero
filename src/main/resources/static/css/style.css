@@ -31,15 +31,21 @@ Visit: https://www.wowthemes.net
 	font-style: normal;
 }
 
+@font-face {
+	font-family: 'Dosis';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Dosis'), url('https://fonts.cdnfonts.com/s/12275/Dosis-Bold.woff') format('woff');
+}
 body {
-	font-family:Roboto;
+	font-family: Roboto;
 	font-weight:300;
 	font-size:16px;
 	color:#777;
 	line-height:1.7;
 }
 h1,h2,h3,h4,h5,h6 {
-	font-family:Roboto;
+	font-family: Roboto;
 	font-weight:700;
 }
 .unstyle ul li,.unstyle ol li,ul.unstyle li,ol.unstyle li {
