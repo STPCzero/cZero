@@ -27,15 +27,16 @@
 			<span class="sr-only">Toggle navigation</span>
 			</button>
 			<%--<a href="index.jsp" class="navbar-brand brand"> SCORILO </a>--%>
-			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
+			<a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고"></a>
 		</div>
 		<div id="navbar-collapse-02" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="/index">Home</a></li>
 				<li class="propClone"><a href="/market/market-list">Market</a></li>
 				<li class="propClone"><a href="/news/news">News</a></li>
 				<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
 				<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+				<li class="propClone"><a href="/login/login">Login</a></li>
+				<li class="propClone"><a href="">Logout</a></li>
 			</ul>
 		</div>
 	</div>
@@ -76,9 +77,9 @@
 			<div class="col-md-4 editContent">
 				<div class="col">
 					<span class="numberstep"><i class="fa"><img src="/images/list.png" style="width: 60%; height: 60%; margin-bottom: 5%"></i></span>
-					<h3 class="numbertext">체크리스트</h3>
+					<h3 class="numbertext">데일리뉴스</h3>
 					<p>
-						 <strong>매일매일 지키는 탄소중립 체크리스트로 <br>의미있는 하루를 보내세요</strong>
+						 <strong>매일매일 알아보는 환경뉴스로<br>의미있는 하루를 시작하세요</strong>
 					</p>
 				</div>
 				<!-- /.col -->
