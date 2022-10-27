@@ -31,6 +31,6 @@ public class NewsController {
         // 크롤링 결과 모델에 넣어주기
 
         log.info(getClass().getName() + ".뉴스 End!!!");
-        return "/news/test";
+        return "/news/news";
     }
 }
