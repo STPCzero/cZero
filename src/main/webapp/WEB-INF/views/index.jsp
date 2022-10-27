@@ -76,9 +76,9 @@
 			<div class="col-md-4 editContent">
 				<div class="col">
 					<span class="numberstep"><i class="fa"><img src="/images/list.png" style="width: 60%; height: 60%; margin-bottom: 5%"></i></span>
-					<h3 class="numbertext">체크리스트</h3>
+					<h3 class="numbertext">데일리뉴스</h3>
 					<p>
-						 <strong>매일매일 지키는 탄소중립 체크리스트로 <br>의미있는 하루를 보내세요</strong>
+						 <strong>매일매일 알아보는 환경뉴스로<br>의미있는 하루를 시작하세요</strong>
 					</p>
 				</div>
 				<!-- /.col -->
