@@ -8,23 +8,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        @media screen and (width: 500px) {
-            div {
-                max-width: 70em;
-                margin-left: 50px;
-            }
-        }
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">\
+<%--    <style>--%>
+<%--        :hover {--%>
 
+<%--            opacity:0.6;--%>
+
+<%--            -webkit-transition: visibility 0s, opacity 0.3s;--%>
+
+<%--            -moz-transition: visibility 0s, opacity 0.3s;--%>
+
+<%--            transition: visibility 0s, opacity 0.3s;--%>
+
+<%--        }--%>
+<%--    </style>--%>
+
+    @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+
+    }
 </head>
 <body>
 
@@ -57,7 +62,7 @@
                 <div class="col-md-12 text-center">
                     <div class="text-pageheader">
                         <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-                            Check List
+                            Carbon Neutral News
                         </div>
                     </div>
                 </div>
@@ -67,22 +72,31 @@
 </header>
 
 <!-- CONTENT =============================-->
-<div class="row">
+
+<div class="container" style="border: 3px solid #dff0d8;border-radius: 4px; margin: 10px auto" >
+    <div class="row" style="margin: 1em auto; display: flex; justify-content : center;">
+        <div class="col-md-2" ><strong>Department</strong></div>
+        <div class="col-md-9"><strong>Contents</strong></div>
+        <div class="col-md-2"><strong>Date</strong></div>
+    </div>
+    <hr/>
     <%
         for (int i = 0; i < nList.size(); i++) {
             NewsDTO nDTO = nList.get(i);
     %>
-    <div class="col-md-1"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>
-    <div class="col-md-7"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>
+    <div class="row" style="margin: 0.5em auto; display: flex; justify-content : center;">
+    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>
+    <div class="col-md-9"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>
     <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_date())%></div>
-
+    </div>
+    <hr/>
     <%
         }
     %>
 </div>
 
 <!-- FOOTER =============================-->
-<div class="footer text-center" style="width: 100%; position: fixed; bottom: 0;">
+<div class="footer text-center" style="width: 100%; position: -ms-device-fixed; bottom: 0;">
     <div class="container">
         <div class="row">
             <p class="">

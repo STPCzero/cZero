@@ -22,7 +22,7 @@ import java.util.Map;
 @Service("BicycleService")
 public class BicycleService implements IBicycleService {
     public BicycleDTO callBicycleApi() throws Exception {
-        log.info(this.getClass().getName()+".callBicycleApi Start!!");
+        log.info(this.getClass().getName()+".callBicycleApi Start!!!");
         StringBuilder urlBuilder = new StringBuilder("http://openapi.seoul.go.kr:8088"); /*URL*/
         urlBuilder.append("/" +  URLEncoder.encode("777879644d68796538336d6e4c747a","UTF-8") ); /*인증키 (sample사용시에는 호출시 제한됩니다.)*/
         urlBuilder.append("/" +  URLEncoder.encode("json","UTF-8") ); /*요청파일타입 (xml,xmlf,xls,json) */

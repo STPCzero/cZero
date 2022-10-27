@@ -84,29 +84,29 @@
 
 		/*$(function () {
 
-			//목록 버튼
-			$("#btnList").click(function () {
-				location.href = "/market/market-list";
-			});
+           //목록 버튼
+           $("#btnList").click(function () {
+              location.href = "/market/market-list";
+           });
 
 
-			//수정 버튼
-			$("#btnUpdate").click(function (<%--<%=edit%>--%>) {
-				if (confirm("수정하시겠습니까?")) {
-					document.form1.action = "/market/market-modify";
-					document.form1.submit();
-				}
-			});
+           //수정 버튼
+           $("#btnUpdate").click(function (<%--<%=edit%>--%>) {
+            if (confirm("수정하시겠습니까?")) {
+               document.form1.action = "/market/market-modify";
+               document.form1.submit();
+            }
+         });
 
 
-			//삭제 버튼
-			$("#btnDelete").click(function (<%--<%=edit%>--%>) {
-				if (confirm("삭제하시겠습니까?")) {
-					document.form1.action = "deleteMarket";
-					document.form1.submit();
-				}
-			});
-		});*/
+         //삭제 버튼
+         $("#btnDelete").click(function (<%--<%=edit%>--%>) {
+            if (confirm("삭제하시겠습니까?")) {
+               document.form1.action = "deleteMarket";
+               document.form1.submit();
+            }
+         });
+      });*/
 
 
 
@@ -218,39 +218,39 @@
 
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
-<div class="wrapper">
-	<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
-			<i class="fa fa-bars"></i>
-			<span class="sr-only">Toggle navigation</span>
-			</button>
-			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
-		</div>
-		<div id="navbar-collapse-02" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="index">Home</a></li>
-				<li class="propClone"><a href="market-list">Market</a></li>
-				<li class="propClone"><a href="product">Checklist</a></li>
-				<li class="propClone"><a href="checkout">Api</a></li>
-				<li class="propClone"><a href="contact">Mypage</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="text-pageheader">
-					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-						 Market
+	<div class="wrapper">
+		<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle navigation</span>
+					</button>
+					<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
+				</div>
+				<div id="navbar-collapse-02" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="propClone"><a href="/index">Home</a></li>
+						<li class="propClone"><a href="/market/market-list">Market</a></li>
+						<li class="propClone"><a href="/checklist/checklist">Checklist</a></li>
+						<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
+						<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="text-pageheader">
+						<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
+							Market
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </header>
 
 <!-- CONTENT =============================-->
@@ -261,15 +261,15 @@
 				<h1 class="text-center latestitems">OUR PRODUCTS</h1>
 			</div>
 			<div class="wow-hr type_short">
-			<span class="wow-hr-h">
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			</span>
+         <span class="wow-hr-h">
+         <i class="fa fa-star"></i>
+         <i class="fa fa-star"></i>
+         <i class="fa fa-star"></i>
+         </span>
 			</div>
 		</div>
 		<div style="margin: 0 auto">
-			<span class="contact100-form-title" style="text-align: center">
+         <span class="contact100-form-title" style="text-align: center">
                게시물 보기
             </span>
 			<form>
@@ -290,10 +290,10 @@
 								</td>
 							</tr>
 							<%--<tr>
-                                <td colspan="4" height="300px" valign="top">
-                                    <%=CmmUtil.nvl(mDTO.getContents()).replaceAll("\r\n", "<br/>") %>
-                                </td>
-                            <tr>--%>
+                                       <td colspan="4" height="300px" valign="top">
+                                           <%=CmmUtil.nvl(mDTO.getContents()).replaceAll("\r\n", "<br/>") %>
+                                       </td>
+                                   <tr>--%>
 							<div style="width:800px;">
 								<td><textarea class="form-control" style="height: 400px" id="content" name="content"
 											  rows="3" cols="80"
