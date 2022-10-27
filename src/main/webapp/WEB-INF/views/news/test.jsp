@@ -12,20 +12,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">\
-    <style>
-        :hover {
+    <link href="../css/style.css" rel="stylesheet">
+<%--    <style>--%>
+<%--        :hover {--%>
 
-            opacity:0.6;
+<%--            opacity:0.6;--%>
 
-            -webkit-transition: visibility 0s, opacity 0.3s;
+<%--            -webkit-transition: visibility 0s, opacity 0.3s;--%>
 
-            -moz-transition: visibility 0s, opacity 0.3s;
+<%--            -moz-transition: visibility 0s, opacity 0.3s;--%>
 
-            transition: visibility 0s, opacity 0.3s;
+<%--            transition: visibility 0s, opacity 0.3s;--%>
 
-        }
-    </style>
+<%--        }--%>
+<%--    </style>--%>
 
     @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
 
