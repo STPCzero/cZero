@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @RequestMapping("bicycle")
-@RestController
+@Controller
 public class BicycleController {
 
     @Resource(name = "BicycleService")
