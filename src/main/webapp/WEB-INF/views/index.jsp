@@ -45,10 +45,10 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div>
-					<div class="text-homeimage maintext-image titletd" data-scrollreveal="enter top over 1.5s after 0.1s" >
+					<div class="text-homeimage maintext-image titlefont" data-scrollreveal="enter top over 1.5s after 0.1s" >
 						탄소중립이란?
 					</div>
-					<div class="text-homeimage2 subtext-image titletd2" data-scrollreveal="enter bottom over 1.7s after 0.3s" >
+					<div class="text-homeimage2 subtext-image titlefont2" data-scrollreveal="enter bottom over 1.7s after 0.3s" >
 						 <strong>이산화탄소 배출량만큼 흡수량도 늘려 실질적인 <br>이산화탄소 배출량을 ‘0(zero)’으로 만든다는 개념</strong>
 					</div>
 				</div>
