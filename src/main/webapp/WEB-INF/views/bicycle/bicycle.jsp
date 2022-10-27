@@ -12,7 +12,7 @@
 //    if(pList == null) {
 //        pList = null;
 //    }
-
+// test
 %>
 <!DOCTYPE html>
 <html>
@@ -125,7 +125,7 @@
         <div class="row">
             <p class="">
                 Thanks for visiting our Website.<br>
-                Copyright ⓒ 2022. Team.CZero All rights reserved.
+                Copyright ⓒ 2022. Team.CZero All rights reserved..
             </p>
         </div>
     </div>
