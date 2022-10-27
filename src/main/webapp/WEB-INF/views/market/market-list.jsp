@@ -241,7 +241,7 @@
                                 <p>등록일 : <%=CmmUtil.nvl(mDTO.getMk_date()) %></p>
                                 </p>
                             </div>
-                            <span class="maxproduct"><img src="../images/mk_soap.jpg" alt=""></span>
+                            <span class="maxproduct"><img src="/images/mk_soap.jpg" alt=""></span>
                         </div>
                         <div class="product-details">
                             <a href="#">
