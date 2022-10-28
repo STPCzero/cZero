@@ -93,6 +93,7 @@
                 <tr class="grid-adm-members py-2 px-1 text-center">
                     <td>
                         <input type="checkbox">
+                        <input type="hidden" value="<%= uList.get(i).getUser_seq()%>">
                     </td>
                     <td><%= uList.get(i).getUser_id()%></td>
                     <td><%= uList.get(i).getUser_name()%></td>
