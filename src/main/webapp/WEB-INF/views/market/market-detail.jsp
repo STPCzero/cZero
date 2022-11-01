@@ -218,39 +218,40 @@
 
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
-<div class="wrapper">
-	<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
-			<i class="fa fa-bars"></i>
-			<span class="sr-only">Toggle navigation</span>
-			</button>
-			<img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
-		</div>
-		<div id="navbar-collapse-02" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="propClone"><a href="index">Home</a></li>
-				<li class="propClone"><a href="market-list">Market</a></li>
-				<li class="propClone"><a href="product">Checklist</a></li>
-				<li class="propClone"><a href="checkout">Api</a></li>
-				<li class="propClone"><a href="contact">Mypage</a></li>
-			</ul>
-		</div>
-	</div>
-	</nav>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<div class="text-pageheader">
-					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-						 Market
+	<div class="wrapper">
+		<nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
+						<i class="fa fa-bars"></i>
+						<span class="sr-only">Toggle navigation</span>
+					</button>
+					<a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고"></a>
+				</div>
+				<div id="navbar-collapse-02" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="propClone"><a href="/market/market-list">Market</a></li>
+						<li class="propClone"><a href="/news/news">News</a></li>
+						<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
+						<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+						<li class="propClone"><a href="/login/login">Login</a></li>
+						<li class="propClone"><a href="">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<div class="text-pageheader">
+						<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
+							Market
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </header>
 
 <!-- CONTENT =============================-->

@@ -64,7 +64,7 @@ public class LoginController {
 
             if (res == 1) {
                 msg = "회원가입 되었습니다. 환영합니다";
-                url = "/index";
+                url = "/login/login";
 
             } else if (res == 2) {
                 msg = "이미 가입된 이메일 주소입니다.";

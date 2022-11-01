@@ -114,7 +114,7 @@
 <nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="login.jsp"></a>
+            <a class="navbar-brand" href="/index"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
