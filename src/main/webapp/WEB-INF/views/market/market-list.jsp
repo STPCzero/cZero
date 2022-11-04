@@ -206,18 +206,7 @@
                     }
 
 
-            %><%--
-            <p>
-                <%
-            if (CmmUtil.nvl(mDTO.getNotice_yn()).equals("1")) {
-                out.print("<b>[공지]</b>");
-
-            } else {
-                out.print(CmmUtil.nvl(mDTO.getMk_seq()));
-
-            }
-                %>
-            </p>--%>
+            %>
             <% UserInfoDTO uDTO = (UserInfoDTO) request.getAttribute("uDTO"); %>
 
 
@@ -267,18 +256,6 @@
             </button>
         </span>
     </div>
-    <%--<form class="contact100-form">
-        <div class="container-contact100-form-btn">
-            <nav aria-label="..." style="width: 10%; margin: auto;">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </form>--%>
     <div style="text-align: center; margin-bottom: 50px;">
 
         <div class="btn-group " style="margin: 0 auto; display: inline-block;">

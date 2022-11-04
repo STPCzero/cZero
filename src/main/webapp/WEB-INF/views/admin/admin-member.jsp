@@ -78,14 +78,14 @@
         <table class="admMemberList w-11/12 mx-auto mt-4">
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
-                <td>
+                <th>
                     <input type="checkbox">
-                </td>
-                <td>아이디</td>
-                <td>이름</td>
-                <td>닉네임</td>
-                <td>권한</td>
-                <td>탈퇴</td>
+                </th>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>닉네임</th>
+                <th>권한</th>
+                <th>탈퇴</th>
             </tr>
             </thead>
             <tbody class="shadow">
@@ -96,14 +96,15 @@
                     </td>
                     <td><%= uList.get(i).getUser_id()%></td>
                     <td><%= uList.get(i).getUser_name()%></td>
-                    <td><%= uList.get(i).getUser_id()%></td>
-                    <td>
+                    <td></td>
+                    <td></td>
+                    <%--<td>
                         <% if(uList.get(i).getUser_type().equals("0")) {%>
                         <span>관리자</span>
                         <% } else {%>
                         <span>일반 회원</span>
                         <% } %>
-                    </td>
+                    </td>--%>
                     <td>
                         <a href="#">
                             <i class="fas fa-user-times"></i>
