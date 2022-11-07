@@ -86,10 +86,10 @@
                 <th>
                     <input type="checkbox">
                 </th>
-                <th style="cursor: pointer;" onclick="sortTable(0)">등록일</th>
-                <th style="cursor: pointer;" onclick="sortTable(1)">닉네임</th>
-                <th style="cursor: pointer;" onclick="sortTable(2)">제목</th>
-                <th style="cursor: pointer;" onclick="sortTable(3)">가격</th>
+                <th style="cursor: pointer;">등록일</th>
+                <th style="cursor: pointer;">닉네임</th>
+                <th style="cursor: pointer;">제목</th>
+                <th style="cursor: pointer;">가격</th>
             </tr>
             </thead>
             <tbody class="shadow">
