@@ -32,49 +32,6 @@
     <meta charset="utf-8">
     <title>회원 관리 페이지 - 관리자</title>
 
-    <script type="text/javascript">
-
-        function sortTable(n) {
-            var table, rows, switching, o, x, y, shouldSwitch, dir, swithcount = 0;
-            table = document.getElementById("inventory");
-            switching = true;
-            dir = "asc";
-
-            while (switching){
-                switching = false;
-                rows = table.getElementsByTagName("TR");
-
-                for (o = 1; o <(rows.length - 1); o++){
-                    shouldSwitch = false;
-                    x = rows[o].getElementsByTagName("TD")[n];
-                    y = rows[o + 1].getElementsByTagName("TD")[n];
-
-                    if (dir == "asc"){
-                        if (x.innerHTML.toLowerCase() > (y.innerHTML.toLowerCase()){
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < (y.innerHTML.toLowerCase()){
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (shouldSwitch){
-                    rows[o].parentNode.insertBefore(rows[o + 1], rows[o]);
-                    switching = true;
-                    swithcount ++;
-                } else {
-                    if (swithcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
-            }
-        }
-    </script>
 
 </head>
 <body>
@@ -155,6 +112,42 @@
     </div>
 
 </div>
+<script src="../js/jquery-.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#inventory th').each(function (column) {
+            $(this).click(function() {
+                if($(this).is('.asc')) {		// 현재 오름차순인 경우
+                    $(this).removeClass('asc');
+                    $(this).addClass('desc');	// 내림차순으로 변경
+                    $(this).children().attr('src', "resources/img.png");	// 이미지 src 수정
+                    sortdir=-1;
+
+                } else {	// 현재 오름차순 아닌 경우
+                    $(this).addClass('asc');	// 오름차순으로 변경
+                    $(this).removeClass('desc'); sortdir=1;
+                    $(this).children().attr('src', "resources/img.png");	// 이미지 src 수정
+                }
+
+                $(this).siblings().removeClass('asc');
+                $(this).siblings().removeClass('desc');
+
+                var rec = $('#inventory').find('tbody>tr').get();
+
+                rec.sort(function (a, b) {
+                    var val1 = $(a).children('td').eq(column).text().toUpperCase();
+                    var val2 = $(b).children('td').eq(column).text().toUpperCase();
+                    return (val1 < val2)?-sortdir:(val1>val2)?sortdir:0;
+                });
+
+                $.each(rec, function(index, row) {
+                    $('#inventory tbody').append(row);
+                });
+            });
+        });
+    });
+</script>
 
 </body>
 </html>
