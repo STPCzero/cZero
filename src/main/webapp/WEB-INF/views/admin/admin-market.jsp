@@ -65,7 +65,7 @@
                         </a>
                     </li>
                     <li class="p-2">
-                        <a href="#">
+                        <a href="/admin/admin-market">
                             게시물 관리
                         </a>
                     </li>

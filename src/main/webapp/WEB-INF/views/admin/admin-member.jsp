@@ -60,7 +60,7 @@
                         </a>
                     </li>
                     <li class="p-2">
-                        <a href="#">
+                        <a href="/admin/admin-market">
                             게시물 관리
                         </a>
                     </li>
@@ -74,6 +74,7 @@
         </aside>
     </div>
     <div class="shadow-xl border border-gray-200 rounded-xl w-full min-h-screen ml-2 mb-4">
+
         <div style="text-align: center; margin-top: 1%"><strong>회원관리</strong></div>
         <table class="admMemberList w-11/12 mx-auto mt-4" id="inventory">
             <thead>
