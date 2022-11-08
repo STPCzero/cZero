@@ -5,13 +5,13 @@
 <mapper namespace="kopo.poly.persistance.mapper.IAdminMapper">
     <!-- admin 유저 정보 출력 쿼리 -->
     <select id="geMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-        SELECT *
-        FROM USER_INFO
+        SELECT * FROM USER_INFO
+        WHERE USER_NAME LIKE #{search}
         ORDER BY USER_SEQ DESC
     </select>
 
     <delete id="delMembers" parameterType="UserInfoDTO">
-        DELETE FROM USER_INFOs
+        DELETE FROM USER_INFO
         WHERE USER_SEQ = #{user_seq}
     </delete>
 </mapper>

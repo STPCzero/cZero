@@ -22,8 +22,15 @@ public class AdminController {
     @GetMapping("admin-member")
     public String adminMembers(Model model) throws Exception {
         log.info(getClass().getName() + " admin-member Start!!!");
+        String search = "'%"+"현"+"%'";
 
-        List<UserInfoDTO> uList = adminService.geMembersInfo();
+        log.info("search: "+search);
+        UserInfoDTO uDTO = new UserInfoDTO();
+
+        uDTO.setSearch(search);
+
+        log.info("값 확인 : "+uDTO.getSearch());
+        List<UserInfoDTO> uList = adminService.geMembersInfo(uDTO);
 
         model.addAttribute("uList", uList);
         log.info(getClass().getName() + " admin-member End!!!");

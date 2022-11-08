@@ -24,7 +24,21 @@
             border-top:0px;
         }
 
-
+        <!-- 검색창 -->
+        #searchinput {
+            width: 50%;
+        }
+        #searchclear {
+            position: absolute;
+            right: 5px;
+            top: 0;
+            bottom: 0;
+            height: 14px;
+            margin: auto;
+            font-size: 14px;
+            cursor: pointer;
+            color: #ccc;
+        }
     </style>
     <meta charset="utf-8">
     <title>회원 관리 페이지 - 관리자</title>
@@ -75,6 +89,14 @@
     </div>
     <div class="shadow-xl border border-gray-200 rounded-xl w-full min-h-screen ml-2 mb-4">
         <div style="text-align: center; margin-top: 1%"><strong>회원관리</strong></div>
+
+        <!-- 검색창 -->
+        <div class="btn-group">
+            <input id="searchinput" type="search" class="form-control">
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
+        </div>
+
+
         <table class="admMemberList w-11/12 mx-auto mt-4">
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
