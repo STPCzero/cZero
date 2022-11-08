@@ -19,10 +19,10 @@ public class AdminService implements IAdminService {
     public AdminService(IAdminMapper adminMapper) { this.adminMapper = adminMapper; }
 
     @Override
-    public List<UserInfoDTO> geMembersInfo(UserInfoDTO uDTO) throws Exception {
-        log.info(getClass().getName() + " geMembersInfo Start!!!");
-        List<UserInfoDTO> rList = adminMapper.geMembersInfo(uDTO);
-        log.info(getClass().getName() + " geMembersInfo End!!!");
+    public List<UserInfoDTO> getMembersInfo(UserInfoDTO uDTO) throws Exception {
+        log.info(getClass().getName() + " getMembersInfo Start!!!");
+        List<UserInfoDTO> rList = adminMapper.getMembersInfo(uDTO);
+        log.info(getClass().getName() + " getMembersInfo End!!!");
         return rList;
     }
 }

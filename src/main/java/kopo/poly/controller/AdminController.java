@@ -30,7 +30,7 @@ public class AdminController {
         uDTO.setUser_name(search);
 
         log.info("값 확인 : "+uDTO.getUser_name());
-        List<UserInfoDTO> uList = adminService.geMembersInfo(uDTO);
+        List<UserInfoDTO> uList = adminService.getMembersInfo(uDTO);
 
         model.addAttribute("uList", uList);
         log.info(getClass().getName() + " admin-member End!!!");

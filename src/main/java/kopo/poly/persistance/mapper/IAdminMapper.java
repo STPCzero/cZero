@@ -7,5 +7,5 @@ import java.util.List;
 
 @Mapper
 public interface IAdminMapper {
-    List<UserInfoDTO> geMembersInfo(UserInfoDTO uDTO) throws Exception;
+    List<UserInfoDTO> getMembersInfo(UserInfoDTO uDTO) throws Exception;
 }

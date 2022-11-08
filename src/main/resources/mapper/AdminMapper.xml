@@ -4,7 +4,7 @@
 
 <mapper namespace="kopo.poly.persistance.mapper.IAdminMapper">
     <!-- admin 유저 정보 출력 쿼리 -->
-    <select id="geMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+    <select id="getMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
         SELECT * FROM USER_INFO
         WHERE USER_NAME LIKE '%'||#{user_name}||'%'
         ORDER BY USER_SEQ DESC

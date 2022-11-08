@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="kopo.poly.dto.UserInfoDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="kopo.poly.util.EncryptUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<UserInfoDTO> uList = (List<UserInfoDTO>) request.getAttribute("uList");
@@ -84,7 +85,7 @@
                 </th>
                 <th style="cursor: pointer;">아이디</th>
                 <th style="cursor: pointer;">이름</th>
-                <th style="cursor: pointer;">닉네임</th>
+                <th style="cursor: pointer;">이메일</th>
                 <th style="cursor: pointer;">권한</th>
                 <th style="cursor: pointer;">탈퇴</th>
             </tr>
@@ -97,15 +98,14 @@
                     </td>
                     <td><%= uList.get(i).getUser_id()%></td>
                     <td><%= uList.get(i).getUser_name()%></td>
-                    <td></td>
-                    <td></td>
-                    <%--<td>
+                    <td><%= EncryptUtil.decAES128CBC(uList.get(i).getUser_email())%></td>
+                    <td>
                         <% if(uList.get(i).getUser_type().equals("0")) {%>
                         <span>관리자</span>
                         <% } else {%>
                         <span>일반 회원</span>
                         <% } %>
-                    </td>--%>
+                    </td>
                     <td>
                         <a href="#">
                             <i class="fas fa-user-times"></i>
