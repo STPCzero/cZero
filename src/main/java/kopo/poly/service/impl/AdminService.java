@@ -21,7 +21,7 @@ public class AdminService implements IAdminService {
     @Override
     public List<UserInfoDTO> geMembersInfo(UserInfoDTO uDTO) throws Exception {
         log.info(getClass().getName() + " geMembersInfo Start!!!");
-        List<UserInfoDTO> rList = adminMapper.geMembersInfo();
+        List<UserInfoDTO> rList = adminMapper.geMembersInfo(uDTO);
         log.info(getClass().getName() + " geMembersInfo End!!!");
         return rList;
     }
