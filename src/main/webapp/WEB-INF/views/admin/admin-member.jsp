@@ -25,6 +25,52 @@
         }
 
 
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        body {
+            background: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .search {
+            width: 100%;
+            display: flex;
+        }
+
+        .searchTerm {
+            width: 80%;
+            border: 3px solid #4B5563;
+            border-right: none;
+            padding: 5px;
+            height: 2.25rem;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+        }
+
+        .searchTerm:focus {
+            color: #4B5563;
+        }
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #4B5563;
+            background: #4B5563;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /*Resize the wrap to see the search bar change!*/
+        .wrap {
+            width: 400px;
+            left: 50%;
+        }
+
+
     </style>
     <meta charset="utf-8">
     <title>회원 관리 페이지 - 관리자</title>
@@ -76,6 +122,20 @@
     <div class="shadow-xl border border-gray-200 rounded-xl w-full min-h-screen ml-2 mb-4">
 
         <div style="text-align: center; margin-top: 1%"><strong>회원관리</strong></div>
+
+        <%--Search bar--%>
+        <div style="float: right; margin-top: 1%; margin-bottom: 2%; margin-right: 1.5%;">
+            <div class="wrap">
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="Search">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
         <table class="admMemberList w-11/12 mx-auto mt-4" id="inventory">
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
