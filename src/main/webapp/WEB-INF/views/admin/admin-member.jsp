@@ -24,21 +24,7 @@
             border-top:0px;
         }
 
-        <!-- 검색창 -->
-        #searchinput {
-            width: 50%;
-        }
-        #searchclear {
-            position: absolute;
-            right: 5px;
-            top: 0;
-            bottom: 0;
-            height: 14px;
-            margin: auto;
-            font-size: 14px;
-            cursor: pointer;
-            color: #ccc;
-        }
+
     </style>
     <meta charset="utf-8">
     <title>회원 관리 페이지 - 관리자</title>
@@ -89,25 +75,17 @@
     </div>
     <div class="shadow-xl border border-gray-200 rounded-xl w-full min-h-screen ml-2 mb-4">
         <div style="text-align: center; margin-top: 1%"><strong>회원관리</strong></div>
-
-        <!-- 검색창 -->
-        <div class="btn-group">
-            <input id="searchinput" type="search" class="form-control">
-            <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
-        </div>
-
-
-        <table class="admMemberList w-11/12 mx-auto mt-4">
+        <table class="admMemberList w-11/12 mx-auto mt-4" id="inventory">
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
-                <td>
+                <th>
                     <input type="checkbox">
-                </td>
-                <td>아이디</td>
-                <td>이름</td>
-                <td>닉네임</td>
-                <td>권한</td>
-                <td>탈퇴</td>
+                </th>
+                <th style="cursor: pointer;">아이디</th>
+                <th style="cursor: pointer;">이름</th>
+                <th style="cursor: pointer;">닉네임</th>
+                <th style="cursor: pointer;">권한</th>
+                <th style="cursor: pointer;">탈퇴</th>
             </tr>
             </thead>
             <tbody class="shadow">
@@ -115,18 +93,18 @@
                 <tr class="grid-adm-members py-2 px-1 text-center">
                     <td>
                         <input type="checkbox">
-                        <input type="hidden" value="<%= uList.get(i).getUser_seq()%>">
                     </td>
                     <td><%= uList.get(i).getUser_id()%></td>
                     <td><%= uList.get(i).getUser_name()%></td>
-                    <td><%= uList.get(i).getUser_id()%></td>
-                    <td>
+                    <td></td>
+                    <td></td>
+                    <%--<td>
                         <% if(uList.get(i).getUser_type().equals("0")) {%>
                         <span>관리자</span>
                         <% } else {%>
                         <span>일반 회원</span>
                         <% } %>
-                    </td>
+                    </td>--%>
                     <td>
                         <a href="#">
                             <i class="fas fa-user-times"></i>
@@ -138,6 +116,42 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#inventory th').each(function (column) {
+            $(this).click(function() {
+                if($(this).is('.asc')) {		// 현재 오름차순인 경우
+                    $(this).removeClass('asc');
+                    $(this).addClass('desc');	// 내림차순으로 변경
+                    $(this).children().attr('src', "resources/img.png");	// 이미지 src 수정
+                    sortdir=-1;
+
+                } else {	// 현재 오름차순 아닌 경우
+                    $(this).addClass('asc');	// 오름차순으로 변경
+                    $(this).removeClass('desc'); sortdir=1;
+                    $(this).children().attr('src', "resources/img.png");	// 이미지 src 수정
+                }
+
+                $(this).siblings().removeClass('asc');
+                $(this).siblings().removeClass('desc');
+
+                var rec = $('#inventory').find('tbody>tr').get();
+
+                rec.sort(function (a, b) {
+                    var val1 = $(a).children('td').eq(column).text().toUpperCase();
+                    var val2 = $(b).children('td').eq(column).text().toUpperCase();
+                    return (val1 < val2)?-sortdir:(val1>val2)?sortdir:0;
+                });
+
+                $.each(rec, function(index, row) {
+                    $('#inventory tbody').append(row);
+                });
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

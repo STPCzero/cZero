@@ -53,4 +53,5 @@
         DELETE FROM MARKET
         WHERE MK_SEQ = #{mk_seq}
     </delete>
+
 </mapper>
