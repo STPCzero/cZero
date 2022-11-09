@@ -28,6 +28,52 @@
         }
 
 
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        body {
+            background: #f2f2f2;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .search {
+            width: 100%;
+            display: flex;
+        }
+
+        .searchTerm {
+            width: 80%;
+            border: 3px solid #4B5563;
+            border-right: none;
+            padding: 5px;
+            height: 2.25rem;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+        }
+
+        .searchTerm:focus {
+            color: #4B5563;
+        }
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #4B5563;
+            background: #4B5563;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /*Resize the wrap to see the search bar change!*/
+        .wrap {
+            width: 400px;
+            left: 50%;
+        }
+
+
     </style>
     <meta charset="utf-8">
     <title>회원 관리 페이지 - 관리자</title>
@@ -78,8 +124,25 @@
             </div>
         </aside>
     </div>
+
+
     <div class="shadow-xl border border-gray-200 rounded-xl w-full min-h-screen ml-2 mb-4">
         <div style="text-align: center; margin-top: 1%"><strong>마켓관리</strong></div>
+
+
+        <%--Search bar--%>
+        <div style="float: right; margin-top: 1%; margin-bottom: 2%; margin-right: 1.5%;">
+            <div class="wrap">
+                <div class="search">
+                    <input type="text" class="searchTerm" placeholder="Search">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
         <table class="admMemberList w-11/12 mx-auto mt-4" id="inventory">
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
@@ -93,16 +156,20 @@
             </tr>
             </thead>
             <tbody class="shadow">
-                <% for (int i = 0; i < mList.size(); i++) {
-                    MarketDTO mDTO = mList.get(i);%>
+            <% for (int i = 0; i < mList.size(); i++) {
+                MarketDTO mDTO = mList.get(i);%>
             <tr class="grid-adm-members py-2 px-1 text-center">
                 <td>
                     <input type="checkbox">
                 </td>
-                <td valign="middle"><%= mList.get(i).getMk_date()%></td>
-                <td><%= mList.get(i).getUser_name()%></td>
-                <td><%=CmmUtil.nvl(mDTO.getTitle())%></td>
-                <td><%=CmmUtil.nvl(mDTO.getPrice())%></td>
+                <td valign="middle"><%= mList.get(i).getMk_date()%>
+                </td>
+                <td><%= mList.get(i).getUser_name()%>
+                </td>
+                <td><%=CmmUtil.nvl(mDTO.getTitle())%>
+                </td>
+                <td><%=CmmUtil.nvl(mDTO.getPrice())%>
+                </td>
                 <td><img width="40" height="40" src="../images/scorilo2-70x70.jpg" alt=""></td>
 
             </tr>
@@ -115,18 +182,19 @@
 <script src="../js/jquery-.js"></script>
 <script type="text/javascript">
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('#inventory th').each(function (column) {
-            $(this).click(function() {
-                if($(this).is('.asc')) {		// 현재 오름차순인 경우
+            $(this).click(function () {
+                if ($(this).is('.asc')) {		// 현재 오름차순인 경우
                     $(this).removeClass('asc');
                     $(this).addClass('desc');	// 내림차순으로 변경
                     $(this).children().attr('src', "resources/img.png");	// 이미지 src 수정
-                    sortdir=-1;
+                    sortdir = -1;
 
                 } else {	// 현재 오름차순 아닌 경우
                     $(this).addClass('asc');	// 오름차순으로 변경
-                    $(this).removeClass('desc'); sortdir=1;
+                    $(this).removeClass('desc');
+                    sortdir = 1;
                     $(this).children().attr('src', "resources/img.png");	// 이미지 src 수정
                 }
 
@@ -138,10 +206,10 @@
                 rec.sort(function (a, b) {
                     var val1 = $(a).children('td').eq(column).text().toUpperCase();
                     var val2 = $(b).children('td').eq(column).text().toUpperCase();
-                    return (val1 < val2)?-sortdir:(val1>val2)?sortdir:0;
+                    return (val1 < val2) ? -sortdir : (val1 > val2) ? sortdir : 0;
                 });
 
-                $.each(rec, function(index, row) {
+                $.each(rec, function (index, row) {
                     $('#inventory tbody').append(row);
                 });
             });
