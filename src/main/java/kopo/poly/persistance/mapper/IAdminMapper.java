@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface IAdminMapper {
     List<UserInfoDTO> getMembersInfo(UserInfoDTO uDTO) throws Exception;
+
+    int getMembersCount() throws Exception;
 }

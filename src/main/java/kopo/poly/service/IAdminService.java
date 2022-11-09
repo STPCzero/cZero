@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IAdminService {
     List<UserInfoDTO> getMembersInfo(UserInfoDTO uDTO)throws Exception;
+
+    int getMembersCount() throws Exception;
 }

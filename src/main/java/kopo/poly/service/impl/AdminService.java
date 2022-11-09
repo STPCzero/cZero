@@ -25,4 +25,11 @@ public class AdminService implements IAdminService {
         log.info(getClass().getName() + " getMembersInfo End!!!");
         return rList;
     }
+
+    @Override
+    public int getMembersCount() throws Exception {
+        log.info(getClass().getName() + " getMembersCount Start!!!");
+        int res = adminMapper.getMembersCount();
+        return res;
+    }
 }

@@ -14,6 +14,7 @@ public class UserInfoDTO {
     private String user_email;
     private String user_type;
     private String EXISTS_YN;
-    //private String search;
+    private int start;
+    private int finish;
 
 }
