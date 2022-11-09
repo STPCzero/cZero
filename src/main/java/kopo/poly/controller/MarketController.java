@@ -235,27 +235,5 @@ public class MarketController {
 
         return "/market/MsgToList";
     }
-    @GetMapping(value = "admin-market")
-    public String adminmarket(ModelMap model) throws Exception {
-        log.info(this.getClass().getName() + ".admin-market Start!!");
 
-        // 마켓리스트 가져오기
-        List<MarketDTO> mList = marketService.getMarketList();
-        UserInfoDTO uDTO = new UserInfoDTO();
-
-
-        if (mList == null) {
-            mList = new ArrayList<>();
-        }
-
-
-        // 조회된 리스트 결과값 넣어주기
-        model.addAttribute("mList", mList);
-
-        model.addAttribute("uDTO",uDTO);
-
-        log.info(this.getClass().getName() + ".admin-market End!!");
-
-        return "/admin/admin-market";
-    }
 }

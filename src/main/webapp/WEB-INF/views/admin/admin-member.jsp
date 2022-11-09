@@ -6,6 +6,12 @@
 <%
     List<UserInfoDTO> uList = (List<UserInfoDTO>) request.getAttribute("uList");
     if(uList == null) uList = new ArrayList<>();
+
+    boolean prev = (boolean) request.getAttribute("prev");
+    boolean next = (boolean) request.getAttribute("next");
+    int startPageNum = (int) request.getAttribute("startPageNum");
+    int endPageNum = (int) request.getAttribute("endPageNum");
+    int select = (int) request.getAttribute("select");
 %>
 <!DOCTYPE html>
 <html>
@@ -129,7 +135,7 @@
             <div class="wrap">
                 <div class="search">
                     <input type="text" class="searchTerm" placeholder="Search">
-                    <button type="submit" class="searchButton">
+                    <button class="searchButton">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
@@ -175,12 +181,54 @@
            <% }%>
             </tbody>
         </table>
+        <div style="text-align: center; margin: 50px 0;">
+            <% if(prev == true) {%>
+            <button type="button" class="btn btn-secondary">Prev</button>
+            <%}%>
+            <div class="btn-group " style="margin: 0 auto; display: inline-block;">
+                <% for (int i = startPageNum; i <= endPageNum; i++) {
+                    if(select == i) {%>
+                <a style="color: red;" href="/admin/admin-member?num=<%=i%>">
+                    <button class="btn">
+                        <%=i%>
+                    </button></a>
+                <%} else {%>
+                <a style="" href="/admin/admin-member?num=<%=i%>">
+                    <button class="btn">
+                        <%=i%>
+                    </button></a>
+                <% }
+                } %>
+            </div>
+            <% if(next == true) {%>
+            <button type="button" class="btn btn-secondary">Next</button>
+            <% } %>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript">
 
     $(document).ready(function(){
+
+        //검색 ajax
+        $('.searchButton').click(function(){
+            $.ajax({
+                // URL은 필수 요소이므로 반드시 구현해야 하는 Property입니다.
+                url: '/admin/admin-member', // 요청이 전송될 URL 주소
+                type: 'GET', // http 요청 방식 (default: ‘GET’)
+                timeout: 3000, // 요청 제한 시간 안에 완료되지 않으면 요청을 취소하거나 error 콜백을 호출.(단위: ms)
+                data: { key: value }, // 요청 시 포함되어질 데이터
+                success: function(data, status, xhr) {
+                    alert("성공");
+                },
+                error: function(xhr, status, error) {
+                    alert("error");
+                },
+            })
+        });
+
+
         $('#inventory th').each(function (column) {
             $(this).click(function() {
                 if($(this).is('.asc')) {		// 현재 오름차순인 경우
