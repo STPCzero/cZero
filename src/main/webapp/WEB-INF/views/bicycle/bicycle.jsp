@@ -105,10 +105,7 @@
 			</span>
             </div>
         </div>
-        <div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2" style="margin-bottom: 100px;">
-            <div id="clickLatlng"></div>
-            <div id="map" style="width:100%; min-height:500px;"></div>
-        </div>
+
 
 <%--        <div>--%>
 <%--            <% for(BicycleRowDTO i : pList){ %>--%>
@@ -119,6 +116,65 @@
 <%--            <% } %>--%>
 <%--        </div>--%>
     </div>
+    <div id="edd_checkout_wrap" class="" style="margin-bottom: 100px;">
+        <div id="clickLatlng"></div>
+        <div id="map" style="width:100%; min-height:750px;"></div>
+    </div>
+    <div class="store_box">
+        <div class="title_area">
+            <h2>매장찾기</h2>
+            <div class="btn_box">
+                <a href="#" class="btn_condition">조건 설정</a>
+                <a href="#" class="btn_here" id="location">현재 위치</a>
+            </div>
+        </div>
+        <!-- 조건설정 -->
+        <div class="condition_box">
+            <ul>
+                <li>
+                    <input type="checkbox" id="chkall" name="chkall" class="check_style" value="1">
+                    <label for="chkall" class="label_style2"><img src="/images/store/ico_tag_check_on.png" alt="all">모두선택</label>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="btn_srh" id="btnChkSearch">검색하기</a>
+            <button class="btn_close"><img src="/images/btn/btn_close2.gif" alt="닫기 버튼"></button>
+        </div>
+        <!-- //조건설정 -->
+        <div class="search_tab">
+            <!-- 빠른검색 -->
+            <h3 class="quick_srh on"><a href="#" id="quick_srh">빠른 검색</a></h3>
+            <div class="cont">
+                <div class="srh_box">
+                    <input type="text" id="keyword" name="keyword" data-val="매장명 또는 주소를 입력하세요." value="" onkeydown="if (event.keyCode==13) searchStore();">
+                    <button onclick="searchStore();void(0);"><img src="/images/sub/btn_quick_srh.gif" alt="조회하기"></button>
+                </div>
+            </div>
+        </div>
+        <!-- store_tab -->
+        <div class="store_tab">
+            <!-- STORE LOCATOR -->
+            <h3 class="store_locator  on"><a href="#" id="store_local">STORE LOCATOR</a></h3>
+            <div class="cont">
+                <ul id="storeListUL">
+                    <li data-lng="127.059475" data-lat="37.514524" data-no="31">
+                        <div class="num">1</div>
+                        <div class="store_txt">
+                            <p class="name">
+                                <span>삼성봉은사거리점<strong class="distance">33m</strong></span>
+                                <a href="javascript:storePop2('31');void(0);" class="btn_style6">자세히보기</a>
+                            </p>
+                            <p class="address">
+                                <span>서울시 강남구 영동대로 607 1,2층</span>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //store_tab -->
+    </div>
+
+
 </section>
 <!-- FOOTER =============================-->
 <div class="footer text-center">
