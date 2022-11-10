@@ -60,27 +60,27 @@
 
 <!-- CONTENT =============================-->
 
-<div class="container" style="border: 3px solid #dff0d8;border-radius: 4px; margin: 10px auto" >
-    <div class="row" style="margin: 1em auto; display: flex; justify-content : center;">
-        <div class="col-md-2" ><strong>Department</strong></div>
-        <div class="col-md-9"><strong>Contents</strong></div>
-        <div class="col-md-2"><strong>Date</strong></div>
-    </div>
-    <hr/>
-    <%
-        for (int i = 0; i < nList.size(); i++) {
-            NewsDTO nDTO = nList.get(i);
-    %>
-    <div class="row" style="margin: 0.5em auto; display: flex; justify-content : center;">
-    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>
-    <div class="col-md-9"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>
-    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_date())%></div>
-    </div>
-    <hr/>
-    <%
-        }
-    %>
-</div>
+<%--<div class="container" style="border: 3px solid #dff0d8;border-radius: 4px; margin: 10px auto" >--%>
+<%--    <div class="row" style="margin: 1em auto; display: flex; justify-content : center;">--%>
+<%--        <div class="col-md-2" ><strong>Department</strong></div>--%>
+<%--        <div class="col-md-9"><strong>Contents</strong></div>--%>
+<%--        <div class="col-md-2"><strong>Date</strong></div>--%>
+<%--    </div>--%>
+<%--    <hr/>--%>
+<%--    <%--%>
+<%--        for (int i = 0; i < nList.size(); i++) {--%>
+<%--            NewsDTO nDTO = nList.get(i);--%>
+<%--    %>--%>
+<%--    <div class="row" style="margin: 0.5em auto; display: flex; justify-content : center;">--%>
+<%--    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>--%>
+<%--    <div class="col-md-9"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>--%>
+<%--    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_date())%></div>--%>
+<%--    </div>--%>
+<%--    <hr/>--%>
+<%--    <%--%>
+<%--        }--%>
+<%--    %>--%>
+<%--</div>--%>
 
 <!-- FOOTER =============================-->
 <div class="footer text-center" style="width: 100%; position: -ms-device-fixed; bottom: 0;">

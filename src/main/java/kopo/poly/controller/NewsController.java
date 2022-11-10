@@ -19,10 +19,12 @@ public class NewsController {
     @Resource(name = "NewsService")
     private INewsService newsService;   // InewsService 를 newsService에 담기
 
-    /** news 페이지 가는 함수 */
+    /** 뉴스 수집하기 **/
     @RequestMapping("/news")
     public String showNews(ModelMap model) throws Exception{
         log.info(getClass().getName() + ".뉴스 Start!!!");
+
+        int res = newsService.InsertNews_Info();
 
         List<NewsDTO> nList = newsService.showNews();   // service의 함수를 사용할 때 @Resource 안에서 만든 변수를 사용
 
