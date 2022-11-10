@@ -3,7 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kopo.poly.persistance.mapper.INewsMapper">
-    <insert id="InsertNews_Info" parameterType="NewsDTO">
+    <select id="getNewsExists" parameterType="NewsDTO" resultType="NewsDTO">
+        select DECODE(COUNT(1), 0, 'N', 'Y') AS NEWS_EXISTS
+        from NEWS_INFO
+        where NEWS_SEQ = #{news_seq}
+    </select>
+    <insert id="insertNews_info" parameterType="NewsDTO">
         INSERT INTO NEWS_INFO
             (
              COLLECT_TIME,
@@ -23,10 +28,7 @@
                    #{news_url}
                   )
     </insert>
-    <select id="ShowNews_Info" parameterType="NewsDTO" resultType="NewsDTO">
-        select *
-        from NEWS_INFO
-        where
+    <update id="updateNews_Info" parameterType="NewsDTO">
 
-    </select>
+    </update>
 </mapper>

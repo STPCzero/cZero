@@ -26,6 +26,10 @@ public class NewsController {
 
         int res = newsService.InsertNews_Info();
 
+        if (res == 3 ){
+            log.info(); 
+        }
+
         List<NewsDTO> nList = newsService.showNews();   // service의 함수를 사용할 때 @Resource 안에서 만든 변수를 사용
 
         model.addAttribute("nList",nList);

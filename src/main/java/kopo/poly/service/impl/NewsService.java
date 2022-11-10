@@ -47,16 +47,13 @@ public class NewsService implements INewsService {
         // 전체 html 에서 select("")의 내용들 다 가져오기
         Elements elements = doc.select("td.title");
 
-        // hasNext 를 쓰기위한 Iterator 호출
-        Iterator<Element> NewsIt = elements.iterator(); // 뉴스 목록
-        
         NewsDTO nDTO = null;
 
         for (Element element : elements){
             nDTO = new NewsDTO(); // 수집한 데이터 저장할 DTO 메모리에 미리 올려두기
 
-            nDTO.setCollect_time(DateUtil.getDateTime("yyyyMMddhhmm"));
-            log.info("수집된 시간 : "+nDTO.getCollect_time());
+            String news_seq = element.select("td.num").text();
+            log.info(news_seq);
 
             String news_title = element.select("div.main-txt").text();
             nDTO.setNews_title(news_title);
@@ -78,41 +75,27 @@ public class NewsService implements INewsService {
             nDTO.setNews_url(news_url);
             log.info("제목 : " + nDTO.getNews_url());
 
-            res = newsMapper.InsertNews_Info(nDTO);
+            NewsDTO eDTO = newsMapper.getNewsExists(nDTO);
+
+            if ( eDTO == null){   // 값이 제대로 못 넘어오면
+                eDTO = new NewsDTO();   // 빈 것이라도 넣기
+                log.info(news_title + " : 값이 제대로 안넘어와서 null 을 출력했습니다");
+
+            }else if (CmmUtil.nvl(nDTO.getNews_exist()).equals('Y')){ // DB에 저장한 데이터가 있으면
+                int result = newsMapper.insertNews_info(nDTO); // DB에 데이터 업데이트 해주기
+                log.info(news_title + " : DB에 이미 데이터가 있어서 데이터 업데이트를 하였습니다 결과는 ~ " + result + "입니다.");
+            }else {                                             // DB에 데이터가 없으면
+                int result = newsMapper.insertNews_info(nDTO);  // DB에 데이터 저장해주기
+
+                if (result > 0){
+                    res = 1;
+                }else {
+                    res = 0;
+                }
+                log.info(news_title + " : DB에 데이터가 없어서 데이터 저장을 하였습니다 결과는 ~ " + res + "입니다.");
+            }
+
         }
-
-        /*while(NewsIt.hasNext()){
-
-            String News = CmmUtil.nvl(NewsIt.next().text().trim()); // 글 가져오기
-            String href = CmmUtil.nvl(NewsIt.next().html().trim()); // html 속성 가져오기
-
-            log.info("가져온 글 전체 : \n" + News);
-            log.info("가져온 코드 전체 : \n" + href);
-
-            String[] STR = News.split(" "); // 띄어쓰기로 분리
-
-            News = News.replace(STR[0], "");    // 뽑아온 데이터에서 부서 지우기
-            News = News.replace(STR[STR.length-2], ""); // 뽑아온 데이터에서 날짜 지우기
-            News = News.replace(STR[STR.length-1], ""); // 뽑아온 데이터에서 조회수 지우기
-            News = News.trim(); // 띄어쓰기 지우기
-
-            String BasicUrl = "https://www.gihoo.or.kr/netzero/user/board/pressRelease/nv_carbonNtrlWordView.do?firstIndex=&currentPageNo=1&recordCountPerPage=10&bbscttId=게시글이동경로&bbsId=CRBNNTRLWORD&p_cntntsNm="; // 원본 url
-            int IndexOfUrl = href.indexOf("BBSCTT");    // url 안에 위치 찾기
-            String PostUrl = href.substring(IndexOfUrl,IndexOfUrl+17);  // 이동하려는 글 url 뽑아온 문자열
-            String url = BasicUrl.replace("게시글이동경로",PostUrl);  // 원본 url 안에 게시글이동경로에 가려는 url 정보 넣기
-
-            nDTO.setNews_title(News);   // DTO 에 제목 넣기
-            nDTO.setNews_department(STR[0]);    // DTO 에 부서 넣기
-            nDTO.setNews_date(STR[STR.length-2]);   // DTO 에 날짜 넣기
-            nDTO.setNews_url(url);
-
-            log.info("이동 경로 : " + url);
-            log.info("날짜 : " + nDTO.getNews_date());
-            log.info("부 : " + nDTO.getNews_department());
-            log.info("제목 : " + nDTO.getNews_title());
-
-            res = newsMapper.InsertNews_Info(nDTO);
-        }*/
         log.info(this.getClass().getName() + ".뉴스 저장 끝!!" );
         return res;
     }
