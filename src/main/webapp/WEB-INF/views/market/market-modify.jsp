@@ -52,11 +52,48 @@
                 return false;
             }
 
-            if(f.contents.value == ""){
-                alert("내용을 입력하시기 바랍니다.");
-                f.contents.focus();
+            if(calBytes(f.title.value) > 200){
+                alert("최대 200Bytes까지 입력 가능합니다.");
+                f.title.focus();
                 return false;
             }
+
+            if(f.price.value == ""){
+                alert("가격을 입력하시기 바랍니다.");
+                f.price.focus();
+                return false;
+            }
+
+            // 입력 내용 받기 = CKEDITOR.instances.textarea태그의id.getData();
+            if(CKEDITOR.instances.contents.getData() ==''
+                || CKEDITOR.instances.contents.getData().length ==0){
+                alert("내용을 입력해주세요.");
+                $("#contents").focus();
+                return false;
+            }
+
+        }
+
+
+        //글자 길이 바이트 단위로 체크하기(바이트값 전달)
+        function calBytes(str){
+
+            var tcount = 0;
+            var tmpStr = new String(str);
+            var strCnt = tmpStr.length;
+
+            var onechar;
+            for (i=0;i<strCnt;i++){
+                onechar = tmpStr.charAt(i);
+
+                if (escape(onechar).length > 4){
+                    tcount += 2;
+                }else{
+                    tcount += 1;
+                }
+            }
+
+            return tcount;
         }
 
     </script>
@@ -301,28 +338,10 @@
                내 상품 등록하기
             </span>
 
-                <%--   <div class="wrap-input100">
-                      <input class="input100" type="text" name="name" placeholder="제목을 입력해 주세요">
-                      <span class="focus-input100"></span>
-                   </div>
-          --%>
-                <%--<div class="wrap-input100 ck-editor__editable">
-                   <textarea class="input100" name="text" id="editor" style="resize: none;" placeholder="물건 설명을 입력해 주세요"></textarea>
-                   <span class="focus-input100"></span>
-                </div>
-                <div>
-                   <label>사진 첨부</label>
-                   <input type="file" name="file" >
-                </div>--%>
-                <%--<form action="" method="POST">
-                   <textarea name="text" id="editor"></textarea>
-                   <p><input type="submit" value="전송"></p>
-                </form>--%>
-
                 <script src="../js/ckeditor/ckeditor.js"></script>
 
-                <form name="f" method="post" action="/notice/NoticeUpdate" onsubmit="return doSubmit(this);">
-                    <input type="hidden" name="nSeq" value="<%=CmmUtil.nvl(request.getParameter("nSeq")) %>" />
+                <form name="f" method="post" action="marketUpdate" onsubmit="return doSubmit(this);">
+                    <input type="hidden" name="mk_seq" value="<%=CmmUtil.nvl(request.getParameter("mk_seq")) %>" />
                 <div class="container" >
                     <div class="content" style="width: 70%;">
 
@@ -334,19 +353,26 @@
                                     </div>
                                     <input type="text" class="form-control" name="title" id="title"
                                            style="width: 325%; "
-                                           value="<%=CmmUtil.nvl(mDTO.getTitle()) %>"
+                                           value="<%--${mDTO.title}--%><%=CmmUtil.nvl(mDTO.getTitle()) %>"
+                                           class="form-control" aria-describedby="basic-addon1">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text">가격</label>
+                                    </div>
+                                    <input type="text" class="form-control" name="price" id="price"
+                                           style="width: 75%; "
+                                    <%--value="${MarketDTO.price}"--%>
+                                           value="<%--${mDTO.price}--%><%=CmmUtil.nvl(String.valueOf(mDTO.getPrice())) %>"
                                            class="form-control" aria-describedby="basic-addon1">
                                 </div>
                                 <hr>
                                 <div class="input-group">
-                                    <textarea class="form-control" id="editor" name="content"><%=CmmUtil.nvl(mDTO.getContents()) %></textarea>
-                                    <%--<script type="text/javascript"> CKEDITOR.replace('p_content',
-                                            {
-                                                height: 500 }) </script>--%>
+                                    <textarea class="form-control" id="contents" name="contents"><%--${mDTO.contents}--%><%=CmmUtil.nvl(mDTO.getContents()) %></textarea>
+
                                     <script>
-                                        ClassicEditor.create(document.querySelector('#editor', {
-                                            height: 500, width: 600
-                                        }));
+                                        CKEDITOR.replace('contents',
+                                            {height: 500, width: 600,
+                                                filebrowserUploadUrl:'/image/upload'
+                                            });
                                     </script>
                                 </div>
                             </div>

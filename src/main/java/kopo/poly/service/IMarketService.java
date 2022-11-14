@@ -11,11 +11,11 @@ public interface IMarketService {
     List<MarketDTO> getMarketList() throws Exception;
 
     @Transactional
-    void insertMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
+    void InsertMarketInfo(MarketDTO mDTO) throws Exception;
 
     MarketDTO getMarketInfo(MarketDTO mDTO) throws Exception;
 
-    void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
+    void updateMarketInfo(MarketDTO mDTO) throws Exception;
 
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;
 

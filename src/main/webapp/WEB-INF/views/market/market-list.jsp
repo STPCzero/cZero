@@ -40,7 +40,7 @@
 
         //상세보기 이동
         function doDetail(seq) {
-            location.href = "/market/market-detail?mk_Seq=" + seq;
+            location.href = "/market/market-detail?mk_seq=" + seq;
         }
 
     </script>
@@ -206,18 +206,7 @@
                     }
 
 
-            %><%--
-            <p>
-                <%
-            if (CmmUtil.nvl(mDTO.getNotice_yn()).equals("1")) {
-                out.print("<b>[공지]</b>");
-
-            } else {
-                out.print(CmmUtil.nvl(mDTO.getMk_seq()));
-
-            }
-                %>
-            </p>--%>
+            %>
             <% UserInfoDTO uDTO = (UserInfoDTO) request.getAttribute("uDTO"); %>
 
 
@@ -233,22 +222,25 @@
                                 <p>
                                     <%--<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i>
                                         Purchase</a>--%>
-                                    <a href="javascript:doDetail('<%=CmmUtil.nvl(mDTO.getMk_seq())%>');" class="learn-more detailslearn"><i class="fa fa-link"></i>Details
+                                    <a href="javascript:doDetail('<%=CmmUtil.nvl(String.valueOf(mDTO.getMk_seq()))%>');" class="learn-more detailslearn">
+                                        <i class="fa fa-link"></i>상세보기
                                         </a>
-                                    <p>조회수 : <%=CmmUtil.nvl(mDTO.getRead_cnt()) %>
+                                    <p>조회수 : <%=CmmUtil.nvl(String.valueOf(mDTO.getRead_cnt())) %>
                             </p>
-                                <p>닉네임 : <%=CmmUtil.nvl(mDTO.getUser_name()) %></p>
+                                <%--<p>닉네임 : <%=CmmUtil.nvl(uDTO.getUser_name()) %></p>--%>
                                 <p>등록일 : <%=CmmUtil.nvl(mDTO.getMk_date()) %></p>
                                 </p>
                             </div>
-                            <span class="maxproduct"><img src="/images/mk_soap.jpg" alt=""></span>
+                            <span class="maxproduct">
+                                <img alt="test" src="<%=CmmUtil.nvl(mDTO.getThumbnail()) %>" style="height: 500px; width: 600px"/>
+                            </span>
                         </div>
                         <div class="product-details">
                             <a href="#">
                                 <h1><%=CmmUtil.nvl(mDTO.getTitle()) %></h1>
                             </a>
                             <span class="price">
-								<span class="edd_price">가격 : <%=CmmUtil.nvl(mDTO.getPrice()) %>원</span>
+								<span class="edd_price">가격 : <%=CmmUtil.nvl(String.valueOf(mDTO.getPrice())) %>원</span>
 							</span>
                         </div>
                     </div>
@@ -267,18 +259,6 @@
             </button>
         </span>
     </div>
-    <%--<form class="contact100-form">
-        <div class="container-contact100-form-btn">
-            <nav aria-label="..." style="width: 10%; margin: auto;">
-                <ul class="pagination">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </form>--%>
     <div style="text-align: center; margin-bottom: 50px;">
 
         <div class="btn-group " style="margin: 0 auto; display: inline-block;">

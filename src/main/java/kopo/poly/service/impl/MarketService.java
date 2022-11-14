@@ -31,11 +31,11 @@ public class MarketService implements IMarketService {
 
     @Transactional
     @Override
-    public void insertMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception {
+    public void InsertMarketInfo(MarketDTO mDTO) throws Exception {
 
         log.info(this.getClass().getName() + ".InsertMarketInfo start!");
 
-        marketMapper.InsertMarketInfo(mDTO, uDTO);
+        marketMapper.InsertMarketInfo(mDTO);
 
         log.info(this.getClass().getName() + ".InsertMarketInfo end!");
     }
@@ -57,11 +57,11 @@ public class MarketService implements IMarketService {
 
     @Transactional
     @Override
-    public void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception {
+    public void updateMarketInfo(MarketDTO mDTO) throws Exception {
 
         log.info(this.getClass().getName() + ".updateMarketInfo start!");
 
-        marketMapper.updateMarketInfo(mDTO, uDTO);
+        marketMapper.updateMarketInfo(mDTO);
 
         log.info(this.getClass().getName() + ".updateMarketInfo end!");
     }
