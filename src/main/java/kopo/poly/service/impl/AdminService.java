@@ -1,5 +1,6 @@
 package kopo.poly.service.impl;
 
+import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.persistance.mapper.IAdminMapper;
 import kopo.poly.service.IAdminService;
@@ -27,9 +28,24 @@ public class AdminService implements IAdminService {
     }
 
     @Override
-    public int getMembersCount() throws Exception {
+    public int getMembersCount(UserInfoDTO uDTO) throws Exception {
         log.info(getClass().getName() + " getMembersCount Start!!!");
-        int res = adminMapper.getMembersCount();
+        int res = adminMapper.getMembersCount(uDTO);
+        return res;
+    }
+
+    @Override
+    public List<MarketDTO> getMarketInfo(MarketDTO mDTO) throws Exception {
+        log.info(getClass().getName() + " getMarketInfo Start!!!");
+        List<MarketDTO> rList = adminMapper.getMarketInfo(mDTO);
+        log.info(getClass().getName() + " getMarketInfo End!!!");
+        return rList;
+    }
+
+    @Override
+    public int getMarketCount() throws Exception {
+        log.info(getClass().getName() + " getMarketCount Start!!!");
+        int res = adminMapper.getMarketCount();
         return res;
     }
 }

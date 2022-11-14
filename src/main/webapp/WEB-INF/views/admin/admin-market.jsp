@@ -8,6 +8,12 @@
     List<UserInfoDTO> uList = (List<UserInfoDTO>) request.getAttribute("uList");
     if (uList == null) uList = new ArrayList<>();
     List<MarketDTO> mList = (List<MarketDTO>) request.getAttribute("mList");
+
+    boolean prev = (boolean) request.getAttribute("prev");
+    boolean next = (boolean) request.getAttribute("next");
+    int startPageNum = (int) request.getAttribute("startPageNum");
+    int endPageNum = (int) request.getAttribute("endPageNum");
+    int select = (int) request.getAttribute("select");
 %>
 <!DOCTYPE html>
 <html>
@@ -176,6 +182,31 @@
             <% }%>
             </tbody>
         </table>
+
+        <div style="text-align: center; margin: 50px 0;">
+            <% if(prev == true) {%>
+            <button type="button" class="btn btn-secondary">Prev</button>
+            <%}%>
+            <div class="btn-group " style="margin: 0 auto; display: inline-block;">
+                <% for (int i = startPageNum; i <= endPageNum; i++) {
+                    if(select == i) {%>
+                <a style="color: red;" href="/admin/admin-member?num=<%=i%>">
+                    <button class="btn">
+                        <%=i%>
+                    </button></a>
+                <%} else {%>
+                <a style="" href="/admin/admin-member?num=<%=i%>">
+                    <button class="btn">
+                        <%=i%>
+                    </button></a>
+                <% }
+                } %>
+            </div>
+            <% if(next == true) {%>
+            <button type="button" class="btn btn-secondary">Next</button>
+            <% } %>
+        </div>
+
     </div>
 
 </div>
