@@ -15,6 +15,7 @@ public interface IMarketService {
 
     MarketDTO getMarketInfo(MarketDTO mDTO) throws Exception;
 
+    @Transactional
     void updateMarketInfo(MarketDTO mDTO) throws Exception;
 
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;

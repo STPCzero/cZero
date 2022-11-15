@@ -10,6 +10,7 @@
             FROM MARKET M
         LEFT JOIN USER_INFO U
             ON M.USER_SEQ = U.USER_SEQ
+        ORDER BY MK_SEQ DESC
     </select>
     <!-- 상품 등록 쿼리 -->
     <insert id="InsertMarketInfo" parameterType="MarketDTO">

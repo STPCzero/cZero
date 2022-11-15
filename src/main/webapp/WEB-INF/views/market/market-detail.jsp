@@ -275,9 +275,12 @@
 			</form>
 			<tr>
 				<td align="center" colspan="4">
-					<a href="javascript:doEdit();">[수정]</a>
-					<a href="javascript:doDelete();">[삭제]</a>
-					<a href="javascript:doList();">[목록]</a>
+					<button type="button" class="btn btn-primary"
+							style="width: 7%; font-weight: bold" onclick="doEdit()">수정</button>
+					<button type="button" class="btn btn-primary"
+							style="width: 7%; font-weight: bold" onclick="doDelete()">삭제</button>
+					<button type="button" class="btn btn-primary"
+							style="width: 7%; font-weight: bold" onclick="doList()">목록</button>
 				</td>
 			</tr>
 

@@ -250,11 +250,6 @@
             </span>
 			<form class="contact100-form"  name="f" method="post" action="marketInsert" <%--target= "ifrPrc"--%> onsubmit="return doSubmit(this);" enctype="multipart/form-data">
 
-
-
-
-
-
 				<script src="../js/ckeditor/ckeditor.js"></script>
 
 
@@ -271,6 +266,7 @@
 										   style="width: 325%; "
 										   <%--value="${MarketDTO.title}"--%>
 										   placeholder="제목을 입력하세요" class="form-control" aria-describedby="basic-addon1">
+									<br><br>
 									<div class="input-group-prepend">
 										<label class="input-group-text">가격</label>
 									</div>

@@ -206,7 +206,7 @@ public class MarketController {
             }
 
             // 조회된 리스트 결과값 넣어주기
-            model.addAttribute("rDTO", rDTO);
+            model.addAttribute("mDTO", rDTO);
 
         } catch (Exception e) {
             msg = "실패하였습니다. : " + e.getMessage();
@@ -214,14 +214,14 @@ public class MarketController {
             e.printStackTrace();
 
         } finally {
-            log.info(this.getClass().getName() + ".market modify end!");
+            log.info(this.getClass().getName() + ".market modify msg end!");
 
             // 결과 메시지 전달하기
             model.addAttribute("msg", msg);
 
         }
 
-        log.info(this.getClass().getName() + ".market modify end!");
+        log.info(this.getClass().getName() + ".market modify real end!");
 
         return "/market/market-modify";
     }
@@ -229,40 +229,38 @@ public class MarketController {
 
     // 마켓 수정하기
     @RequestMapping(value = "marketUpdate", method = {RequestMethod.GET,RequestMethod.POST})
-    public String updateMarketInfo(HttpSession session, HttpServletRequest request, ModelMap model) {
+    public String marketUpdate(HttpSession session, HttpServletRequest request, ModelMap model) throws Exception{
         log.info(this.getClass().getName() + ".updateMarketInfo Start!!");
 
         String msg = "";
 
         try {
-            String user_name = CmmUtil.nvl((String) session.getAttribute("SESSION_USER_NAME"));
+            String user_seq = CmmUtil.nvl((String) session.getAttribute("SESSION_USER_SEQ"));
             int mk_seq = Integer.parseInt(CmmUtil.nvl(request.getParameter("mk_seq")));
             String title = CmmUtil.nvl(request.getParameter("title"));
             /*String price = CmmUtil.nvl(request.getParameter("price"));*/
             int price = Integer.parseInt(CmmUtil.nvl(request.getParameter("price")));
             String contents = CmmUtil.nvl(request.getParameter("contents"));
 
-            log.info("user_name : " + user_name);
+            log.info("user_seq : " + user_seq);
             log.info("mk_seq : " + mk_seq);
             log.info("title : " + title);
             log.info("price : " + price);
             log.info("contents : " + contents);
 
-            /*String test1 = contents.split("<img alt=\"\" src=\"")[1];
+            String test1 = contents.split("<img alt=\"\" src=\"")[1];
 
             String imgThum = test1.split("\"")[0];
 
-            log.info("imgThum : "+imgThum);*/
+            log.info("imgThum : "+imgThum);
 
             MarketDTO mDTO = new MarketDTO();
 
-/*
             if(imgThum != null) {
                 mDTO.setThumbnail(imgThum);
             } else {
                 mDTO.setThumbnail(" ");
             }
-*/
 
 
             mDTO.setUser_seq(mDTO.getUser_seq());
