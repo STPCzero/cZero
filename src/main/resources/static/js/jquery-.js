@@ -11,7 +11,7 @@
  *
  * Date: 2015-04-28T16:19Z
  */
-$(document).ready(function() {
+/*$(document).ready(function() {
 
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 	var floatPosition = parseInt($("#floatMenu").css('top'));
@@ -22,9 +22,9 @@ $(document).ready(function() {
 		var scrollTop = $(window).scrollTop();
 		var newPosition = scrollTop + floatPosition + "px";
 
-		/* 애니메이션 없이 바로 따라감
+		/!* 애니메이션 없이 바로 따라감
          $("#floatMenu").css('top', newPosition);
-         */
+         *!/
 
 		$("#floatMenu").stop().animate({
 			"top" : newPosition
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 	}).scroll();
 
-});
+});*/
 
 (function( global, factory ) {
 

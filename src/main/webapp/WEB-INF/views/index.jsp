@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 </head>
 <body>
 <style>
@@ -28,7 +28,7 @@
                         <span class="sr-only">Toggle navigation</span>
                     </button>
                     <%--<a href="index.jsp" class="navbar-brand brand"> SCORILO </a>--%>
-                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px"
+                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px;"
                                           alt="로고"></a>
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
@@ -81,8 +81,7 @@
             <!-- /.col-md-4 col -->
             <div class="col-md-4 editContent">
                 <div class="col">
-                    <span class="numberstep"><i class="fa"><img src="/images/list.png"
-                                                                style="width: 60%; height: 60%; margin-bottom: 5%"></i></span>
+                    <span class="numberstep"><i class="fa"><img src="/images/list.png" style="width: 60%; height: 60%; margin-bottom: 5%"></i></span>
                     <h3 class="numbertext">데일리뉴스</h3>
                     <p>
                         <strong>매일매일 알아보는 환경뉴스로<br>의미있는 하루를 시작하세요</strong>
@@ -93,7 +92,7 @@
             <!-- /.col-md-4 col -->
             <div class="col-md-4 editContent">
                 <div class="col">
-                    <span class="numberstep"><i class="fa "><img src="/images/bicycle.png"
+                    <span class="numberstep"><i class="fa"><img src="/images/bicycle.png"
                                                                  style="width: 65%; height: 65%; margin-bottom: 8%; margin-left: 3%"></i></span>
                     <h3 class="numbertext">공공 자전거</h3>
                     <p>
