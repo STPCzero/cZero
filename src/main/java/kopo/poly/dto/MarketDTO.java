@@ -18,4 +18,7 @@ public class MarketDTO {
     private int read_cnt;
     private String thumbnail;
 
+    private int start;
+    private int finish;
+
 }

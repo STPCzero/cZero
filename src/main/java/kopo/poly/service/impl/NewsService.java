@@ -21,7 +21,7 @@ import java.util.List;
 public class NewsService implements INewsService {
 
     @Transactional
-    @Scheduled(cron = "* 10 * * * *")
+    //@Scheduled(cron = "* 10 * * * *")
     @Override
     public List<NewsDTO> showNews() throws Exception{
         log.info(this.getClass().getName() + ".선수입장!!" );

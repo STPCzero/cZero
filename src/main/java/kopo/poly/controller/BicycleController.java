@@ -27,10 +27,6 @@ public class BicycleController {
     @GetMapping("bicycle")
     public String bicycle(HttpServletRequest request, Model model) throws Exception {
         log.info(this.getClass().getName() + ".bicycle Start!!");
-
-        //BicycleDTO bDTO = bicycleService.callBicycleApi();
-
-        //model.addAttribute("bDTO", bDTO);
         log.info(this.getClass().getName() + ".bicycle End!!");
         return "/bicycle/bicycle";
     }
