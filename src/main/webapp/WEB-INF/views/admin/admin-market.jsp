@@ -74,6 +74,17 @@
         }
 
 
+
+        #floatMenu {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 50px;
+            top: 10px;
+            color: #fff;
+        }
+
+
     </style>
     <meta charset="utf-8">
     <title>회원 관리 페이지 - 관리자</title>
@@ -124,7 +135,6 @@
             </div>
         </aside>
     </div>
-
 
     <div class="shadow-xl border border-gray-200 rounded-xl w-full min-h-screen ml-2 mb-4">
         <div style="text-align: center; margin-top: 1%"><strong>마켓관리</strong></div>
