@@ -14,6 +14,22 @@
 <body>
 <style>
 
+        /* 작은 기기들 (태블릿, 768px 이하) */
+    .media{
+        width: 135px; height: 60px;
+    }
+    /* 작은 기기들 (태블릿, 768px 이상) */
+    @media screen and (min-width: 768px){
+        .media{width: 30%;}
+    }
+    /* 중간 기기들 (데스크탑, 992px 이상) */
+    @media screen and (min-width: 992px){
+        .media{margin-left: 5%; width: 45%;}
+    }
+    /* 큰 기기들 (큰 데스크탑, 1200px 이상) */
+    @media screen and (min-width: 1200px){
+        .media{margin-left: 5%; width: 15%;}
+    }
 </style>
 
 <!-- HEADER =============================-->
@@ -27,9 +43,8 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <%--<a href="index.jsp" class="navbar-brand brand"> SCORILO </a>--%>
-                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px;"
-                                          alt="로고"></a>
+                    <%--<a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px;" alt="로고"></a>--%>
+                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px; padding-left: 2%" alt="로고" class="media"></a>
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
