@@ -31,24 +31,83 @@ public class MarketController {
     private IMarketService marketService;
 
     @GetMapping(value = "market-list")
-    public String marketlist(ModelMap model) throws Exception {
+    public String marketlist(HttpServletRequest request, ModelMap model) throws Exception {
         log.info(this.getClass().getName() + ".market-list Start!!");
+        String search = CmmUtil.nvl(request.getParameter("search"));
 
-        // 마켓리스트 가져오기
-        List<MarketDTO> mList = marketService.getMarketList();
-        UserInfoDTO uDTO = new UserInfoDTO();
+        log.info("search: "+search);
+        MarketDTO uDTO = new MarketDTO();
+        uDTO.setTitle(search);
 
+        /* == 페이징 START == */
+        // 전체 페이지 개수
+        int count = marketService.getMarketCount(uDTO);
+        log.info("count: "+count);
 
-        if (mList == null) {
-            mList = new ArrayList<>();
-        }
+        //시작 페이지
+        String no = CmmUtil.nvl(request.getParameter("num"));
+        int num = 0, start = 0, finish = 0;
 
+        if(no == "")
+            num = 1;
+        else
+            num = Integer.parseInt(no);
 
-        // 조회된 리스트 결과값 넣어주기
+        finish = count - ( (num-1) * 9 );
+        start  = finish - 8;
+        if( start < 1 ) start = 1;
+
+        log.info("num : "+num);
+        log.info("start : "+start);
+        log.info("finish : "+finish);
+
+        // 시작번호, 끝번호
+        uDTO.setStart(start);
+        uDTO.setFinish(finish);
+
+        log.info("값 확인 : "+uDTO.getTitle());
+        List<MarketDTO> mList = marketService.getMarketList(uDTO);
+
+        log.info("mList size : "+mList.size());
         model.addAttribute("mList", mList);
 
-        model.addAttribute("uDTO",uDTO);
+        // 한번에 표시할 페이징 번호의 갯수
+        int pageNum_cnt = 10;
+        // 표시되는 페이지 번호 중 마지막 번호
+        int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
+        // 표시되는 페이지 번호 중 첫번째 번호
+        int startPageNum = endPageNum - (pageNum_cnt - 1);
+        // 마지막 번호 재계산
+        int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
+        if(endPageNum > endPageNum_tmp) {
+            endPageNum = endPageNum_tmp;
+        }
 
+        boolean prev = startPageNum == 1 ? false : true;
+        boolean next = endPageNum * pageNum_cnt >= count ? false : true;
+
+        log.info("startPageNum: "+startPageNum);
+        log.info("endPageNum: "+endPageNum);
+        // 현재 페이지
+        model.addAttribute("select", num);
+
+        // 시작 및 끝 번호
+        model.addAttribute("startPageNum", startPageNum);
+        model.addAttribute("endPageNum", endPageNum);
+
+        // 이전 및 다음
+        model.addAttribute("prev", prev);
+        model.addAttribute("next", next);
+
+        model.addAttribute("search", search);
+        /* == 페이징 END == */
+
+        // 마켓리스트 가져오기
+
+        // 조회된 리스트 결과값 넣어주기
+        /*model.addAttribute("mList", mList);*/
+
+        /*model.addAttribute("uDTO",uDTO);*/
         log.info(this.getClass().getName() + ".market-list End!!");
 
         return "/market/market-list";
@@ -326,29 +385,6 @@ public class MarketController {
         }
 
         return "/market/market-MsgToList";
-    }
-    @GetMapping(value = "admin-market")
-    public String adminmarket(ModelMap model) throws Exception {
-        log.info(this.getClass().getName() + ".admin-market Start!!");
-
-        // 마켓리스트 가져오기
-        List<MarketDTO> mList = marketService.getMarketList();
-        UserInfoDTO uDTO = new UserInfoDTO();
-
-
-        if (mList == null) {
-            mList = new ArrayList<>();
-        }
-
-
-        // 조회된 리스트 결과값 넣어주기
-        model.addAttribute("mList", mList);
-
-        model.addAttribute("uDTO",uDTO);
-
-        log.info(this.getClass().getName() + ".admin-market End!!");
-
-        return "/admin/admin-market";
     }
 
     // 이미지 업로드

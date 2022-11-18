@@ -279,12 +279,12 @@
 								<div class="input-group">
 
 
-									<textarea class="form-control"<%-- value="${MarketDTO.contents}"--%> placeholder="내용을 입력하세요" id="contents" name="contents"></textarea>
+									<textarea class="form-control"<%-- value="${MarketDTO.contents}"--%> id="contents" name="contents"></textarea>
 
 									<script>
 										CKEDITOR.replace('contents',
 												{height: 500, width: 600,
-													filebrowserUploadUrl:'/image/upload'
+													filebrowserUploadUrl:'/image/upload',
 												});
 									</script>
 

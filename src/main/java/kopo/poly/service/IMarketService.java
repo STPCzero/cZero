@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface IMarketService {
 
-    List<MarketDTO> getMarketList() throws Exception;
+    List<MarketDTO> getMarketList(MarketDTO mDTO) throws Exception;
+
+    int getMarketCount(MarketDTO uDTO) throws Exception;
 
     @Transactional
     void InsertMarketInfo(MarketDTO mDTO) throws Exception;

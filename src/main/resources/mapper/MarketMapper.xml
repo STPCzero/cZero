@@ -6,12 +6,28 @@
 
     <!-- 상품 리스트 쿼리 -->
     <select id="getMarketList" resultType="MarketDTO">
-        SELECT M.USER_SEQ, U.USER_SEQ, M.TITLE, M.MK_SEQ, M.PRICE, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE, U.USER_NAME, M.THUMBNAIL
+        /*SELECT M.USER_SEQ, U.USER_SEQ, M.TITLE, M.MK_SEQ, M.PRICE, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE, U.USER_NAME, M.THUMBNAIL
             FROM MARKET M
         LEFT JOIN USER_INFO U
             ON M.USER_SEQ = U.USER_SEQ
-        ORDER BY MK_SEQ DESC
+        ORDER BY MK_SEQ DESC*/
+        SELECT * FROM (
+                          SELECT ROW_NUMBER() OVER (ORDER BY MK_SEQ) NUM, M.*,
+                                 (SELECT U.USER_NAME
+                                  FROM USER_INFO U
+                                  WHERE U.USER_SEQ = M.USER_SEQ) USER_NAME
+                          FROM MARKET M
+                          WHERE M.TITLE LIKE '%'||#{title}||'%'
+                          ORDER BY MK_SEQ DESC
+                      )
+        WHERE NUM BETWEEN #{start} AND #{finish}
+
     </select>
+
+    <select id="getMarketCount" parameterType="MarketDTO" resultType="int">
+        SELECT count(*) FROM MARKET WHERE TITLE LIKE '%'||#{title}||'%'
+    </select>
+
     <!-- 상품 등록 쿼리 -->
     <insert id="InsertMarketInfo" parameterType="MarketDTO">
         INSERT INTO MARKET
