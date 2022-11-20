@@ -15,8 +15,8 @@
 
     int access = 1; //(작성자 : 2 / 다른 사용자: 1)
 
-    if (CmmUtil.nvl((String)session.getAttribute("SESSION_USER_NAME")).equals(
-            CmmUtil.nvl(uDTO.getUser_name()))){
+    if (CmmUtil.nvl((String)session.getAttribute("SESSION_USER_SEQ")).equals(
+            CmmUtil.nvl(uDTO.getUser_seq()))){
         access = 2;
     }
 %>
@@ -32,34 +32,7 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
 
-    <script type="text/javascript">
 
-        //작성자 여부체크
-        function doOnload(){
-
-            if ("<%=access%>"=="1"){
-                alert("작성자만 수정할 수 있습니다.");
-                location.href="/market/market-list";
-
-            }
-        }
-
-        //전송시 유효성 체크
-        function doSubmit(f){
-            if(f.title.value == ""){
-                alert("제목을 입력하시기 바랍니다.");
-                f.title.focus();
-                return false;
-            }
-
-            if(f.contents.value == ""){
-                alert("내용을 입력하시기 바랍니다.");
-                f.contents.focus();
-                return false;
-            }
-        }
-
-    </script>
 
     <style>
         .wrap-contact100 {
@@ -296,35 +269,16 @@
             </div>
         </div>
         <div class="wrap-contact100">
-            <form class="contact100-form">
             <span class="contact100-form-title" style="text-align: center">
-               내 상품 등록하기
+               내 상품 수정하기
             </span>
+                <form class="contact100-form" name="f" method="post" action="marketUpdate" onsubmit="return doSubmit(this);" enctype="multipart/form-data" >
 
-                <%--   <div class="wrap-input100">
-                      <input class="input100" type="text" name="name" placeholder="제목을 입력해 주세요">
-                      <span class="focus-input100"></span>
-                   </div>
-          --%>
-                <%--<div class="wrap-input100 ck-editor__editable">
-                   <textarea class="input100" name="text" id="editor" style="resize: none;" placeholder="물건 설명을 입력해 주세요"></textarea>
-                   <span class="focus-input100"></span>
-                </div>
-                <div>
-                   <label>사진 첨부</label>
-                   <input type="file" name="file" >
-                </div>--%>
-                <%--<form action="" method="POST">
-                   <textarea name="text" id="editor"></textarea>
-                   <p><input type="submit" value="전송"></p>
-                </form>--%>
+                    <script src="../js/ckeditor/ckeditor.js"></script>
 
-                <script src="../js/ckeditor/ckeditor.js"></script>
-
-                <form name="f" method="post" action="/notice/NoticeUpdate" onsubmit="return doSubmit(this);">
-                    <input type="hidden" name="nSeq" value="<%=CmmUtil.nvl(request.getParameter("nSeq")) %>" />
+                    <input type="hidden" name="mk_seq" value="<%=CmmUtil.nvl(request.getParameter("mk_seq")) %>" />
                 <div class="container" >
-                    <div class="content" style="width: 70%;">
+                    <div class="content" style="width: 70%; display: flex; text-align: center">
 
                         <div class="row justify-content-md-center jb-container">
                             <div class="col_c" style="margin-bottom: 30px">
@@ -336,44 +290,40 @@
                                            style="width: 325%; "
                                            value="<%=CmmUtil.nvl(mDTO.getTitle()) %>"
                                            class="form-control" aria-describedby="basic-addon1">
+                                    <br><br>
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text">가격</label>
+                                    </div>
+                                    <input type="text" class="form-control" name="price" id="price"
+                                           style="width: 75%; "
+                                           value="<%=CmmUtil.nvl(String.valueOf(mDTO.getPrice())) %>"
+                                           class="form-control" aria-describedby="basic-addon1">
                                 </div>
                                 <hr>
                                 <div class="input-group">
-                                    <textarea class="form-control" id="editor" name="content"><%=CmmUtil.nvl(mDTO.getContents()) %></textarea>
-                                    <%--<script type="text/javascript"> CKEDITOR.replace('p_content',
-                                            {
-                                                height: 500 }) </script>--%>
+                                    <textarea class="form-control" id="contents" name="contents"><%=CmmUtil.nvl(mDTO.getContents()) %></textarea>
+
                                     <script>
-                                        ClassicEditor.create(document.querySelector('#editor', {
-                                            height: 500, width: 600
-                                        }));
+                                        CKEDITOR.replace('contents',
+                                            {height: 500, width: 600,
+                                                filebrowserUploadUrl:'/image/upload'
+                                            });
                                     </script>
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-md-center">
-                            <button type="submit" class="btn btn-outline-secondary"
-                                    style="width: 20%; font-weight: bold">
-                                <a href="market-list">뒤로가기</a>
-                            </button>
-                            <button type="submit" class="btn btn-outline-secondary"
-                                    style="width: 20%; font-weight: bold">
-                                <a href="market-list">등록</a>
-                            </button>
-                        </div>
+
                     </div>
                 </div>
+                    <button type="button" class="btn btn-outline-secondary"
+                            style="width: 20%; font-weight: bold" onclick="location='market-list'">
+                        뒤로가기
+                    </button>
+                    <button type="submit"  class="btn btn-primary"  style="width: 20%; font-weight: bold">
+                        등록하기</button>
                 </form>
 
 
-                <%--<div class="container-contact100-form-btn" style="margin-top: 20%">
-                    <button class="contact100-form-btn" style="margin-left: 10%; float: left">
-                        <a href="market-list">되돌리기</a>
-                    </button>
-                    <button class="contact100-form-btn" style="margin-left: 25%; float: left">
-                        <a href="market-list">물건 올리기</a>
-                    </button>
-                </div>--%>
             </form>
         </div>
     </div>
@@ -395,6 +345,71 @@
             }
         );
     });
+</script>
+<script type="text/javascript">
+
+    //작성자 여부체크
+    function doOnload(){
+
+        if ("<%=access%>"=="1"){
+            alert("작성자만 수정할 수 있습니다.");
+            location.href="/market/market-list";
+
+        }
+    }
+
+    //전송시 유효성 체크
+    function doSubmit(f){
+        if(f.title.value == ""){
+            alert("제목을 입력하시기 바랍니다.");
+            f.title.focus();
+            return false;
+        }
+
+        if(calBytes(f.title.value) > 200){
+            alert("최대 200Bytes까지 입력 가능합니다.");
+            f.title.focus();
+            return false;
+        }
+
+        if(f.price.value == ""){
+            alert("가격을 입력하시기 바랍니다.");
+            f.price.focus();
+            return false;
+        }
+
+        // 입력 내용 받기 = CKEDITOR.instances.textarea태그의id.getData();
+        if(CKEDITOR.instances.contents.getData() ==''
+            || CKEDITOR.instances.contents.getData().length ==0){
+            alert("내용을 입력해주세요.");
+            $("#contents").focus();
+            return false;
+        }
+
+    }
+
+
+    //글자 길이 바이트 단위로 체크하기(바이트값 전달)
+    function calBytes(str){
+
+        var tcount = 0;
+        var tmpStr = new String(str);
+        var strCnt = tmpStr.length;
+
+        var onechar;
+        for (i=0;i<strCnt;i++){
+            onechar = tmpStr.charAt(i);
+
+            if (escape(onechar).length > 4){
+                tcount += 2;
+            }else{
+                tcount += 1;
+            }
+        }
+
+        return tcount;
+    }
+
 </script>
 
 <!-- FOOTER =============================-->

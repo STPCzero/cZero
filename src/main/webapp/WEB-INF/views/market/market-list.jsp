@@ -7,16 +7,21 @@
 <%
     session.setAttribute("SESSION_USER_ID", "USER01"); //세션 강제 적용, 로그인된 상태로 보여주기 위함
 
-    List<MarketDTO> mList = (List<MarketDTO>) request.getAttribute("mList");
     List<UserInfoDTO> uList = (List<UserInfoDTO>) request.getAttribute("uList");
+    if (uList == null) uList = new ArrayList<>();
+    List<MarketDTO> mList = (List<MarketDTO>) request.getAttribute("mList");
+
+    boolean prev = (boolean) request.getAttribute("prev");
+    boolean next = (boolean) request.getAttribute("next");
+    int startPageNum = (int) request.getAttribute("startPageNum");
+    int endPageNum = (int) request.getAttribute("endPageNum");
+    int select = (int) request.getAttribute("select");
+    String search = (String) request.getAttribute("search");
 
 
 //게시판 조회 결과 보여주기
     if (mList == null) {
         mList = new ArrayList<MarketDTO>();
-    }
-    if (uList == null) {
-        uList = new ArrayList<UserInfoDTO>();
     }
 
 %>
@@ -40,7 +45,7 @@
 
         //상세보기 이동
         function doDetail(seq) {
-            location.href = "/market/market-detail?mk_Seq=" + seq;
+            location.href = "/market/market-detail?mk_seq=" + seq;
         }
 
     </script>
@@ -90,9 +95,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 0 20px;
             min-width: 160px;
-            height: 42px;
+            height: 36px;
             background-color: #00bba7;
             border-radius: 21px;
 
@@ -138,6 +142,41 @@
             padding:2px 0;
             overflow:hidden;
             clear:both;
+        }
+
+        .wrap{
+            width: 400px;
+            left: 50%;
+        }
+        .search {
+            width: 100%;
+            display: flex;
+        }
+        .searchTerm {
+            width: 80%;
+            border: 3px solid #4B5563;
+            border-right: none;
+            padding: 5px;
+            height: 2.25rem;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+        }
+
+        .searchTerm:focus {
+            color: #4B5563;
+        }
+
+        .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #4B5563;
+            background: #4B5563;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
         }
     </style>
 </head>
@@ -196,6 +235,29 @@
 			</span>
             </div>
         </div>
+        <div>
+        <div  style="float: left; width: 50%;">
+        <span class="row" style="clear: both; text-align: center;" >
+            <button class="contact100-form-btn" style="display: inline-block; float: left; margin-left: 13%; margin-top: 3%">
+                <a href="/market/market-upload" style="color:#ffffff;">
+                    <strong>물건 올리기</strong>
+                </a>
+            </button>
+        </span>
+        </div>
+        <form action="/market/market-list" method="get" style="display: inline-block; ">
+            <div style="float: right; margin-top: 3.5%;position: relative; left: 46%;">
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" name="search" value="<%=search%>" placeholder="Search">
+                        <button class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
         <span class="row">
             <%
                 for (int i = 0; i < mList.size(); i++) {
@@ -207,7 +269,7 @@
 
 
             %>
-            <% UserInfoDTO uDTO = (UserInfoDTO) request.getAttribute("uDTO"); %>
+            <%--<% UserInfoDTO uDTO = (UserInfoDTO) request.getAttribute("uDTO"); %>--%>
 
 
                 <div class="mklist" >
@@ -217,27 +279,30 @@
                                 <h3><%=CmmUtil.nvl(mDTO.getTitle()) %>
                                 </h3>
                                 <p>
-                                    <%=CmmUtil.nvl(mDTO.getContents()) %>
+                                    <%--<%=CmmUtil.nvl(mDTO.getContents()) %>--%>
                                 </p>
                                 <p>
                                     <%--<a href="#" class="learn-more detailslearn"><i class="fa fa-shopping-cart"></i>
                                         Purchase</a>--%>
-                                    <a href="javascript:doDetail('<%=CmmUtil.nvl(mDTO.getMk_seq())%>');" class="learn-more detailslearn"><i class="fa fa-link"></i>Details
+                                    <a href="javascript:doDetail('<%=CmmUtil.nvl(String.valueOf(mDTO.getMk_seq()))%>');" class="learn-more detailslearn">
+                                        <i class="fa fa-link"></i>상세보기
                                         </a>
-                                    <p>조회수 : <%=CmmUtil.nvl(mDTO.getRead_cnt()) %>
+                                    <p>조회수 : <%=CmmUtil.nvl(String.valueOf(mDTO.getRead_cnt())) %>
                             </p>
-                                <p>닉네임 : <%=CmmUtil.nvl(mDTO.getUser_name()) %></p>
-                                <p>등록일 : <%=CmmUtil.nvl(mDTO.getMk_date()) %></p>
+                                <%--<p>닉네임 : <%=CmmUtil.nvl(uDTO.getUser_name()) %></p>--%>
+                                <p>등록일 : <%=mList.get(i).getMk_date() %></p>
                                 </p>
                             </div>
-                            <span class="maxproduct"><img src="/images/mk_soap.jpg" alt=""></span>
+                            <span class="maxproduct">
+                                <img alt="test" src="<%=CmmUtil.nvl(mDTO.getThumbnail()) %>" style="height: 300px; width: 600px"/>
+                            </span>
                         </div>
                         <div class="product-details">
                             <a href="#">
                                 <h1><%=CmmUtil.nvl(mDTO.getTitle()) %></h1>
                             </a>
                             <span class="price">
-								<span class="edd_price">가격 : <%=CmmUtil.nvl(mDTO.getPrice()) %>원</span>
+								<span class="edd_price">가격 : <%=CmmUtil.nvl(String.valueOf(mDTO.getPrice())) %>원</span>
 							</span>
                         </div>
                     </div>
@@ -249,31 +314,38 @@
         </span>
 
     </div>
-    <div class="container" style="text-align: center">
+    <%--<div class="container" style="text-align: center">
         <span class="row" style="clear: both; text-align: center;" >
             <button class="contact100-form-btn" style="margin: 1px; display: inline-block; float: left;">
                 <a href="/market/market-upload" style="color:#ffffff;"><strong>물건 올리기</strong></a>
             </button>
         </span>
-    </div>
-    <div style="text-align: center; margin-bottom: 50px;">
+    </div>--%>
 
+    <div style="text-align: center; margin: 50px 0;">
+        <% if(prev == true) {%>
+        <button type="button" class="btn btn-secondary">Prev</button>
+        <%}%>
         <div class="btn-group " style="margin: 0 auto; display: inline-block;">
-
-            <a style="color: red;" href="/market/marketlist?num=1">
-                <button class="btn btn-secondary">
-                    1
+            <% for (int i = startPageNum; i <= endPageNum; i++) {
+                if(select == i) {%>
+            <a style="color: red;" href="/market/market-list?num=<%=i%>&search=<%=search%>">
+                <button class="btn">
+                    <%=i%>
                 </button></a>
-
-            <a style="" href="/market/marketlist?num=2">
-                <button class="btn btn-secondary">
-                    2
+            <%} else {%>
+            <a style="" href="/market/market-list?num=<%=i%>&search=<%=search%>">
+                <button class="btn">
+                    <%=i%>
                 </button></a>
-
+            <% }
+            } %>
         </div>
+        <% if(next == true) {%>
+        <button type="button" class="btn btn-secondary">Next</button>
+        <% } %>
 
     </div>
-
 </section>
 
 

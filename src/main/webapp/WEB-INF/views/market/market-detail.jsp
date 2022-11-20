@@ -12,23 +12,23 @@
 
 	}
 
-	String ss_user_name = CmmUtil.nvl((String)session.getAttribute("SESSION_USER_NAME"));
+	String ss_user_seq = CmmUtil.nvl((String)session.getAttribute("SESSION_USER_SEQ"));
 
 	// 본인이 작성한  글만 수정가능하도록 하기(1: 작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
 	int edit = 1;
 
 	// 로그인 안했다면...
-	if (ss_user_name.equals("")){
+	if (ss_user_seq.equals("")){
 		edit = 3;
 
 		//본인이 작성한 글이면 2가 되도록 변경
-	} else if (ss_user_name.equals(CmmUtil.nvl(rDTO.getUser_name())));
+	} else if (ss_user_seq.equals(CmmUtil.nvl(String.valueOf(rDTO.getUser_seq()))));
 	{
 		edit = 2;
 	}
 
-	System.out.println("user_name : " + CmmUtil.nvl(rDTO.getUser_name()));
-	System.out.println("ss_user_name : " + ss_user_name);
+	System.out.println("user_seq : " + CmmUtil.nvl(String.valueOf(rDTO.getUser_seq())));
+	System.out.println("ss_user_seq : " + ss_user_seq);
 %>
 
 
@@ -53,7 +53,7 @@
 		// 수정하기
 		function doEdit() {
 			if ("<%=edit%>"==2) {
-				location.href = "../market/market-modify?mk_seq=<%=CmmUtil.nvl(rDTO.getMk_seq())%>";
+				location.href = "../market/market-modify?mk_seq=<%=CmmUtil.nvl(String.valueOf(rDTO.getMk_seq()))%>";
 
 			} else if ("<%=edit%>"==3) {
 				alert("로그인 하시길 바랍니다.");
@@ -66,7 +66,7 @@
 		function doDelete() {
 			if ("<%=edit%>"==2) {
 				if (confirm("작성한 글을 삭제하시겠습니까?")) {
-					location.href = "/market/deleteMarket?mk_seq=<%=CmmUtil.nvl(rDTO.getMk_seq())%>";
+					location.href = "/market/deleteMarketInfo?mk_seq=<%=CmmUtil.nvl(String.valueOf(rDTO.getMk_seq()))%>";
 				}
 
 			} else if ("<%=edit%>"==3) {
@@ -80,35 +80,6 @@
 		function doList(){
 			location.href = "/market/market-list"
 		}
-
-
-		/*$(function () {
-
-           //목록 버튼
-           $("#btnList").click(function () {
-              location.href = "/market/market-list";
-           });
-
-
-           //수정 버튼
-           $("#btnUpdate").click(function (<%--<%=edit%>--%>) {
-            if (confirm("수정하시겠습니까?")) {
-               document.form1.action = "/market/market-modify";
-               document.form1.submit();
-            }
-         });
-
-
-         //삭제 버튼
-         $("#btnDelete").click(function (<%--<%=edit%>--%>) {
-            if (confirm("삭제하시겠습니까?")) {
-               document.form1.action = "deleteMarket";
-               document.form1.submit();
-            }
-         });
-      });*/
-
-
 
 	</script>
 
@@ -276,19 +247,17 @@
 			<form>
 				<div class="input-group input-group-sm container" role="group" style="text-align:left">
 					<table class="table table-striped table-bordered">
-						<tread>
 							<tr>
-								<td align="center">제목</td>
-								<td colspan="3"><%=CmmUtil.nvl(rDTO.getTitle())%>
-								</td>
+								<td align="center" style="width: 20%">제목</td>
+								<td><%=CmmUtil.nvl(rDTO.getTitle())%></td>
+								<td align="center" style="width: 20%">가격</td>
+								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getPrice()))%></td>
 							</tr>
 							<tr>
-								<td align="center">작성일</td>
-								<td><%=CmmUtil.nvl(rDTO.getMk_date())%>
-								</td>
-								<td align="center">조회수</td>
-								<td><%=CmmUtil.nvl(rDTO.getRead_cnt())%>
-								</td>
+								<td align="center" style="width: 20%">작성일</td>
+								<td><%=CmmUtil.nvl(rDTO.getMk_date())%></td>
+								<td align="center" style="width: 20%">조회수</td>
+								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getRead_cnt()))%></td>
 							</tr>
 							<%--<tr>
                                        <td colspan="4" height="300px" valign="top">
@@ -296,12 +265,9 @@
                                        </td>
                                    <tr>--%>
 							<div style="width:800px;">
-								<td><textarea class="form-control" style="height: 400px" id="content" name="content"
-											  rows="3" cols="80"
-											  placeholder="내용을 입력하세요"><%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %></textarea>
+								<td colspan="4"  style="height: 500px"><%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %>
 								</td>
 							</div>
-						</tread>
 					</table>
 
 				</div>
@@ -309,9 +275,12 @@
 			</form>
 			<tr>
 				<td align="center" colspan="4">
-					<a href="javascript:doEdit();">[수정]</a>
-					<a href="javascript:doDelete();">[삭제]</a>
-					<a href="javascript:doList();">[목록]</a>
+					<button type="button" class="btn btn-primary"
+							style="width: 7%; font-weight: bold" onclick="doEdit()">수정</button>
+					<button type="button" class="btn btn-primary"
+							style="width: 7%; font-weight: bold" onclick="doDelete()">삭제</button>
+					<button type="button" class="btn btn-primary"
+							style="width: 7%; font-weight: bold" onclick="doList()">목록</button>
 				</td>
 			</tr>
 

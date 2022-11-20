@@ -24,18 +24,32 @@ public class MarketService implements IMarketService {
         this.marketMapper = marketMapper;
     }
 
-    @Override
+    /*@Override
     public List<MarketDTO> getMarketList() throws Exception {
         return marketMapper.getMarketList();
+    }*/
+    @Override
+    public List<MarketDTO> getMarketList(MarketDTO mDTO) throws Exception {
+        log.info(getClass().getName() + " getMarketList Start!!!");
+        List<MarketDTO> rList = marketMapper.getMarketList(mDTO);
+        log.info(getClass().getName() + " getMarketList End!!!");
+        return rList;
+    }
+
+    @Override
+    public int getMarketCount(MarketDTO uDTO) throws Exception {
+        log.info(getClass().getName() + " getMarketCount Start!!!");
+        int res = marketMapper.getMarketCount(uDTO);
+        return res;
     }
 
     @Transactional
     @Override
-    public void insertMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception {
+    public void InsertMarketInfo(MarketDTO mDTO) throws Exception {
 
         log.info(this.getClass().getName() + ".InsertMarketInfo start!");
 
-        marketMapper.InsertMarketInfo(mDTO, uDTO);
+        marketMapper.InsertMarketInfo(mDTO);
 
         log.info(this.getClass().getName() + ".InsertMarketInfo end!");
     }
@@ -57,11 +71,11 @@ public class MarketService implements IMarketService {
 
     @Transactional
     @Override
-    public void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception {
+    public void updateMarketInfo(MarketDTO mDTO) throws Exception {
 
         log.info(this.getClass().getName() + ".updateMarketInfo start!");
 
-        marketMapper.updateMarketInfo(mDTO, uDTO);
+        marketMapper.updateMarketInfo(mDTO);
 
         log.info(this.getClass().getName() + ".updateMarketInfo end!");
     }

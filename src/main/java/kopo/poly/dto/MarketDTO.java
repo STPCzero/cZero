@@ -6,17 +6,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MarketDTO {
-    private String mk_seq;
+    private int mk_seq;
     private String notice_yn;
-    private String user_seq;
-    private String update_seq;
+    private int user_seq;
+    private int update_seq;
     private String title;
     private String contents;
     private String mk_date;
     private String update_date;
-    private String price;
-    private String read_cnt;
-    private String user_name;
+    private int price;
+    private int read_cnt;
+    private String thumbnail;
 
     private int start;
     private int finish;
