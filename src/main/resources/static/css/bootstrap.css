@@ -5,7 +5,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  td-family: sans-serif;
+  font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -54,26 +54,26 @@ abbr[title] {
 }
 b,
 strong {
-  td-weight: bold;
+  font-weight: bold;
 }
 dfn {
-  td-style: italic;
+  font-style: italic;
 }
 h1 {
   margin: .67em 0;
-  td-size: 2em;
+  font-size: 2em;
 }
 mark {
   color: #000;
   background: #ff0;
 }
 small {
-  td-size: 80%;
+  font-size: 80%;
 }
 sub,
 sup {
   position: relative;
-  td-size: 75%;
+  font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
 }
@@ -105,8 +105,8 @@ code,
 kbd,
 pre,
 samp {
-  td-family: monospace, monospace;
-  td-size: 1em;
+  font-family: monospace, monospace;
+  font-size: 1em;
 }
 button,
 input,
@@ -114,7 +114,7 @@ optgroup,
 select,
 textarea {
   margin: 0;
-  td: inherit;
+  font: inherit;
   color: inherit;
 }
 button {
@@ -177,13 +177,13 @@ textarea {
   overflow: auto;
 }
 optgroup {
-  td-weight: bold;
+  font-weight: bold;
 }
 table {
   border-spacing: 0;
   border-collapse: collapse;
 }
-td,
+font,
 th {
   padding: 0;
 }
@@ -251,32 +251,32 @@ th {
   .table {
     border-collapse: collapse !important;
   }
-  .table td,
+  .table font,
   .table th {
     background-color: #fff !important;
   }
   .table-bordered th,
-  .table-bordered td {
+  .table-bordered font {
     border: 1px solid #ddd !important;
   }
 }
-@td-face {
-  td-family: 'Glyphicons Halflings';
+@font-face {
+  font-family: 'Glyphicons Halflings';
 
-  src: url('../tds/glyphicons-halflings-regular.eot');
-  src: url('../tds/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../tds/glyphicons-halflings-regular.woff2') format('woff2'), url('../tds/glyphicons-halflings-regular.woff') format('woff'), url('../tds/glyphicons-halflings-regular.ttf') format('truetype'), url('../tds/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
   top: 1px;
   display: inline-block;
-  td-family: 'Glyphicons Halflings';
-  td-style: normal;
-  td-weight: normal;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
   line-height: 1;
 
-  -webkit-td-smoothing: antialiased;
-  -moz-osx-td-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .glyphicon-asterisk:before {
   content: "\002a";
@@ -435,7 +435,7 @@ th {
 .glyphicon-camera:before {
   content: "\e046";
 }
-.glyphicon-td:before {
+.glyphicon-font:before {
   content: "\e047";
 }
 .glyphicon-bold:before {
@@ -1077,13 +1077,13 @@ th {
           box-sizing: border-box;
 }
 html {
-  td-size: 10px;
+  font-size: 10px;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  td-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  td-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
@@ -1092,8 +1092,8 @@ input,
 button,
 select,
 textarea {
-  td-family: inherit;
-  td-size: inherit;
+  font-family: inherit;
+  font-size: inherit;
   line-height: inherit;
 }
 a {
@@ -1183,8 +1183,8 @@ h6,
 .h4,
 .h5,
 .h6 {
-  td-family: inherit;
-  td-weight: 500;
+  font-family: inherit;
+  font-weight: 500;
   line-height: 1.1;
   color: inherit;
 }
@@ -1212,7 +1212,7 @@ h6 .small,
 .h4 .small,
 .h5 .small,
 .h6 .small {
-  td-weight: normal;
+  font-weight: normal;
   line-height: 1;
   color: #777;
 }
@@ -1237,7 +1237,7 @@ h2 .small,
 .h2 .small,
 h3 .small,
 .h3 .small {
-  td-size: 65%;
+  font-size: 65%;
 }
 h4,
 .h4,
@@ -1260,49 +1260,49 @@ h5 .small,
 .h5 .small,
 h6 .small,
 .h6 .small {
-  td-size: 75%;
+  font-size: 75%;
 }
 h1,
 .h1 {
-  td-size: 36px;
+  font-size: 36px;
 }
 h2,
 .h2 {
-  td-size: 30px;
+  font-size: 30px;
 }
 h3,
 .h3 {
-  td-size: 24px;
+  font-size: 24px;
 }
 h4,
 .h4 {
-  td-size: 18px;
+  font-size: 18px;
 }
 h5,
 .h5 {
-  td-size: 14px;
+  font-size: 14px;
 }
 h6,
 .h6 {
-  td-size: 12px;
+  font-size: 12px;
 }
 p {
   margin: 0 0 10px;
 }
 .lead {
   margin-bottom: 20px;
-  td-size: 16px;
-  td-weight: 300;
+  font-size: 16px;
+  font-weight: 300;
   line-height: 1.4;
 }
 @media (min-width: 768px) {
   .lead {
-    td-size: 21px;
+    font-size: 21px;
   }
 }
 small,
 .small {
-  td-size: 85%;
+  font-size: 85%;
 }
 mark,
 .mark {
@@ -1446,7 +1446,7 @@ dd {
   line-height: 1.42857143;
 }
 dt {
-  td-weight: bold;
+  font-weight: bold;
 }
 dd {
   margin-left: 0;
@@ -1471,13 +1471,13 @@ abbr[data-original-title] {
   border-bottom: 1px dotted #777;
 }
 .initialism {
-  td-size: 90%;
+  font-size: 90%;
   text-transform: uppercase;
 }
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
-  td-size: 17.5px;
+  font-size: 17.5px;
   border-left: 5px solid #eee;
 }
 blockquote p:last-child,
@@ -1489,7 +1489,7 @@ blockquote footer,
 blockquote small,
 blockquote .small {
   display: block;
-  td-size: 80%;
+  font-size: 80%;
   line-height: 1.42857143;
   color: #777;
 }
@@ -1524,25 +1524,25 @@ blockquote.pull-right .small:after {
 }
 address {
   margin-bottom: 20px;
-  td-style: normal;
+  font-style: normal;
   line-height: 1.42857143;
 }
 code,
 kbd,
 pre,
 samp {
-  td-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 code {
   padding: 2px 4px;
-  td-size: 90%;
+  font-size: 90%;
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
 }
 kbd {
   padding: 2px 4px;
-  td-size: 90%;
+  font-size: 90%;
   color: #fff;
   background-color: #333;
   border-radius: 3px;
@@ -1551,8 +1551,8 @@ kbd {
 }
 kbd kbd {
   padding: 0;
-  td-size: 100%;
-  td-weight: bold;
+  font-size: 100%;
+  font-weight: bold;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -1560,7 +1560,7 @@ pre {
   display: block;
   padding: 9.5px;
   margin: 0 0 10px;
-  td-size: 13px;
+  font-size: 13px;
   line-height: 1.42857143;
   color: #333;
   word-break: break-all;
@@ -1571,7 +1571,7 @@ pre {
 }
 pre code {
   padding: 0;
-  td-size: inherit;
+  font-size: inherit;
   color: inherit;
   white-space: pre-wrap;
   background-color: transparent;
@@ -2268,9 +2268,9 @@ th {
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
+.table > thead > tr > font,
+.table > tbody > tr > font,
+.table > tfoot > tr > font {
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
@@ -2283,9 +2283,9 @@ th {
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
-.table > caption + thead > tr:first-child > td,
-.table > colgroup + thead > tr:first-child > td,
-.table > thead:first-child > tr:first-child > td {
+.table > caption + thead > tr:first-child > font,
+.table > colgroup + thead > tr:first-child > font,
+.table > thead:first-child > tr:first-child > font {
   border-top: 0;
 }
 .table > tbody + tbody {
@@ -2297,9 +2297,9 @@ th {
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
-.table-condensed > thead > tr > td,
-.table-condensed > tbody > tr > td,
-.table-condensed > tfoot > tr > td {
+.table-condensed > thead > tr > font,
+.table-condensed > tbody > tr > font,
+.table-condensed > tfoot > tr > font {
   padding: 5px;
 }
 .table-bordered {
@@ -2308,13 +2308,13 @@ th {
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
-.table-bordered > thead > tr > td,
-.table-bordered > tbody > tr > td,
-.table-bordered > tfoot > tr > td {
+.table-bordered > thead > tr > font,
+.table-bordered > tbody > tr > font,
+.table-bordered > tfoot > tr > font {
   border: 1px solid #ddd;
 }
 .table-bordered > thead > tr > th,
-.table-bordered > thead > tr > td {
+.table-bordered > thead > tr > font {
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -2328,113 +2328,113 @@ table col[class*="col-"] {
   display: table-column;
   float: none;
 }
-table td[class*="col-"],
+table font[class*="col-"],
 table th[class*="col-"] {
   position: static;
   display: table-cell;
   float: none;
 }
-.table > thead > tr > td.active,
-.table > tbody > tr > td.active,
-.table > tfoot > tr > td.active,
+.table > thead > tr > font.active,
+.table > tbody > tr > font.active,
+.table > tfoot > tr > font.active,
 .table > thead > tr > th.active,
 .table > tbody > tr > th.active,
 .table > tfoot > tr > th.active,
-.table > thead > tr.active > td,
-.table > tbody > tr.active > td,
-.table > tfoot > tr.active > td,
+.table > thead > tr.active > font,
+.table > tbody > tr.active > font,
+.table > tfoot > tr.active > font,
 .table > thead > tr.active > th,
 .table > tbody > tr.active > th,
 .table > tfoot > tr.active > th {
   background-color: #f5f5f5;
 }
-.table-hover > tbody > tr > td.active:hover,
+.table-hover > tbody > tr > font.active:hover,
 .table-hover > tbody > tr > th.active:hover,
-.table-hover > tbody > tr.active:hover > td,
+.table-hover > tbody > tr.active:hover > font,
 .table-hover > tbody > tr:hover > .active,
 .table-hover > tbody > tr.active:hover > th {
   background-color: #e8e8e8;
 }
-.table > thead > tr > td.success,
-.table > tbody > tr > td.success,
-.table > tfoot > tr > td.success,
+.table > thead > tr > font.success,
+.table > tbody > tr > font.success,
+.table > tfoot > tr > font.success,
 .table > thead > tr > th.success,
 .table > tbody > tr > th.success,
 .table > tfoot > tr > th.success,
-.table > thead > tr.success > td,
-.table > tbody > tr.success > td,
-.table > tfoot > tr.success > td,
+.table > thead > tr.success > font,
+.table > tbody > tr.success > font,
+.table > tfoot > tr.success > font,
 .table > thead > tr.success > th,
 .table > tbody > tr.success > th,
 .table > tfoot > tr.success > th {
   background-color: #dff0d8;
 }
-.table-hover > tbody > tr > td.success:hover,
+.table-hover > tbody > tr > font.success:hover,
 .table-hover > tbody > tr > th.success:hover,
-.table-hover > tbody > tr.success:hover > td,
+.table-hover > tbody > tr.success:hover > font,
 .table-hover > tbody > tr:hover > .success,
 .table-hover > tbody > tr.success:hover > th {
   background-color: #d0e9c6;
 }
-.table > thead > tr > td.info,
-.table > tbody > tr > td.info,
-.table > tfoot > tr > td.info,
+.table > thead > tr > font.info,
+.table > tbody > tr > font.info,
+.table > tfoot > tr > font.info,
 .table > thead > tr > th.info,
 .table > tbody > tr > th.info,
 .table > tfoot > tr > th.info,
-.table > thead > tr.info > td,
-.table > tbody > tr.info > td,
-.table > tfoot > tr.info > td,
+.table > thead > tr.info > font,
+.table > tbody > tr.info > font,
+.table > tfoot > tr.info > font,
 .table > thead > tr.info > th,
 .table > tbody > tr.info > th,
 .table > tfoot > tr.info > th {
   background-color: #d9edf7;
 }
-.table-hover > tbody > tr > td.info:hover,
+.table-hover > tbody > tr > font.info:hover,
 .table-hover > tbody > tr > th.info:hover,
-.table-hover > tbody > tr.info:hover > td,
+.table-hover > tbody > tr.info:hover > font,
 .table-hover > tbody > tr:hover > .info,
 .table-hover > tbody > tr.info:hover > th {
   background-color: #c4e3f3;
 }
-.table > thead > tr > td.warning,
-.table > tbody > tr > td.warning,
-.table > tfoot > tr > td.warning,
+.table > thead > tr > font.warning,
+.table > tbody > tr > font.warning,
+.table > tfoot > tr > font.warning,
 .table > thead > tr > th.warning,
 .table > tbody > tr > th.warning,
 .table > tfoot > tr > th.warning,
-.table > thead > tr.warning > td,
-.table > tbody > tr.warning > td,
-.table > tfoot > tr.warning > td,
+.table > thead > tr.warning > font,
+.table > tbody > tr.warning > font,
+.table > tfoot > tr.warning > font,
 .table > thead > tr.warning > th,
 .table > tbody > tr.warning > th,
 .table > tfoot > tr.warning > th {
   background-color: #fcf8e3;
 }
-.table-hover > tbody > tr > td.warning:hover,
+.table-hover > tbody > tr > font.warning:hover,
 .table-hover > tbody > tr > th.warning:hover,
-.table-hover > tbody > tr.warning:hover > td,
+.table-hover > tbody > tr.warning:hover > font,
 .table-hover > tbody > tr:hover > .warning,
 .table-hover > tbody > tr.warning:hover > th {
   background-color: #faf2cc;
 }
-.table > thead > tr > td.danger,
-.table > tbody > tr > td.danger,
-.table > tfoot > tr > td.danger,
+.table > thead > tr > font.danger,
+.table > tbody > tr > font.danger,
+.table > tfoot > tr > font.danger,
 .table > thead > tr > th.danger,
 .table > tbody > tr > th.danger,
 .table > tfoot > tr > th.danger,
-.table > thead > tr.danger > td,
-.table > tbody > tr.danger > td,
-.table > tfoot > tr.danger > td,
+.table > thead > tr.danger > font,
+.table > tbody > tr.danger > font,
+.table > tfoot > tr.danger > font,
 .table > thead > tr.danger > th,
 .table > tbody > tr.danger > th,
 .table > tfoot > tr.danger > th {
   background-color: #f2dede;
 }
-.table-hover > tbody > tr > td.danger:hover,
+.table-hover > tbody > tr > font.danger:hover,
 .table-hover > tbody > tr > th.danger:hover,
-.table-hover > tbody > tr.danger:hover > td,
+.table-hover > tbody > tr.danger:hover > font,
 .table-hover > tbody > tr:hover > .danger,
 .table-hover > tbody > tr.danger:hover > th {
   background-color: #ebcccc;
@@ -2457,9 +2457,9 @@ table th[class*="col-"] {
   .table-responsive > .table > thead > tr > th,
   .table-responsive > .table > tbody > tr > th,
   .table-responsive > .table > tfoot > tr > th,
-  .table-responsive > .table > thead > tr > td,
-  .table-responsive > .table > tbody > tr > td,
-  .table-responsive > .table > tfoot > tr > td {
+  .table-responsive > .table > thead > tr > font,
+  .table-responsive > .table > tbody > tr > font,
+  .table-responsive > .table > tfoot > tr > font {
     white-space: nowrap;
   }
   .table-responsive > .table-bordered {
@@ -2468,23 +2468,23 @@ table th[class*="col-"] {
   .table-responsive > .table-bordered > thead > tr > th:first-child,
   .table-responsive > .table-bordered > tbody > tr > th:first-child,
   .table-responsive > .table-bordered > tfoot > tr > th:first-child,
-  .table-responsive > .table-bordered > thead > tr > td:first-child,
-  .table-responsive > .table-bordered > tbody > tr > td:first-child,
-  .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+  .table-responsive > .table-bordered > thead > tr > font:first-child,
+  .table-responsive > .table-bordered > tbody > tr > font:first-child,
+  .table-responsive > .table-bordered > tfoot > tr > font:first-child {
     border-left: 0;
   }
   .table-responsive > .table-bordered > thead > tr > th:last-child,
   .table-responsive > .table-bordered > tbody > tr > th:last-child,
   .table-responsive > .table-bordered > tfoot > tr > th:last-child,
-  .table-responsive > .table-bordered > thead > tr > td:last-child,
-  .table-responsive > .table-bordered > tbody > tr > td:last-child,
-  .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+  .table-responsive > .table-bordered > thead > tr > font:last-child,
+  .table-responsive > .table-bordered > tbody > tr > font:last-child,
+  .table-responsive > .table-bordered > tfoot > tr > font:last-child {
     border-right: 0;
   }
   .table-responsive > .table-bordered > tbody > tr:last-child > th,
   .table-responsive > .table-bordered > tfoot > tr:last-child > th,
-  .table-responsive > .table-bordered > tbody > tr:last-child > td,
-  .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+  .table-responsive > .table-bordered > tbody > tr:last-child > font,
+  .table-responsive > .table-bordered > tfoot > tr:last-child > font {
     border-bottom: 0;
   }
 }
@@ -2499,7 +2499,7 @@ legend {
   width: 100%;
   padding: 0;
   margin-bottom: 20px;
-  td-size: 21px;
+  font-size: 21px;
   line-height: inherit;
   color: #333;
   border: 0;
@@ -2509,7 +2509,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  td-weight: bold;
+  font-weight: bold;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -2542,7 +2542,7 @@ input[type="checkbox"]:focus {
 output {
   display: block;
   padding-top: 7px;
-  td-size: 14px;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #555;
 }
@@ -2551,7 +2551,7 @@ output {
   width: 100%;
   height: 34px;
   padding: 6px 12px;
-  td-size: 14px;
+  font-size: 14px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -2643,7 +2643,7 @@ input[type="search"] {
   min-height: 20px;
   padding-left: 20px;
   margin-bottom: 0;
-  td-weight: normal;
+  font-weight: normal;
   cursor: pointer;
 }
 .radio input[type="radio"],
@@ -2664,7 +2664,7 @@ input[type="search"] {
   display: inline-block;
   padding-left: 20px;
   margin-bottom: 0;
-  td-weight: normal;
+  font-weight: normal;
   vertical-align: middle;
   cursor: pointer;
 }
@@ -2707,7 +2707,7 @@ fieldset[disabled] .checkbox label {
 .input-sm {
   height: 30px;
   padding: 5px 10px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -2722,7 +2722,7 @@ select[multiple].input-sm {
 .form-group-sm .form-control {
   height: 30px;
   padding: 5px 10px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -2738,13 +2738,13 @@ select[multiple].input-sm {
   height: 30px;
   min-height: 32px;
   padding: 6px 10px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
 }
 .input-lg {
   height: 46px;
   padding: 10px 16px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
@@ -2759,7 +2759,7 @@ select[multiple].input-lg {
 .form-group-lg .form-control {
   height: 46px;
   padding: 10px 16px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
@@ -2775,7 +2775,7 @@ select[multiple].input-lg {
   height: 46px;
   min-height: 38px;
   padding: 11px 16px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 1.3333333;
 }
 .has-feedback {
@@ -2991,21 +2991,21 @@ select[multiple].input-lg {
 @media (min-width: 768px) {
   .form-horizontal .form-group-lg .control-label {
     padding-top: 11px;
-    td-size: 18px;
+    font-size: 18px;
   }
 }
 @media (min-width: 768px) {
   .form-horizontal .form-group-sm .control-label {
     padding-top: 6px;
-    td-size: 12px;
+    font-size: 12px;
   }
 }
 .btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  td-size: 14px;
-  td-weight: normal;
+  font-size: 14px;
+  font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
@@ -3399,7 +3399,7 @@ fieldset[disabled] .btn-danger.focus {
   background-color: #fff;
 }
 .btn-link {
-  td-weight: normal;
+  font-weight: normal;
   color: #337ab7;
   border-radius: 0;
 }
@@ -3434,21 +3434,21 @@ fieldset[disabled] .btn-link:focus {
 .btn-lg,
 .btn-group-lg > .btn {
   padding: 10px 16px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
 .btn-sm,
 .btn-group-sm > .btn {
   padding: 5px 10px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
 .btn-xs,
 .btn-group-xs > .btn {
   padding: 1px 5px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -3527,7 +3527,7 @@ tbody.collapse.in {
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
-  td-size: 14px;
+  font-size: 14px;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -3553,7 +3553,7 @@ tbody.collapse.in {
   display: block;
   padding: 3px 20px;
   clear: both;
-  td-weight: normal;
+  font-weight: normal;
   line-height: 1.42857143;
   color: #333;
   white-space: nowrap;
@@ -3602,7 +3602,7 @@ tbody.collapse.in {
 .dropdown-header {
   display: block;
   padding: 3px 20px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.42857143;
   color: #777;
   white-space: nowrap;
@@ -3838,7 +3838,7 @@ tbody.collapse.in {
 .input-group-lg > .input-group-btn > .btn {
   height: 46px;
   padding: 10px 16px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
@@ -3861,7 +3861,7 @@ select[multiple].input-group-lg > .input-group-btn > .btn {
 .input-group-sm > .input-group-btn > .btn {
   height: 30px;
   padding: 5px 10px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -3897,8 +3897,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon {
   padding: 6px 12px;
-  td-size: 14px;
-  td-weight: normal;
+  font-size: 14px;
+  font-weight: normal;
   line-height: 1;
   color: #555;
   text-align: center;
@@ -3908,12 +3908,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon.input-sm {
   padding: 5px 10px;
-  td-size: 12px;
+  font-size: 12px;
   border-radius: 3px;
 }
 .input-group-addon.input-lg {
   padding: 10px 16px;
-  td-size: 18px;
+  font-size: 18px;
   border-radius: 6px;
 }
 .input-group-addon input[type="radio"],
@@ -3948,7 +3948,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-btn {
   position: relative;
-  td-size: 0;
+  font-size: 0;
   white-space: nowrap;
 }
 .input-group-btn > .btn {
@@ -4275,7 +4275,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   float: left;
   height: 50px;
   padding: 15px 15px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 20px;
 }
 .navbar-brand:hover,
@@ -4775,7 +4775,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination-lg > li > a,
 .pagination-lg > li > span {
   padding: 10px 16px;
-  td-size: 18px;
+  font-size: 18px;
   line-height: 1.3333333;
 }
 .pagination-lg > li:first-child > a,
@@ -4791,7 +4791,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination-sm > li > a,
 .pagination-sm > li > span {
   padding: 5px 10px;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 1.5;
 }
 .pagination-sm > li:first-child > a,
@@ -4845,8 +4845,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .label {
   display: inline;
   padding: .2em .6em .3em;
-  td-size: 75%;
-  td-weight: bold;
+  font-size: 75%;
+  font-weight: bold;
   line-height: 1;
   color: #fff;
   text-align: center;
@@ -4913,8 +4913,8 @@ a.label:focus {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
-  td-size: 12px;
-  td-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
   line-height: 1;
   color: #fff;
   text-align: center;
@@ -4968,8 +4968,8 @@ a.badge:focus {
 }
 .jumbotron p {
   margin-bottom: 15px;
-  td-size: 21px;
-  td-weight: 200;
+  font-size: 21px;
+  font-weight: 200;
 }
 .jumbotron > hr {
   border-top-color: #d5d5d5;
@@ -4995,7 +4995,7 @@ a.badge:focus {
   }
   .jumbotron h1,
   .jumbotron .h1 {
-    td-size: 63px;
+    font-size: 63px;
   }
 }
 .thumbnail {
@@ -5035,7 +5035,7 @@ a.thumbnail.active {
   color: inherit;
 }
 .alert .alert-link {
-  td-weight: bold;
+  font-weight: bold;
 }
 .alert > p,
 .alert > ul {
@@ -5136,7 +5136,7 @@ a.thumbnail.active {
   float: left;
   width: 0;
   height: 100%;
-  td-size: 12px;
+  font-size: 12px;
   line-height: 20px;
   color: #fff;
   text-align: center;
@@ -5470,7 +5470,7 @@ button.list-group-item-danger.active:focus {
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  td-size: 16px;
+  font-size: 16px;
   color: inherit;
 }
 .panel-title > a,
@@ -5541,20 +5541,20 @@ button.list-group-item-danger.active:focus {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-.panel > .table:first-child > thead:first-child > tr:first-child td:first-child,
-.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:first-child,
-.panel > .table:first-child > tbody:first-child > tr:first-child td:first-child,
-.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:first-child,
+.panel > .table:first-child > thead:first-child > tr:first-child font:first-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child font:first-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child font:first-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child font:first-child,
 .panel > .table:first-child > thead:first-child > tr:first-child th:first-child,
 .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:first-child,
 .panel > .table:first-child > tbody:first-child > tr:first-child th:first-child,
 .panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child th:first-child {
   border-top-left-radius: 3px;
 }
-.panel > .table:first-child > thead:first-child > tr:first-child td:last-child,
-.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child td:last-child,
-.panel > .table:first-child > tbody:first-child > tr:first-child td:last-child,
-.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child td:last-child,
+.panel > .table:first-child > thead:first-child > tr:first-child font:last-child,
+.panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child font:last-child,
+.panel > .table:first-child > tbody:first-child > tr:first-child font:last-child,
+.panel > .table-responsive:first-child > .table:first-child > tbody:first-child > tr:first-child font:last-child,
 .panel > .table:first-child > thead:first-child > tr:first-child th:last-child,
 .panel > .table-responsive:first-child > .table:first-child > thead:first-child > tr:first-child th:last-child,
 .panel > .table:first-child > tbody:first-child > tr:first-child th:last-child,
@@ -5573,20 +5573,20 @@ button.list-group-item-danger.active:focus {
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-.panel > .table:last-child > tbody:last-child > tr:last-child td:first-child,
-.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:first-child,
-.panel > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
-.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:first-child,
+.panel > .table:last-child > tbody:last-child > tr:last-child font:first-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child font:first-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child font:first-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child font:first-child,
 .panel > .table:last-child > tbody:last-child > tr:last-child th:first-child,
 .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:first-child,
 .panel > .table:last-child > tfoot:last-child > tr:last-child th:first-child,
 .panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child th:first-child {
   border-bottom-left-radius: 3px;
 }
-.panel > .table:last-child > tbody:last-child > tr:last-child td:last-child,
-.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child td:last-child,
-.panel > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
-.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child td:last-child,
+.panel > .table:last-child > tbody:last-child > tr:last-child font:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child font:last-child,
+.panel > .table:last-child > tfoot:last-child > tr:last-child font:last-child,
+.panel > .table-responsive:last-child > .table:last-child > tfoot:last-child > tr:last-child font:last-child,
 .panel > .table:last-child > tbody:last-child > tr:last-child th:last-child,
 .panel > .table-responsive:last-child > .table:last-child > tbody:last-child > tr:last-child th:last-child,
 .panel > .table:last-child > tfoot:last-child > tr:last-child th:last-child,
@@ -5600,7 +5600,7 @@ button.list-group-item-danger.active:focus {
   border-top: 1px solid #ddd;
 }
 .panel > .table > tbody:first-child > tr:first-child th,
-.panel > .table > tbody:first-child > tr:first-child td {
+.panel > .table > tbody:first-child > tr:first-child font {
   border-top: 0;
 }
 .panel > .table-bordered,
@@ -5613,12 +5613,12 @@ button.list-group-item-danger.active:focus {
 .panel > .table-responsive > .table-bordered > tbody > tr > th:first-child,
 .panel > .table-bordered > tfoot > tr > th:first-child,
 .panel > .table-responsive > .table-bordered > tfoot > tr > th:first-child,
-.panel > .table-bordered > thead > tr > td:first-child,
-.panel > .table-responsive > .table-bordered > thead > tr > td:first-child,
-.panel > .table-bordered > tbody > tr > td:first-child,
-.panel > .table-responsive > .table-bordered > tbody > tr > td:first-child,
-.panel > .table-bordered > tfoot > tr > td:first-child,
-.panel > .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+.panel > .table-bordered > thead > tr > font:first-child,
+.panel > .table-responsive > .table-bordered > thead > tr > font:first-child,
+.panel > .table-bordered > tbody > tr > font:first-child,
+.panel > .table-responsive > .table-bordered > tbody > tr > font:first-child,
+.panel > .table-bordered > tfoot > tr > font:first-child,
+.panel > .table-responsive > .table-bordered > tfoot > tr > font:first-child {
   border-left: 0;
 }
 .panel > .table-bordered > thead > tr > th:last-child,
@@ -5627,28 +5627,28 @@ button.list-group-item-danger.active:focus {
 .panel > .table-responsive > .table-bordered > tbody > tr > th:last-child,
 .panel > .table-bordered > tfoot > tr > th:last-child,
 .panel > .table-responsive > .table-bordered > tfoot > tr > th:last-child,
-.panel > .table-bordered > thead > tr > td:last-child,
-.panel > .table-responsive > .table-bordered > thead > tr > td:last-child,
-.panel > .table-bordered > tbody > tr > td:last-child,
-.panel > .table-responsive > .table-bordered > tbody > tr > td:last-child,
-.panel > .table-bordered > tfoot > tr > td:last-child,
-.panel > .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+.panel > .table-bordered > thead > tr > font:last-child,
+.panel > .table-responsive > .table-bordered > thead > tr > font:last-child,
+.panel > .table-bordered > tbody > tr > font:last-child,
+.panel > .table-responsive > .table-bordered > tbody > tr > font:last-child,
+.panel > .table-bordered > tfoot > tr > font:last-child,
+.panel > .table-responsive > .table-bordered > tfoot > tr > font:last-child {
   border-right: 0;
 }
-.panel > .table-bordered > thead > tr:first-child > td,
-.panel > .table-responsive > .table-bordered > thead > tr:first-child > td,
-.panel > .table-bordered > tbody > tr:first-child > td,
-.panel > .table-responsive > .table-bordered > tbody > tr:first-child > td,
+.panel > .table-bordered > thead > tr:first-child > font,
+.panel > .table-responsive > .table-bordered > thead > tr:first-child > font,
+.panel > .table-bordered > tbody > tr:first-child > font,
+.panel > .table-responsive > .table-bordered > tbody > tr:first-child > font,
 .panel > .table-bordered > thead > tr:first-child > th,
 .panel > .table-responsive > .table-bordered > thead > tr:first-child > th,
 .panel > .table-bordered > tbody > tr:first-child > th,
 .panel > .table-responsive > .table-bordered > tbody > tr:first-child > th {
   border-bottom: 0;
 }
-.panel > .table-bordered > tbody > tr:last-child > td,
-.panel > .table-responsive > .table-bordered > tbody > tr:last-child > td,
-.panel > .table-bordered > tfoot > tr:last-child > td,
-.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > td,
+.panel > .table-bordered > tbody > tr:last-child > font,
+.panel > .table-responsive > .table-bordered > tbody > tr:last-child > font,
+.panel > .table-bordered > tfoot > tr:last-child > font,
+.panel > .table-responsive > .table-bordered > tfoot > tr:last-child > font,
 .panel > .table-bordered > tbody > tr:last-child > th,
 .panel > .table-responsive > .table-bordered > tbody > tr:last-child > th,
 .panel > .table-bordered > tfoot > tr:last-child > th,
@@ -5840,8 +5840,8 @@ button.list-group-item-danger.active:focus {
 }
 .close {
   float: right;
-  td-size: 21px;
-  td-weight: bold;
+  font-size: 21px;
+  font-weight: bold;
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
@@ -5990,10 +5990,10 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  td-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  td-size: 12px;
-  td-style: normal;
-  td-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
   line-height: 1.42857143;
   text-align: left;
   text-align: start;
@@ -6109,10 +6109,10 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  td-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  td-size: 14px;
-  td-style: normal;
-  td-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
   line-height: 1.42857143;
   text-align: left;
   text-align: start;
@@ -6150,7 +6150,7 @@ button.close {
 .popover-title {
   padding: 8px 14px;
   margin: 0;
-  td-size: 14px;
+  font-size: 14px;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   border-radius: 5px 5px 0 0;
@@ -6320,7 +6320,7 @@ button.close {
   bottom: 0;
   left: 0;
   width: 15%;
-  td-size: 20px;
+  font-size: 20px;
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
@@ -6378,7 +6378,7 @@ button.close {
 .carousel-control .icon-next {
   width: 20px;
   height: 20px;
-  td-family: serif;
+  font-family: serif;
   line-height: 1;
 }
 .carousel-control .icon-prev:before {
@@ -6439,7 +6439,7 @@ button.close {
     width: 30px;
     height: 30px;
     margin-top: -10px;
-    td-size: 30px;
+    font-size: 30px;
   }
   .carousel-control .glyphicon-chevron-left,
   .carousel-control .icon-prev {
@@ -6532,7 +6532,7 @@ button.close {
   visibility: hidden;
 }
 .text-hide {
-  td: 0/0 a;
+  font: 0/0 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
@@ -6578,7 +6578,7 @@ button.close {
     display: table-row !important;
   }
   th.visible-xs,
-  td.visible-xs {
+  font.visible-xs {
     display: table-cell !important;
   }
 }
@@ -6608,7 +6608,7 @@ button.close {
     display: table-row !important;
   }
   th.visible-sm,
-  td.visible-sm {
+  font.visible-sm {
     display: table-cell !important;
   }
 }
@@ -6638,7 +6638,7 @@ button.close {
     display: table-row !important;
   }
   th.visible-md,
-  td.visible-md {
+  font.visible-md {
     display: table-cell !important;
   }
 }
@@ -6668,7 +6668,7 @@ button.close {
     display: table-row !important;
   }
   th.visible-lg,
-  td.visible-lg {
+  font.visible-lg {
     display: table-cell !important;
   }
 }
@@ -6721,7 +6721,7 @@ button.close {
     display: table-row !important;
   }
   th.visible-print,
-  td.visible-print {
+  font.visible-print {
     display: table-cell !important;
   }
 }
