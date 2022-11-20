@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kopo.poly.persistance.mapper.INewsMapper">
+    <select id="getNewsExists" parameterType="NewsDTO" resultType="NewsDTO">
+        select DECODE(COUNT(1), 0, 'N', 'Y') AS NEWS_EXISTS
+        from NEWS_INFO
+        where NEWS_SEQ = #{news_seq}
+    </select>
+    <insert id="insertNews_info" parameterType="NewsDTO">
+        INSERT INTO NEWS_INFO
+            (
+             COLLECT_TIME,
+             NEWS_SEQ,
+             NEWS_TITLE,
+             NEWS_DEPARTMENT,
+             NEWS_DATE,
+             NEWS_URL
+            )
+            VALUES
+                   (
+                    #{collect_time},
+                   (SELECT NVL(MAX(A.news_seq),0)+1 FROM NEWS_INFO A WHERE A.COLLECT_TIME = #{collect_time}),
+                   #{news_title},
+                   #{news_department},
+                   #{news_date},
+                   #{news_url}
+                  )
+    </insert>
+    <update id="updateNews_Info" parameterType="NewsDTO">
+
+    </update>
+</mapper>
