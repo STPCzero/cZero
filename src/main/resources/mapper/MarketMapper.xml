@@ -6,7 +6,7 @@
 
     <!-- 상품 리스트 쿼리 -->
     <select id="getMarketList" resultType="MarketDTO">
-        SELECT M.USER_SEQ, U.USER_SEQ, M.TITLE, M.MK_SEQ, M.PRICE, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE, M.USER_NAME
+        SELECT M.USER_SEQ, U.USER_SEQ, M.TITLE, M.MK_SEQ, M.PRICE, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE, U.USER_NAME
             FROM MARKET M
         LEFT JOIN USER_INFO U
             ON M.USER_SEQ = U.USER_SEQ

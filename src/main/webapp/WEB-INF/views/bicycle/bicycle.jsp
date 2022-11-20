@@ -14,6 +14,7 @@
 //    }
 // test
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +34,230 @@
     <script type="text/javascript">
     </script>
 
+    <!-- search -->
+    <style>
+        /* store */
+        .store_map{
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 750px;
+        }
+        .store_box{
+            position: absolute;
+            top: 40px;
+            bottom: 40px;
+            width: 400px;
+            margin-right: 150px;
+            padding: 0 50px 0 30px;
+            background: rgb(255,255,255);
+            z-index: 9
+        }
+        .store_box .title_area{
+            overflow: hidden;
+            padding-top: 40px;
+            font-family: 'NanumBarunGothic';
+        }
+        .store_box .title_area > h2{
+            float: left;
+            font-size: 24px;
+            color: rgb(47,28,17);
+            font-weight:normal;
+        }
+        .store_box .title_area .btn_box{float: right}
+        .store_box .title_area .btn_box a{
+            float: left;
+            display: block;
+            width: 80px;
+            padding-left: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .condition_box{
+            display: none;
+            position: absolute;
+            top: 100px;
+            right: 50px;
+            width: 170px;
+            padding: 30px 0 25px 30px;
+            border: 1px solid rgb(0,0,0);
+            background: rgb(255,255,255);
+            z-index: 998
+        }
+        .condition_box li{margin-bottom: 5px;}
+        .condition_box li .label_style2{font-family: 'NanumBarunGothic';}
+        .condition_box li .label_style2 img{width: 13px; margin-right: 5px;}
+
+        .condition_box .btn_close{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            margin: 0;
+        }
+        .condition_box .btn_srh{
+            display: block;
+            width: 138px;
+            margin-top: 15px;
+            border: 1px solid rgb(0,0,0);
+            line-height: 28px;
+            font-size: 14px;
+            text-align: center;
+            color: rgb(0,0,0);
+        }
+        .search_tab{
+            position: relative;
+            margin-bottom: 40px;
+            top: 0;
+            left: 0;
+            font-family: 'NanumBarunGothic';
+            z-index: 997;
+        }
+        .search_tab > h3{
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 14px;
+        }
+        .search_tab > h3 a{color: rgb(47,28,17); font-weight:normal;}
+        .search_tab > h3.on a{color: rgb(207,102,26)}
+
+        .search_tab .cont{padding-top: 30px; height: 50px;}
+        .search_tab .srh_box{ height: 50px; background: rgb(238,238,238);}
+        .search_tab .srh_box input{
+            float: left;
+            width: 80%;
+            height: 50px;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 50px;
+            color: rgb(51,51,51);
+            background: rgb(238,238,238);
+            border:none;
+        }
+        .search_tab .srh_box button{
+            padding: 0;
+            float: right;
+            width : 50px;
+            height: 50px;
+            border:none;
+        }
+
+        .store_tab{
+            position: relative;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding-top: 75px;
+            z-index: 996
+        }
+        .store_tab > h3{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            font-size: 14px;
+            background: rgb(238,238,238);
+        }
+        .store_tab > h3 a{
+            display: block;
+            height: 38px;
+            font-family: 'Archer-Semibold';
+            line-height: 38px;
+            text-align: center;
+            color: rgb(47,28,17);
+            background: rgb(238,238,238);
+            border:1px solid rgb(222,222,222);
+            border-right: 0
+        }
+        .store_tab .cont{
+            height: 400px;
+            overflow-y: scroll;
+        }
+        .store_tab ul{
+            width: 100%;
+        }
+        .store_tab ul li{
+            overflow: hidden;
+            margin-bottom: 20px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgb(238,238,238);
+            font-size: 11px;
+        }
+        .store_tab .num{
+            width: 30px;
+            height: 30px;
+            margin-bottom: -20px;
+            font-family: 'Archer-Semibold';
+            font-size: 16px;
+            line-height: 30px;
+            text-align: center;
+            color: rgb(255,255,255);
+        }
+        .store_tab .store_txt{
+            float: left;
+            padding-left: 45px;
+            font-family: 'NanumBarunGothic';
+            width: 325px;
+        }
+        .store_tab .store_txt .name{overflow: hidden; margin-bottom: 15px;}
+        .store_tab .store_txt .name span{
+            float: left;
+            display: block;
+            width: 250px;
+            font-size: 14px;
+            color: rgb(51,51,51)
+        }
+        .store_tab .store_txt .name span strong{
+            display: inline-block;
+            margin-left: 5px;
+            font-family: 'Archer-Semibold';
+            color: rgb(105,81,157);
+            vertical-align: top;
+        }
+        .store_tab .store_txt .name a{
+            float: right;
+            font-size: 11px;
+            padding: 2px 3px;
+        }
+        .store_tab .store_txt .tag{margin-bottom: 10px;}
+        .store_tab .store_txt .tag span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 3px;
+            margin-bottom: 5px;
+            text-indent: -99999px;
+        }
+        .store_tab .store_txt .address span{
+            display: block;
+            margin-bottom: 5px;
+            color: rgb(51,51,51)
+        }
+        .store_tab .store_txt .address .lot{color: rgb(51,51,51)}
+        .store_tab .store_txt .tel a{color: rgb(51,51,51)}
+        .store_wrap{
+            width: 1200px;
+            margin: 75px auto 90px
+        }
+        .store_wrap > h2{margin-bottom: 55px;}
+
+        .store_tab .store_txt .etc span{display: block;margin-top: 20px;}
+
+        @media screen and (min-width: 1112px) {
+            .store_box {
+                right: 50%;
+            }
+        }
+        @media screen and (max-width: 1111px) {
+            .store_box {
+            }
+        }
+    </style>
     <style>
         .pagination>li>a, .pagination>li>span {
             color : red;
@@ -105,8 +330,6 @@
 			</span>
             </div>
         </div>
-
-
 <%--        <div>--%>
 <%--            <% for(BicycleRowDTO i : pList){ %>--%>
 <%--                <div><%=i.getSta_loc()%></div>--%>
@@ -116,63 +339,45 @@
 <%--            <% } %>--%>
 <%--        </div>--%>
     </div>
-    <div id="edd_checkout_wrap" class="" style="margin-bottom: 100px;">
-        <div id="clickLatlng"></div>
-        <div id="map" style="width:100%; min-height:750px;"></div>
-    </div>
-    <div class="store_box">
-        <div class="title_area">
-            <h2>매장찾기</h2>
-            <div class="btn_box">
-                <a href="#" class="btn_condition">조건 설정</a>
-                <a href="#" class="btn_here" id="location">현재 위치</a>
+    <div class="store_map" style="margin-bottom: 50px; width: 100%;">
+        <div id="edd_checkout_wrap" class="" style="margin-bottom: 100px;">
+            <div id="clickLatlng"></div>
+            <div id="map" style="width:100%; min-height:750px;"></div>
+        </div>
+        <div class="store_box">
+            <div class="title_area">
+                <h2>자전거 찾기</h2>
             </div>
-        </div>
-        <!-- 조건설정 -->
-        <div class="condition_box">
-            <ul>
-                <li>
-                    <input type="checkbox" id="chkall" name="chkall" class="check_style" value="1">
-                    <label for="chkall" class="label_style2"><img src="/images/store/ico_tag_check_on.png" alt="all">모두선택</label>
-                </li>
-            </ul>
-            <a href="javascript:void(0);" class="btn_srh" id="btnChkSearch">검색하기</a>
-            <button class="btn_close"><img src="/images/btn/btn_close2.gif" alt="닫기 버튼"></button>
-        </div>
-        <!-- //조건설정 -->
-        <div class="search_tab">
-            <!-- 빠른검색 -->
-            <h3 class="quick_srh on"><a href="#" id="quick_srh">빠른 검색</a></h3>
-            <div class="cont">
+            <div class="search_tab">
                 <div class="srh_box">
                     <input type="text" id="keyword" name="keyword" data-val="매장명 또는 주소를 입력하세요." value="" onkeydown="if (event.keyCode==13) searchStore();">
-                    <button onclick="searchStore();void(0);"><img src="/images/sub/btn_quick_srh.gif" alt="조회하기"></button>
+                    <button onclick="searchStore();void(0);"><img style="width:32px; height: 32px;" src="../images/search.png" alt="조회하기"></button>
                 </div>
             </div>
-        </div>
-        <!-- store_tab -->
-        <div class="store_tab">
-            <!-- STORE LOCATOR -->
-            <h3 class="store_locator  on"><a href="#" id="store_local">STORE LOCATOR</a></h3>
-            <div class="cont">
-                <ul id="storeListUL">
-                    <li data-lng="127.059475" data-lat="37.514524" data-no="31">
-                        <div class="num">1</div>
-                        <div class="store_txt">
-                            <p class="name">
-                                <span>삼성봉은사거리점<strong class="distance">33m</strong></span>
-                                <a href="javascript:storePop2('31');void(0);" class="btn_style6">자세히보기</a>
-                            </p>
-                            <p class="address">
-                                <span>서울시 강남구 영동대로 607 1,2층</span>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
+            <!-- store_tab -->
+            <div class="store_tab">
+                <!-- STORE LOCATOR -->
+                <h3 class="store_locator  on"><a href="#" id="store_local">BICYCLE LOCATOR</a></h3>
+                <div class="cont">
+                    <ul id="storeListUL">
+                        <li data-lng="127.059475" data-lat="37.514524" data-no="31">
+                            <div class="num">1</div>
+                            <div class="store_txt">
+                                <p class="name">
+                                    <span>삼성봉은사거리점<strong class="distance">33m</strong></span>
+                                </p>
+                                <p class="address">
+                                    <span>서울시 강남구 영동대로 607 1,2층</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <!-- //store_tab -->
         </div>
-        <!-- //store_tab -->
     </div>
+
 
 
 </section>
@@ -189,62 +394,135 @@
 </div>
 <!-- Load JS here for greater good =============================-->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c85324bca7f70b8b98b21cf9f828ad54"></script>
+
+
 <script>
-    $.ajax({
-        url: "/bicycle/getBicycle",
-        type:"get",
-        contentType: "application/json",
-        success: function(data) {
-            console.log(data);
-            console.log(data.rowList[0].rent_nm);
-            var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+    // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            $.ajax({
+                url: "/bicycle/getBicycle",
+                type:"get",
+                data : {
+                    lat :37.549944383590336, // pos.coords.latitude,
+                    lon : 126.84239510324666 //pos.coords.longitude
+                },
+                contentType: "application/json",
+                success: function(data) {
 
-            /** 학교를 기본 위치로 잡음 -> 나중엔 내가 있는 위치를 기본으로 잡아보자! */
-            var longitude = 126.84239510324666; // 경도
-            var latitude = 37.549944383590336; // 위도
+                    /** 학교를 기본 위치로 잡음 -> 나중엔 내가 있는 위치를 기본으로 잡아보자! */
 
-            // 마커를 표시할 위치와 title 객체 배열입니다
-            var positions = new Array();
+                    // var longitude = 126.84239510324666; // 경도
+                    // var latitude = 37.549944383590336; // 위도
+                    console.log(data);
+                    var latitude = data.lat;
+                    var longitude = data.lon;
 
-            for(var i = 0; i < data.rowList.length; i++){
-                positions.push(
-                    {
-                        title: data.rowList[i].rent_nm,
-                        latlng : new kakao.maps.LatLng(data.rowList[i].sta_lat, data.rowList[i].sta_long)
+                    var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+
+                    // 마커를 표시할 위치와 title 객체 배열입니다
+                    var positions = new Array();
+                    for(var i = 0; i < data.bicycleList.length; i++){
+                        positions.push(
+                            {
+                                title: data.bicycleList[i].stationName,
+                                latlng : new kakao.maps.LatLng(data.bicycleList[i].stationLatitude, data.bicycleList[i].stationLongitude)
+                            }
+                        )
                     }
-                )
+
+                    console.log(positions);
+                    var options = { //지도를 생성할 때 필요한 기본 옵션
+                        center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+                        level: 5 //지도의 레벨(확대, 축소 정도)
+                    };
+
+                    var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                    // 마커 이미지의 이미지 주소입니다
+                    var imageSrc = "../images/location.png";
+                    var imageSize = new kakao.maps.Size(35, 35);
+
+                    for (var i = 0; i < positions.length; i++) {
+
+                        // 마커 이미지를 생성합니다
+                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                        // 마커를 생성합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map, // 마커를 표시할 지도
+                            position: positions[i].latlng, // 마커를 표시할 위치
+                            title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                            image: markerImage // 마커 이미지
+                        });
+                    }
+                },
+                error: function() {
+                    console.log("실패!");
+                }
+            })
+        });
+    } else {
+        alert("Geolocation 이 잡히지 않아 기본 위치 설정으로 시작합니다.");
+        $.ajax({
+            url: "/bicycle/getBicycle",
+            type:"get",
+            data : {
+                lat : 37.549944383,
+                lon : 126.84239510
+            },
+            contentType: "application/json",
+            success: function(data) {
+
+                /** 학교를 기본 위치로 잡음 */
+                console.log(data);
+                var latitude = data.lat;
+                var longitude = data.lon;
+
+                var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+
+                // 마커를 표시할 위치와 title 객체 배열입니다
+                var positions = new Array();
+                for(var i = 0; i < data.bicycleList.length; i++){
+                    positions.push(
+                        {
+                            title: data.bicycleList[i].stationName,
+                            latlng : new kakao.maps.LatLng(data.bicycleList[i].stationLatitude, data.bicycleList[i].stationLongitude)
+                        }
+                    )
+                }
+
+                console.log(positions);
+                var options = { //지도를 생성할 때 필요한 기본 옵션
+                    center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+                    level: 5 //지도의 레벨(확대, 축소 정도)
+                };
+
+                var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                // 마커 이미지의 이미지 주소입니다
+                var imageSrc = "../images/location.png";
+                var imageSize = new kakao.maps.Size(35, 35);
+
+                for (var i = 0; i < positions.length; i++) {
+
+                    // 마커 이미지를 생성합니다
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                    // 마커를 생성합니다
+                    var marker = new kakao.maps.Marker({
+                        map: map, // 마커를 표시할 지도
+                        position: positions[i].latlng, // 마커를 표시할 위치
+                        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                        image: markerImage // 마커 이미지
+                    });
+                }
+            },
+            error: function() {
+                console.log("실패!");
             }
-
-            console.log(positions);
-            var options = { //지도를 생성할 때 필요한 기본 옵션
-                center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
-                level: 5 //지도의 레벨(확대, 축소 정도)
-            };
-
-            var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-            // 마커 이미지의 이미지 주소입니다
-            var imageSrc = "../images/location.png";
-            var imageSize = new kakao.maps.Size(35, 35);
-
-            for (var i = 0; i < positions.length; i++) {
-
-                // 마커 이미지를 생성합니다
-                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-                // 마커를 생성합니다
-                var marker = new kakao.maps.Marker({
-                    map: map, // 마커를 표시할 지도
-                    position: positions[i].latlng, // 마커를 표시할 위치
-                    title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                    image: markerImage // 마커 이미지
-                });
-            }
-        },
-        error: function() {
-            alert("error");
-        }
-    })
+        })
+    }
 
 
 </script>
