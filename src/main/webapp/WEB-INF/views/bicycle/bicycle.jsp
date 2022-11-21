@@ -159,7 +159,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 50%;
+            width: 100%;
             font-size: 14px;
             background: rgb(238,238,238);
         }
@@ -456,6 +456,9 @@
                             image: markerImage // 마커 이미지
                         });
                     }
+
+                    /** HTML로 BICYCLE LOCATOR 출력 */
+
                 },
                 error: function() {
                     console.log("실패!");
