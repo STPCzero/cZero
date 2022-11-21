@@ -18,7 +18,10 @@
     int endPageNum = (int) request.getAttribute("endPageNum");
     int select = (int) request.getAttribute("select");
 
+    String sessionNo = (String) session.getAttribute("sessionNo");
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,8 +57,9 @@
         }
     </style>
 </head>
-<body>
 
+<body>
+<% if(sessionNo!=null) {%>
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
     <div class="wrapper">
@@ -74,8 +78,11 @@
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                        <% if(sessionNo!=null) {%>
+                        <li class="propClone"><a href="/logout">Logout</a></li>
+                        <%} else { %>
                         <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>
@@ -222,5 +229,11 @@
         );
     });
 </script>
+<%} else { %>
+<script>
+    alert("로그인이 필요한 서비스입니다.");
+    location.href = "/login/login";
+</script>
+<% }%>
 </body>
 </html>

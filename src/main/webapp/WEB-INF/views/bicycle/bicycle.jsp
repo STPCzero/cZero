@@ -8,11 +8,7 @@
 <%@ page import="kopo.poly.dto.BicycleDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-//    List<BicycleRowDTO> pList = ((BicycleDTO)request.getAttribute("bDTO")).getRowList();
-//    if(pList == null) {
-//        pList = null;
-//    }
-// test
+    String sessionNo = (String) session.getAttribute("sessionNo");
 %>
 
 <!DOCTYPE html>
@@ -46,17 +42,19 @@
         }
         .store_box{
             position: absolute;
-            top: 40px;
-            bottom: 40px;
+            top: 0;
+            bottom: 0;
+            right: 50%;
             width: 400px;
             margin-right: 150px;
             padding: 0 50px 0 30px;
             background: rgb(255,255,255);
-            z-index: 9
+            z-index: 1
         }
         .store_box .title_area{
             overflow: hidden;
             padding-top: 40px;
+            margin-bottom: 35px;
             font-family: 'NanumBarunGothic';
         }
         .store_box .title_area > h2{
@@ -70,11 +68,19 @@
             float: left;
             display: block;
             width: 80px;
-            padding-left: 20px;
+            padding-left: 15px;
             height: 40px;
             line-height: 40px;
+            font-size: 12px;
         }
-
+        .store_box .title_area .btn_condition.on{
+            color: rgb(255,255,255);
+            background: rgb(0,0,0);
+        }
+        .store_box .title_area .btn_here{
+            color: rgb(255,255,255);
+            background: rgb(238,119,19);
+        }
         .condition_box{
             display: none;
             position: absolute;
@@ -294,8 +300,11 @@
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                        <% if(sessionNo!=null) {%>
+                        <li class="propClone"><a href="/logout">Logout</a></li>
+                        <%} else { %>
                         <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>
@@ -347,6 +356,9 @@
         <div class="store_box">
             <div class="title_area">
                 <h2>자전거 찾기</h2>
+                <div class="btn_box">
+                    <a href="#" class="btn_here" id="location">현재 위치</a>
+                </div>
             </div>
             <div class="search_tab">
                 <div class="srh_box">
@@ -400,89 +412,55 @@
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(pos) {
-            $.ajax({
-                url: "/bicycle/getBicycle",
-                type:"get",
-                data : {
-                    lat :37.549944383590336, // pos.coords.latitude,
-                    lon : 126.84239510324666 //pos.coords.longitude
-                },
-                contentType: "application/json",
-                success: function(data) {
+            var lat = pos.coords.latitude; // 위도
+            var lon = pos.coords.longitude; // 경도
 
-                    /** 학교를 기본 위치로 잡음 -> 나중엔 내가 있는 위치를 기본으로 잡아보자! */
-
-                    // var longitude = 126.84239510324666; // 경도
-                    // var latitude = 37.549944383590336; // 위도
-                    console.log(data);
-                    var latitude = data.lat;
-                    var longitude = data.lon;
-
-                    var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-
-                    // 마커를 표시할 위치와 title 객체 배열입니다
-                    var positions = new Array();
-                    for(var i = 0; i < data.bicycleList.length; i++){
-                        positions.push(
-                            {
-                                title: data.bicycleList[i].stationName,
-                                latlng : new kakao.maps.LatLng(data.bicycleList[i].stationLatitude, data.bicycleList[i].stationLongitude)
-                            }
-                        )
-                    }
-
-                    console.log(positions);
-                    var options = { //지도를 생성할 때 필요한 기본 옵션
-                        center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
-                        level: 5 //지도의 레벨(확대, 축소 정도)
-                    };
-
-                    var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-                    // 마커 이미지의 이미지 주소입니다
-                    var imageSrc = "../images/location.png";
-                    var imageSize = new kakao.maps.Size(35, 35);
-
-                    for (var i = 0; i < positions.length; i++) {
-
-                        // 마커 이미지를 생성합니다
-                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-                        // 마커를 생성합니다
-                        var marker = new kakao.maps.Marker({
-                            map: map, // 마커를 표시할 지도
-                            position: positions[i].latlng, // 마커를 표시할 위치
-                            title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                            image: markerImage // 마커 이미지
-                        });
-                    }
-
-                    /** HTML로 BICYCLE LOCATOR 출력 */
-
-                },
-                error: function() {
-                    console.log("실패!");
-                }
-            })
+            // 마커와 인포윈도우를 표시합니다
+            displayMarker(lat, lon);
         });
     } else {
-        alert("Geolocation 이 잡히지 않아 기본 위치 설정으로 시작합니다.");
+        var lat = 37.549944383590336; // 위도
+        var lon = 126.84239510324666; // 경도
+        displayMarker(lat, lon);
+    }
+
+    // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+    function displayMarker(lat1, lon1) {
         $.ajax({
             url: "/bicycle/getBicycle",
             type:"get",
             data : {
-                lat : 37.549944383,
-                lon : 126.84239510
+                lat : 37.549944383590336, // pos.coords.latitude,
+                lon : 126.84239510324666 //pos.coords.longitude
             },
             contentType: "application/json",
             success: function(data) {
 
-                /** 학교를 기본 위치로 잡음 */
+                /** 학교를 기본 위치로 잡음 -> 나중엔 내가 있는 위치를 기본으로 잡아보자! */
                 console.log(data);
-                var latitude = data.lat;
-                var longitude = data.lon;
+                var latitude = data.lat; // 내 위도
+                var longitude = data.lon; // 내 경도
+                var locPosition = new kakao.maps.LatLng(latitude, longitude);
 
                 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                var options = { //지도를 생성할 때 필요한 기본 옵션
+                    center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+                    level: 5 //지도의 레벨(확대, 축소 정도)
+                };
+
+                var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                // 내 위치 마커를 생성합니다
+                // 마커 이미지의 이미지 주소입니다
+                var imageSrc2 = "../images/mylocation.png";
+                var imageSize2 = new kakao.maps.Size(35, 35);
+                var myLocationMarker = new kakao.maps.Marker({
+                    map: map,
+                    position: locPosition,
+                    image: new kakao.maps.MarkerImage(imageSrc2, imageSize2) // 마커 이미지
+                });
+                // 지도 중심좌표를 접속위치로 변경합니다
+                map.setCenter(locPosition);
 
                 // 마커를 표시할 위치와 title 객체 배열입니다
                 var positions = new Array();
@@ -496,19 +474,12 @@
                 }
 
                 console.log(positions);
-                var options = { //지도를 생성할 때 필요한 기본 옵션
-                    center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
-                    level: 5 //지도의 레벨(확대, 축소 정도)
-                };
-
-                var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
                 // 마커 이미지의 이미지 주소입니다
                 var imageSrc = "../images/location.png";
                 var imageSize = new kakao.maps.Size(35, 35);
 
                 for (var i = 0; i < positions.length; i++) {
-
                     // 마커 이미지를 생성합니다
                     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -520,14 +491,15 @@
                         image: markerImage // 마커 이미지
                     });
                 }
+
+                /** HTML로 BICYCLE LOCATOR 출력 */
+
             },
             error: function() {
                 console.log("실패!");
             }
         })
     }
-
-
 </script>
 <script>
     //----HOVER CAPTION---//
