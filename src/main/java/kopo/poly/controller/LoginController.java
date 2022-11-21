@@ -245,7 +245,7 @@ public class LoginController {
         String url;
         String icon;
 
-        log.info("받아온 아이디 : " + user_id);
+        log.info("받아온 아이뒤 : " + user_id);
         log.info("받아온 비번 : " + user_pw);
 
         UserInfoDTO uDTO = new UserInfoDTO();

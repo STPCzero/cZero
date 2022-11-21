@@ -12,20 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">\
-<%--    <style>--%>
-<%--        :hover {--%>
-
-<%--            opacity:0.6;--%>
-
-<%--            -webkit-transition: visibility 0s, opacity 0.3s;--%>
-
-<%--            -moz-transition: visibility 0s, opacity 0.3s;--%>
-
-<%--            transition: visibility 0s, opacity 0.3s;--%>
-
-<%--        }--%>
-<%--    </style>--%>
+    <link href="../css/style.css" rel="stylesheet">
 
     @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
 
@@ -44,16 +31,15 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고"></a>
+                    <img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px" alt="로고">
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <li class="propClone"><a href="/index">Home</a></li>
                         <li class="propClone"><a href="/market/market-list">Market</a></li>
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
-                        <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -74,27 +60,27 @@
 
 <!-- CONTENT =============================-->
 
-<div class="container" style="border: 3px solid #dff0d8;border-radius: 4px; margin: 10px auto" >
-    <div class="row" style="margin: 1em auto; display: flex; justify-content : center;">
-        <div class="col-md-2" ><strong>Department</strong></div>
-        <div class="col-md-9"><strong>Contents</strong></div>
-        <div class="col-md-2"><strong>Date</strong></div>
-    </div>
-    <hr/>
-    <%
-        for (int i = 0; i < nList.size(); i++) {
-            NewsDTO nDTO = nList.get(i);
-    %>
-    <div class="row" style="margin: 0.5em auto; display: flex; justify-content : center;">
-    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>
-    <div class="col-md-9"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>
-    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_date())%></div>
-    </div>
-    <hr/>
-    <%
-        }
-    %>
-</div>
+<%--<div class="container" style="border: 3px solid #dff0d8;border-radius: 4px; margin: 10px auto" >--%>
+<%--    <div class="row" style="margin: 1em auto; display: flex; justify-content : center;">--%>
+<%--        <div class="col-md-2" ><strong>Department</strong></div>--%>
+<%--        <div class="col-md-9"><strong>Contents</strong></div>--%>
+<%--        <div class="col-md-2"><strong>Date</strong></div>--%>
+<%--    </div>--%>
+<%--    <hr/>--%>
+<%--    <%--%>
+<%--        for (int i = 0; i < nList.size(); i++) {--%>
+<%--            NewsDTO nDTO = nList.get(i);--%>
+<%--    %>--%>
+<%--    <div class="row" style="margin: 0.5em auto; display: flex; justify-content : center;">--%>
+<%--    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>--%>
+<%--    <div class="col-md-9"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>--%>
+<%--    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_date())%></div>--%>
+<%--    </div>--%>
+<%--    <hr/>--%>
+<%--    <%--%>
+<%--        }--%>
+<%--    %>--%>
+<%--</div>--%>
 
 <!-- FOOTER =============================-->
 <div class="footer text-center" style="width: 100%; position: -ms-device-fixed; bottom: 0;">
