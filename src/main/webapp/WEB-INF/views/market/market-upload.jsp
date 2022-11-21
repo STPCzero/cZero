@@ -244,7 +244,7 @@
          </span>
 			</div>
 		</div>
-		<div class="wrap-contact100">
+		<div class="wrap-contact100" style="width: 900px; position: relative; right: 8%;">
 			<span class="contact100-form-title" style="text-align: center">
                내 상품 등록하기
             </span>
@@ -254,16 +254,16 @@
 
 
 				<div class="container" >
-					<div class="content" style="width: 70%;">
+					<div class="content" style="width: 100%;">
 
-						<div class="row justify-content-md-center jb-container">
+						<div class="row justify-content-md-center jb-container" style="position: relative; right: 8.8%;">
 							<div class="col_c" style="margin-bottom: 30px">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<label class="input-group-text">제목</label>
 									</div>
 									<input type="text" class="form-control" name="title" id="title"
-										   style="width: 325%; "
+										   style="width: 350%; "
 										   <%--value="${MarketDTO.title}"--%>
 										   placeholder="제목을 입력하세요" class="form-control" aria-describedby="basic-addon1">
 									<br><br>
@@ -271,7 +271,7 @@
 										<label class="input-group-text">가격</label>
 									</div>
 									<input type="text" class="form-control" name="price" id="price"
-										   style="width: 75%; "
+										   style="width: 90%; "
 										   <%--value="${MarketDTO.price}"--%>
 										   placeholder="가격을 입력하세요" class="form-control" aria-describedby="basic-addon1">
 								</div>
@@ -283,7 +283,7 @@
 
 									<script>
 										CKEDITOR.replace('contents',
-												{height: 500, width: 600,
+												{height: 500, width: 800,
 													filebrowserUploadUrl:'/image/upload',
 												});
 									</script>
@@ -294,10 +294,10 @@
 					</div>
 					</div>
 							<button type="button" class="btn btn-outline-secondary"
-									style="width: 20%; font-weight: bold" onclick="location='market-list'">
+									style="width: 20%; font-weight: bold; position: relative; right: 10%;" onclick="location='market-list'">
 								뒤로가기
 							</button>
-							<button type="submit"  class="btn btn-primary"  style="width: 20%; font-weight: bold">
+							<button type="submit"  class="btn btn-primary"  style="width: 20%; font-weight: bold; position: relative; right: 10%;">
 							등록하기</button>
 
 

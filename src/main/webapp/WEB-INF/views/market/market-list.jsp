@@ -154,7 +154,7 @@
         }
         .searchTerm {
             width: 80%;
-            border: 3px solid #4B5563;
+            border: 3px solid #00bba7;
             border-right: none;
             padding: 5px;
             height: 2.25rem;
@@ -164,14 +164,14 @@
         }
 
         .searchTerm:focus {
-            color: #4B5563;
+            color: #00bba7;
         }
 
         .searchButton {
             width: 40px;
             height: 36px;
-            border: 1px solid #4B5563;
-            background: #4B5563;
+            border: 1px solid #00bba7;
+            background: #00bba7;
             text-align: center;
             color: #fff;
             border-radius: 0 5px 5px 0;
@@ -273,7 +273,7 @@
 
 
                 <div class="mklist" >
-                    <div class="productbox">
+                    <div class="productbox" style="width: 350px; height: 450px;">
                         <div class="fadeshop">
                             <div class="captionshop text-center" style="display: none;">
                                 <h3><%=CmmUtil.nvl(mDTO.getTitle()) %>
@@ -294,10 +294,10 @@
                                 </p>
                             </div>
                             <span class="maxproduct">
-                                <img alt="test" src="<%=CmmUtil.nvl(mDTO.getThumbnail()) %>" style="height: 300px; width: 600px"/>
+                                <img alt="test" src="<%=CmmUtil.nvl(mDTO.getThumbnail()) %>" style="height: auto; width: 600px"/>
                             </span>
                         </div>
-                        <div class="product-details">
+                        <div class="product-details" style=" position:absolute; bottom: 5%; left: 10%; right: 10%;">
                             <a href="#">
                                 <h1><%=CmmUtil.nvl(mDTO.getTitle()) %></h1>
                             </a>

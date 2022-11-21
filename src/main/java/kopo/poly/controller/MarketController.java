@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
@@ -197,12 +198,17 @@ public class MarketController {
 
         try {
             int mk_seq = Integer.parseInt(CmmUtil.nvl(request.getParameter("mk_seq")));
+            /*String user_seq = CmmUtil.nvl(request.getParameter("user_seq"));*/
+
 
             log.info("mk_seq : " + mk_seq);
 
             MarketDTO mDTO = new MarketDTO();
+            /*UserInfoDTO uDTO = new UserInfoDTO();*/
+
             mDTO.setMk_seq(mk_seq);
-            mDTO.setUser_seq(mDTO.getUser_seq());
+            /*mDTO.setUser_seq(uDTO.getUser_seq());*/
+
 
             // 마켓 상세정보 가져오기
             MarketDTO rDTO = marketService.getMarketInfo(mDTO);
