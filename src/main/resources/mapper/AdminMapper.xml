@@ -4,10 +4,39 @@
 
 <mapper namespace="kopo.poly.persistance.mapper.IAdminMapper">
     <!-- admin 유저 정보 출력 쿼리 -->
-    <select id="geMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-        SELECT *
-        FROM USER_INFO
-        ORDER BY USER_SEQ DESC
+    <select id="getMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
+        SELECT * FROM (
+                          SELECT ROW_NUMBER() OVER (ORDER BY user_seq) NUM, U.*
+                          FROM USER_INFO U
+                          WHERE U.USER_NAME LIKE '%'||#{user_name}||'%'
+                          ORDER BY USER_SEQ desc
+                      )
+        WHERE NUM BETWEEN #{start} AND #{finish}
     </select>
 
+    <select id="getMembersCount" parameterType="UserInfoDTO" resultType="int">
+        SELECT count(*) FROM USER_INFO WHERE USER_NAME LIKE '%'||#{user_name}||'%'
+    </select>
+
+    <delete id="delMembers" parameterType="UserInfoDTO">
+        DELETE FROM USER_INFO
+        WHERE USER_SEQ = #{user_seq}
+    </delete>
+
+<!-- 마켓 검색 -->
+    <select id="getMarketInfo" parameterType="MarketDTO" resultType="MarketDTO">
+        SELECT * FROM (
+                          SELECT ROW_NUMBER() OVER (ORDER BY MK_SEQ) NUM, M.*,
+                                 (SELECT U.USER_NAME
+                                  FROM USER_INFO U
+                                  WHERE U.USER_SEQ = M.USER_SEQ) USER_NAME
+                          FROM MARKET M
+                          WHERE M.TITLE LIKE '%'||#{title}||'%'
+                      )
+        WHERE NUM BETWEEN #{start} AND #{finish}
+    </select>
+
+    <select id="getMarketCount" parameterType="MarketDTO" resultType="int">
+        SELECT count(*) FROM MARKET
+    </select>
 </mapper>

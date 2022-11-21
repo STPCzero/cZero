@@ -4,6 +4,7 @@ import kopo.poly.dto.BicycleDTO;
 import kopo.poly.dto.BicycleRowDTO;
 import kopo.poly.service.IBicycleService;
 import kopo.poly.service.IMailService;
+import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,10 +28,6 @@ public class BicycleController {
     @GetMapping("bicycle")
     public String bicycle(HttpServletRequest request, Model model) throws Exception {
         log.info(this.getClass().getName() + ".bicycle Start!!");
-
-        //BicycleDTO bDTO = bicycleService.callBicycleApi();
-
-        //model.addAttribute("bDTO", bDTO);
         log.info(this.getClass().getName() + ".bicycle End!!");
         return "/bicycle/bicycle";
     }
@@ -39,10 +36,19 @@ public class BicycleController {
     public @ResponseBody BicycleDTO getBicycle(HttpServletRequest request) throws Exception {
         log.info(this.getClass().getName() + ".getBicycle Start!!!");
 
-        BicycleDTO bDTO = bicycleService.callBicycleApi();
+        String lat = CmmUtil.nvl(request.getParameter("lat"));
+        String lon = CmmUtil.nvl(request.getParameter("lon"));
+        log.info("lat : "+lat + " / lon : "+lon);
+
+        BicycleDTO bDTO = new BicycleDTO();
+
+        bDTO.setLat(lat);
+        bDTO.setLon(lon);
+
+        BicycleDTO biDTO = bicycleService.findBicycleInfo(bDTO);
 
         log.info(this.getClass().getName() + ".getBicycle End!!");
-        return bDTO;
+        return biDTO;
     }
 
 }
