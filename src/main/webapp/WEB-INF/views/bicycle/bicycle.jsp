@@ -42,12 +42,12 @@
         }
         .store_box{
             position: absolute;
-            top: 0;
-            bottom: 0;
+            top: 20px;
+            bottom: 20px;
             right: 50%;
-            width: 400px;
-            margin-right: 150px;
-            padding: 0 50px 0 30px;
+            width: 360px;
+            margin-right: 200px;
+            padding: 0 30px 0 30px;
             background: rgb(255,255,255);
             z-index: 1
         }
@@ -339,16 +339,8 @@
 			</span>
             </div>
         </div>
-<%--        <div>--%>
-<%--            <% for(BicycleRowDTO i : pList){ %>--%>
-<%--                <div><%=i.getSta_loc()%></div>--%>
-<%--                <div><%=i.getRent_nm()%></div>--%>
-<%--                <div><%=i.getSta_lat()%></div>--%>
-<%--                <div><%=i.getSta_long()%></div>--%>
-<%--            <% } %>--%>
-<%--        </div>--%>
     </div>
-    <div class="store_map" style="margin-bottom: 50px; width: 100%;">
+    <div class="store_map container" style="margin-bottom: 50px;">
         <div id="edd_checkout_wrap" class="" style="margin-bottom: 100px;">
             <div id="clickLatlng"></div>
             <div id="map" style="width:100%; min-height:750px;"></div>
@@ -370,7 +362,7 @@
             <div class="store_tab">
                 <!-- STORE LOCATOR -->
                 <h3 class="store_locator  on"><a href="#" id="store_local">BICYCLE LOCATOR</a></h3>
-                <div class="cont">
+                <div class="cont" id="ajaxHtml">
                     <ul id="storeListUL">
                         <li data-lng="127.059475" data-lat="37.514524" data-no="31">
                             <div class="num">1</div>
@@ -494,6 +486,34 @@
 
                 /** HTML로 BICYCLE LOCATOR 출력 */
 
+                var html = '<ul id="storeListUL">'+
+                    '<li data-lng="127.059475" data-lat="37.514524" data-no="31">'+
+                        '<div class="num">1</div>'+
+                        '<div class="store_txt">'+
+                            '<p class="name">'+
+                                '<span>테스트점<strong class="distance">33m</strong></span>'+
+                            '</p>'+
+                        '</div>'+
+                    '</li>'+
+                '</ul>';
+                /*
+
+                <ul id="storeListUL">
+                        <li data-lng="127.059475" data-lat="37.514524" data-no="31">
+                            <div class="num">1</div>
+                            <div class="store_txt">
+                                <p class="name">
+                                    <span>삼성봉은사거리점<strong class="distance">33m</strong></span>
+                                </p>
+                                <p class="address">
+                                    <span>서울시 강남구 영동대로 607 1,2층</span>
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+
+                */
+                $("#ajaxHtml").html(html);
             },
             error: function() {
                 console.log("실패!");

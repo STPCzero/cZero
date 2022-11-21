@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     List<NewsDTO> nList = (List<NewsDTO>) request.getAttribute("nList");
+    String sessionNo = (String) session.getAttribute("sessionNo");
 %>
 <!DOCTYPE html>
 <html>
@@ -58,8 +59,11 @@
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                        <% if(sessionNo!=null) {%>
+                        <li class="propClone"><a href="/logout">Logout</a></li>
+                        <%} else { %>
                         <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>

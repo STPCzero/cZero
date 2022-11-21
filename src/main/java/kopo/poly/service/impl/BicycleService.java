@@ -3,7 +3,6 @@ package kopo.poly.service.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kopo.poly.dto.BicycleDTO;
 import kopo.poly.dto.BicycleRowDTO;
-import kopo.poly.persistance.mapper.IBicycleMapper;
 import kopo.poly.service.IBicycleService;
 import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -23,14 +22,6 @@ import java.util.Map;
 @Slf4j
 @Service("BicycleService")
 public class BicycleService implements IBicycleService {
-
-    private final IBicycleMapper bicycleMapper;
-
-    @Autowired
-    public BicycleService(IBicycleMapper bicycleMapper) {
-        this.bicycleMapper = bicycleMapper;
-    }
-
 
     @Override
     public BicycleDTO findBicycleInfo(BicycleDTO bDTO) throws Exception {
