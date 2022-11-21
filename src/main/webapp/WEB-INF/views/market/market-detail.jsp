@@ -251,7 +251,7 @@
 								<td align="center" style="width: 20%">제목</td>
 								<td><%=CmmUtil.nvl(rDTO.getTitle())%></td>
 								<td align="center" style="width: 20%">가격</td>
-								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getPrice()))%></td>
+								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getPrice()))%>원</td>
 							</tr>
 							<tr>
 								<td align="center" style="width: 20%">작성일</td>
@@ -317,6 +317,8 @@
 		);
 	});
 </script>
+
+<br><br>
 
 <!-- FOOTER =============================-->
 <div class="footer text-center">

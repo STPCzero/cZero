@@ -8,7 +8,7 @@ import lombok.Setter;
 public class MarketDTO {
     private int mk_seq;
     private String notice_yn;
-    private int user_seq;
+    private String user_seq;
     private int update_seq;
     private String title;
     private String contents;
