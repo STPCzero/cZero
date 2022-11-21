@@ -67,8 +67,7 @@
         <div class="row text-center">
             <div class="col-md-4">
                 <div class="col editContent">
-                    <span class="numberstep"><i class="fa "><img src="/images/market.png"
-                                                                 style="width: 55%; height: 55%;"></i></span>
+                    <span class="numberstep"><a href="/market/market-list"><i class="fa"><img src="/images/market.png" style="width: 55%; height: 55%;"></i></a></span>
                     <h3 class="numbertext">플리마켓</h3>
                     <p>
                         <strong>여러가지 물품을 주고 사고파는 플리마켓을 통해 <br>환경을 지키고 소중한 추억도 쌓아보세요</strong>
@@ -79,7 +78,7 @@
             <!-- /.col-md-4 col -->
             <div class="col-md-4 editContent">
                 <div class="col">
-                    <span class="numberstep"><i class="fa"><img src="/images/list.png" style="width: 60%; height: 60%; margin-bottom: 5%"></i></span>
+                    <span class="numberstep"><a href="/news/news"><i class="fa"><img src="/images/list.png" style="width: 60%; height: 60%; margin-bottom: 5%"></i></a></span>
                     <h3 class="numbertext">데일리뉴스</h3>
                     <p>
                         <strong>매일매일 알아보는 환경뉴스로<br>의미있는 하루를 시작하세요</strong>
@@ -90,8 +89,7 @@
             <!-- /.col-md-4 col -->
             <div class="col-md-4 editContent">
                 <div class="col">
-                    <span class="numberstep"><i class="fa"><img src="/images/bicycle.png"
-                                                                 style="width: 65%; height: 65%; margin-bottom: 8%; margin-left: 3%"></i></span>
+                    <span class="numberstep"><a href="/bicycle/bicycle"><i class="fa"><img src="/images/bicycle.png" style="width: 65%; height: 65%; margin-bottom: 8%; margin-left: 3%"></i></a></span>
                     <h3 class="numbertext">공공 자전거</h3>
                     <p>
                         <strong>도시 곳곳의 공공 자전거를 이용해 <br>탄소중립을 실천해보세요</strong>
