@@ -14,5 +14,6 @@ public class BicycleRowDTO {
     private String stationLatitude; //위도
     private String stationLongitude; //경도
     private String stationId; //대여소 ID
+    private int distance; // 거리
 
 }

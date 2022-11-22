@@ -81,10 +81,6 @@ public class BicycleService implements IBicycleService {
             String stationLatitude = CmmUtil.nvl((String) rowMap.get("stationLatitude"));
             String stationLongitude = CmmUtil.nvl((String) rowMap.get("stationLongitude"));
 
-            log.info("--------------------");
-            log.info("stationName: "+stationName);
-            log.info("--------------------");
-
             /* 거리 구하기 start */
             double lat2 = Double.parseDouble(stationLatitude); // API 위도
             double lon2 = Double.parseDouble(stationLongitude); // API 경도
@@ -95,13 +91,21 @@ public class BicycleService implements IBicycleService {
             dist = Math.toDegrees(dist);
             dist = dist * 60 * 1.1515;
             dist = dist * 1.609344;
-            if(dist < 1) {
+            if(dist < 3) {
                 /* 마커에 찍기 위해 DTO에 담기 */
                 BicycleRowDTO brDTO = new BicycleRowDTO();
                 brDTO.setStationName(stationName);
                 brDTO.setStationLatitude(stationLatitude);
                 brDTO.setStationLongitude(stationLongitude);
 
+                // m로 변환
+                double distM = dist*1000;
+                brDTO.setDistance((int) distM);
+
+                log.info("--------------------");
+                log.info("stationName: "+stationName);
+                log.info("dist: "+dist);
+                log.info("--------------------");
                 pList.add(brDTO);
                 brDTO = null;
             }
