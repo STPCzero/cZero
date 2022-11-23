@@ -8,12 +8,9 @@
 <%@ page import="kopo.poly.dto.BicycleDTO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-//    List<BicycleRowDTO> pList = ((BicycleDTO)request.getAttribute("bDTO")).getRowList();
-//    if(pList == null) {
-//        pList = null;
-//    }
-// test
+    String sessionNo = (String) session.getAttribute("sessionNo");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +29,262 @@
     <%--    <script type="text/javascript" src="../js/paging.js"></script>--%>
     <script type="text/javascript">
     </script>
+
+    <!-- search -->
+    <style>
+        /* store */
+        .store_map{
+            overflow: hidden;
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 750px;
+        }
+        .store_box{
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            right: 50%;
+            width: 360px;
+            margin-right: 200px;
+            padding: 0 30px 0 30px;
+            background: rgb(255,255,255);
+            z-index: 1
+        }
+        .store_box .title_area{
+            overflow: hidden;
+            padding-top: 40px;
+            margin-bottom: 35px;
+            font-family: 'NanumBarunGothic';
+        }
+        .store_box .title_area > h2{
+            float: left;
+            font-size: 24px;
+            color: rgb(47,28,17);
+            font-weight:normal;
+        }
+        .store_box .title_area .btn_box{float: right}
+        .store_box .title_area .btn_box a{
+            float: left;
+            display: block;
+            width: 80px;
+            padding-left: 15px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+        }
+        .store_box .title_area .btn_condition.on{
+            color: rgb(255,255,255);
+            background: rgb(0,0,0);
+        }
+        .store_box .title_area .btn_here{
+            color: rgb(255,255,255);
+            background: rgb(238,119,19);
+        }
+        .condition_box{
+            display: none;
+            position: absolute;
+            top: 100px;
+            right: 50px;
+            width: 170px;
+            padding: 30px 0 25px 30px;
+            border: 1px solid rgb(0,0,0);
+            background: rgb(255,255,255);
+            z-index: 998
+        }
+        .condition_box li{margin-bottom: 5px;}
+        .condition_box li .label_style2{font-family: 'NanumBarunGothic';}
+        .condition_box li .label_style2 img{width: 13px; margin-right: 5px;}
+
+        .condition_box .btn_close{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 13px;
+            height: 13px;
+            padding: 0;
+            margin: 0;
+        }
+        .condition_box .btn_srh{
+            display: block;
+            width: 138px;
+            margin-top: 15px;
+            border: 1px solid rgb(0,0,0);
+            line-height: 28px;
+            font-size: 14px;
+            text-align: center;
+            color: rgb(0,0,0);
+        }
+        .search_tab{
+            position: relative;
+            margin-bottom: 40px;
+            top: 0;
+            left: 0;
+            font-family: 'NanumBarunGothic';
+            z-index: 997;
+        }
+        .search_tab > h3{
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 14px;
+        }
+        .search_tab > h3 a{color: rgb(47,28,17); font-weight:normal;}
+        .search_tab > h3.on a{color: rgb(207,102,26)}
+
+        .search_tab .cont{padding-top: 30px; height: 50px;}
+        .search_tab .srh_box{ height: 50px; background: rgb(238,238,238);}
+        .search_tab .srh_box input{
+            float: left;
+            width: 80%;
+            height: 50px;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 50px;
+            color: rgb(51,51,51);
+            background: rgb(238,238,238);
+            border:none;
+        }
+        .search_tab .srh_box button{
+            padding: 0;
+            float: right;
+            width : 50px;
+            height: 50px;
+            border:none;
+        }
+
+        .store_tab{
+            position: relative;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            padding-top: 75px;
+            z-index: 996
+        }
+        .store_tab > h3{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            font-size: 14px;
+            background: rgb(238,238,238);
+        }
+        .store_tab > h3 a{
+            display: block;
+            height: 38px;
+            font-family: 'Archer-Semibold';
+            line-height: 38px;
+            text-align: center;
+            color: rgb(47,28,17);
+            background: rgb(238,238,238);
+            border:1px solid rgb(222,222,222);
+            border-right: 0
+        }
+        .store_tab .cont{
+            height: 400px;
+            overflow-y: scroll;
+        }
+        .store_tab ul{
+            width: 100%;
+        }
+        .store_tab ul li{
+            overflow: hidden;
+            margin-bottom: 20px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgb(238,238,238);
+            font-size: 11px;
+        }
+        #storeListUL {
+            list-style: none;
+        }
+        .store_tab .num{
+            width: 30px;
+            height: 30px;
+            margin-bottom: -20px;
+            font-family: 'Archer-Semibold';
+            font-size: 16px;
+            line-height: 30px;
+            text-align: center;
+            color: rgb(255,255,255);
+        }
+        .store_tab .store_txt{
+            float: left;
+            padding-left: 45px;
+            font-family: 'NanumBarunGothic';
+            width: 325px;
+        }
+        .store_tab .store_txt .name{overflow: hidden; margin-bottom: 15px;}
+        .store_tab .store_txt .name span{
+            float: left;
+            display: block;
+            width: 250px;
+            font-size: 14px;
+            color: rgb(51,51,51)
+        }
+        .store_tab .store_txt .name span strong{
+            display: inline-block;
+            margin-left: 5px;
+            font-family: 'Archer-Semibold';
+            color: rgb(105,81,157);
+            vertical-align: top;
+        }
+        .store_tab .store_txt .name a{
+            float: right;
+            font-size: 11px;
+            padding: 2px 3px;
+        }
+        .store_tab .store_txt .tag{margin-bottom: 10px;}
+        .store_tab .store_txt .tag span{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin-right: 3px;
+            margin-bottom: 5px;
+            text-indent: -99999px;
+        }
+        .store_tab .store_txt .address span{
+            display: block;
+            margin-bottom: 5px;
+            color: rgb(51,51,51)
+        }
+        .store_tab .store_txt .address .lot{color: rgb(51,51,51)}
+        .store_tab .store_txt .tel a{color: rgb(51,51,51)}
+        .store_wrap{
+            width: 1200px;
+            margin: 75px auto 90px
+        }
+        .store_wrap > h2{margin-bottom: 55px;}
+
+        .store_tab .store_txt .etc span{display: block;margin-top: 20px;}
+
+        @media screen and (min-width: 1112px) {
+            .store_box {
+                right: 50%;
+            }
+        }
+        @media screen and (max-width: 1111px) {
+            .store_box {
+            }
+        }
+    </style>
+
+    <!-- 커스텀 오버레이 CSS -->
+    <style>
+        .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+        .wrap * {padding: 0;margin: 0;}
+        .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+        .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+        .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+        .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+        .close:hover {cursor: pointer;}
+        .info .body {position: relative;overflow: hidden;}
+        .info .desc {position: relative;margin: 13px 0 0 13px;height: 75px;}
+        .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+        .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+        .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+        .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+        .info .link {color: #5085BB;}
+    </style>
 
     <style>
         .pagination>li>a, .pagination>li>span {
@@ -69,8 +322,11 @@
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                        <% if(sessionNo!=null) {%>
+                        <li class="propClone"><a href="/logout">Logout</a></li>
+                        <%} else { %>
                         <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>
@@ -95,7 +351,7 @@
     <div class="container toparea">
         <div class="underlined-title">
             <div class="editContent">
-                <h1 class="text-center latestitems">지도안에 자전거</h1>
+                <h1 class="text-center latestitems">서울시 공공 자전거 위치 안내</h1>
             </div>
             <div class="wow-hr type_short">
 			<span class="wow-hr-h">
@@ -105,20 +361,41 @@
 			</span>
             </div>
         </div>
-        <div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2" style="margin-bottom: 100px;">
-            <div id="clickLatlng"></div>
-            <div id="map" style="width:100%; min-height:500px;"></div>
-        </div>
-
-<%--        <div>--%>
-<%--            <% for(BicycleRowDTO i : pList){ %>--%>
-<%--                <div><%=i.getSta_loc()%></div>--%>
-<%--                <div><%=i.getRent_nm()%></div>--%>
-<%--                <div><%=i.getSta_lat()%></div>--%>
-<%--                <div><%=i.getSta_long()%></div>--%>
-<%--            <% } %>--%>
-<%--        </div>--%>
     </div>
+    <div class="store_map container" style="margin-bottom: 50px;">
+        <div id="edd_checkout_wrap" class="" style="margin-bottom: 100px;">
+            <div id="clickLatlng"></div>
+            <div id="map" style="width:100%; min-height:750px;"></div>
+        </div>
+        <div class="store_box">
+            <div class="title_area">
+                <h2>자전거 찾기</h2>
+                <div class="btn_box">
+                    <a href="#" class="btn_here" id="location">현재 위치</a>
+                </div>
+            </div>
+            <div class="search_tab">
+                <div class="srh_box">
+                    <input type="text" id="keyword" name="keyword" data-val="매장명 또는 주소를 입력하세요." value="" onkeydown="if (event.keyCode==13) searchStore();">
+                    <button onclick="searchStore();void(0);"><img style="width:32px; height: 32px;" src="../images/search.png" alt="조회하기"></button>
+                </div>
+            </div>
+            <!-- store_tab -->
+            <div class="store_tab">
+                <!-- STORE LOCATOR -->
+                <h3 class="store_locator  on"><a href="#" id="store_local">BICYCLE LOCATOR</a></h3>
+                <div class="cont" id="ajaxHtml">
+                    <ul id="storeListUL">
+
+                    </ul>
+                </div>
+            </div>
+            <!-- //store_tab -->
+        </div>
+    </div>
+
+
+
 </section>
 <!-- FOOTER =============================-->
 <div class="footer text-center">
@@ -133,64 +410,229 @@
 </div>
 <!-- Load JS here for greater good =============================-->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c85324bca7f70b8b98b21cf9f828ad54"></script>
+
+
 <script>
-    $.ajax({
-        url: "/bicycle/getBicycle",
-        type:"get",
-        contentType: "application/json",
-        success: function(data) {
-            console.log(data);
-            console.log(data.rowList[0].rent_nm);
-            var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+    var markers = [];
+    var overlay = [];
 
-            /** 학교를 기본 위치로 잡음 -> 나중엔 내가 있는 위치를 기본으로 잡아보자! */
-            var longitude = 126.84239510324666; // 경도
-            var latitude = 37.549944383590336; // 위도
+    // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            var lat = pos.coords.latitude; // 위도
+            var lon = pos.coords.longitude; // 경도
 
-            // 마커를 표시할 위치와 title 객체 배열입니다
-            var positions = new Array();
+            // 마커와 인포윈도우를 표시합니다
+            displayMarker(lat, lon);
 
-            for(var i = 0; i < data.rowList.length; i++){
-                positions.push(
-                    {
-                        title: data.rowList[i].rent_nm,
-                        latlng : new kakao.maps.LatLng(data.rowList[i].sta_lat, data.rowList[i].sta_long)
-                    }
-                )
-            }
+        });
+    } else {
+        var lat = 37.549944383590336; // 위도
+        var lon = 126.84239510324666; // 경도
+        displayMarker(lat, lon);
+    }
 
-            console.log(positions);
-            var options = { //지도를 생성할 때 필요한 기본 옵션
-                center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
-                level: 5 //지도의 레벨(확대, 축소 정도)
-            };
-
-            var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-
-            // 마커 이미지의 이미지 주소입니다
-            var imageSrc = "../images/location.png";
-            var imageSize = new kakao.maps.Size(35, 35);
-
-            for (var i = 0; i < positions.length; i++) {
-
-                // 마커 이미지를 생성합니다
-                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-                // 마커를 생성합니다
-                var marker = new kakao.maps.Marker({
-                    map: map, // 마커를 표시할 지도
-                    position: positions[i].latlng, // 마커를 표시할 위치
-                    title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                    image: markerImage // 마커 이미지
-                });
-            }
-        },
-        error: function() {
-            alert("error");
+    //마커 및 인포윈도우 삭제 함수
+    function resetDaumMap(){
+        jQuery("#storeListUL").html('');
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(null);
+            //infowindow[i].close();
         }
-    })
+        for (var i = 0; i < overlay.length; i++) {
+            overlay[i].setMap(null);
+        }
+    }
+    //인포윈도우 모두 삭제
+    function resetInfowindow(){
+        for (var i = 0; i < infowindow.length; i++) {
+            infowindow[i].close();
+        }
+    }
+    //오버레이 모두 삭제
+    function resetOverlay(){
+        console.log("click");
+        console.log(" length : "+ overlay.length);
+        for (var i = 0; i < overlay.length; i++) {
+            overlay[i].setMap(null);
+        }
+    }
+
+    //키워드로 데이터 로딩
+    function searchStore(){
+        // jQuery("#keyword").val() == "" || jQuery("#keyword").val() == jQuery("#keyword").attr("data-val") ?
+        //     (
+        //         alert("검색어를 입력해 주세요")
+        //     )
+        //     :
+        //     (
+        //         mode = "search",
+        //         setDaumMapMarker(map, '', '', 'search'),
+        //         jQuery("#localTitle").text( jQuery("#localTitle").attr("data-default") ),
+        //         jQuery("#localTitle2").text( jQuery("#localTitle2").attr("data-default") )
+        //     );
+        var keyword = $("#keyword").val().trim();
+        if(keyword =="") {
+            alert("검색어를 입력해 주세요");
+        } else {
+            $.ajax({
+                url: "/bicycle/getSearch",
+                type: "get",
+                data: {
+                    searchWord : keyword
+                },
+                contentType: "application/json",
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        }
+    }
+
+    // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+    function displayMarker(lat1, lon1) {
+        $.ajax({
+            url: "/bicycle/getBicycle",
+            type:"get",
+            data : {
+                lat : 37.549944383590336, // pos.coords.latitude,
+                lon : 126.84239510324666 //pos.coords.longitude
+            },
+            contentType: "application/json",
+            success: function(data) {
+                /** 내 위치 잡기 */
+                var latitude = data.lat; // 내 위도
+                var longitude = data.lon; // 내 경도
+
+                var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                var options = { //지도를 생성할 때 필요한 기본 옵션
+                    center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+                    level: 5 //지도의 레벨(확대, 축소 정도)
+                };
+                var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                var locPosition = new kakao.maps.LatLng(latitude, longitude);
+                // 지도 중심좌표를 접속위치로 변경합니다
+                map.setCenter(locPosition);
+
+                /** BICYCLE LIST */
+                var html = '';
+
+                /** overlayContent */
+                var overlayContent = '<div class="wrap">' +
+                    '    <div class="info">' +
+                    '        <div class="title">' +
+                    '            <#StoreName#>' +
+                    '            <div class="close" onclick="resetOverlay()" title="닫기"></div>' +
+                    '        </div>' +
+                    '        <div class="body">' +
+                    '            <div class="desc">' +
+                    '                <div class="ellipsis"><#StoreAddress#></div>' +
+                    '                <div class="jibun ellipsis"><#StoreTell#></div>' +
+                    '                <div><a href="javascript:storePop2(\'<#StoreNo#>\');void(0);" class="link" >자세히보기</a></div>' +
+                    '            </div>' +
+                    '        </div>' +
+                    '    </div>' +
+                    '</div>';
+
+                /** 내 위치 마커를 생성합니다 */
+                var myLocationMarker = new kakao.maps.Marker({
+                    map: map,
+                    position: locPosition,
+                    image: new kakao.maps.MarkerImage("../images/my_location.gif", new kakao.maps.Size(35, 35)) // 마커 이미지
+                });
+
+                /** Marker에 데이터 집어넣기 */
+                var positions = new Array();
+                for(var i = 0; i < data.bicycleList.length; i++){
+                    var indexStart = data.bicycleList[i].stationName.indexOf(data.bicycleList[i].stationName.split(" ")[1]);
+                    var statName = data.bicycleList[i].stationName.substring(indexStart);
+                    positions.push(
+                        {
+                            title: statName,
+                            latlng : new kakao.maps.LatLng(data.bicycleList[i].stationLatitude, data.bicycleList[i].stationLongitude),
+                            lat : data.bicycleList[i].stationLatitude,
+                            lon : data.bicycleList[i].stationLongitude
+                        }
+                    )
+
+                    /** sort 써서 거리 순으로 정렬 후 보여주자 */
+                    html += '<li data-lng="'+data.bicycleList[i].stationLongitude+
+                        '" data-lat="'+data.bicycleList[i].stationLatitude+'" data-no="31">'+
+                        '<div class="num">'+i+'</div>'+
+                        '<div class="store_txt">'+
+                        '<p class="name">'+
+                        '<span>'+statName+'<strong class="distance">'+data.bicycleList[i].distance+'m</strong></span>'+
+                        '</p>'+
+                        '</div>'+
+                        '</li>';
+                }
+
+                // 마커 이미지의 이미지 주소입니다
+                var imageSrc = "../images/location.png";
+                var imageSize = new kakao.maps.Size(35, 35);
+
+                // 커스텀 오버레이에 표시할 컨텐츠 입니다
+                // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+                // 별도의 이벤트 메소드를 제공하지 않습니다
+                /** 마커 생성!!!!! */
+                for (var i = 0; i < positions.length; i++) {
+                    var overTitle = positions[i].title;
+                    // 마커 이미지를 생성합니다
+                    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                    // 마커를 생성합니다
+                    markers[i] = new kakao.maps.Marker({
+                        map: map, // 마커를 표시할 지도
+                        position: positions[i].latlng, // 마커를 표시할 위치
+                        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                        image: markerImage // 마커 이미지
+                    });
+
+                    markers[i].index = i;
+                    markers[i].no = positions[i].StoreNo;
+                    markers[i].setMap(map);
+
+                    //오버레이 설정 부분
+                    var overlayContent_temp = "";
+                    overlayContent_temp = overlayContent;
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreName#>/g, positions[i].title );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreAddress#>/g, positions[i].title );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreSort#>/g, "<img src='" + "/images/store/store_icon_" + positions[i].sort + ".png' width='80' >" );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreLAT#>/g, positions[i].lat );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreLNG#>/g, positions[i].lon );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreNo#>/g, i );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreTell#>/g, "010-0000-0000" );
+
+                    overlay[i] = new daum.maps.CustomOverlay({
+                        content: overlayContent_temp,
+                        map: map
+                    });
+
+                    daum.maps.event.addListener(markers[i], "click", function() {
+                        // 일단 오버레이를 모두 닫고
+                        resetOverlay();
+                        //센터로 이동
+                        map.setCenter(markers[this.index].getPosition());
+                        // 해당 인포윈도를 열어준다.
+                        //infowindow[this.index].open(map, markers[this.index]);
+                        //해당 오버레이를 열어준다
+                        overlay[this.index].setMap(map);
+                        overlay[this.index].setPosition(markers[this.index].getPosition() );
+                    });
+
+                }
 
 
+
+                /** HTML로 BICYCLE LOCATOR 출력 */
+                $("#storeListUL").html(html);
+            }, // success End !!!
+            error: function() {
+                console.log("실패!");
+            }
+        })
+    }
 </script>
 <script>
     //----HOVER CAPTION---//

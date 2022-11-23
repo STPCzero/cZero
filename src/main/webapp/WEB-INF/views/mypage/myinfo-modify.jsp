@@ -1,11 +1,14 @@
 <%@ page import="jdk.nashorn.internal.scripts.JS" %>
 <%@ page import="kopo.poly.dto.MypageDTO" %>
+<%@ page import="kopo.poly.util.EncryptUtil" %>
+<%@ page import="kopo.poly.util.CmmUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     MypageDTO iDTO = (MypageDTO) request.getAttribute("iDTO"); // user_info 개인정보
     if(iDTO == null) {
         iDTO = new MypageDTO();
     }
+    String sessionNo = (String) session.getAttribute("sessionNo");
 %>
 <!DOCTYPE html>
 <html>
@@ -62,8 +65,11 @@
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                        <% if(sessionNo!=null) {%>
+                        <li class="propClone"><a href="/logout">Logout</a></li>
+                        <%} else { %>
                         <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>
@@ -105,14 +111,22 @@
                         <legend>Personal Info</legend>
                         <p id="edd-first-name-wrap">
                             <label class="edd-label" for="edd-first">
-                                Name <span class="edd-required-indicator">*</span>
+                                Name <span class="edd-required-indicator"></span>
                             </label>
                             <input class="edd-input required" type="text" name="name" placeholder="이름" id="edd-first" value="<%=iDTO.getUser_name()%>" required="">
                         </p>
                         <p id="edd-email-wrap">
                             <label class="edd-label" for="edd-email">
-                                Email Address <span class="edd-required-indicator">*</span></label>
-                            <input class="edd-input required" type="email" name="email" placeholder="이메일" id="edd-email" value="<%= iDTO.getUser_email()%>">
+                                Email Address <span class="edd-required-indicator"></span></label>
+                            <input class="edd-input required" type="email" name="email" placeholder="이메일"
+                                   id="edd-email" value="<%=EncryptUtil.decAES128CBC(CmmUtil.nvl(iDTO.getUser_email()))%>">
+                        </p>
+                        <p id="edd-pw-wrap">
+                            <label class="edd-label" for="edd-email">
+                                Password <span class="edd-required-indicator"></span></label>
+                            <input class="edd-input required" type="password" name="password" placeholder="********"
+                                   id="edd-pw" value="">
+                            <input type="hidden" name="hidden-password" value="<%=CmmUtil.nvl(iDTO.getUser_pw())%>">
                         </p>
                     </fieldset>
                     <input type="submit" id="submit" class="clearfix mypage-btn" value="수정하기">

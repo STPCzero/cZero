@@ -1,10 +1,19 @@
 <%@ page import="java.util.List" %>
 <%@ page import="kopo.poly.dto.UserInfoDTO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="kopo.poly.util.EncryptUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<UserInfoDTO> uList = (List<UserInfoDTO>) request.getAttribute("uList");
     if(uList == null) uList = new ArrayList<>();
+
+    boolean prev = (boolean) request.getAttribute("prev");
+    boolean next = (boolean) request.getAttribute("next");
+    int startPageNum = (int) request.getAttribute("startPageNum");
+    int endPageNum = (int) request.getAttribute("endPageNum");
+    int select = (int) request.getAttribute("select");
+
+    String searchName = (String) request.getAttribute("searchName");
 %>
 <!DOCTYPE html>
 <html>
@@ -124,18 +133,18 @@
         <div style="text-align: center; margin-top: 1%"><strong>회원관리</strong></div>
 
         <%--Search bar--%>
-        <div style="float: right; margin-top: 1%; margin-bottom: 2%; margin-right: 1.5%;">
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="Search">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
+        <form action="/admin/admin-member" method="get">
+            <div style="float: right; margin-top: 1%; margin-bottom: 2%; margin-right: 1.5%;">
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" name="searchName" value="<%=searchName%>" placeholder="Search">
+                        <button class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-
-
+        </form>
         <table class="admMemberList w-11/12 mx-auto mt-4" id="inventory">
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
@@ -144,7 +153,7 @@
                 </th>
                 <th style="cursor: pointer;">아이디</th>
                 <th style="cursor: pointer;">이름</th>
-                <th style="cursor: pointer;">닉네임</th>
+                <th style="cursor: pointer;">이메일</th>
                 <th style="cursor: pointer;">권한</th>
                 <th style="cursor: pointer;">탈퇴</th>
             </tr>
@@ -157,15 +166,14 @@
                     </td>
                     <td><%= uList.get(i).getUser_id()%></td>
                     <td><%= uList.get(i).getUser_name()%></td>
-                    <td></td>
-                    <td></td>
-                    <%--<td>
+                    <td><%= EncryptUtil.decAES128CBC(uList.get(i).getUser_email())%></td>
+                    <td>
                         <% if(uList.get(i).getUser_type().equals("0")) {%>
                         <span>관리자</span>
                         <% } else {%>
                         <span>일반 회원</span>
                         <% } %>
-                    </td>--%>
+                    </td>
                     <td>
                         <a href="#">
                             <i class="fas fa-user-times"></i>
@@ -175,12 +183,54 @@
            <% }%>
             </tbody>
         </table>
+        <div style="text-align: center; margin: 50px 0;">
+            <% if(prev == true) {%>
+            <button type="button" class="btn btn-secondary">Prev</button>
+            <%}%>
+            <div class="btn-group " style="margin: 0 auto; display: inline-block;">
+                <% for (int i = startPageNum; i <= endPageNum; i++) {
+                    if(select == i) {%>
+                <a style="color: red;" href="/admin/admin-member?num=<%=i%>&searchName=<%=searchName%>">
+                    <button class="btn">
+                        <%=i%>
+                    </button></a>
+                <%} else {%>
+                <a style="" href="/admin/admin-member?num=<%=i%>&searchName=<%=searchName%>">
+                    <button class="btn">
+                        <%=i%>
+                    </button></a>
+                <% }
+                } %>
+            </div>
+            <% if(next == true) {%>
+            <button type="button" class="btn btn-secondary">Next</button>
+            <% } %>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript">
 
     $(document).ready(function(){
+
+        // //검색 ajax
+        // $('.searchButton').click(function(){
+        //     $.ajax({
+        //         // URL은 필수 요소이므로 반드시 구현해야 하는 Property입니다.
+        //         url: '/admin/admin-member', // 요청이 전송될 URL 주소
+        //         type: 'GET', // http 요청 방식 (default: ‘GET’)
+        //         timeout: 3000, // 요청 제한 시간 안에 완료되지 않으면 요청을 취소하거나 error 콜백을 호출.(단위: ms)
+        //         data: { "searchName": "사용자" }, // 요청 시 포함되어질 데이터
+        //         success: function(data) {
+        //             location.reload();
+        //         },
+        //         error: function(data) {
+        //             alert("error : "+ data);
+        //         },
+        //     })
+        // });
+
+
         $('#inventory th').each(function (column) {
             $(this).click(function() {
                 if($(this).is('.asc')) {		// 현재 오름차순인 경우

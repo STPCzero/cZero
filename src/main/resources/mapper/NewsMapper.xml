@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kopo.poly.persistance.mapper.INewsMapper">
+    <insert id="insertNews_info" parameterType="NewsDTO">
+        INSERT INTO NEWS_INFO
+            (
+             NEWS_SEQ,
+             NEWS_SITE,
+             NEWS_DEPARTMENT,
+             NEWS_TITLE,
+             NEWS_CONTENTS,
+             NEWS_DATE,
+             NEWS_URL
+            )
+            VALUES
+                   (
+                   (SELECT NVL(MAX(A.NEWS_SEQ),0)+1 FROM NEWS_INFO A),
+                   #{news_site,jdbcType=VARCHAR},
+                   #{news_department,jdbcType=VARCHAR},
+                   #{news_title,jdbcType=VARCHAR},
+                   #{news_contents,jdbcType=VARCHAR},
+                   #{news_date,jdbcType=VARCHAR},
+                   #{news_url,jdbcType=VARCHAR}
+                  )
+    </insert>
+
+    <!--    <select id="getNewsExists" parameterType="NewsDTO" resultType="NewsDTO">-->
+    <!--        select DECODE(COUNT(1), 0, 'N', 'Y') AS NEWS_EXIST-->
+    <!--        from NEWS_INFO-->
+    <!--        where NEWS_SEQ = #{news_seq,jdbcType=VARCHAR}-->
+    <!--    </select>-->
+
+<!--    <update id="updateNews_Info" parameterType="NewsDTO">-->
+<!--        UPDATE NEWS_INFO-->
+<!--        SET NEWS_TITLE = #{news_title,jdbcType=VARCHAR},-->
+<!--            NEWS_DEPARTMENT = #{news_department,jdbcType=VARCHAR},-->
+<!--            NEWS_DATE = #{news_date,jdbcType=VARCHAR},-->
+<!--            NEWS_URL = #{news_url,jdbcType=VARCHAR}-->
+<!--        WHERE NEWS_SEQ = #{news_seq}-->
+<!--    </update>-->
+
+</mapper>

@@ -9,11 +9,13 @@ import java.util.List;
 @Mapper
 public interface IMarketMapper {
 
+    int getMarketCount(MarketDTO uDTO) throws Exception;
+
     // 상품 리스트
-    List<MarketDTO> getMarketList() throws Exception;
+    List<MarketDTO> getMarketList(MarketDTO mDTO) throws Exception;
 
     // 상품 글 등록
-    void InsertMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
+    void InsertMarketInfo(MarketDTO mDTO) throws Exception;
 
     // 상품 상세보기
     MarketDTO getMarketInfo(MarketDTO mDTO) throws Exception;
@@ -22,7 +24,7 @@ public interface IMarketMapper {
     void updateMarketReadCnt(MarketDTO mDTO) throws Exception;
 
     //게시판 글 수정
-    void updateMarketInfo(MarketDTO mDTO, UserInfoDTO uDTO) throws Exception;
+    void updateMarketInfo(MarketDTO mDTO) throws Exception;
 
     // 게시판 글 삭제
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;

@@ -4,6 +4,7 @@
 <%@ page import="kopo.poly.dto.MarketDTO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="kopo.poly.util.EncryptUtil" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     MypageDTO iDTO = (MypageDTO) request.getAttribute("iDTO"); // user_info 개인정보
@@ -18,7 +19,10 @@
     int endPageNum = (int) request.getAttribute("endPageNum");
     int select = (int) request.getAttribute("select");
 
+    String sessionNo = (String) session.getAttribute("sessionNo");
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,8 +58,9 @@
         }
     </style>
 </head>
-<body>
 
+<body>
+<% if(sessionNo!=null) {%>
 <!-- HEADER =============================-->
 <header class="item header margin-top-0">
     <div class="wrapper">
@@ -74,8 +79,11 @@
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                        <% if(sessionNo!=null) {%>
+                        <li class="propClone"><a href="/logout">Logout</a></li>
+                        <%} else { %>
                         <li class="propClone"><a href="/login/login">Login</a></li>
-                        <li class="propClone"><a href="">Logout</a></li>
+                        <%} %>
                     </ul>
                 </div>
             </div>
@@ -117,16 +125,22 @@
                         <legend>Personal Info</legend>
                         <p id="edd-first-name-wrap">
                             <label class="edd-label" for="edd-first">
-                                Name <span class="edd-required-indicator">*</span>
+                                Name <span class="edd-required-indicator"></span>
                             </label>
                             <input disabled class="edd-input " type="text" name="edd_first"
-                                   placeholder="First name" id="edd-first" value="<%=CmmUtil.nvl(iDTO.getUser_name())%>" required="">
+                                   placeholder="First name" id="edd-first" value="<%=CmmUtil.nvl(iDTO.getUser_name())%>">
                         </p>
                         <p id="edd-email-wrap">
                             <label class="edd-label" for="edd-email">
-                                Email Address <span class="edd-required-indicator">*</span></label>
+                                Email Address <span class="edd-required-indicator"></span></label>
                             <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address"
-                                   id="edd-email" value="<%=CmmUtil.nvl(iDTO.getUser_email())%>">
+                                   id="edd-email" value="<%=EncryptUtil.decAES128CBC(CmmUtil.nvl(iDTO.getUser_email()))%>">
+                        </p>
+                        <p id="edd-pw-wrap">
+                            <label class="edd-label" for="edd-email">
+                                Password <span class="edd-required-indicator"></span></label>
+                            <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address"
+                                   id="edd-pw" value="********">
                         </p>
                         <div style="text-align: right; margin-top: 10px;">
                             <a style="color : #999; td-size: 12px;">탈퇴하기</a>
@@ -158,12 +172,17 @@
                             <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
                                 <td class="edd_cart_item_name">
                                     <div style="display: inline-block;" class="edd_cart_item_image">
-                                        <img width="55" height="55" src="../images/scorilo2-70x70.jpg" alt="">
+                                        <% if(rDTO.getThumbnail() != null) { %>
+                                            <img width="55" height="55" src="<%=CmmUtil.nvl(rDTO.getThumbnail())%>" alt="유저업로드사진">
+                                        <% } else { %>
+                                            <img width="55" height="55" src="../images/scorilo2-70x70.jpg" alt="기본사진">
+                                        <%}%>
+
                                     </div>
                                     <span class="edd_checkout_cart_item_title"><%=CmmUtil.nvl(rDTO.getTitle())%></span>
                                 </td>
                                 <td class="edd_cart_item_price">
-                                    $11.99
+                                    <%=rDTO.getPrice()%>
                                 </td>
                             </tr>
                             <% } %>
@@ -222,5 +241,11 @@
         );
     });
 </script>
+<%} else { %>
+<script>
+    alert("로그인이 필요한 서비스입니다.");
+    location.href = "/login/login";
+</script>
+<% }%>
 </body>
 </html>

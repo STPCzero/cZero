@@ -12,23 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/style.css" rel="stylesheet">\
-<%--    <style>--%>
-<%--        :hover {--%>
-
-<%--            opacity:0.6;--%>
-
-<%--            -webkit-transition: visibility 0s, opacity 0.3s;--%>
-
-<%--            -moz-transition: visibility 0s, opacity 0.3s;--%>
-
-<%--            transition: visibility 0s, opacity 0.3s;--%>
-
-<%--        }--%>
-<%--    </style>--%>
-
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-
     }
 </head>
 <body>
@@ -74,28 +60,47 @@
 
 <!-- CONTENT =============================-->
 
-<div class="container" style="border: 3px solid #dff0d8;border-radius: 4px; margin: 10px auto" >
-    <div class="row" style="margin: 1em auto; display: flex; justify-content : center;">
-        <div class="col-md-2" ><strong>Department</strong></div>
-        <div class="col-md-9"><strong>Contents</strong></div>
-        <div class="col-md-2"><strong>Date</strong></div>
-    </div>
-    <hr/>
-    <%
-        for (int i = 0; i < nList.size(); i++) {
-            NewsDTO nDTO = nList.get(i);
-    %>
-    <div class="row" style="margin: 0.5em auto; display: flex; justify-content : center;">
-    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_Department())%></div>
-    <div class="col-md-9"><%=CmmUtil.nvl(nDTO.getNews_title())%></div>
-    <div class="col-md-2"><%=CmmUtil.nvl(nDTO.getNews_date())%></div>
-    </div>
-    <hr/>
-    <%
-        }
-    %>
-</div>
+<section class="hero-section">
+    <div class="card-grid">
 
+        <%
+            for (int i = 0; i < 3; i++) {
+                NewsDTO nDTO = nList.get(i);
+        %>
+        <a class="card" href="<%=nDTO.getNews_url()%>">
+            <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+            <div class="card__content">
+                <p class="card__category"><%=CmmUtil.nvl(nDTO.getNews_site())%></p>
+                <h6 class="card__heading"><%=CmmUtil.nvl(nDTO.getNews_title())%></h6>
+                <p><%=nDTO.getNews_contents()%></p>
+            </div>
+        </a>
+        <%
+            }
+        %>
+        <%--<a class="card" href="#">
+            <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+            <div class="card__content">
+                <p class="card__category">n</p>
+                <h3 class="card__heading">Example Card Heading</h3>
+            </div>
+        </a>
+        <a class="card" href="#">
+            <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1556680262-9990363a3e6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+            <div class="card__content">
+                <p class="card__category">Category</p>
+                <h3 class="card__heading">Example Card Heading</h3>
+            </div>
+        </a>
+        <a class="card" href="#">
+            <div class="card__background" style="background-image: url(https://images.unsplash.com/photo-1557004396-66e4174d7bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60)"></div>
+            <div class="card__content">
+                <p class="card__category">Category</p>
+                <h3 class="card__heading">Example Card Heading</h3>
+            </div>
+        </a>--%>
+    </div>
+</section>
 <!-- FOOTER =============================-->
 <div class="footer text-center" style="width: 100%; position: -ms-device-fixed; bottom: 0;">
     <div class="container">
