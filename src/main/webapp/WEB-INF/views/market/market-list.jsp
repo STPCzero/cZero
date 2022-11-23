@@ -18,7 +18,7 @@
     int select = (int) request.getAttribute("select");
     String search = (String) request.getAttribute("search");
 
-
+    String sessionNo = (String) session.getAttribute("sessionNo");
 //게시판 조회 결과 보여주기
     if (mList == null) {
         mList = new ArrayList<MarketDTO>();
@@ -200,10 +200,13 @@
                 <li class="propClone"><a href="/news/news">News</a></li>
                 <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                 <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+                <% if(sessionNo!=null) {%>
+                <li class="propClone"><a href="/logout">Logout</a></li>
+                <%} else { %>
                 <li class="propClone"><a href="/login/login">Login</a></li>
-                <li class="propClone"><a href="">Logout</a></li>
-			</ul>
-		</div>
+                <%} %>
+            </ul>
+        </div>
 	</div>
 	</nav>
 	<div class="container">

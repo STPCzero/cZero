@@ -51,4 +51,21 @@ public class BicycleController {
         return biDTO;
     }
 
+    @GetMapping("getSearch")
+    public @ResponseBody BicycleDTO getSearch(HttpServletRequest request) throws Exception {
+        log.info(this.getClass().getName() + ".getSearch Start!!!");
+
+        String keyword = CmmUtil.nvl(request.getParameter("searchWord"));
+        log.info("keyword : "+keyword);
+
+        BicycleDTO bDTO = new BicycleDTO();
+
+        bDTO.setKeyword(keyword);
+
+        //BicycleDTO biDTO = bicycleService.findBicycleInfo(bDTO);
+
+        log.info(this.getClass().getName() + ".getSearch End!!");
+        return null;
+    }
+
 }

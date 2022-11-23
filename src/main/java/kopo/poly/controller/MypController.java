@@ -4,6 +4,7 @@ import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 import kopo.poly.service.IMypageService;
 import kopo.poly.util.CmmUtil;
+import kopo.poly.util.EncryptUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,18 @@ public class MypController {
     @GetMapping("/mypage/myinfo")
     public String myInfo(HttpServletRequest request, Model model, HttpSession session) throws Exception {
         log.info(this.getClass().getName()+".myInfo Start!!");
+        String seq = (String) session.getAttribute("sessionNo");
+
+        if(seq == null) {
+            String msg = "로그인이 필요한 서비스 입니다.";
+            String url = "/login/login";
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", url);
+            return "redirect";
+        }
 
         MypageDTO myDTO = new MypageDTO();
-        myDTO.setUser_seq("1");
+        myDTO.setUser_seq(seq);
 
         MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
 
@@ -65,6 +75,9 @@ public class MypController {
         myDTO.setStart(start);
         myDTO.setFinish(finish);
 
+        // 나(seq) 갖고오기
+        myDTO.setUser_seq(seq);
+        log.info("seq : "+seq);
 
         //나의 마켓 리스트 갖고오기
         List<MarketDTO> mkList = mypageService.getMypageMarket(myDTO);
@@ -108,23 +121,23 @@ public class MypController {
     }
 
     @PostMapping("/mypage/myinfoPaging")
-    public String myinfoPaging(HttpServletRequest request, Model model) throws Exception {
+    public String myinfoPaging(HttpSession session) throws Exception {
         log.info(this.getClass().getName() + ".myinfoPaging Start!!");
 
         MypageDTO myDTO = new MypageDTO();
-        myDTO.setUser_seq("1");
+        myDTO.setUser_seq((String) session.getAttribute("sessionNo"));
 
         log.info(this.getClass().getName() + ".myinfoPaging End!!");
         return "/mypage/myinfo";
     }
 
     @PostMapping("/mypage/myinfo-modify")
-    public String myInfoModify(HttpServletRequest request, Model model) throws Exception {
+    public String myInfoModify(HttpServletRequest request, Model model, HttpSession session) throws Exception {
         log.info(this.getClass().getName()+".myInfoModify Start!!");
 
         //내 회원번호(seq 넣어줌)
         MypageDTO myDTO = new MypageDTO();
-        myDTO.setUser_seq("1");
+        myDTO.setUser_seq((String) session.getAttribute("sessionNo"));
 
         //내 정보 갖고오기
         MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
@@ -138,18 +151,27 @@ public class MypController {
     }
 
     @PostMapping("/mypage/getMyInfoModify")
-    public String getMyInfoModify(HttpServletRequest request, Model model) throws Exception {
+    public String getMyInfoModify(HttpServletRequest request, Model model, HttpSession session) throws Exception {
         log.info(this.getClass().getName()+".getMyInfoModify Start!!");
         String name = CmmUtil.nvl(request.getParameter("name"));
-        String email = CmmUtil.nvl(request.getParameter("email"));
+        String email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("email")));
+
+        String new_password = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("password")));
+        String hidden_password = CmmUtil.nvl(request.getParameter("hidden-password"));
+        String password = "";
+        if(new_password != hidden_password) {
+            password = new_password;
+        }
 
         log.info("name : "+name);
         log.info("email : "+email);
+        log.info("password : "+password);
 
         MypageDTO iDTO = new MypageDTO();
-        iDTO.setUser_seq("1");
+        iDTO.setUser_seq((String) session.getAttribute("sessionNo"));
         iDTO.setUser_name(name);
         iDTO.setUser_email(email);
+        iDTO.setUser_pw(password);
 
         int res = mypageService.getMyInfoModify(iDTO);
 

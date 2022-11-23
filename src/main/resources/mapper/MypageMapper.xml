@@ -13,7 +13,7 @@
     <!-- 마이페이지 유저 정보 수정 쿼리 -->
     <update id="getMyInfoModify" parameterType="MypageDTO">
         update user_info
-        set user_name = #{user_name}, user_email = #{user_email}
+        set user_name = #{user_name}, user_email = #{user_email}, user_pw = #{user_pw}
         where user_seq = #{user_seq}
     </update>
 
@@ -23,6 +23,7 @@
         FROM (
                  SELECT ROW_NUMBER() OVER (ORDER BY user_seq) NUM, A.*
                  FROM market A
+                 WHERE user_seq = #{user_seq}
                  ORDER BY mk_seq desc
              )
         WHERE NUM BETWEEN #{start} AND #{finish}
