@@ -1,7 +1,6 @@
 package kopo.poly.service;
 
 import kopo.poly.dto.MarketDTO;
-import kopo.poly.dto.UserInfoDTO;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

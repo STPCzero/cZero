@@ -1,7 +1,6 @@
 package kopo.poly.controller;
 
 import kopo.poly.dto.MarketDTO;
-import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.service.IMarketService;
 import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Slf4j
@@ -106,9 +103,6 @@ public class MarketController {
         // 마켓리스트 가져오기
 
         // 조회된 리스트 결과값 넣어주기
-        /*model.addAttribute("mList", mList);*/
-
-        /*model.addAttribute("uDTO",uDTO);*/
         log.info(this.getClass().getName() + ".market-list End!!");
 
         return "/market/market-list";
@@ -126,16 +120,26 @@ public class MarketController {
     public String marketInsert(HttpSession session, HttpServletRequest request, ModelMap model)  throws Exception {
         log.info(this.getClass().getName() + ".MarketInsert Start!");
 
+        String seq = (String) session.getAttribute("sessionNo");
+
+        if(seq == null) {
+            String msg = "로그인이 필요한 서비스 입니다.";
+            String url = "/login/login";
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", url);
+            return "redirect";
+        }
+
         String msg = "";
 
         try {
-            String user_name = CmmUtil.nvl((String) session.getAttribute("SESSION_USER_NAME"));
+            String user_seq = (String) session.getAttribute("sessionNo");
             String title = CmmUtil.nvl(request.getParameter("title"));
             int price = Integer.parseInt(CmmUtil.nvl(request.getParameter("price")));
             String contents = CmmUtil.nvl(request.getParameter("contents"));
 
 
-            log.info("user_name : " + user_name);
+            log.info("user_seq : " + user_seq);
             log.info("title : " + title);
             log.info("price : " + price);
             log.info("contents : " + contents);
@@ -154,17 +158,12 @@ public class MarketController {
                 mDTO.setThumbnail(" ");
             }
 
-            //UserInfoDTO uDTO = new UserInfoDTO();
 
-            // user 이름 가져오기
-
-            mDTO.setUser_seq(mDTO.getUser_seq());
-            //mDTO.setUser_name("혜경");
-            //uDTO.setUser_name(user_name);
+            mDTO.setUser_seq(user_seq);
             mDTO.setTitle(title);
             mDTO.setPrice(price);
             mDTO.setContents(contents);
-
+            mDTO.setRead_cnt(0);
 
             marketService.InsertMarketInfo(mDTO);
 
@@ -198,16 +197,13 @@ public class MarketController {
 
         try {
             int mk_seq = Integer.parseInt(CmmUtil.nvl(request.getParameter("mk_seq")));
-            /*String user_seq = CmmUtil.nvl(request.getParameter("user_seq"));*/
 
 
             log.info("mk_seq : " + mk_seq);
 
             MarketDTO mDTO = new MarketDTO();
-            /*UserInfoDTO uDTO = new UserInfoDTO();*/
 
             mDTO.setMk_seq(mk_seq);
-            /*mDTO.setUser_seq(uDTO.getUser_seq());*/
 
 
             // 마켓 상세정보 가져오기
@@ -246,7 +242,17 @@ public class MarketController {
 
     // 수정페이지 보기
     @GetMapping(value = "market-modify")
-    public String marketmodify(HttpServletRequest request, ModelMap model) {
+    public String marketmodify(HttpSession session, HttpServletRequest request, ModelMap model) {
+
+        String seq = (String) session.getAttribute("sessionNo");
+
+        if(seq == null) {
+            String msg = "로그인이 필요한 서비스 입니다.";
+            String url = "/login/login";
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", url);
+            return "redirect";
+        }
 
         log.info(this.getClass().getName() + ".market modify start!");
 
@@ -254,7 +260,6 @@ public class MarketController {
 
         try {
 
-            /*String mk_seq = CmmUtil.nvl(request.getParameter("mk_seq")); // 마켓 등록 번호(PK)*/
             int mk_seq = Integer.parseInt(CmmUtil.nvl(request.getParameter("mk_seq")));
 
             log.info("mk_seq : " + mk_seq);
@@ -300,10 +305,9 @@ public class MarketController {
         String msg = "";
 
         try {
-            String user_seq = CmmUtil.nvl((String) session.getAttribute("SESSION_USER_SEQ"));
+            String user_seq = (String) session.getAttribute("sessionNo");
             int mk_seq = Integer.parseInt(CmmUtil.nvl(request.getParameter("mk_seq")));
             String title = CmmUtil.nvl(request.getParameter("title"));
-            /*String price = CmmUtil.nvl(request.getParameter("price"));*/
             int price = Integer.parseInt(CmmUtil.nvl(request.getParameter("price")));
             String contents = CmmUtil.nvl(request.getParameter("contents"));
 
@@ -328,7 +332,7 @@ public class MarketController {
             }
 
 
-            mDTO.setUser_seq(mDTO.getUser_seq());
+            mDTO.setUser_seq(user_seq);
             mDTO.setMk_seq(mk_seq);
             mDTO.setTitle(title);
             mDTO.setPrice(price);
@@ -358,8 +362,18 @@ public class MarketController {
 
     // 마켓 삭제
     @GetMapping(value = "deleteMarketInfo")
-    private String deleteMarketInfo(HttpServletRequest request, ModelMap model) {
+    private String deleteMarketInfo(HttpSession session, HttpServletRequest request, ModelMap model) {
         log.info(this.getClass().getName() + ".deleteMarketInfo start!");
+
+        String seq = (String) session.getAttribute("sessionNo");
+
+        if(seq == null) {
+            String msg = "로그인이 필요한 서비스 입니다.";
+            String url = "/login/login";
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", url);
+            return "redirect";
+        }
 
         String msg = "";
 

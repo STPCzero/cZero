@@ -1,7 +1,6 @@
 package kopo.poly.service.impl;
 
 import kopo.poly.dto.MarketDTO;
-import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.persistance.mapper.IMarketMapper;
 import kopo.poly.service.IMarketService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +23,6 @@ public class MarketService implements IMarketService {
         this.marketMapper = marketMapper;
     }
 
-    /*@Override
-    public List<MarketDTO> getMarketList() throws Exception {
-        return marketMapper.getMarketList();
-    }*/
     @Override
     public List<MarketDTO> getMarketList(MarketDTO mDTO) throws Exception {
         log.info(getClass().getName() + " getMarketList Start!!!");
