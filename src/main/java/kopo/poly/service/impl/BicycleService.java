@@ -77,7 +77,8 @@ public class BicycleService implements IBicycleService {
         double lon1 = Double.parseDouble(bDTO.getLon()); // 현재 내 경도
 
         for (Map<String, Object> rowMap : rowList) {
-            String rackTotCnt = CmmUtil.nvl((String) rowMap.get("rackTotCnt"));
+            String rackTotCnt = CmmUtil.nvl((String) rowMap.get("rackTotCnt")); // 거치대 개수
+            String parkingBikeTotCnt = CmmUtil.nvl((String) rowMap.get("parkingBikeTotCnt")); // 실시간 자전거 개수
             String stationName = CmmUtil.nvl((String) rowMap.get("stationName"));
             String stationLatitude = CmmUtil.nvl((String) rowMap.get("stationLatitude"));
             String stationLongitude = CmmUtil.nvl((String) rowMap.get("stationLongitude"));
@@ -96,10 +97,11 @@ public class BicycleService implements IBicycleService {
             if(dist < 3) {
                 /* 마커에 찍기 위해 DTO에 담기 */
                 BicycleRowDTO brDTO = new BicycleRowDTO();
+                brDTO.setRackTotCnt(rackTotCnt);
+                brDTO.setParkingBikeTotCnt(parkingBikeTotCnt);
                 brDTO.setStationName(stationName);
                 brDTO.setStationLatitude(stationLatitude);
                 brDTO.setStationLongitude(stationLongitude);
-                brDTO.setRackTotCnt(rackTotCnt);
 
                 // m로 변환
                 double distM = dist*1000;
@@ -108,6 +110,7 @@ public class BicycleService implements IBicycleService {
                 log.info("--------------------");
                 log.info("stationName: "+stationName);
                 log.info("dist: "+dist);
+                log.info("parkingBikeTotCnt: "+parkingBikeTotCnt);
                 log.info("rackTotCnt: "+rackTotCnt);
                 log.info("--------------------");
                 pList.add(brDTO);

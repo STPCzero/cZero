@@ -184,7 +184,7 @@
                 </td>
                 <td><%=CmmUtil.nvl(mDTO.getTitle())%>
                 </td>
-                <td><%=CmmUtil.nvl(mDTO.getPrice())%>
+                <td><%=mDTO.getPrice()%>
                 </td>
                 <td><img width="40" height="40" src="../images/scorilo2-70x70.jpg" alt=""></td>
 
