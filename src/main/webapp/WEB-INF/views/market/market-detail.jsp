@@ -4,31 +4,36 @@
 <%@ page import="kopo.poly.util.CmmUtil" %>
 <%
 	MarketDTO rDTO = (MarketDTO)request.getAttribute("rDTO");
-	/*UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");*/
+	UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
 
 	// 마켓 정보를 못불러왔다면, 객체 생성
 	if (rDTO == null) {
 		rDTO = new MarketDTO();
 
 	}
+	if (uDTO == null) {
+		uDTO = new UserInfoDTO();
 
-	String ss_user_seq = CmmUtil.nvl((String)session.getAttribute("SESSION_USER_SEQ"));
+	}
+
+	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("SESSION_USER_ID"));
+	String sessionNo = (String) session.getAttribute("sessionNo");
 
 	// 본인이 작성한  글만 수정가능하도록 하기(1: 작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
 	int edit = 1;
 
 	// 로그인 안했다면...
-	if (ss_user_seq.equals("")){
+	if (ss_user_id.equals("")){
 		edit = 3;
 
 		//본인이 작성한 글이면 2가 되도록 변경
-	} else if (ss_user_seq.equals(CmmUtil.nvl(String.valueOf(rDTO.getUser_seq()))));
+	} else if (ss_user_id.equals(CmmUtil.nvl(uDTO.getUser_id())));
 	{
 		edit = 2;
 	}
 
-	System.out.println("user_seq : " + CmmUtil.nvl(String.valueOf(rDTO.getUser_seq())));
-	System.out.println("ss_user_seq : " + ss_user_seq);
+	System.out.println("user_id : " + CmmUtil.nvl(uDTO.getUser_id()));
+	System.out.println("ss_user_id : " + ss_user_id);
 %>
 
 
@@ -84,32 +89,6 @@
 	</script>
 
 	<style>
-		.wrap-contact100 {
-			width: 800px;
-			background: #fff;
-			border-radius: 10px;
-			overflow: hidden;
-			padding: 72px 150px 25px 150px;
-
-			box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-			-moz-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-			-webkit-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-			-o-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-			-ms-box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
-		}
-
-		.container-contact100-form-btn {
-			display: -webkit-box;
-			display: -webkit-flex;
-			display: -moz-box;
-			display: -ms-flexbox;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			padding-top: 10px;
-			padding-bottom: 43px;
-		}
-
 		button {
 			outline: none !important;
 			border: none;
@@ -118,34 +97,6 @@
 
 		button:hover {
 			cursor: pointer;
-		}
-
-		.contact100-form-btn {
-			display: -webkit-box;
-			display: -webkit-flex;
-			display: -moz-box;
-			display: -ms-flexbox;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			padding: 0 20px;
-			min-width: 160px;
-			height: 42px;
-			background-color: #00bba7;
-			border-radius: 21px;
-
-			/*font-family: JosefinSans-Bold;*/
-			font-size: 14px;
-			color: #fff;
-			line-height: 1.2;
-			text-transform: uppercase;
-			padding-top: 5px;
-
-			-webkit-transition: all 0.4s;
-			-o-transition: all 0.4s;
-			-moz-transition: all 0.4s;
-			transition: all 0.4s;
-
 		}
 
 		.contact100-form-title {
@@ -163,12 +114,6 @@
 			max-width: 800px;
 			margin: 0 auto;
 			position: relative;
-		}
-
-		#contentForm {
-			width: 40%;
-			margin: 0 auto;
-			padding-top: 12%;
 		}
 
 		.table > thead > tr > th, .table > tbody > tr > th {
@@ -205,8 +150,11 @@
 						<li class="propClone"><a href="/news/news">News</a></li>
 						<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
 						<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+						<% if(sessionNo!=null) {%>
+						<li class="propClone"><a href="/logout">Logout</a></li>
+						<%} else { %>
 						<li class="propClone"><a href="/login/login">Login</a></li>
-						<li class="propClone"><a href="">Logout</a></li>
+						<%} %>
 					</ul>
 				</div>
 			</div>
@@ -230,7 +178,7 @@
 	<div class="container toparea">
 		<div class="underlined-title">
 			<div class="editContent">
-				<h1 class="text-center latestitems">OUR PRODUCTS</h1>
+				<h1 class="text-center latestitems">상품내용</h1>
 			</div>
 			<div class="wow-hr type_short">
          <span class="wow-hr-h">
@@ -242,7 +190,6 @@
 		</div>
 		<div style="margin: 0 auto">
          <span class="contact100-form-title" style="text-align: center">
-               게시물 보기
             </span>
 			<form>
 				<div class="input-group input-group-sm container" role="group" style="text-align:left">
@@ -259,11 +206,6 @@
 								<td align="center" style="width: 20%">조회수</td>
 								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getRead_cnt()))%></td>
 							</tr>
-							<%--<tr>
-                                       <td colspan="4" height="300px" valign="top">
-                                           <%=CmmUtil.nvl(mDTO.getContents()).replaceAll("\r\n", "<br/>") %>
-                                       </td>
-                                   <tr>--%>
 							<div style="width:800px;">
 								<td colspan="4"  style="height: 500px"><%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %>
 								</td>
@@ -274,11 +216,17 @@
 
 			</form>
 			<tr>
-				<td align="center" colspan="4">
+				<td>
+					<% if(sessionNo!=null) {%>
 					<button type="button" class="btn btn-primary"
 							style="width: 7%; font-weight: bold" onclick="doEdit()">수정</button>
+					<%} else { %>
+					<%} %>
+					<% if(sessionNo!=null) {%>
 					<button type="button" class="btn btn-primary"
 							style="width: 7%; font-weight: bold" onclick="doDelete()">삭제</button>
+					<%} else { %>
+					<%} %>
 					<button type="button" class="btn btn-primary"
 							style="width: 7%; font-weight: bold" onclick="doList()">목록</button>
 				</td>
