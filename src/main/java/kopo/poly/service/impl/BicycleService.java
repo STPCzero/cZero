@@ -68,9 +68,9 @@ public class BicycleService implements IBicycleService {
 
         List<BicycleRowDTO> pList = new LinkedList<>();
 
-        /*
+        /**
          현재 좌표 값, API가 주는 좌표 값 비교하여
-         1km 이내 거리의 값만 담을 예정
+         3km 이내 거리의 값만 담을 예정
         * */
 
         double lat1 = Double.parseDouble(bDTO.getLat()); // 현재 내 위도
@@ -84,7 +84,7 @@ public class BicycleService implements IBicycleService {
             String stationLongitude = CmmUtil.nvl((String) rowMap.get("stationLongitude"));
 
 
-            /* 거리 구하기 start */
+            /** 거리 구하기 start */
             double lat2 = Double.parseDouble(stationLatitude); // API 위도
             double lon2 = Double.parseDouble(stationLongitude); // API 경도
 

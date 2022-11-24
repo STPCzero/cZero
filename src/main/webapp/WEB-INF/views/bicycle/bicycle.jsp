@@ -460,17 +460,6 @@
 
     //키워드로 데이터 로딩
     function searchStore(){
-        // jQuery("#keyword").val() == "" || jQuery("#keyword").val() == jQuery("#keyword").attr("data-val") ?
-        //     (
-        //         alert("검색어를 입력해 주세요")
-        //     )
-        //     :
-        //     (
-        //         mode = "search",
-        //         setDaumMapMarker(map, '', '', 'search'),
-        //         jQuery("#localTitle").text( jQuery("#localTitle").attr("data-default") ),
-        //         jQuery("#localTitle2").text( jQuery("#localTitle2").attr("data-default") )
-        //     );
         var keyword = $("#keyword").val().trim();
         if(keyword =="") {
             alert("검색어를 입력해 주세요");
@@ -528,7 +517,8 @@
                     '        <div class="body">' +
                     '            <div class="desc">' +
                     '                <div class="ellipsis"><#StoreAddress#></div>' +
-                    '                <div class="bikecnt ellipsis">실시간 자전거 개수 : <#BikeCnt#></div>' +
+                    '                <div class="bikecnt ellipsis">실시간 자전거 개수 :'+
+                                        <span>+ '<#BikeCnt#></span></div>' +
                     '            </div>' +
                     '        </div>' +
                     '    </div>' +
