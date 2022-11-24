@@ -162,7 +162,7 @@
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="user_pw">비밀번호</label>
-                            <input type="text" name="user_pw" placeholder="비밀번호" class="f1-last-name form-control"
+                            <input type="password" name="user_pw" placeholder="비밀번호" class="f1-last-name form-control"
                                    id="user_pw">
                         </div>
                         <div class="form-group">
