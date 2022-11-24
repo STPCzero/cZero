@@ -528,7 +528,7 @@
                     '        <div class="body">' +
                     '            <div class="desc">' +
                     '                <div class="ellipsis"><#StoreAddress#></div>' +
-                    '                <div class="jibun ellipsis"><#StoreTell#></div>' +
+                    '                <div class="jibun ellipsis">실시간 자전거 개수 : <#StoreTell#></div>' +
                     '                <div><a href="javascript:storePop2(\'<#StoreNo#>\');void(0);" class="link" >자세히보기</a></div>' +
                     '            </div>' +
                     '        </div>' +
@@ -545,10 +545,12 @@
                 /** Marker에 데이터 집어넣기 */
                 var positions = new Array();
                 for(var i = 0; i < data.bicycleList.length; i++){
+                    console.log(data.bicycleList[i]);
                     var indexStart = data.bicycleList[i].stationName.indexOf(data.bicycleList[i].stationName.split(" ")[1]);
                     var statName = data.bicycleList[i].stationName.substring(indexStart);
                     positions.push(
                         {
+                            rackToCnt : data.bicycleList[i].rackTotCnt,
                             title: statName,
                             latlng : new kakao.maps.LatLng(data.bicycleList[i].stationLatitude, data.bicycleList[i].stationLongitude),
                             lat : data.bicycleList[i].stationLatitude,
@@ -602,7 +604,7 @@
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreLAT#>/g, positions[i].lat );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreLNG#>/g, positions[i].lon );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreNo#>/g, i );
-                    overlayContent_temp = overlayContent_temp.replace( /<#StoreTell#>/g, "010-0000-0000" );
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreTell#>/g, positions[i].rackToCnt );
 
                     overlay[i] = new daum.maps.CustomOverlay({
                         content: overlayContent_temp,
