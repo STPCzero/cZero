@@ -257,7 +257,7 @@ public class LoginController {
 
         if (rDTO == null) {
             msg = "로그인에 실패하셨습니다.";
-            icon = "fail";
+            icon = "error";
             url = "/login/login";
         } else {
             msg = "로그인에 성공하셨습니다.";
