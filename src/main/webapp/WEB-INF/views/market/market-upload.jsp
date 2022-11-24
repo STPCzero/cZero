@@ -1,5 +1,7 @@
-<%@ page import="static javax.servlet.http.MappingMatch.PATH" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+	String sessionNo = (String) session.getAttribute("sessionNo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,47 +53,6 @@
 			cursor: pointer;
 		}
 
-		.wrap-input100 {
-			width: 100%;
-			position: relative;
-			background-color: #fff;
-			border-radius: 20px;
-			margin-bottom: 30px;
-		}
-
-		.input100 {
-			display: block;
-			width: 100%;
-			background: transparent;
-			font-family: SourceSansPro-Bold;
-			font-size: 16px;
-			color: #4b2354;
-			line-height: 1.2;
-			outline: none;
-		}
-
-
-		.focus-input100 {
-			display: block;
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			top: 0;
-			left: 0;
-			pointer-events: none;
-			border-radius: 20px;
-			box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);
-			-moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);
-			-webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);
-			-o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);
-			-ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.05);
-
-			-webkit-transition: all 0.4s;
-			-o-transition: all 0.4s;
-			-moz-transition: all 0.4s;
-			transition: all 0.4s;
-		}
-
 		.input100:focus + .focus-input100 {
 			box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
 			-moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
@@ -110,52 +71,6 @@
 			min-height: 350px;
 			padding: 19px 20px 0 23px;
 		}
-
-
-		.container-contact100-form-btn {
-			display: -webkit-box;
-			display: -webkit-flex;
-			display: -moz-box;
-			display: -ms-flexbox;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			padding-top: 10px;
-			padding-bottom: 43px;
-		}
-
-		.contact100-form-btn {
-			display: -webkit-box;
-			display: -webkit-flex;
-			display: -moz-box;
-			display: -ms-flexbox;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			padding: 0 20px;
-			min-width: 160px;
-			height: 42px;
-			background-color: #00bba7;
-			border-radius: 21px;
-
-			/*font-family: JosefinSans-Bold;*/
-			font-size: 14px;
-			color: #fff;
-			line-height: 1.2;
-			text-transform: uppercase;
-			padding-top: 5px;
-
-			-webkit-transition: all 0.4s;
-			-o-transition: all 0.4s;
-			-moz-transition: all 0.4s;
-			transition: all 0.4s;
-
-		}
-
-		.ck-editor__editable {
-			height: 400px;
-		}
-
 
 		input {
 			outline: none;
@@ -209,8 +124,11 @@
 				<li class="propClone"><a href="/news/news">News</a></li>
 				<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
 				<li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
+				<% if(sessionNo!=null) {%>
+				<li class="propClone"><a href="/logout">Logout</a></li>
+				<%} else { %>
 				<li class="propClone"><a href="/login/login">Login</a></li>
-				<li class="propClone"><a href="">Logout</a></li>
+				<%} %>
 			</ul>
 		</div>
 	</div>
@@ -234,7 +152,7 @@
 	<div class="container toparea">
 		<div class="underlined-title">
 			<div class="editContent">
-				<h1 class="text-center latestitems">OUR PRODUCTS</h1>
+				<h1 class="text-center latestitems">상품등록</h1>
 			</div>
 			<div class="wow-hr type_short">
          <span class="wow-hr-h">
@@ -246,9 +164,8 @@
 		</div>
 		<div class="wrap-contact100" style="width: 900px; position: relative; right: 8%;">
 			<span class="contact100-form-title" style="text-align: center">
-               내 상품 등록하기
             </span>
-			<form class="contact100-form"  name="f" method="post" action="marketInsert" <%--target= "ifrPrc"--%> onsubmit="return doSubmit(this);" enctype="multipart/form-data">
+			<form class="contact100-form"  name="f" method="post" action="marketInsert" onsubmit="return doSubmit(this);" enctype="multipart/form-data">
 
 				<script src="../js/ckeditor/ckeditor.js"></script>
 
@@ -264,7 +181,6 @@
 									</div>
 									<input type="text" class="form-control" name="title" id="title"
 										   style="width: 350%; "
-										   <%--value="${MarketDTO.title}"--%>
 										   placeholder="제목을 입력하세요" class="form-control" aria-describedby="basic-addon1">
 									<br><br>
 									<div class="input-group-prepend">
@@ -272,14 +188,13 @@
 									</div>
 									<input type="text" class="form-control" name="price" id="price"
 										   style="width: 90%; "
-										   <%--value="${MarketDTO.price}"--%>
 										   placeholder="가격을 입력하세요" class="form-control" aria-describedby="basic-addon1">
 								</div>
 								<hr>
 								<div class="input-group">
 
 
-									<textarea class="form-control"<%-- value="${MarketDTO.contents}"--%> id="contents" name="contents"></textarea>
+									<textarea class="form-control" id="contents" name="contents"></textarea>
 
 									<script>
 										CKEDITOR.replace('contents',
@@ -303,10 +218,6 @@
 
 
 			</form>
-                <!-- 프로세스 처리용 iframe / form 태그에서 target을 iframe으로 한다. -->
-               <%-- <iframe name="ifrPrc" style="display:none"></iframe>--%>
-
-
 		</div>
 	</div>
 </section>

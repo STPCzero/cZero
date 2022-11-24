@@ -17,6 +17,7 @@ public class MarketDTO {
     private int price;
     private int read_cnt;
     private String thumbnail;
+    private String user_name; // 관리자에서 씀
 
     private int start;
     private int finish;
