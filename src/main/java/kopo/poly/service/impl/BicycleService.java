@@ -14,10 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @Service("BicycleService")
@@ -118,6 +115,17 @@ public class BicycleService implements IBicycleService {
             }
             /* 거리 구하기 end */
         }
+
+        /** 거리순 정렬 */
+        // 점수(Double) 오름차순
+        Collections.sort(pList, new Comparator<BicycleRowDTO>() {
+            @Override
+            public int compare(BicycleRowDTO o1, BicycleRowDTO o2) {
+                Integer score1 = o1.getDistance();
+                Integer score2 = o2.getDistance();
+                return score1.compareTo(score2);
+            }
+        });
 
         BicycleDTO biDTO = new BicycleDTO();
 

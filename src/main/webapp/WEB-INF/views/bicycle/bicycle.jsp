@@ -78,8 +78,10 @@
             background: rgb(0,0,0);
         }
         .store_box .title_area .btn_here{
-            color: rgb(255,255,255);
-            background: rgb(238,119,19);
+            color: #008000;
+            font-weight: 700;
+            background: #CFF09E;
+            border-radius: 20px;
         }
         .condition_box{
             display: none;
@@ -197,7 +199,7 @@
         #storeListUL {
             list-style: none;
         }
-        .store_tab .num{
+        .num{
             width: 30px;
             height: 30px;
             margin-bottom: -20px;
@@ -205,19 +207,19 @@
             font-size: 16px;
             line-height: 30px;
             text-align: center;
-            color: rgb(255,255,255);
+            color: #008000;
         }
         .store_tab .store_txt{
             float: left;
             padding-left: 45px;
             font-family: 'NanumBarunGothic';
-            width: 325px;
+            width: 100%;
         }
         .store_tab .store_txt .name{overflow: hidden; margin-bottom: 15px;}
         .store_tab .store_txt .name span{
             float: left;
             display: block;
-            width: 250px;
+            width: 100%;
             font-size: 14px;
             color: rgb(51,51,51)
         }
@@ -225,7 +227,7 @@
             display: inline-block;
             margin-left: 5px;
             font-family: 'Archer-Semibold';
-            color: rgb(105,81,157);
+            color: #008000;
             vertical-align: top;
         }
         .store_tab .store_txt .name a{
@@ -274,13 +276,14 @@
         .wrap * {padding: 0;margin: 0;}
         .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
         .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-        .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+        .info .title {padding: 5px 10px; height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
         .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
         .close:hover {cursor: pointer;}
         .info .body {position: relative;overflow: hidden;}
         .info .desc {position: relative;margin: 13px 0 0 13px;height: 75px;}
         .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
         .desc .bikecnt {font-size: 20px;color: #888;margin-top: -2px;}
+        .desc .bikecnt span{color: #008000; font-weight: 700}
         .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
         .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
         .info .link {color: #5085BB;}
@@ -478,6 +481,16 @@
         }
     }
 
+    //지도 센터 변경
+    // 지도 중심좌표를 접속위치로 변경합니다
+    $(document).ready(function () {
+        $(".store_tab .store_txt .name span").click(function () {
+            //map.setCenter(locPosition);
+            alert("click");
+        });
+    });
+
+
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다
     function displayMarker(lat1, lon1) {
         $.ajax({
@@ -517,8 +530,8 @@
                     '        <div class="body">' +
                     '            <div class="desc">' +
                     '                <div class="ellipsis"><#StoreAddress#></div>' +
-                    '                <div class="bikecnt ellipsis">실시간 자전거 개수 :'+
-                                        <span>+ '<#BikeCnt#></span></div>' +
+                    '                <div class="bikecnt ellipsis">실시간 자전거 개수 : '+
+                                        '<span><#BikeCnt#></span></div>' +
                     '            </div>' +
                     '        </div>' +
                     '    </div>' +
@@ -547,13 +560,21 @@
                         }
                     )
 
+                    var dist = data.bicycleList[i].distance;
+                    if(dist > 999) {
+                        //km로 단위 변환
+                        dist = (dist*0.001)+"";
+                        dist = dist.substring(0,4)+"km";
+                    } else {
+                        dist = dist+"m";
+                    }
                     /** sort 써서 거리 순으로 정렬 후 보여주자 */
                     html += '<li data-lng="'+data.bicycleList[i].stationLongitude+
                         '" data-lat="'+data.bicycleList[i].stationLatitude+'" data-no="31">'+
                         '<div class="num">'+i+'</div>'+
                         '<div class="store_txt">'+
                         '<p class="name">'+
-                        '<span>'+statName+'<strong class="distance">'+data.bicycleList[i].distance+'m</strong></span>'+
+                        '<span>'+statName+'<strong class="distance">'+dist+'</strong></span>'+
                         '</p>'+
                         '</div>'+
                         '</li>';
@@ -587,12 +608,12 @@
                     //오버레이 설정 부분
                     var overlayContent_temp = "";
                     overlayContent_temp = overlayContent;
+                    overlayContent_temp = overlayContent_temp.replace( /<#StoreNo#>/g, i );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreName#>/g, positions[i].title );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreAddress#>/g, positions[i].title );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreSort#>/g, "<img src='" + "/images/store/store_icon_" + positions[i].sort + ".png' width='80' >" );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreLAT#>/g, positions[i].lat );
                     overlayContent_temp = overlayContent_temp.replace( /<#StoreLNG#>/g, positions[i].lon );
-                    overlayContent_temp = overlayContent_temp.replace( /<#StoreNo#>/g, i );
                     overlayContent_temp = overlayContent_temp.replace( /<#BikeCnt#>/g, positions[i].parkingBikeTotCnt);
 
                     overlay[i] = new daum.maps.CustomOverlay({
