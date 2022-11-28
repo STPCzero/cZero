@@ -33,6 +33,9 @@
     <!-- search -->
     <style>
         /* store */
+        a {
+        text-decoration : none;
+        }
         .store_map{
             overflow: hidden;
             position: relative;
@@ -83,6 +86,14 @@
             background: #CFF09E;
             border-radius: 20px;
         }
+
+        .store_box .title_area .btn_here.off{
+            color: #008000;
+            font-weight: 700;
+            background: #d3d3d3;
+            border-radius: 20px;
+        }
+
         .condition_box{
             display: none;
             position: absolute;
@@ -281,9 +292,9 @@
         .close:hover {cursor: pointer;}
         .info .body {position: relative;overflow: hidden;}
         .info .desc {position: relative;margin: 13px 0 0 13px;height: 75px;}
-        .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-        .desc .bikecnt {font-size: 20px;color: #888;margin-top: -2px;}
-        .desc .bikecnt span{color: #008000; font-weight: 700}
+        .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+        .bikecnt {font-size: 20px;color: #888;margin-top: -2px;}
+        .bikecnt span{color: #008000; font-weight: 700}
         .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
         .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
         .info .link {color: #5085BB;}
@@ -374,12 +385,12 @@
             <div class="title_area">
                 <h2>자전거 찾기</h2>
                 <div class="btn_box">
-                    <a href="#" class="btn_here" id="location">현재 위치</a>
+                    <a class="btn_here" id="location">현재 위치</a>
                 </div>
             </div>
             <div class="search_tab">
                 <div class="srh_box">
-                    <input type="text" id="keyword" name="keyword" data-val="매장명 또는 주소를 입력하세요." value="" onkeydown="if (event.keyCode==13) searchStore();">
+                    <input type="text" id="keyword" name="keyword" data-val="자전거 정거장 위치를 입력해주세요." value="" onkeydown="if (event.keyCode==13) searchStore();">
                     <button onclick="searchStore();void(0);"><img style="width:32px; height: 32px;" src="../images/search.png" alt="조회하기"></button>
                 </div>
             </div>
@@ -419,6 +430,37 @@
     var markers = [];
     var overlay = [];
 
+    var map = ""
+    var lat = "37.549944383590336"; //y
+    var lng = "126.84239510324666"; //x
+
+    /** BICYCLE LIST */
+    var html = '';
+
+    /** overlayContent */
+    var overlayContent = '<div class="wrap">' +
+        '    <div class="info">' +
+        '        <div class="title">' +
+        '            <#StoreName#>' +
+        '            <div class="close" onclick="resetOverlay()" title="닫기"></div>' +
+        '        </div>' +
+        '        <div class="body">' +
+        '            <div class="desc">' +
+        '                <div class="ellipsis"><#StoreAddress#></div>' +
+        '                <div class="bikecnt ellipsis">실시간 자전거 개수 : '+
+        '<span><#BikeCnt#></span></div>' +
+        '            </div>' +
+        '        </div>' +
+        '    </div>' +
+        '</div>';
+
+    // var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+    // var options = { //지도를 생성할 때 필요한 기본 옵션
+    //     center: new kakao.maps.LatLng(37.549944383590336, 126.84239510324666), //지도의 중심좌표.
+    //     level: 5 //지도의 레벨(확대, 축소 정도)
+    // };
+    // var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
     // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(pos) {
@@ -434,6 +476,7 @@
         var lon = 126.84239510324666; // 경도
         displayMarker(lat, lon);
     }
+
 
     //마커 및 인포윈도우 삭제 함수
     function resetDaumMap(){
@@ -454,41 +497,156 @@
     }
     //오버레이 모두 삭제
     function resetOverlay(){
-        console.log("click");
-        console.log(" length : "+ overlay.length);
         for (var i = 0; i < overlay.length; i++) {
             overlay[i].setMap(null);
         }
     }
 
+    $('#location').on("click",function(){
+        $("#keyword").val("");
+        $('#location').removeClass("off");
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                var lat = pos.coords.latitude; // 위도
+                var lon = pos.coords.longitude; // 경도
+
+                // 마커와 인포윈도우를 표시합니다
+                displayMarker(lat, lon);
+
+            });
+        } else {
+            var lat = 37.549944383590336; // 위도
+            var lon = 126.84239510324666; // 경도
+            displayMarker(lat, lon);
+        }
+    });
+
     //키워드로 데이터 로딩
-    function searchStore(){
+    function searchStore() {
         var keyword = $("#keyword").val().trim();
-        if(keyword =="") {
+        if (keyword == "") {
             alert("검색어를 입력해 주세요");
         } else {
             $.ajax({
                 url: "/bicycle/getSearch",
                 type: "get",
                 data: {
-                    searchWord : keyword
+                    searchWord: keyword
                 },
                 contentType: "application/json",
                 success: function (data) {
-                    console.log(data);
+                   $('#location').addClass("off");
+                    //마커 데이터로 그리기
+                    if(data.bicycleList.length < 1){
+                        resetDaumMap();
+                        jQuery("#storeListUL").html("<div style='width:100%;text-align:center;margin:50px 0px;'>검색된 자전거가 없습니다.</div>");
+                    } else {
+                    /** BICYCLE LIST 초기화 */
+                    var html = '';
+
+                    /** 기본 위치 잡기 */
+                    var latitude = data.bicycleList[0].stationLatitude; // 내 위도
+                    var longitude = data.bicycleList[0].stationLongitude; // 내 경도
+
+                    var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                    var options = { //지도를 생성할 때 필요한 기본 옵션
+                        center: new kakao.maps.LatLng(latitude, longitude), //지도의 중심좌표.
+                        level: 5 //지도의 레벨(확대, 축소 정도)
+                    };
+                    var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                    /** Marker에 데이터 집어넣기 */
+                    var positions = new Array();
+                    for (var i = 0; i < data.bicycleList.length; i++) {
+                        var indexStart = data.bicycleList[i].stationName.indexOf(data.bicycleList[i].stationName.split(" ")[1]);
+                        var statName = data.bicycleList[i].stationName.substring(indexStart);
+                        positions.push(
+                            {
+                                parkingBikeTotCnt: data.bicycleList[i].parkingBikeTotCnt,
+                                title: statName,
+                                latlng: new kakao.maps.LatLng(data.bicycleList[i].stationLatitude, data.bicycleList[i].stationLongitude),
+                                lat: data.bicycleList[i].stationLatitude,
+                                lon: data.bicycleList[i].stationLongitude
+                            }
+                        )
+
+                        html += '<li data-lng="' + data.bicycleList[i].stationLongitude +
+                            '" data-lat="' + data.bicycleList[i].stationLatitude + '" data-no=' + i + ' >' +
+                            '<div class="store_txt">' +
+                            '<p class="name">' +
+                            '<span>' + statName + '</span>' +
+                            '</p>' +
+                            '<div class="bikecnt ellipsis">실시간 자전거 개수 : ' +
+                            '<span>' + data.bicycleList[i].parkingBikeTotCnt + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '</li>';
+                    }
+
+
+                    // 마커 이미지의 이미지 주소입니다
+                    var imageSrc = "../images/location.png";
+                    var imageSize = new kakao.maps.Size(35, 35);
+
+                        // 커스텀 오버레이에 표시할 컨텐츠 입니다
+                        // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+                        // 별도의 이벤트 메소드를 제공하지 않습니다
+                        /** 마커 생성!!!!! */
+                        for (var i = 0; i < positions.length; i++) {
+                            var overTitle = positions[i].title;
+                            // 마커 이미지를 생성합니다
+                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                            // 마커를 생성합니다
+                            markers[i] = new kakao.maps.Marker({
+                                map: map, // 마커를 표시할 지도
+                                position: positions[i].latlng, // 마커를 표시할 위치
+                                title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                                image: markerImage // 마커 이미지
+                            });
+
+                            markers[i].index = i;
+                            markers[i].no = positions[i].StoreNo;
+                            markers[i].setMap(map);
+
+                            //오버레이 설정 부분
+                            var overlayContent_temp = "";
+                            overlayContent_temp = overlayContent;
+                            overlayContent_temp = overlayContent_temp.replace(/<#StoreNo#>/g, i);
+                            overlayContent_temp = overlayContent_temp.replace(/<#StoreName#>/g, positions[i].title);
+                            overlayContent_temp = overlayContent_temp.replace(/<#StoreAddress#>/g, positions[i].title);
+                            overlayContent_temp = overlayContent_temp.replace(/<#StoreSort#>/g, "<img src='" + "/images/store/store_icon_" + positions[i].sort + ".png' width='80' >");
+                            overlayContent_temp = overlayContent_temp.replace(/<#StoreLAT#>/g, positions[i].lat);
+                            overlayContent_temp = overlayContent_temp.replace(/<#StoreLNG#>/g, positions[i].lon);
+                            overlayContent_temp = overlayContent_temp.replace(/<#BikeCnt#>/g, positions[i].parkingBikeTotCnt);
+
+                            overlay[i] = new daum.maps.CustomOverlay({
+                                content: overlayContent_temp,
+                                map: map
+                            });
+
+                            daum.maps.event.addListener(markers[i], "click", function () {
+                                // 일단 오버레이를 모두 닫고
+                                resetOverlay();
+                                //센터로 이동
+
+                                map.setCenter(markers[this.index].getPosition());
+                                // 해당 인포윈도를 열어준다.
+                                //infowindow[this.index].open(map, markers[this.index]);
+                                //해당 오버레이를 열어준다
+                                overlay[this.index].setMap(map);
+                                overlay[this.index].setPosition(markers[this.index].getPosition());
+                            });
+                        }
+                        /** HTML로 BICYCLE LOCATOR 출력 */
+                        $("#storeListUL").html(html);
+                    }
                 }
             });
         }
     }
 
-    //지도 센터 변경
-    // 지도 중심좌표를 접속위치로 변경합니다
-    $(document).ready(function () {
-        $(".store_tab .store_txt .name span").click(function () {
-            //map.setCenter(locPosition);
-            alert("click");
-        });
-    });
+
 
 
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다
@@ -517,26 +675,6 @@
                 // 지도 중심좌표를 접속위치로 변경합니다
                 map.setCenter(locPosition);
 
-                /** BICYCLE LIST */
-                var html = '';
-
-                /** overlayContent */
-                var overlayContent = '<div class="wrap">' +
-                    '    <div class="info">' +
-                    '        <div class="title">' +
-                    '            <#StoreName#>' +
-                    '            <div class="close" onclick="resetOverlay()" title="닫기"></div>' +
-                    '        </div>' +
-                    '        <div class="body">' +
-                    '            <div class="desc">' +
-                    '                <div class="ellipsis"><#StoreAddress#></div>' +
-                    '                <div class="bikecnt ellipsis">실시간 자전거 개수 : '+
-                                        '<span><#BikeCnt#></span></div>' +
-                    '            </div>' +
-                    '        </div>' +
-                    '    </div>' +
-                    '</div>';
-
                 /** 내 위치 마커를 생성합니다 */
                 var myLocationMarker = new kakao.maps.Marker({
                     map: map,
@@ -547,7 +685,6 @@
                 /** Marker에 데이터 집어넣기 */
                 var positions = new Array();
                 for(var i = 0; i < data.bicycleList.length; i++){
-                    console.log(data.bicycleList[i]);
                     var indexStart = data.bicycleList[i].stationName.indexOf(data.bicycleList[i].stationName.split(" ")[1]);
                     var statName = data.bicycleList[i].stationName.substring(indexStart);
                     positions.push(
@@ -569,17 +706,18 @@
                         dist = dist+"m";
                     }
                     /** sort 써서 거리 순으로 정렬 후 보여주자 */
-                    html += '<li data-lng="'+data.bicycleList[i].stationLongitude+
-                        '" data-lat="'+data.bicycleList[i].stationLatitude+'" data-no="31">'+
-                        '<div class="num">'+i+'</div>'+
+                    html += '<li onclick="showLatlng(this)" data-lng="'+data.bicycleList[i].stationLongitude+
+                        '" data-lat="'+data.bicycleList[i].stationLatitude+'" data-no='+i+' >'+
                         '<div class="store_txt">'+
                         '<p class="name">'+
                         '<span>'+statName+'<strong class="distance">'+dist+'</strong></span>'+
                         '</p>'+
+                        '<div class="bikecnt ellipsis">실시간 자전거 개수 : ' +
+                        '<span>' + data.bicycleList[i].parkingBikeTotCnt + '</span>' +
+                        '</div>' +
                         '</div>'+
                         '</li>';
                 }
-
                 // 마커 이미지의 이미지 주소입니다
                 var imageSrc = "../images/location.png";
                 var imageSize = new kakao.maps.Size(35, 35);
@@ -625,6 +763,7 @@
                         // 일단 오버레이를 모두 닫고
                         resetOverlay();
                         //센터로 이동
+
                         map.setCenter(markers[this.index].getPosition());
                         // 해당 인포윈도를 열어준다.
                         //infowindow[this.index].open(map, markers[this.index]);
@@ -633,10 +772,53 @@
                         overlay[this.index].setPosition(markers[this.index].getPosition() );
                     });
 
+                    // var liclick = document.querySelectorAll("#storeListUL li");
+                    // daum.maps.event.addListener(liclick, "click", function() {
+                    //     // 일단 오버레이를 모두 닫고
+                    //     resetOverlay();
+                    //     //센터로 이동
+                    //
+                    //     map.setCenter(markers[this.index].getPosition());
+                    //     // 해당 인포윈도를 열어준다.
+                    //     //infowindow[this.index].open(map, markers[this.index]);
+                    //     //해당 오버레이를 열어준다
+                    //     overlay[this.index].setMap(map);
+                    //     overlay[this.index].setPosition(markers[this.index].getPosition() );
+                    // });
+
+                    //리스트 클릭 이벤트 생성
+                    // $("#storeListUL li").on("click",function(){
+                    //     alert('test');
+                    //     // 일단 오버레이를 모두 닫고
+                    //     resetOverlay();
+                    //     //센터로 이동
+                    //     map.setCenter(new daum.maps.LatLng(jQuery(this).attr("data-lat"), jQuery(this).attr("data-lng")));
+                    //     // 해당 인포윈도를 열어준다.
+                    //     //infowindow[jQuery(this).index()].open(map, markers[jQuery(this).index()]);
+                    //     //해당 오버레이를 열어준다
+                    //     overlay[jQuery(this).index()].setMap(map);
+                    //     overlay[jQuery(this).index()].setPosition(new daum.maps.LatLng(jQuery(this).attr("data-lat"), jQuery(this).attr("data-lng")) );
+                    // });
+
+                    //지도 센터 변경
+                    // 지도 중심좌표를 접속위치로 변경합니다
+                    // let showLatlng = element => {
+                    //     var lat = element.getAttribute('data-lat');
+                    //     var lng = element.getAttribute('data-lng');
+                    //     var indexNo = element.getAttribute('data-no');
+                    //
+                    //     console.log('test');
+                    //     resetOverlay();
+                    //     var locPosition = new kakao.maps.LatLng(lat, lng);
+                    //     // 지도 중심좌표를 접속위치로 변경합니다
+                    //     map.setCenter(locPosition);
+                    //
+                    //     overlay[indexNo].setMap(map);
+                    //     overlay[indexNo].setPosition(markers[indexNo].getPosition() );
+                    //
+                    // }
+
                 }
-
-
-
                 /** HTML로 BICYCLE LOCATOR 출력 */
                 $("#storeListUL").html(html);
             }, // success End !!!
@@ -649,6 +831,7 @@
 <script>
     //----HOVER CAPTION---//
     jQuery(document).ready(function ($) {
+
         $('.fadeshop').hover(
             function(){
                 $(this).find('.captionshop').fadeIn(150);

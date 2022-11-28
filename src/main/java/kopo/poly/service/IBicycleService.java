@@ -5,4 +5,6 @@ import kopo.poly.dto.BicycleDTO;
 public interface IBicycleService {
 
     BicycleDTO findBicycleInfo(BicycleDTO bDTO) throws Exception;
+
+    BicycleDTO searchBicycleInfo(BicycleDTO bDTO) throws Exception;
 }
