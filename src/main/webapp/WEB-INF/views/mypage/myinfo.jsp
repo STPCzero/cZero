@@ -171,6 +171,7 @@
                                 }%>
                             <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
                                 <td class="edd_cart_item_name">
+                                    <a style="" href="/market/market-detail?num=<%=rDTO.getMk_seq()%>">
                                     <div style="display: inline-block;" class="edd_cart_item_image">
                                         <% if(rDTO.getThumbnail() != null) { %>
                                             <img width="55" height="55" src="<%=CmmUtil.nvl(rDTO.getThumbnail())%>" alt="유저업로드사진">
@@ -180,6 +181,7 @@
 
                                     </div>
                                     <span class="edd_checkout_cart_item_title"><%=CmmUtil.nvl(rDTO.getTitle())%></span>
+                                    </a>
                                 </td>
                                 <td class="edd_cart_item_price">
                                     <%=rDTO.getPrice()%>
