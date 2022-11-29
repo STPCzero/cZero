@@ -62,10 +62,10 @@ public class BicycleController {
 
         bDTO.setKeyword(keyword);
 
-        //BicycleDTO biDTO = bicycleService.findBicycleInfo(bDTO);
+        BicycleDTO biDTO = bicycleService.searchBicycleInfo(bDTO);
 
         log.info(this.getClass().getName() + ".getSearch End!!");
-        return null;
+        return biDTO;
     }
 
 }

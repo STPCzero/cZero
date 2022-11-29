@@ -128,6 +128,9 @@
 			resize: none;
 		}
 
+		.tablecolor {
+			background-color: #ffffff !important;
+		}
 	</style>
 </head>
 <body>
@@ -194,20 +197,20 @@
 			<form>
 				<div class="input-group input-group-sm container" role="group" style="text-align:left">
 					<table class="table table-striped table-bordered">
-							<tr>
-								<td align="center" style="width: 20%">제목</td>
-								<td><%=CmmUtil.nvl(rDTO.getTitle())%></td>
-								<td align="center" style="width: 20%">가격</td>
-								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getPrice()))%>원</td>
+							<tr class="tablecolor" >
+								<td align="center" style="width: 20%; padding: 10px"><strong>제목</strong></td>
+								<td style="padding: 10px"><%=CmmUtil.nvl(rDTO.getTitle())%></td>
+								<td align="center" style="width: 20%; padding: 10px"><strong>가격</strong></td>
+								<td style="padding: 10px"><%=CmmUtil.nvl(String.valueOf(rDTO.getPrice()))%>원</td>
 							</tr>
-							<tr>
-								<td align="center" style="width: 20%">작성일</td>
-								<td><%=CmmUtil.nvl(rDTO.getMk_date())%></td>
-								<td align="center" style="width: 20%">조회수</td>
-								<td><%=CmmUtil.nvl(String.valueOf(rDTO.getRead_cnt()))%></td>
+							<tr style="border-bottom: solid 1px #dddddd">
+								<td align="center" style="width: 20%; padding: 10px"><strong>작성일</strong></td>
+								<td style="padding: 10px"><%=CmmUtil.nvl(rDTO.getMk_date())%></td>
+								<td align="center" style="width: 20%; padding: 10px"><strong>조회수</strong></td>
+								<td style="padding: 10px"><%=CmmUtil.nvl(String.valueOf(rDTO.getRead_cnt()))%></td>
 							</tr>
 							<div style="width:800px;">
-								<td colspan="4"  style="height: 500px"><%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %>
+								<td colspan="4"  style="height: 500px; padding: 20px"><%=CmmUtil.nvl(rDTO.getContents()).replaceAll("\r\n", "<br/>") %>
 								</td>
 							</div>
 					</table>
