@@ -139,10 +139,10 @@ public class AdminController {
         uDTO.setStart(start);
         uDTO.setFinish(finish);
 
-        log.info("값 확인 : "+uDTO.getTitle());
+        log.info("값 확인 : "+ uDTO.getTitle());
         List<MarketDTO> mList = adminService.getMarketInfo(uDTO);
 
-        log.info("mList size : "+mList.size());
+        log.info("mList size : "+ mList.size());
         model.addAttribute("mList", mList);
 
         // 한번에 표시할 페이징 번호의 갯수

@@ -123,7 +123,7 @@
             <div class="font-bold flex justify-center">
                 <ul class="flex flex-col">
                     <li class="p-2">
-                        <a href="index">
+                        <a href="/index">
                             메인페이지
                         </a>
                     </li>
