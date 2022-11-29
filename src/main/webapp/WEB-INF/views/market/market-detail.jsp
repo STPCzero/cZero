@@ -222,7 +222,7 @@
 				<td>
 					<% if(sessionNo!=null) {%>
 					<button type="button" class="btn btn-primary"
-							style="width: 7%; font-weight: bold" onclick="doEdit()">수정</button>
+							style="width: 7%; font-weight: bold; margin-left: 2%" onclick="doEdit()">수정</button>
 					<%} else { %>
 					<%} %>
 					<% if(sessionNo!=null) {%>
@@ -231,7 +231,7 @@
 					<%} else { %>
 					<%} %>
 					<button type="button" class="btn btn-primary"
-							style="width: 7%; font-weight: bold" onclick="doList()">목록</button>
+							style="width: 7%; font-weight: bold; float:right; margin-right: 2%" onclick="doList()">목록</button>
 				</td>
 			</tr>
 
