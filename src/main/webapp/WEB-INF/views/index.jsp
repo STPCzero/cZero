@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
  String sessionNo = (String) session.getAttribute("sessionNo");
+ String type = (String) session.getAttribute("type");
 %>
 <!DOCTYPE html>
 <html>
@@ -34,15 +35,20 @@
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <% if (type == null){%>
+                        <%} else if (type.equals("0")){ %>
+                        <li class="propClone"><a href="/admin/admin-member">Admin</a></li>
+                        <% }%>
                         <li class="propClone"><a href="/market/market-list">Market</a></li>
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
                         <li class="propClone"><a href="/mypage/myinfo">Mypage</a></li>
-                        <% if(sessionNo!=null) {%>
+                        <% if(sessionNo != null) {%>
                             <li class="propClone"><a href="/logout">Logout</a></li>
                         <%} else { %>
                             <li class="propClone"><a href="/login/login">Login</a></li>
                         <%} %>
+
                     </ul>
                 </div>
             </div>
