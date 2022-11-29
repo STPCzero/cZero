@@ -263,12 +263,16 @@ public class LoginController {
             msg = "로그인에 성공하셨습니다.";
             icon = "success";
             url = "/index";
+
             String name = rDTO.getUser_name();
             String no = rDTO.getUser_seq();
+            String type = rDTO.getUser_type();
             session.setAttribute("sessionId", name);
             session.setAttribute("sessionNo", no);
+            session.setAttribute("type", type);
             log.info("sessionID : " + name);
             log.info("sessionSEQ : " + no);
+            log.info("type : " + type);
         }
 
         model.addAttribute("msg", msg);
