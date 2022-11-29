@@ -15,7 +15,7 @@ public class IndexController {
     public String index() throws Exception {
         log.info(this.getClass().getName()+".index Start!!");
         log.info(this.getClass().getName()+".index End!!");
-        return "index";
+        return "/index";
     }
 
     /** Logout */
