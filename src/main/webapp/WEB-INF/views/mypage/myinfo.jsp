@@ -31,10 +31,10 @@
     <meta name="generator" content="">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
     <script src="../js/jquery-.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/anim.js"></script>
@@ -142,7 +142,7 @@
                             <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address"
                                    id="edd-pw" value="********">
                         </p>
-                        <div style="text-align: right; margin-top: 10px;">
+                        <div id="withdrawal" style="text-align: right; margin-top: 10px;">
                             <a style="color : #999; td-size: 12px;">탈퇴하기</a>
                         </div>
                     </fieldset>
@@ -241,12 +241,27 @@
                 $(this).find('.captionshop').fadeOut(150);
             }
         );
+
+        $('#withdrawal').click(function (){
+            if (!confirm("정말 탈퇴하시겠습니까? \n" +
+                "회원 정보는 즉시 삭제되며 돌이킬 수 없습니다.")) {
+            } else {
+                $.ajax({
+                    url: "/mypage/myinfo-withdrawal",
+                    type: "post",
+                    success: function (data) {
+                        alert("회원 탈퇴가 완료되었습니다.");
+                    }
+                });
+            }
+        });
     });
 </script>
 <%} else { %>
 <script>
     alert("로그인이 필요한 서비스입니다.");
     location.href = "/login/login";
+
 </script>
 <% }%>
 </body>
