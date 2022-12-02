@@ -200,12 +200,12 @@
             <div class="btn-group " style="margin: 0 auto; display: inline-block;">
                 <% for (int i = startPageNum; i <= endPageNum; i++) {
                     if(select == i) {%>
-                <a style="color: red;" href="/admin/admin-member?num=<%=i%>">
+                <a style="color: red;" href="/admin/admin-market?num=<%=i%>">
                     <button class="btn">
                         <%=i%>
                     </button></a>
                 <%} else {%>
-                <a style="" href="/admin/admin-member?num=<%=i%>">
+                <a style="" href="/admin/admin-market?num=<%=i%>">
                     <button class="btn">
                         <%=i%>
                     </button></a>

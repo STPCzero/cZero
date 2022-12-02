@@ -22,4 +22,5 @@ public interface IMarketService {
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;
 
 
+    String getMarketUserChk(String sessionNo) throws Exception;
 }

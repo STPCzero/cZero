@@ -18,10 +18,10 @@
     <meta name="generator" content="">
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/td-awesome/4.6.3/css/td-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-    <link href="https://tds.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
     <script src="../js/jquery-.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/anim.js"></script>
@@ -139,7 +139,7 @@
     </div>
 </section>
 <!-- FOOTER =============================-->
-<div class="footer text-center" style="width: 100%; position: fixed; bottom: 0;">
+<div class="footer text-center" style="width: 100%;">
     <div class="container">
         <div class="row">
             <p class="">
