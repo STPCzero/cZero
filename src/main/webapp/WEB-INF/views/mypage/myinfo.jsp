@@ -75,6 +75,9 @@
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
+                        <% if (iDTO.getUser_type().equals("0")){%>
+                        <li class="propClone"><a href="/admin/admin-member">Admin</a></li>
+                        <% }%>
                         <li class="propClone"><a href="/market/market-list">Market</a></li>
                         <li class="propClone"><a href="/news/news">News</a></li>
                         <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
@@ -142,8 +145,8 @@
                             <input disabled class="edd-input " type="email" name="edd_email" placeholder="Email address"
                                    id="edd-pw" value="********">
                         </p>
-                        <div id="withdrawal" style="text-align: right; margin-top: 10px;">
-                            <a style="color : #999; td-size: 12px;">탈퇴하기</a>
+                        <div style="text-align: right; margin-top: 10px;">
+                            <a id="withdrawal"  style=" display: inline-block;  color : #999; td-size: 12px;">탈퇴하기</a>
                         </div>
                     </fieldset>
                     <input type="submit" id="submit" class="clearfix mypage-btn" value="수정하기">
@@ -171,7 +174,7 @@
                                 }%>
                             <tr class="edd_cart_item" id="edd_cart_item_0_25" data-download-id="25">
                                 <td class="edd_cart_item_name">
-                                    <a style="" href="/market/market-detail?num=<%=rDTO.getMk_seq()%>">
+                                    <a style="" href="/market/market-detail?mk_seq=<%=rDTO.getMk_seq()%>">
                                     <div style="display: inline-block;" class="edd_cart_item_image">
                                         <% if(rDTO.getThumbnail() != null) { %>
                                             <img width="55" height="55" src="<%=CmmUtil.nvl(rDTO.getThumbnail())%>" alt="유저업로드사진">
@@ -230,6 +233,7 @@
     </div>
 </div>
 <!-- Load JS here for greater good =============================-->
+<script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
 <script>
     //----HOVER CAPTION---//
     jQuery(document).ready(function ($) {
@@ -243,16 +247,9 @@
         );
 
         $('#withdrawal').click(function (){
-            if (!confirm("정말 탈퇴하시겠습니까? \n" +
-                "회원 정보는 즉시 삭제되며 돌이킬 수 없습니다.")) {
+            if (!confirm("정말 탈퇴하시겠습니까? \n" + "회원 정보는 즉시 삭제되며 돌이킬 수 없습니다.")) {
             } else {
-                $.ajax({
-                    url: "/mypage/myinfo-withdrawal",
-                    type: "post",
-                    success: function (data) {
-                        alert("회원 탈퇴가 완료되었습니다.");
-                    }
-                });
+                location.href = "/mypage/myinfo-withdrawal";
             }
         });
     });

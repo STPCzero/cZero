@@ -28,7 +28,7 @@
 </body>
 <script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
-
+    console.log("check");
     swal( "<%=msg%>", "<%=contents%>","<%=icon%>")
         .then(function(){
             location.href="<%=url%>";

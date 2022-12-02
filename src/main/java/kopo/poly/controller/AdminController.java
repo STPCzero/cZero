@@ -102,7 +102,7 @@ public class AdminController {
     @GetMapping(value = "admin-market")
     public String adminMarket(HttpServletRequest request, ModelMap model) throws Exception {
         log.info(this.getClass().getName() + ".admin-market Start!!");
-        String search = "";
+        String search = CmmUtil.nvl(request.getParameter("searchName"));
 
         log.info("search: "+search);
         MarketDTO uDTO = new MarketDTO();
@@ -169,6 +169,7 @@ public class AdminController {
         model.addAttribute("next", next);
         /* == 페이징 END == */
 
+        model.addAttribute("searchName", search);
         log.info(this.getClass().getName() + ".admin-market End!!");
 
         return "/admin/admin-market";

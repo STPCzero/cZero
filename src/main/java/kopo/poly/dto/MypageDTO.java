@@ -10,6 +10,7 @@ public class MypageDTO {
     private String user_name;
     private String user_email;
     private String user_pw;
+    private String user_type;
     private int start;
     private int finish;
 }

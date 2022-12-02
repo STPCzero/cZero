@@ -16,4 +16,8 @@ public interface IMypageMapper {
     List<MarketDTO> getMypageMarket(MypageDTO myDTO) throws Exception;
 
     int getMyMarketCount(MypageDTO iDTO) throws Exception;
+
+    int myInfoChkPassword(MypageDTO myDTO) throws Exception;
+
+    int myInfoWithdrawal(String sessionNo) throws Exception;
 }

@@ -52,4 +52,20 @@ public class MypageService implements IMypageService {
         log.info(this.getClass().getName()+".getMyMarketCount End!!");
         return res;
     }
+
+    @Override
+    public int myInfoChkPassword(MypageDTO myDTO) throws Exception {
+        log.info(this.getClass().getName()+".myInfoChkPassword Start!!");
+        int res = mypageMapper.myInfoChkPassword(myDTO);
+        log.info(this.getClass().getName()+".myInfoChkPassword End!!");
+        return res;
+    }
+
+    @Override
+    public int myInfoWithdrawal(String sessionNo) throws Exception {
+        log.info(this.getClass().getName()+".myInfoWithdrawal Start!!");
+        int res = mypageMapper.myInfoWithdrawal(sessionNo);
+        log.info(this.getClass().getName()+".myInfoWithdrawal End!!");
+        return res;
+    }
 }

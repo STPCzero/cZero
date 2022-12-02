@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -192,22 +191,35 @@ public class MypController {
         return "/redirect";
     }
 
-    @PostMapping("/mypage/myinfo-withdrawal")
+    @GetMapping("/mypage/myinfo-withdrawal")
     public String myInfoWithdrawal(HttpServletRequest request, Model model, HttpSession session) throws Exception {
-        log.info(this.getClass().getName()+".myInfoModify Start!!");
-
+        log.info(this.getClass().getName()+".myInfoWithdrawal Start!!");
+        //String password = EncryptUtil.encHashSHA256(CmmUtil.nvl(request.getParameter("password")));
+        String msg = "", url="", icon = "success";
         //내 회원번호(seq 넣어줌)
         MypageDTO myDTO = new MypageDTO();
         myDTO.setUser_seq((String) session.getAttribute("sessionNo"));
 
-        //내 정보 갖고오기
-        MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
-
-        if(iDTO == null) {
-            iDTO = new MypageDTO();
+        // 회원 삭제 진행
+        int res =  mypageService.myInfoWithdrawal((String) session.getAttribute("sessionNo"));
+        log.info("res : "+res);
+        if(res > 0) {
+            url = "/index";
+            msg = "회원 탈퇴가 완료되었습니다.";
+        } else {
+            icon="error";
+            url="/mypage/myinfo";
+            msg = "회원탈퇴 처리가 실패하였습니다.\n 관리자에게 문의해주세요.";
         }
-        model.addAttribute("iDTO", iDTO); //user_info 개인정보
-        log.info(this.getClass().getName()+".myInfoModify End!!");
-        return "/mypage/myinfo-modify";
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+        model.addAttribute("icon", icon);
+
+        //세션 다 날리기
+        session.invalidate();
+
+        log.info(this.getClass().getName()+".myInfoWithdrawal End!!");
+        return "/redirect";
     }
 }

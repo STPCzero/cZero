@@ -14,6 +14,8 @@
     int startPageNum = (int) request.getAttribute("startPageNum");
     int endPageNum = (int) request.getAttribute("endPageNum");
     int select = (int) request.getAttribute("select");
+
+    String searchName = (String) request.getAttribute("searchName");
 %>
 <!DOCTYPE html>
 <html>
@@ -147,16 +149,18 @@
 
 
         <%--Search bar--%>
-        <div style="float: right; margin-top: 1%; margin-bottom: 2%; margin-right: 1.5%;">
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="Search">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
+        <form action="/admin/admin-market" method="get">
+            <div style="float: right; margin-top: 1%; margin-bottom: 2%; margin-right: 1.5%;">
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" name="searchName" value="<%=searchName%>" placeholder="Search">
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
 
 
         <table class="admMemberList w-11/12 mx-auto mt-4" id="inventory">
@@ -169,6 +173,7 @@
                 <th style="cursor: pointer;">닉네임</th>
                 <th style="cursor: pointer;">제목</th>
                 <th style="cursor: pointer;">가격</th>
+                <th style="cursor: pointer;">썸네일</th>
             </tr>
             </thead>
             <tbody class="shadow">
@@ -182,12 +187,14 @@
                 </td>
                 <td><%= mList.get(i).getUser_name()%>
                 </td>
-                <td><%=CmmUtil.nvl(mDTO.getTitle())%>
+                <td>
+                    <a href="/market/market-detail?mk_seq=<%=mDTO.getMk_seq()%>" target="_blank">
+                            <%=CmmUtil.nvl(mDTO.getTitle())%>
+                    </a>
                 </td>
                 <td><%=mDTO.getPrice()%>
                 </td>
-                <td><img width="40" height="40" src="../images/scorilo2-70x70.jpg" alt=""></td>
-
+                <td><img width="40" height="40" style="margin: 0 auto;" src="<%=CmmUtil.nvl(mList.get(i).getThumbnail()) %>" alt="사진"></td>
             </tr>
             <% }%>
             </tbody>
@@ -200,12 +207,12 @@
             <div class="btn-group " style="margin: 0 auto; display: inline-block;">
                 <% for (int i = startPageNum; i <= endPageNum; i++) {
                     if(select == i) {%>
-                <a style="color: red;" href="/admin/admin-member?num=<%=i%>">
+                <a style="color: red;" href="/admin/admin-market?num=<%=i%>">
                     <button class="btn">
                         <%=i%>
                     </button></a>
                 <%} else {%>
-                <a style="" href="/admin/admin-member?num=<%=i%>">
+                <a style="" href="/admin/admin-market?num=<%=i%>">
                     <button class="btn">
                         <%=i%>
                     </button></a>

@@ -32,6 +32,7 @@
                                   WHERE U.USER_SEQ = M.USER_SEQ) USER_NAME
                           FROM MARKET M
                           WHERE M.TITLE LIKE '%'||#{title}||'%'
+                          ORDER BY MK_SEQ desc
                       )
         WHERE NUM BETWEEN #{start} AND #{finish}
     </select>
