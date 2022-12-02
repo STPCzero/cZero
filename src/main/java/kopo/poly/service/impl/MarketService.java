@@ -86,5 +86,13 @@ public class MarketService implements IMarketService {
         log.info(this.getClass().getName() + ".deleteMarketInfo end!");
     }
 
+    @Override
+    public String getMarketUserChk(String sessionNo) throws Exception {
+        log.info(this.getClass().getName() + ".getMarketUserChk start!");
+        String res = marketMapper.getMarketUserChk(sessionNo);
+        log.info(this.getClass().getName() + ".getMarketUserChk end!");
+        return res;
+    }
+
 
 }

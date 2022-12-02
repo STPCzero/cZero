@@ -4,6 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     String sessionNo = (String) session.getAttribute("sessionNo");
+    String chk01 = (String) request.getAttribute("chk01");
 
     MarketDTO mDTO = (MarketDTO)request.getAttribute("mDTO");
     UserInfoDTO uDTO = (UserInfoDTO)request.getAttribute("uDTO");
@@ -143,6 +144,10 @@
         </div>
         <div id="navbar-collapse-02" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
+                <% if (sessionNo == null){%>
+                <%} else if (chk01.equals("0")){ %>
+                <li class="propClone"><a href="/admin/admin-member">Admin</a></li>
+                <% }%>
                 <li class="propClone"><a href="/market/market-list">Market</a></li>
                 <li class="propClone"><a href="/news/news">News</a></li>
                 <li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>

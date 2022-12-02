@@ -29,4 +29,5 @@ public interface IMarketMapper {
     void deleteMarketInfo(MarketDTO mDTO) throws Exception;
 
 
+    String getMarketUserChk(String sessionNo) throws Exception;
 }

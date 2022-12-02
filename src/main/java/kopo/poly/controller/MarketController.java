@@ -1,6 +1,7 @@
 package kopo.poly.controller;
 
 import kopo.poly.dto.MarketDTO;
+import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.service.IMarketService;
 import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -29,12 +30,20 @@ public class MarketController {
     private IMarketService marketService;
 
     @GetMapping(value = "market-list")
-    public String marketlist(HttpServletRequest request, ModelMap model) throws Exception {
+    public String marketlist(HttpSession session, HttpServletRequest request, ModelMap model) throws Exception {
         log.info(this.getClass().getName() + ".market-list Start!!");
         String search = CmmUtil.nvl(request.getParameter("search"));
 
         log.info("search: "+search);
         MarketDTO uDTO = new MarketDTO();
+
+        String sessionChk = CmmUtil.nvl((String) session.getAttribute("sessionNo"));
+        String chk01 = marketService.getMarketUserChk(sessionChk);
+        if(chk01 == null) chk01 = "1"; //기본사용자
+        model.addAttribute("chk01", chk01);
+
+        log.info("유저번호 : "+uDTO.getUser_seq());
+
         uDTO.setTitle(search);
 
         /* == 페이징 START == */
@@ -109,8 +118,18 @@ public class MarketController {
     }
 
     @GetMapping(value = "market-upload")
-    public String marketupload() {
+    public String marketupload(HttpSession session, ModelMap model) throws Exception {
         log.info(this.getClass().getName() + ".market-upload Start!!");
+
+        MarketDTO uDTO = new MarketDTO();
+
+        String sessionChk = CmmUtil.nvl((String) session.getAttribute("sessionNo"));
+        String chk01 = marketService.getMarketUserChk(sessionChk);
+        if(chk01 == null) chk01 = "1"; //기본사용자
+        model.addAttribute("chk01", chk01);
+
+        log.info("유저번호 : "+uDTO.getUser_seq());
+
         log.info(this.getClass().getName() + ".market-upload End!!");
         return "/market/market-upload";
     }
@@ -189,7 +208,7 @@ public class MarketController {
 
     // 마켓 상세보기
     @GetMapping(value = "market-detail")
-    public String getMarketInfo(HttpServletRequest request, ModelMap model) {
+    public String getMarketInfo(HttpServletRequest request, ModelMap model, HttpSession session) {
 
         log.info(this.getClass().getName() + ".market-detail Start!!");
 
@@ -209,6 +228,13 @@ public class MarketController {
             // 마켓 상세정보 가져오기
             MarketDTO rDTO = marketService.getMarketInfo(mDTO);
 
+            //관리자 유무 확인
+            String sessionChk = CmmUtil.nvl((String) session.getAttribute("sessionNo"));
+            String chk01 = marketService.getMarketUserChk(sessionChk);
+            if(chk01 == null) chk01 = "1"; //기본사용자
+            model.addAttribute("chk01", chk01);
+
+            log.info("유저번호 : "+rDTO.getUser_seq());
             if (rDTO == null) {
                 rDTO = new MarketDTO();
 
@@ -269,6 +295,13 @@ public class MarketController {
             mDTO.setMk_seq(mk_seq);
 
             MarketDTO rDTO = marketService.getMarketInfo(mDTO);
+
+            String sessionChk = CmmUtil.nvl((String) session.getAttribute("sessionNo"));
+            String chk01 = marketService.getMarketUserChk(sessionChk);
+            if(chk01 == null) chk01 = "1"; //기본사용자
+            model.addAttribute("chk01", chk01);
+
+            log.info("유저번호 : "+rDTO.getUser_seq());
 
             if (rDTO == null) {
                 rDTO = new MarketDTO();

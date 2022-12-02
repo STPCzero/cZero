@@ -33,7 +33,7 @@
 
     <!-- 상품 상세보기 쿼리 -->
     <select id="getMarketInfo" resultType="MarketDTO">
-        SELECT M.MK_SEQ, M.TITLE, M.READ_CNT, U.USER_NAME, M.CONTENTS, M.price, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE
+        SELECT M.MK_SEQ, M.USER_SEQ, M.TITLE, M.READ_CNT, U.USER_NAME, M.CONTENTS, M.price, TO_CHAR(M.MK_DATE, 'YYYY-MM-DD') AS MK_DATE
         FROM MARKET M
         JOIN USER_INFO U
         ON M.USER_SEQ = U.USER_SEQ
@@ -67,4 +67,9 @@
         WHERE MK_SEQ = #{mk_seq}
     </delete>
 
+    <select id="getMarketUserChk" parameterType="String" resultType="String">
+        SELECT USER_TYPE
+        FROM USER_INFO
+        WHERE USER_SEQ = #{sessionNo}
+    </select>
 </mapper>
