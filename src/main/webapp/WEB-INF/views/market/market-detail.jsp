@@ -233,7 +233,7 @@
 							style="width: 8rem; height: 4rem; font-weight: bold; float: right; position: relative; left: 6%;" onclick="doList()">목록</button>
 					<%} else { %>
 					<button type="button" class="btn btn-primary"
-							style="width: 8rem; height: 4rem; font-weight: bold; margin-left: 99%" onclick="doList()">목록</button>
+							style="width: 8rem; height: 4rem; font-weight: bold; margin-left: 95.4%" onclick="doList()">목록</button>
 					</div>
 							<%} %>
 
