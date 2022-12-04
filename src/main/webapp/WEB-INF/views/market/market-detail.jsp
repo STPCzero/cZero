@@ -18,6 +18,7 @@
 
 	String ss_user_id = CmmUtil.nvl((String)session.getAttribute("SESSION_USER_ID"));
 	String sessionNo = (String) session.getAttribute("sessionNo");
+	String chk01 = (String) request.getAttribute("chk01");
 
 	// 본인이 작성한  글만 수정가능하도록 하기(1: 작성자 아님 / 2: 본인이 작성한 글 / 3: 로그인안함)
 	int edit = 1;
@@ -149,6 +150,10 @@
 				</div>
 				<div id="navbar-collapse-02" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
+						<% if (sessionNo == null){%>
+						<%} else if (chk01.equals("0")){ %>
+						<li class="propClone"><a href="/admin/admin-member">Admin</a></li>
+						<% }%>
 						<li class="propClone"><a href="/market/market-list">Market</a></li>
 						<li class="propClone"><a href="/news/news">News</a></li>
 						<li class="propClone"><a href="/bicycle/bicycle">Bicycle</a></li>
@@ -181,7 +186,7 @@
 	<div class="container toparea">
 		<div class="underlined-title">
 			<div class="editContent">
-				<h1 class="text-center latestitems">상품내용</h1>
+				<h1 class="text-center latestitems"><%=CmmUtil.nvl(rDTO.getTitle())%></h1>
 			</div>
 			<div class="wow-hr type_short">
          <span class="wow-hr-h">
@@ -192,14 +197,12 @@
 			</div>
 		</div>
 		<div style="margin: 0 auto">
-         <span class="contact100-form-title" style="text-align: center">
-            </span>
 			<form>
 				<div class="input-group input-group-sm container" role="group" style="text-align:left">
 					<table class="table table-striped table-bordered">
 							<tr class="tablecolor" >
-								<td align="center" style="width: 20%; padding: 10px"><strong>제목</strong></td>
-								<td style="padding: 10px"><%=CmmUtil.nvl(rDTO.getTitle())%></td>
+								<td align="center" style="width: 20%; padding: 10px"><strong>작성자</strong></td>
+								<td style="padding: 10px"><%=CmmUtil.nvl(rDTO.getUser_name())%></td>
 								<td align="center" style="width: 20%; padding: 10px"><strong>가격</strong></td>
 								<td style="padding: 10px"><%=CmmUtil.nvl(String.valueOf(rDTO.getPrice()))%>원</td>
 							</tr>
@@ -220,18 +223,20 @@
 			</form>
 			<tr>
 				<td>
-					<% if(sessionNo!=null) {%>
+					<% if(sessionNo!=null && (sessionNo.equals(rDTO.getUser_seq()) || chk01.equals("0"))) {%>
+					<div>
+						<button type="button" class="btn btn-primary"
+							style="width: 8rem; height: 4rem; font-weight: bold; margin-left: 2%" onclick="doEdit()";>수정</button>
 					<button type="button" class="btn btn-primary"
-							style="width: 7%; font-weight: bold" onclick="doEdit()">수정</button>
+							style="width: 8rem; height: 4rem; font-weight: bold; background-color: #d53c3c; border: 1px solid #c53838" onclick="doDelete()">삭제</button>
+					<button type="button" class="btn btn-primary"
+							style="width: 8rem; height: 4rem; font-weight: bold; float: right; position: relative; left: 6%;" onclick="doList()">목록</button>
 					<%} else { %>
-					<%} %>
-					<% if(sessionNo!=null) {%>
 					<button type="button" class="btn btn-primary"
-							style="width: 7%; font-weight: bold" onclick="doDelete()">삭제</button>
-					<%} else { %>
-					<%} %>
-					<button type="button" class="btn btn-primary"
-							style="width: 7%; font-weight: bold" onclick="doList()">목록</button>
+							style="width: 8rem; height: 4rem; font-weight: bold; margin-left: 95.4%" onclick="doList()">목록</button>
+					</div>
+							<%} %>
+
 				</td>
 			</tr>
 
