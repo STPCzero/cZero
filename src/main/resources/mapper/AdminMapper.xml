@@ -5,16 +5,14 @@
 <mapper namespace="kopo.poly.persistance.mapper.IAdminMapper">
     <!-- admin 유저 정보 출력 쿼리 -->
     <select id="getMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-        SELECT M.*, U.USER_NAME
-        FROM MARKET M JOIN USER_INFO U
-                           ON M.USER_SEQ = U.USER_SEQ
-        WHERE M.TITLE LIKE '%'||#{title}||'%'
-        ORDER BY M.MK_SEQ DESC
-            LIMIT #{start}, #{finish};
+        SELECT *
+        FROM USER_INFO
+        ORDER BY USER_INFO DESC
+        LIMIT #{start}, #{finish};
     </select>
 
     <select id="getMembersCount" parameterType="UserInfoDTO" resultType="int">
-        SELECT count(*) FROM USER_INFO WHERE USER_NAME LIKE '%'||#{user_name}||'%'
+        SELECT count(*) FROM USER_INFO WHERE USER_NAME LIKE CONCAT('%',#{user_name},'%')
     </select>
 
     <delete id="delMembers" parameterType="UserInfoDTO">
@@ -26,10 +24,10 @@
     <select id="getMarketInfo" parameterType="MarketDTO" resultType="MarketDTO">
         SELECT M.*, U.USER_NAME
         FROM MARKET M
-        WHERE M.TITLE LIKE '%'||#{title}||'%'
-            JOIN USER_INFO U
+        WHERE M.TITLE LIKE CONCAT('%',#{title},'%')
+        JOIN USER_INFO U
         ON M.USER_SEQ = U.USER_SEQ
-            LIMIT #{start}, #{finish}
+        LIMIT #{start}, #{finish}
     </select>
 
     <select id="getMarketCount" parameterType="MarketDTO" resultType="int">
