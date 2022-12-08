@@ -124,7 +124,6 @@ public class AdminController {
 
         finish = count - ( (num-1) * 10 );
         start  = finish - 9;
-        if( start < 1 ) start = 1;
 
         log.info("num : "+num);
         log.info("start : "+start);

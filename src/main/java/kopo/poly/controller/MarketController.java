@@ -60,9 +60,8 @@ public class MarketController {
         else
             num = Integer.parseInt(no);
 
-        finish = count - ( (num-1) * 9 );
-        start  = finish - 8;
-        if( start < 1 ) start = 1;
+        finish = 9;
+        start  = (num - 1) * finish;
 
         log.info("num : "+num);
         log.info("start : "+start);
@@ -79,7 +78,7 @@ public class MarketController {
         model.addAttribute("mList", mList);
 
         // 한번에 표시할 페이징 번호의 갯수
-        int pageNum_cnt = 10;
+        int pageNum_cnt = 9;
         // 표시되는 페이지 번호 중 마지막 번호
         int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
         // 표시되는 페이지 번호 중 첫번째 번호
