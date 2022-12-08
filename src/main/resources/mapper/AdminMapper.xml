@@ -5,13 +5,12 @@
 <mapper namespace="kopo.poly.persistance.mapper.IAdminMapper">
     <!-- admin 유저 정보 출력 쿼리 -->
     <select id="getMembersInfo" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-        SELECT * FROM (
-                          SELECT ROW_NUMBER() OVER (ORDER BY user_seq) NUM, U.*
-                          FROM USER_INFO U
-                          WHERE U.USER_NAME LIKE '%'||#{user_name}||'%'
-                          ORDER BY USER_SEQ desc
-                      )
-        WHERE NUM BETWEEN #{start} AND #{finish}
+        SELECT M.*, U.USER_NAME
+        FROM MARKET M JOIN USER_INFO U
+                           ON M.USER_SEQ = U.USER_SEQ
+        WHERE M.TITLE LIKE '%'||#{title}||'%'
+        ORDER BY M.MK_SEQ DESC
+            LIMIT #{start}, #{finish};
     </select>
 
     <select id="getMembersCount" parameterType="UserInfoDTO" resultType="int">
@@ -25,16 +24,12 @@
 
 <!-- 마켓 검색 -->
     <select id="getMarketInfo" parameterType="MarketDTO" resultType="MarketDTO">
-        SELECT * FROM (
-                          SELECT ROW_NUMBER() OVER (ORDER BY MK_SEQ) NUM, M.*,
-                                 (SELECT U.USER_NAME
-                                  FROM USER_INFO U
-                                  WHERE U.USER_SEQ = M.USER_SEQ) USER_NAME
-                          FROM MARKET M
-                          WHERE M.TITLE LIKE '%'||#{title}||'%'
-                          ORDER BY MK_SEQ desc
-                      )
-        WHERE NUM BETWEEN #{start} AND #{finish}
+        SELECT M.*, U.USER_NAME
+        FROM MARKET M
+        WHERE M.TITLE LIKE '%'||#{title}||'%'
+            JOIN USER_INFO U
+        ON M.USER_SEQ = U.USER_SEQ
+            LIMIT #{start}, #{finish}
     </select>
 
     <select id="getMarketCount" parameterType="MarketDTO" resultType="int">
