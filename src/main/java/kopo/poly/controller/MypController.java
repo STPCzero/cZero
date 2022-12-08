@@ -191,4 +191,23 @@ public class MypController {
         log.info(this.getClass().getName()+".getMyInfoModify End!!");
         return "/redirect";
     }
+
+    @PostMapping("/mypage/myinfo-withdrawal")
+    public String myInfoWithdrawal(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+        log.info(this.getClass().getName()+".myInfoModify Start!!");
+
+        //내 회원번호(seq 넣어줌)
+        MypageDTO myDTO = new MypageDTO();
+        myDTO.setUser_seq((String) session.getAttribute("sessionNo"));
+
+        //내 정보 갖고오기
+        MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
+
+        if(iDTO == null) {
+            iDTO = new MypageDTO();
+        }
+        model.addAttribute("iDTO", iDTO); //user_info 개인정보
+        log.info(this.getClass().getName()+".myInfoModify End!!");
+        return "/mypage/myinfo-modify";
+    }
 }
