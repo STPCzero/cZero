@@ -19,14 +19,12 @@
 
     <!-- 마이페이지 개인 마켓 정보 출력 쿼리 -->
     <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
-        SELECT *
-        FROM (
-                 SELECT ROW_NUMBER() OVER (ORDER BY user_seq) NUM, A.*
-                 FROM market A
-                 WHERE user_seq = #{user_seq}
-                 ORDER BY mk_seq desc
-             )
-        WHERE NUM BETWEEN #{start} AND #{finish}
+        SELECT M.*, U.USER_NAME
+        FROM MARKET M JOIN USER_INFO U
+        ON M.USER_SEQ = U.USER_SEQ
+        WHERE U.USER_SEQ = #{user_seq}
+        ORDER BY M.MK_SEQ DESC
+            LIMIT #{start}, #{finish};
     </select>
 
     <!-- 개인 마켓 글 수 COUNT(*) -->
