@@ -5,12 +5,12 @@
 <mapper namespace="kopo.poly.persistance.mapper.IUserInfoMapper">
 
     <insert id="insertUserInfo" parameterType="UserInfoDTO">
-        INSERT INTO user_info (USER_SEQ, USER_ID, USER_PW, USER_NAME, USER_EMAIL)
-        VALUES ((SELECT NVL(MAX(U.USER_SEQ), 0) + 1 FROM USER_INFO U), #{user_id}, #{user_pw}, #{user_name}, #{user_email})
+        INSERT INTO USER_INFO (USER_ID, USER_PW, USER_NAME, USER_EMAIL, USER_TYPE)
+        VALUES (#{user_id}, #{user_pw}, #{user_name}, #{user_email}, "1")
     </insert>
 
     <select id="getUserExists" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-        SELECT DECODE(COUNT(1), 0, 'N', 'Y') AS EXISTS_YN
+        SELECT USER_EMAIL
         FROM USER_INFO
         WHERE USER_EMAIL = #{user_email}
     </select>

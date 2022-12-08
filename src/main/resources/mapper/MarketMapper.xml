@@ -6,17 +6,12 @@
 
     <!-- 상품 리스트 쿼리 -->
     <select id="getMarketList" resultType="MarketDTO">
-        SELECT * FROM (
-                          SELECT ROW_NUMBER() OVER (ORDER BY MK_SEQ) NUM, M.*,
-                                 (SELECT U.USER_NAME
-                                  FROM USER_INFO U
-                                  WHERE U.USER_SEQ = M.USER_SEQ) USER_NAME
-                          FROM MARKET M
-                          WHERE M.TITLE LIKE '%'||#{title}||'%'
-                          ORDER BY MK_SEQ DESC
-                      )
-        WHERE NUM BETWEEN #{start} AND #{finish}
-
+        SELECT M.*, U.USER_NAME
+        FROM MARKET M JOIN USER_INFO U
+                           ON M.USER_SEQ = U.USER_SEQ
+        WHERE M.TITLE LIKE '%'||#{title}||'%'
+        ORDER BY M.MK_SEQ DESC
+            LIMIT #{start}, #{finish};
     </select>
 
     <select id="getMarketCount" parameterType="MarketDTO" resultType="int">
@@ -26,9 +21,9 @@
     <!-- 상품 등록 쿼리 -->
     <insert id="InsertMarketInfo" parameterType="MarketDTO">
         INSERT INTO MARKET
-            (MK_SEQ, NOTICE_YN, USER_SEQ, TITLE, CONTENTS, MK_DATE, PRICE, READ_CNT, THUMBNAIL)
+            (NOTICE_YN, USER_SEQ, TITLE, CONTENTS, MK_DATE, PRICE, READ_CNT, THUMBNAIL)
         VALUES
-               ((SELECT NVL(MAX(M.MK_SEQ), 0) + 1 FROM MARKET M), 'N', #{user_seq}, #{title}, #{contents}, SYSDATE, #{price}, #{read_cnt}, #{thumbnail})
+               'N', #{user_seq}, #{title}, #{contents}, SYSDATE, #{price}, #{read_cnt}, #{thumbnail})
     </insert>
 
     <!-- 상품 상세보기 쿼리 -->
