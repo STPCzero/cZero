@@ -30,8 +30,7 @@
                         <i class="fa fa-bars"></i>
                         <span class="sr-only">Toggle navigation</span>
                     </button>
-                    <%--<a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px;" alt="로고"></a>--%>
-                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px; padding-left: 2%" alt="로고"></a>
+                    <a href="/index"><img src="/images/Czero.png" style="width: 135px; height: 60px; margin-top: 5px;" alt="로고"></a>
                 </div>
                 <div id="navbar-collapse-02" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
