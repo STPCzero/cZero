@@ -13,4 +13,8 @@ public interface IMypageService {
     List<MarketDTO> getMypageMarket(MypageDTO myDTO) throws Exception;
 
     int getMyMarketCount(MypageDTO mDTO) throws Exception;
+
+    int myInfoChkPassword(MypageDTO myDTO) throws Exception;
+
+    int myInfoWithdrawal(String sessionNo) throws Exception;
 }

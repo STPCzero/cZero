@@ -35,4 +35,19 @@
         from market
         where user_seq = #{user_seq}
     </select>
+
+    <!-- 비밀번호 체크 -->
+    <select id="myInfoChkPassword" parameterType="MypageDTO" resultType="int">
+        select count(*)
+        from user_info
+        where user_pw = #{user_pw} and user_seq = #{user_seq}
+    </select>
+
+    <!-- 비밀번호 체크 -->
+    <delete id="myInfoWithdrawal" parameterType="String">
+        delete
+        from user_info
+        where user_seq = #{sessionNo}
+    </delete>
+
 </mapper>
