@@ -26,7 +26,6 @@ public class ReplyController {
     @PostMapping(value = "/new")
     public void create(String replyer, String bno, String reply) throws Exception {
 
-        log.info("왜안들어와");
         ReplyVO vo = new ReplyVO();
 
         vo.setReply(reply);
@@ -42,7 +41,7 @@ public class ReplyController {
     @GetMapping(value = "/reply")
     public Object getReplyList(String bno) throws Exception {
 
-        log.info("오긴하지 + "+bno);
+        log.info("bno 값 : "+bno);
         List<ReplyVO> rList = service.read(bno);
         log.info(rList.toString());
         JSONArray jsonArray = new JSONArray();
