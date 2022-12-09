@@ -121,8 +121,8 @@ public class AdminController {
         else
             num = Integer.parseInt(no);
 
-        finish = count - ( (num-1) * 10 );
-        start  = finish - 9;
+        finish = 10;
+        start  = (num - 1) * finish;
 
         log.info("num : "+num);
         log.info("start : "+start);
