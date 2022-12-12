@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.IReplyMapper">
+
+    <insert id="insert">
+        insert into tbl_reply(rno, bno, reply, replyer,replydate,updatedate, rrno, derno)
+        values (seq_reply.nextval, #{bno}, #{reply}, #{replyer},SYSDATE,SYSDATE,#{rrno}, #{derno})
+
+    </insert>
+
+    <select id="read" resultType="ReplyVO">
+        select * from tbl_reply where bno=#{bno}
+    </select>
+
+    <delete id="delete">
+        delete from tbl_reply where rno=#{rno}
+    </delete>
+
+    <update id="update">
+        update tbl_reply set reply=#{reply}, updatedate = sysdate where rno=#{rno}
+    </update>
+
+    <select id="getListWithPaging" resultType = "ReplyVO">
+        select rno, bno, reply, replyer, replyDate, updatedate
+        from tbl_reply
+        where bno =#{bno}
+        order by rno asc
+    </select>
+
+    <select id="getTotal" parameterType="ReplyVO" resultType="int">
+        select count(*) from tbl_reply where bno = #{bno}
+    </select>
+
+
+</mapper>

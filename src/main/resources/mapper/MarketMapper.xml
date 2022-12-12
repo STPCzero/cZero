@@ -23,7 +23,7 @@
         INSERT INTO MARKET
             (NOTICE_YN, USER_SEQ, TITLE, CONTENTS, MK_DATE, PRICE, READ_CNT, THUMBNAIL)
         VALUES
-               'N', #{user_seq}, #{title}, #{contents}, SYSDATE, #{price}, #{read_cnt}, #{thumbnail})
+               'N', #{user_seq}, #{title}, #{contents}, now(), #{price}, #{read_cnt}, #{thumbnail})
     </insert>
 
     <!-- 상품 상세보기 쿼리 -->

@@ -6,46 +6,46 @@
     <!-- 마이페이지 유저 정보 출력 쿼리 -->
     <select id="getMypageInfo" parameterType="MypageDTO" resultType="MypageDTO">
         select *
-        from user_info
-        where user_seq = #{user_seq}
+        from USER_INFO
+        where USER_SEQ = #{user_seq}
     </select>
 
     <!-- 마이페이지 유저 정보 수정 쿼리 -->
     <update id="getMyInfoModify" parameterType="MypageDTO">
-        update user_info
-        set user_name = #{user_name}, user_email = #{user_email}, user_pw = #{user_pw}
-        where user_seq = #{user_seq}
+        update USER_INFO
+        set USER_NAME = #{user_name}, USER_EMAIL = #{user_email}, USER_PW = #{user_pw}
+        where USER_SEQ = #{user_seq}
     </update>
 
     <!-- 마이페이지 개인 마켓 정보 출력 쿼리 -->
     <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
-        SELECT M.*, U.USER_NAME
+        SELECT M.*
         FROM MARKET M JOIN USER_INFO U
         ON M.USER_SEQ = U.USER_SEQ
         WHERE U.USER_SEQ = #{user_seq}
         ORDER BY M.MK_SEQ DESC
-            LIMIT #{start}, #{finish};
+        LIMIT #{start}, #{finish};
     </select>
 
     <!-- 개인 마켓 글 수 COUNT(*) -->
     <select id="getMyMarketCount" parameterType="MypageDTO" resultType="int">
         select count(*)
-        from market
-        where user_seq = #{user_seq}
+        from MARKET
+        where USER_SEQ = #{user_seq}
     </select>
 
     <!-- 비밀번호 체크 -->
     <select id="myInfoChkPassword" parameterType="MypageDTO" resultType="int">
         select count(*)
-        from user_info
-        where user_pw = #{user_pw} and user_seq = #{user_seq}
+        from USER_INFO
+        where USER_PW = #{user_pw} and USER_SEQ = #{user_seq}
     </select>
 
     <!-- 비밀번호 체크 -->
     <delete id="myInfoWithdrawal" parameterType="String">
         delete
-        from user_info
-        where user_seq = #{sessionNo}
+        from USER_INFO
+        where USER_SEQ = #{sessionNo}
     </delete>
 
 </mapper>

@@ -165,7 +165,6 @@ public class LoginController {
             String newPW = String.valueOf((int) (Math.random() * 1000 + Math.random()));
 
             // 이메일 AES-128-CBC 암호화
-            /*String user_email = CmmUtil.nvl(request.getParameter("user_email"));*/
             String user_email = EncryptUtil.encAES128CBC(CmmUtil.nvl(request.getParameter("user_email")));
             String user_id = CmmUtil.nvl(request.getParameter("user_id"));
             // 비밀번호 해시 알고리즘 암호화
@@ -245,7 +244,7 @@ public class LoginController {
         String url;
         String icon;
 
-        log.info("받아온 아이뒤 : " + user_id);
+        log.info("받아온 아이디 : " + user_id);
         log.info("받아온 비번 : " + user_pw);
 
         UserInfoDTO uDTO = new UserInfoDTO();

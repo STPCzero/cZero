@@ -26,19 +26,4 @@
                   )
     </insert>
 
-    <!--    <select id="getNewsExists" parameterType="NewsDTO" resultType="NewsDTO">-->
-    <!--        select DECODE(COUNT(1), 0, 'N', 'Y') AS NEWS_EXIST-->
-    <!--        from NEWS_INFO-->
-    <!--        where NEWS_SEQ = #{news_seq,jdbcType=VARCHAR}-->
-    <!--    </select>-->
-
-<!--    <update id="updateNews_Info" parameterType="NewsDTO">-->
-<!--        UPDATE NEWS_INFO-->
-<!--        SET NEWS_TITLE = #{news_title,jdbcType=VARCHAR},-->
-<!--            NEWS_DEPARTMENT = #{news_department,jdbcType=VARCHAR},-->
-<!--            NEWS_DATE = #{news_date,jdbcType=VARCHAR},-->
-<!--            NEWS_URL = #{news_url,jdbcType=VARCHAR}-->
-<!--        WHERE NEWS_SEQ = #{news_seq}-->
-<!--    </update>-->
-
 </mapper>
