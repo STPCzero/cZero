@@ -258,7 +258,7 @@
             </tr>
 
 
-            <form action="" style="margin-top: 10%; margin-left: 2%; width: 800px">
+            <%--<form action="" style="margin-top: 10%; margin-left: 2%; width: 800px">
                 <fieldset>
                     <div>
                         <div><%=ss_user_id%>
@@ -289,7 +289,7 @@
                 <div style="border: 1px solid grey; height : 50px;" id="replyList" class="Insertreply">
 
                 </div>
-            </div>
+            </div>--%>
 
 
             <!-- 마찬가지로 내용을 입력하도록 도움말을 출력함 -->
@@ -338,7 +338,7 @@
                     console.log("에러");
                 },
                 success(data) {
-                    let reply = JSON.parse(data[0]);
+                    let reply = data[i].parse;
                     let time = reply.replyDate;
                     let replyer = reply.replyer;
                     let content = reply.reply;
