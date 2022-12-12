@@ -19,11 +19,10 @@
 
     <!-- 마이페이지 개인 마켓 정보 출력 쿼리 -->
     <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
-        SELECT M.*
-        FROM MARKET M JOIN USER_INFO U
-        ON M.USER_SEQ = U.USER_SEQ
-        WHERE U.USER_SEQ = #{user_seq}
-        ORDER BY M.MK_SEQ DESC
+        SELECT *
+        FROM MARKET
+        WHERE USER_SEQ = #{user_seq}
+        ORDER BY MK_SEQ DESC
         LIMIT #{start}, #{finish};
     </select>
 

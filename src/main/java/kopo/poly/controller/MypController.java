@@ -52,7 +52,6 @@ public class MypController {
         // 전체 페이지 개수
         int count = mypageService.getMyMarketCount(myDTO);
         log.info("count: "+count);
-
         //시작 페이지
         String no = CmmUtil.nvl(request.getParameter("num"));
         int num = 0, start = 0, finish = 0;
@@ -62,9 +61,12 @@ public class MypController {
         else
             num = Integer.parseInt(no);
 
-        finish = count - ( (num-1) * 5 );
-        start  = finish - 4;
-        if( start < 1 ) start = 1;
+        // 한 페이지에 출력할 게시물 수
+        finish = 5;
+        start  = (num - 1) * finish;
+
+        // 하단 페이징 번호 ([게시물 총 갯수 / 한 페이지에 출력 할 유저 수]의 올림)
+        int pageNum = (int)Math.ceil((double) count / finish);
 
         log.info("num : "+num);
         log.info("start : "+start);
@@ -81,25 +83,29 @@ public class MypController {
         //나의 마켓 리스트 갖고오기
         List<MarketDTO> mkList = mypageService.getMypageMarket(myDTO);
 
+        model.addAttribute("pageNum", pageNum);
+
         // 한번에 표시할 페이징 번호의 갯수
         int pageNum_cnt = 5;
+
         // 표시되는 페이지 번호 중 마지막 번호
         int endPageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
+        log.info("endPageNum : "+endPageNum);
+        log.info("count : "+count);
         // 표시되는 페이지 번호 중 첫번째 번호
         int startPageNum = endPageNum - (pageNum_cnt - 1);
+
         // 마지막 번호 재계산
         int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNum_cnt));
+        log.info("endPageNum_tmp : "+endPageNum_tmp);
         if(endPageNum > endPageNum_tmp) {
             endPageNum = endPageNum_tmp;
         }
+        // 현재 페이지
+        model.addAttribute("select", num);
 
         boolean prev = startPageNum == 1 ? false : true;
         boolean next = endPageNum * pageNum_cnt >= count ? false : true;
-
-        log.info("startPageNum: "+startPageNum);
-        log.info("endPageNum: "+endPageNum);
-        // 현재 페이지
-        model.addAttribute("select", num);
 
         // 시작 및 끝 번호
         model.addAttribute("startPageNum", startPageNum);
