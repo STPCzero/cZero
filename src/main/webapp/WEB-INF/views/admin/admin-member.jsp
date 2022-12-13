@@ -149,7 +149,7 @@
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
                 <th>
-                    <input type="checkbox">
+                    <input type="checkbox" style="display: none">
                 </th>
                 <th style="cursor: pointer;">아이디</th>
                 <th style="cursor: pointer;">이름</th>
@@ -162,7 +162,7 @@
             <% for (int i = 0; i < uList.size(); i++) { %>
                 <tr class="grid-adm-members py-2 px-1 text-center">
                     <td>
-                        <input type="checkbox">
+                        <input type="checkbox" style="display: none">
                     </td>
                     <td><%= uList.get(i).getUser_id()%></td>
                     <td><%= uList.get(i).getUser_name()%></td>
@@ -175,7 +175,7 @@
                         <% } %>
                     </td>
                     <td>
-                        <a href="#">
+                        <a href="/admin/user-withdrawal?user_seq=<%= uList.get(i).getUser_seq()%>">
                             <i class="fas fa-user-times"></i>
                         </a>
                     </td>

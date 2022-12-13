@@ -315,9 +315,6 @@
             text-transform: uppercase;
         }
     </style>
-
-    <!-- Load JS here for greater good =============================-->
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c85324bca7f70b8b98b21cf9f828ad54"></script>
 </head>
 <body>
 
@@ -425,6 +422,8 @@
         </div>
     </div>
 </div>
+<!-- Load JS here for greater good =============================-->
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=c85324bca7f70b8b98b21cf9f828ad54"></script>
 
 
 <script>
