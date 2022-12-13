@@ -60,7 +60,6 @@
         /*플로팅*/
         .floating {
             background-color:#f9f9f9;
-            border:2px solid #000;
             position: fixed;
             right: 50%;
             top: 380px;
@@ -150,11 +149,9 @@
 
         <div id="edd_checkout_wrap" class="col-md-8 col-md-offset-2">
             <div class="floating">
-                <a href="/mypage/calender">
-                    <div>캘린더</div>
+                <a href="/mypage/check-attendance">
+                    <img src="../images/schedule.png" style="width: 70px"/>
                 </a>
-                <div>To do List</div>
-                <div>탄소 계산기</div>
             </div>
             <div id="edd_checkout_form_wrap" class="edd_clearfix">
                 <form id="edd_purchase_form" class="edd_form" action="/mypage/myinfo-modify" method="post">

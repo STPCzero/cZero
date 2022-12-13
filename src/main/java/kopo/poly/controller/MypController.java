@@ -1,5 +1,6 @@
 package kopo.poly.controller;
 
+import kopo.poly.dto.CheckDTO;
 import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 import kopo.poly.service.IMypageService;
@@ -11,10 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.*;
 
 @Slf4j
@@ -227,6 +230,92 @@ public class MypController {
 
         log.info(this.getClass().getName()+".myInfoWithdrawal End!!");
         return "/redirect";
+    }
+
+    @GetMapping("/mypage/check-attendance")
+    public String myAttendance(HttpServletRequest request, Model model, HttpSession session) throws Exception {
+        log.info(this.getClass().getName() + ".myAttendance Start!!");
+
+        String seq = (String) session.getAttribute("sessionNo");
+
+        if(seq == null) {
+            String msg = "로그인이 필요한 서비스 입니다.";
+            String url = "/login/login";
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", url);
+            return "redirect";
+        }
+
+        MypageDTO myDTO = new MypageDTO();
+        myDTO.setUser_seq(seq);
+
+        MypageDTO iDTO = mypageService.getMypageInfo(myDTO);
+        if(iDTO == null) {
+            iDTO = new MypageDTO();
+        }
+        model.addAttribute("iDTO", iDTO); //user_info 개인정보
+
+        /*오늘 날짜*/
+        // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
+        LocalDate now = LocalDate.now();
+        String chk_date = String.valueOf(now).replaceAll("-","");
+        log.info("현재 시각 날짜 : "+chk_date);
+        CheckDTO todayDTO = new CheckDTO();
+        todayDTO.setUser_seq(Integer.parseInt(seq));
+        todayDTO.setChk_date(chk_date);
+
+        // 오늘의 출석체크 여부 확인
+        int chk = mypageService.getTodayCheck(todayDTO);
+        log.info("오늘 출석 했나요!?!? : "+chk);
+
+        // 0이면 출석 해야함, 1이면 이미 했음
+        model.addAttribute("chk", chk);
+
+        log.info(this.getClass().getName() + ".myAttendance End!!");
+        return "/mypage/check-attendance";
+    }
+
+    @GetMapping("/mypage/getCheckDays")
+    public @ResponseBody List<CheckDTO> getCheckDays(Model model, HttpSession session) throws Exception{
+        log.info(this.getClass().getName() + ".getCheckDays Start!!");
+        String seq = (String) session.getAttribute("sessionNo");
+        List<CheckDTO> cList = mypageService.getCheckDays(Integer.parseInt(seq));
+        if(cList == null) {
+            cList = new ArrayList<>();
+        }
+        model.addAttribute("cList", cList);
+        log.info(this.getClass().getName() + ".getCheckDays End!!");
+        return cList;
+    }
+
+    @GetMapping("/mypage/insertCheck")
+    @ResponseBody
+    public Map insertCheck(HttpSession session) throws Exception{
+        log.info(this.getClass().getName() + ".insertCheck Start!!");
+        String seq = (String) session.getAttribute("sessionNo");
+        CheckDTO cDTO = new CheckDTO();
+        // 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
+        LocalDate now = LocalDate.now();
+        String chk_date = String.valueOf(now).replaceAll("-","");
+        log.info("현재 시각 날짜 : "+chk_date);
+        cDTO.setUser_seq(Integer.parseInt(seq));
+        cDTO.setChk_date(chk_date);
+        int res = mypageService.insertCheck(cDTO);
+        String msg = "";
+        if(res > 0) {
+            //출석 체크가 됨
+            msg = "출석 체크가 완료 되었습니다!";
+        } else {
+            // 이미 출석을 체크함
+            msg = "오늘의 출석은 이미 완료하셨습니다!";
+        }
+
+        Map result = new HashMap<String, Object>();
+        result.put("msg", msg);
+        result.put("result", res);
+
+        log.info(this.getClass().getName() + ".insertCheck End!!");
+        return result;
     }
 
     @GetMapping("/mypage/calender")
