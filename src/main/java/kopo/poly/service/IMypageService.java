@@ -1,5 +1,6 @@
 package kopo.poly.service;
 
+import kopo.poly.dto.CheckDTO;
 import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 
@@ -17,4 +18,10 @@ public interface IMypageService {
     int myInfoChkPassword(MypageDTO myDTO) throws Exception;
 
     int myInfoWithdrawal(String sessionNo) throws Exception;
+
+    List<CheckDTO> getCheckDays(int seq) throws Exception;
+
+    int insertCheck(CheckDTO seq) throws Exception;
+
+    int getTodayCheck(CheckDTO seq) throws Exception;
 }
