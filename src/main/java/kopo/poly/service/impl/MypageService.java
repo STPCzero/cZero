@@ -1,5 +1,6 @@
 package kopo.poly.service.impl;
 
+import kopo.poly.dto.CheckDTO;
 import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 import kopo.poly.persistance.mapper.IMypageMapper;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service("MypageService")
@@ -66,6 +68,32 @@ public class MypageService implements IMypageService {
         log.info(this.getClass().getName()+".myInfoWithdrawal Start!!");
         int res = mypageMapper.myInfoWithdrawal(sessionNo);
         log.info(this.getClass().getName()+".myInfoWithdrawal End!!");
+        return res;
+    }
+
+    @Override
+    public List<CheckDTO> getCheckDays(int seq) throws Exception {
+        log.info(this.getClass().getName()+".getCheckDays Start!!");
+        List<CheckDTO> cDTO = mypageMapper.getCheckDays(seq);
+        log.info(this.getClass().getName()+".getCheckDays End!!");
+        return cDTO;
+    }
+
+    @Override
+    public int insertCheck(CheckDTO seq) throws Exception {
+        log.info(this.getClass().getName()+".insertCheck Start!!");
+        log.info("chkchk:"+seq.getChk_date());
+        int res = mypageMapper.insertCheck(seq);
+        log.info(this.getClass().getName()+".insertCheck End!!");
+        return res;
+    }
+
+    @Override
+    public int getTodayCheck(CheckDTO seq) throws Exception {
+        log.info(this.getClass().getName()+".getTodayCheck Start!!");
+        int res = mypageMapper.getTodayCheck(seq);
+        log.info("출석여부 res : "+res);
+        log.info(this.getClass().getName()+".getTodayCheck End!!");
         return res;
     }
 }

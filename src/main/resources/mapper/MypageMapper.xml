@@ -19,11 +19,10 @@
 
     <!-- 마이페이지 개인 마켓 정보 출력 쿼리 -->
     <select id="getMypageMarket" parameterType="MypageDTO" resultType="MarketDTO">
-        SELECT M.*
-        FROM MARKET M JOIN USER_INFO U
-        ON M.USER_SEQ = U.USER_SEQ
-        WHERE U.USER_SEQ = #{user_seq}
-        ORDER BY M.MK_SEQ DESC
+        SELECT *
+        FROM MARKET
+        WHERE USER_SEQ = #{user_seq}
+        ORDER BY MK_SEQ DESC
         LIMIT #{start}, #{finish};
     </select>
 
@@ -48,4 +47,23 @@
         where USER_SEQ = #{sessionNo}
     </delete>
 
+    <!-- 내 출석체크 현황 출력 -->
+    <select id="getCheckDays" parameterType="int" resultType="CheckDTO">
+        select *
+        from CHECK_DAY
+        where USER_SEQ = #{seq}
+    </select>
+
+    <!-- 출석체크 insert -->
+    <insert id="insertCheck" parameterType="CheckDTO">
+        insert into CHECK_DAY(USER_SEQ, CHK_DATE)
+        values(#{user_seq},STR_TO_DATE(#{chk_date}, '%Y%m%d'))
+    </insert>
+
+    <!-- 오늘의 출석체크 현황 출력 -->
+    <select id="getTodayCheck" parameterType="CheckDTO" resultType="int">
+        select count(*)
+        from CHECK_DAY
+        where USER_SEQ = #{user_seq} and CHK_DATE = #{chk_date}
+    </select>
 </mapper>

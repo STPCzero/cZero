@@ -1,17 +1,21 @@
 package kopo.poly.controller;
 
 import kopo.poly.dto.MarketDTO;
+import kopo.poly.dto.MypageDTO;
 import kopo.poly.dto.UserInfoDTO;
 import kopo.poly.service.IAdminService;
+import kopo.poly.service.IMypageService;
 import kopo.poly.util.CmmUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Slf4j
@@ -21,6 +25,9 @@ public class AdminController {
 
     @Resource(name = "AdminService")
     private IAdminService adminService;
+
+    @Resource(name = "MypageService")
+    private IMypageService mypageService;
 
     @GetMapping("admin-member")
     public String adminMembers(HttpServletRequest request, ModelMap model) throws Exception {
@@ -46,9 +53,8 @@ public class AdminController {
         else
             num = Integer.parseInt(no);
 
-        finish = count - ( (num-1) * 10 );
-        start  = finish - 9;
-        if( start < 1 ) start = 1;
+        finish = 10;
+        start  = (num - 1) * finish;
 
         log.info("num : "+num);
         log.info("start : "+start);
@@ -99,6 +105,36 @@ public class AdminController {
         return "/admin/admin-member";
     }
 
+    @GetMapping(value = "user-withdrawal")
+    public String userWithdrawal(HttpServletRequest request, Model model, HttpSession session) throws Exception{
+        log.info(this.getClass().getName()+".userWithdrawal Start!!");
+        String msg = "", url="", icon = "success";
+        String user_seq = CmmUtil.nvl(request.getParameter("user_seq"));
+
+
+        MypageDTO myDTO = new MypageDTO();
+        myDTO.setUser_seq(user_seq);
+
+        // 회원 삭제 진행
+        int res =  mypageService.myInfoWithdrawal(user_seq);
+        log.info("res : "+res);
+        if(res > 0) {
+            url = "/admin/admin-member";
+            msg = "회원 탈퇴가 완료되었습니다.";
+        } else {
+            icon="error";
+            url="/mypage/myinfo";
+            msg = "회원탈퇴 처리가 실패하였습니다.\n 관리자에게 문의해주세요.";
+        }
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+        model.addAttribute("icon", icon);
+
+        log.info(this.getClass().getName()+".userWithdrawal End!!");
+        return "/redirect";
+    }
+
     @GetMapping(value = "admin-market")
     public String adminMarket(HttpServletRequest request, ModelMap model) throws Exception {
         log.info(this.getClass().getName() + ".admin-market Start!!");
@@ -122,9 +158,8 @@ public class AdminController {
         else
             num = Integer.parseInt(no);
 
-        finish = count - ( (num-1) * 10 );
-        start  = finish - 9;
-        if( start < 1 ) start = 1;
+        finish = 10;
+        start  = (num - 1) * finish;
 
         log.info("num : "+num);
         log.info("start : "+start);

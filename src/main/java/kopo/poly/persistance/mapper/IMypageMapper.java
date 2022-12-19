@@ -1,5 +1,6 @@
 package kopo.poly.persistance.mapper;
 
+import kopo.poly.dto.CheckDTO;
 import kopo.poly.dto.MarketDTO;
 import kopo.poly.dto.MypageDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +21,10 @@ public interface IMypageMapper {
     int myInfoChkPassword(MypageDTO myDTO) throws Exception;
 
     int myInfoWithdrawal(String sessionNo) throws Exception;
+
+    List<CheckDTO> getCheckDays(int seq) throws Exception;
+
+    int insertCheck(CheckDTO seq) throws Exception;
+
+    int getTodayCheck(CheckDTO seq) throws Exception;
 }

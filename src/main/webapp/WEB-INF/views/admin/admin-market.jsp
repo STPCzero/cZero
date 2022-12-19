@@ -167,7 +167,7 @@
             <thead>
             <tr class="bg-gray-600 text-white grid-adm-members text-center font-bold py-2 px-1">
                 <th>
-                    <input type="checkbox">
+                    <input type="checkbox" style="display: none">
                 </th>
                 <th style="cursor: pointer;">등록일</th>
                 <th style="cursor: pointer;">닉네임</th>
@@ -181,7 +181,7 @@
                 MarketDTO mDTO = mList.get(i);%>
             <tr class="grid-adm-members py-2 px-1 text-center">
                 <td>
-                    <input type="checkbox">
+                    <input type="checkbox" style="display: none">
                 </td>
                 <td valign="middle"><%= mList.get(i).getMk_date()%>
                 </td>

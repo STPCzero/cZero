@@ -9,13 +9,13 @@
         SELECT M.*, U.USER_NAME
         FROM MARKET M JOIN USER_INFO U
                            ON M.USER_SEQ = U.USER_SEQ
-        WHERE M.TITLE LIKE '%'||#{title}||'%'
+        WHERE M.TITLE LIKE CONCAT('%',#{title},'%')
         ORDER BY M.MK_SEQ DESC
             LIMIT #{start}, #{finish};
     </select>
 
     <select id="getMarketCount" parameterType="MarketDTO" resultType="int">
-        SELECT count(*) FROM MARKET WHERE TITLE LIKE '%'||#{title}||'%'
+        SELECT count(*) FROM MARKET WHERE TITLE LIKE CONCAT('%',#{title},'%')
     </select>
 
     <!-- 상품 등록 쿼리 -->
@@ -23,7 +23,7 @@
         INSERT INTO MARKET
             (NOTICE_YN, USER_SEQ, TITLE, CONTENTS, MK_DATE, PRICE, READ_CNT, THUMBNAIL)
         VALUES
-               'N', #{user_seq}, #{title}, #{contents}, now(), #{price}, #{read_cnt}, #{thumbnail})
+               ('N', #{user_seq}, #{title}, #{contents}, now(), #{price}, #{read_cnt}, #{thumbnail})
     </insert>
 
     <!-- 상품 상세보기 쿼리 -->
@@ -51,7 +51,7 @@
             PRICE = #{price},
             CONTENTS = #{contents},
             THUMBNAIL = #{thumbnail},
-            UPDATE_DATE = SYSDATE
+            UPDATE_DATE = now()
         WHERE
             MK_SEQ = #{mk_seq}
     </update>
