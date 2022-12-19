@@ -10,7 +10,7 @@
     </insert>
 
     <select id="getUserExists" parameterType="UserInfoDTO" resultType="UserInfoDTO">
-        SELECT USER_EMAIL
+        SELECT CASE COUNT(1)  WHEN 0 THEN  'N'  ELSE 'Y' END AS EXISTS_YN
         FROM USER_INFO
         WHERE USER_EMAIL = #{user_email}
     </select>

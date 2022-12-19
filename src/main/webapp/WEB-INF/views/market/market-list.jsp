@@ -217,11 +217,11 @@
                 <h1 class="text-center latestitems">OUR PRODUCTS</h1>
             </div>
             <div class="mkstar type_short">
-			<span class="wow-hr-h">
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			<i class="fa fa-star"></i>
-			</span>
+         <span class="wow-hr-h">
+         <i class="fa fa-star"></i>
+         <i class="fa fa-star"></i>
+         <i class="fa fa-star"></i>
+         </span>
             </div>
         </div>
         <div>
@@ -286,8 +286,8 @@
                                 <h1><%=CmmUtil.nvl(mDTO.getTitle()) %></h1>
                             </a>
                             <span class="price">
-								<span class="edd_price">가격 : <%=CmmUtil.nvl(String.valueOf(mDTO.getPrice())) %>원</span>
-							</span>
+                        <span class="edd_price">가격 : <%=CmmUtil.nvl(String.valueOf(mDTO.getPrice())) %>원</span>
+                     </span>
                         </div>
                     </div>
                 </div>
